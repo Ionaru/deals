@@ -1,5 +1,4 @@
 import { JSDOM } from 'jsdom';
-import * as console from 'console';
 
 export abstract class ScrapeWebsiteService {
 
