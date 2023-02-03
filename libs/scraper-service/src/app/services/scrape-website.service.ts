@@ -1,25 +1,35 @@
+import { Injectable } from '@nestjs/common';
 import { JSDOM } from 'jsdom';
 
+export interface IProductDeal {
+    name: string;
+    imageUrl: string;
+    price: number;
+    productUrl: string;
+    dealPrice: number;
+    purchaseAmount: number;
+}
+
+@Injectable()
 export abstract class ScrapeWebsiteService {
 
-    public constructor(
-        protected readonly baseUrl: string,
-        private readonly paths: string[],
-    ) {
-    }
+    protected abstract baseUrl: string;
+    protected abstract paths: string[];
 
     public async scrape() {
-        const deals = [];
+        const deals: IProductDeal[] = [];
 
         for (const path of this.paths) {
             const pathDeals = await this.scrapePath(path);
             deals.push(...pathDeals);
         }
 
-        deals.forEach((deal) => console.log(deal));
+        for (const deal of deals) {
+            console.log(deal);
+        }
     }
 
-    public async scrapePath(path: string): Promise<string[]> {
+    public async scrapePath(path: string): Promise<IProductDeal[]> {
 
         const deals = [];
         const pages = await this.getPageAmount(path);
@@ -47,7 +57,7 @@ export abstract class ScrapeWebsiteService {
         return this.setPage(this.buildUrl(path), page);
     }
 
-    private async scrapePage(url: URL): Promise<string[]> {
+    private async scrapePage(url: URL): Promise<IProductDeal[]> {
         const pageDocument = await this.getPage(url);
         return this.getPageDeals(pageDocument);
     }
@@ -59,7 +69,7 @@ export abstract class ScrapeWebsiteService {
     protected abstract setPage(url: URL, page: number): URL;
     protected abstract getPageAmount(path: string): Promise<number>;
 
-    protected abstract getPageDeals(page: Document): string[];
+    protected abstract getPageDeals(page: Document): IProductDeal[];
 
     protected abstract modifyURL(url: URL): URL;
 

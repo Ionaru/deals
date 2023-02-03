@@ -1,7 +1,9 @@
 {
-  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
-  "version": 2,
-  "projects": {
-    "scraper": "apps/scraper"
-  }
+    "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+    "version": 2,
+    "projects": {
+        "scraper": "apps/scraper",
+        "scraper-service": "libs/scraper-service",
+        "scrapers-jumbo": "apps/scrapers/jumbo"
+    }
 }

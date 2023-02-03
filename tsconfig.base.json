@@ -3,6 +3,15 @@
     "compilerOptions": {
         "rootDir": ".",
         "sourceMap": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noImplicitOverride": true,
+        "noFallthroughCasesInSwitch": true,
+        "exactOptionalPropertyTypes": true,
+        "noUncheckedIndexedAccess": true,
+        "noPropertyAccessFromIndexSignature": true,
         "declaration": false,
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
@@ -14,7 +23,10 @@
         "skipLibCheck": false,
         "skipDefaultLibCheck": false,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "@deals/scraper-service": ["libs/scraper-service/src/index.ts"],
+            "@deals/scraper-service-builder": ["libs/scraper-service-builder/src/index.ts"]
+        }
     },
     "exclude": ["node_modules", "tmp"]
 }
