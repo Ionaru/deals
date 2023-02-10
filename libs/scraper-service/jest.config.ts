@@ -1,16 +1,15 @@
-/* eslint-disable */
 export default {
+    coverageDirectory: '../../coverage/libs/scraper-service',
     displayName: 'scraper-service',
-    preset: '../../jest.preset.js',
     globals: {
         'ts-jest': {
             tsconfig: '<rootDir>/tsconfig.spec.json',
         },
     },
+    moduleFileExtensions: ['ts', 'js', 'html'],
+    preset: '../../jest.preset.js',
     testEnvironment: 'node',
     transform: {
         '^.+\\.[tj]s$': 'ts-jest',
     },
-    moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/libs/scraper-service',
 };

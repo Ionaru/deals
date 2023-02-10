@@ -18,13 +18,16 @@
             "inputs": ["production", "^production"]
         },
         "test": {
-            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+            "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+            ]
         },
         "lint": {
             "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
         }
     },
-    "defaultProject": "scraper",
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
         "sharedGlobals": [],

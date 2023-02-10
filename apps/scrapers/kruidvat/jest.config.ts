@@ -1,6 +1,6 @@
 export default {
-    coverageDirectory: '../../../coverage/apps/scrapers/jumbo',
-    displayName: 'scrapers-jumbo',
+    coverageDirectory: '../../../coverage/apps/scrapers/kruidvat',
+    displayName: 'scrapers-kruidvat',
     globals: {
         'ts-jest': {
             tsconfig: '<rootDir>/tsconfig.spec.json',

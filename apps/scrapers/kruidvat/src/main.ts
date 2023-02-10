@@ -2,10 +2,12 @@ import { ScraperServiceModule } from '@deals/scraper-service';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
-import { Jumbo } from './jumbo';
+import { Kruidvat } from './kruidvat';
 
 const bootstrap = async () => {
-    const app = await NestFactory.create(ScraperServiceModule.forRoot(Jumbo));
+    const app = await NestFactory.create(
+        ScraperServiceModule.forRoot(Kruidvat),
+    );
     const globalPrefix = 'api';
     app.setGlobalPrefix(globalPrefix);
     const port = process.env['PORT'] || 3333;

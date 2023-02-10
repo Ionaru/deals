@@ -1,18 +1,17 @@
+import { ScraperStatus } from '@deals/api';
 import { Controller, Get, Inject, Post } from '@nestjs/common';
 
 import { ScrapeWebsiteService } from '../services/scrape-website.service';
-
-enum ScraperStatus {
-    IDLE = 'IDLE',
-    SCRAPING = 'SCRAPING',
-    ERROR = 'ERROR',
-}
+import { StorageService } from '../services/storage.service';
 
 @Controller('')
 export class ScraperController {
     private status = ScraperStatus.IDLE;
 
-    public constructor(@Inject('SCRAPER') private readonly scraper: ScrapeWebsiteService) {}
+    public constructor(
+        @Inject('SCRAPER') private readonly scraper: ScrapeWebsiteService,
+        private readonly storage: StorageService,
+    ) {}
 
     @Get()
     public getStatus() {
@@ -27,11 +26,15 @@ export class ScraperController {
 
         this.status = ScraperStatus.SCRAPING;
         try {
-            await this.scraper.scrape();
+            const result = await this.scraper.scrape();
+            await this.storage.store({
+                deals: result,
+                shop: this.scraper.shopName,
+            });
             this.status = ScraperStatus.IDLE;
-            // TODO: send results to storage
         } catch (error) {
             this.status = ScraperStatus.ERROR;
+            // eslint-disable-next-line no-console
             console.error(error);
             // TODO: send error to storage
         }
