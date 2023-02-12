@@ -1,6 +1,8 @@
-import { IProductDeal } from '@deals/api';
+import { IProductDeal, IUnknownDeal } from '@deals/api';
 import { Injectable, Logger } from '@nestjs/common';
 import { JSDOM } from 'jsdom';
+
+import { StorageService } from './storage.service';
 
 @Injectable()
 export abstract class ScrapeWebsiteService {
@@ -10,6 +12,8 @@ export abstract class ScrapeWebsiteService {
 
     protected abstract baseUrl: string;
     protected abstract paths: string[];
+
+    public constructor(private readonly storage: StorageService) {}
 
     public async scrape() {
         const deals: IProductDeal[] = [];
@@ -24,7 +28,19 @@ export abstract class ScrapeWebsiteService {
         return deals;
     }
 
-    public async scrapePath(path: string): Promise<IProductDeal[]> {
+    protected reportUnknownDeal(unknownDeal: IUnknownDeal) {
+        this.logger.log(`Storing unknown deal for ${this.shopName}...`);
+        this.storage
+            .storeUnknownDeal({
+                deal: unknownDeal,
+                shop: this.shopName,
+            })
+            .catch((error) => {
+                this.logger.error('Failed to store unknown deal.', error);
+            });
+    }
+
+    private async scrapePath(path: string): Promise<IProductDeal[]> {
         const deals = [];
         const firstPageUrl = this.buildPageUrl(path, 0);
         const document = await this.getPage(firstPageUrl);
@@ -44,7 +60,7 @@ export abstract class ScrapeWebsiteService {
         return deals;
     }
 
-    protected async getPage(url: URL): Promise<Document> {
+    private async getPage(url: URL): Promise<Document> {
         const modifiedUrl = this.modifyURL(url);
         this.logger.log(`Fetching: ${modifiedUrl}`);
         const result = await fetch(modifiedUrl);
@@ -52,7 +68,7 @@ export abstract class ScrapeWebsiteService {
         return new JSDOM(html).window.document;
     }
 
-    protected buildPageUrl(path: string, page: number): URL {
+    private buildPageUrl(path: string, page: number): URL {
         return this.setPage(this.buildUrl(path), page);
     }
 

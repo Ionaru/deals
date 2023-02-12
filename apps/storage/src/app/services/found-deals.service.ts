@@ -3,13 +3,13 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, ObjectLiteral, Repository } from 'typeorm';
 
-import { Deal } from './models/deal';
-import { Product } from './models/product';
-import { Shop } from './models/shop';
+import { Deal } from '../models/deal';
+import { Product } from '../models/product';
+import { Shop } from '../models/shop';
 
 @Injectable()
-export class AppService {
-    private readonly logger = new Logger(AppService.name);
+export class FoundDealsService {
+    private readonly logger = new Logger(FoundDealsService.name);
 
     public constructor(
         @InjectRepository(Shop)
@@ -20,10 +20,7 @@ export class AppService {
         private readonly dealRepository: Repository<Deal>,
     ) {}
 
-    public async storeDeals(
-        shop: string,
-        deals: IProductDeal[],
-    ): Promise<void> {
+    public async store(shop: string, deals: IProductDeal[]): Promise<void> {
         const shopEntity = await getOrCreate(this.shopRepository, {
             name: shop,
         });
@@ -31,14 +28,10 @@ export class AppService {
         const productsToSave: Product[] = [];
         const dealsToSave: Deal[] = [];
 
-        const productEntities = await this.productRepository.findBy(
-            deals.map((deal) => ({ name: deal.name })),
-        );
-
         for (const deal of deals) {
-            let productEntity = productEntities.find(
-                (product) => product.name === deal.name,
-            );
+            let productEntity = await this.productRepository.findOneBy({
+                name: deal.name,
+            });
             if (!productEntity) {
                 productEntity = this.productRepository.create({
                     imageUrl: deal.imageUrl,

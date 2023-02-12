@@ -15,4 +15,6 @@ const bootstrap = async () => {
     Logger.log(`🚀 Microservice is running`);
 };
 
-bootstrap();
+bootstrap().catch((error) => {
+    Logger.error(error);
+});

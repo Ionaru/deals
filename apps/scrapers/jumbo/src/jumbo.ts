@@ -66,9 +66,16 @@ export class Jumbo extends ScrapeWebsiteService {
             const productName = product
                 .querySelector('.name .title')
                 ?.textContent?.trim();
+            const productUrl = `${this.baseUrl}${product
+                .querySelector('a')
+                ?.getAttribute('href')}`;
 
             const dealType = this.parseDealText(promotionText);
             if (!dealType) {
+                this.reportUnknownDeal({
+                    productUrl,
+                    promotionText,
+                });
                 continue;
             }
 
@@ -87,9 +94,7 @@ export class Jumbo extends ScrapeWebsiteService {
                         ?.getAttribute('src') || '',
                 name: productName || 'Unknown product',
                 price: productPrice,
-                productUrl: `${this.baseUrl}${product
-                    .querySelector('a')
-                    ?.getAttribute('href')}`,
+                productUrl,
                 purchaseAmount,
             });
         }
@@ -112,7 +117,5 @@ export class Jumbo extends ScrapeWebsiteService {
                 return Number(type) as unknown as JumboDealType;
             }
         }
-        // eslint-disable-next-line no-console
-        console.warn('Unknown deal type:', text);
     }
 }

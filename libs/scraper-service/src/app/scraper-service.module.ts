@@ -18,7 +18,7 @@ import { StorageService } from './services/storage.service';
 })
 export class ScraperServiceModule {
     public static forRoot(
-        scraper: new () => ScrapeWebsiteService,
+        scraper: new (storage: StorageService) => ScrapeWebsiteService,
     ): DynamicModule {
         return {
             exports: [],

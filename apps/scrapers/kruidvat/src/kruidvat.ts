@@ -246,9 +246,32 @@ export class Kruidvat extends ScrapeWebsiteService {
 
     protected baseUrl = 'https://www.kruidvat.nl';
     protected paths = [
-        // `/beauty/haarverzorging/c/20013`,
-        // `/verzorging/lichaamsverzorging/deodorant/c/30056`,
-        `/verzorging/lichaamsverzorging/bad-en-douche-producten/c/30057`,
+        '/beauty/fohn-haarstyler/c/20014',
+        '/beauty/geuren-geschenksets/c/20017',
+        '/beauty/geuren-geschenksets/geschenksets/c/30030',
+        '/beauty/haaraccessoires/c/20015',
+        '/beauty/haarverzorging/c/20013',
+        '/beauty/haarverzorging/curly-girl-methode/c/haarverzorging',
+        '/beauty/luxe-beauty/c/luxe-beauty',
+        '/beauty/make-up-accessoires/c/20090',
+        '/beauty/make-up/c/20018',
+        '/beauty/nieuw-in-beauty/c/MLP10066',
+        '/beauty/skincare-man/c/20020',
+        '/beauty/skincare-vrouw/c/20019',
+        '/beauty/voordeelverpakkingen-beauty/c/MLP10083',
+        '/beauty/zonnebrand-aftersun/c/30060',
+        '/verzorging/duurzamere-keuze/alle-duurzamere-beautyproducten/c/MLP10139',
+        '/verzorging/duurzamere-keuze/alle-duurzamere-verzorgingsproducten/c/MLP10138',
+        '/verzorging/lichaamsverzorging/bad-en-douche-producten/c/30057',
+        '/verzorging/lichaamsverzorging/c/20021',
+        '/verzorging/lichaamsverzorging/deodorant/c/30056',
+        '/verzorging/lichaamsverzorging/handzeep-handgel/c/30062',
+        '/verzorging/mannen-verzorging/c/MLP10060',
+        '/verzorging/mondverzorging/c/20012',
+        '/verzorging/natuurlijke-producten/c/groen-lichaamsverzorging',
+        '/verzorging/scheren-ontharen/c/20022',
+        '/verzorging/scheren-ontharen/scheermesjes/c/30070',
+        '/voordeelverpakkingen-verzorging/c/MLP10081',
     ];
 
     protected setPage(url: URL, page: number): URL {
@@ -267,6 +290,7 @@ export class Kruidvat extends ScrapeWebsiteService {
         return url;
     }
 
+    // eslint-disable-next-line sonarjs/cognitive-complexity
     protected getPageDeals(document: Document): IProductDeal[] {
         const deals: IProductDeal[] = [];
 
@@ -289,43 +313,53 @@ export class Kruidvat extends ScrapeWebsiteService {
             if (!deal) {
                 continue;
             }
-            const dealCode = this.getDealCodeFromSrc(deal);
-            if (!dealCode) {
-                continue;
-            }
 
             const title = product.querySelector(
                 'a.tile__product-slide-product-name',
             );
-            if (title) {
-                let text = title.textContent?.trim();
-                const description = product
-                    .querySelector('.tile__product-slide-product-description')
-                    ?.textContent?.trim();
-                if (description) {
-                    text = `${text} - ${description}`;
-                }
-                const productPrice = product.querySelector(
-                    '.pricebadge__new-price',
-                );
-                const priceText = parseProductPrice(productPrice?.textContent);
-                const productImage = product
-                    .querySelector('img.tile__product-slide-image')
-                    ?.getAttribute('data-src');
-
-                deals.push({
-                    dealPrice:
-                        kruidvatDealInformation[dealCode].calculation(
-                            priceText,
-                        ),
-                    imageUrl: this.baseUrl + productImage || '',
-                    name: text || 'Unknown product',
-                    price: priceText,
-                    productUrl: `${this.baseUrl}${title.getAttribute('href')}`,
-                    purchaseAmount:
-                        kruidvatDealInformation[dealCode].purchaseAmount,
-                });
+            if (!title) {
+                continue;
             }
+
+            const productUrl = `${this.baseUrl}${title.getAttribute('href')}`;
+
+            const dealCode = this.getDealCodeFromSrc(deal);
+            if (dealCode && ignoredDeals.has(dealCode as unknown as string)) {
+                continue;
+            } else if (!dealCode) {
+                this.reportUnknownDeal({
+                    productUrl,
+                    promotionText: deal,
+                });
+                continue;
+            }
+
+            let text = title.textContent?.trim();
+            const description = product
+                .querySelector('.tile__product-slide-product-description')
+                ?.textContent?.trim();
+            if (description) {
+                text = `${text} - ${description}`;
+            }
+
+            const productPrice = product.querySelector(
+                '.pricebadge__new-price',
+            );
+            const priceText = parseProductPrice(productPrice?.textContent);
+            const productImage = product
+                .querySelector('img.tile__product-slide-image')
+                ?.getAttribute('data-src');
+
+            deals.push({
+                dealPrice:
+                    kruidvatDealInformation[dealCode].calculation(priceText),
+                imageUrl: this.baseUrl + productImage || '',
+                name: text || 'Unknown product',
+                price: priceText,
+                productUrl,
+                purchaseAmount:
+                    kruidvatDealInformation[dealCode].purchaseAmount,
+            });
         }
 
         return deals;
@@ -350,9 +384,6 @@ export class Kruidvat extends ScrapeWebsiteService {
 
             if (dealType) {
                 return dealType[0] as unknown as KruidvatDealType;
-            } else if (!ignoredDeals.has(code)) {
-                // eslint-disable-next-line no-console
-                console.error('UNKNOWN DEAL CODE', `${this.baseUrl}${source}`);
             }
         }
     }

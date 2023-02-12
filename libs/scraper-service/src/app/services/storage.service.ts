@@ -13,4 +13,10 @@ export class StorageService {
         this.client.emit(MSMessage.DEAL_FOUND, deals);
         this.logger.log('Stored');
     }
+
+    public async storeUnknownDeal(deals: IMSPayload[MSMessage.UNKNOWN_DEAL]) {
+        this.logger.log('Storing unknown deal...');
+        this.client.emit(MSMessage.UNKNOWN_DEAL, deals);
+        this.logger.log('Stored unknown deal');
+    }
 }

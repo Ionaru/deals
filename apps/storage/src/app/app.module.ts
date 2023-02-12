@@ -3,10 +3,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Deal } from './models/deal';
 import { Product } from './models/product';
 import { Shop } from './models/shop';
+import { UnknownDeal } from './models/unknown-deal';
+import { FoundDealsService } from './services/found-deals.service';
+import { UnknownDealService } from './services/unknown-deal.service';
 
 @Module({
     controllers: [AppController],
@@ -49,7 +51,7 @@ import { Shop } from './models/shop';
 
                 return {
                     database: configService.getOrThrow('STORAGE_DB_NAME'),
-                    entities: [Shop, Product, Deal],
+                    entities: [Shop, Product, Deal, UnknownDeal],
                     host: configService.getOrThrow('STORAGE_DB_HOST'),
                     logging: true,
                     password: configService.getOrThrow('STORAGE_DB_PASS'),
@@ -61,8 +63,8 @@ import { Shop } from './models/shop';
                 };
             },
         }),
-        TypeOrmModule.forFeature([Shop, Product, Deal]),
+        TypeOrmModule.forFeature([Shop, Product, Deal, UnknownDeal]),
     ],
-    providers: [AppService],
+    providers: [FoundDealsService, UnknownDealService],
 })
 export class AppModule {}

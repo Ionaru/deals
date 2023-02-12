@@ -7,6 +7,11 @@ export interface IProductDeal {
     purchaseAmount: number;
 }
 
+export interface IUnknownDeal {
+    promotionText: string;
+    productUrl: string;
+}
+
 export enum ScraperStatus {
     IDLE = 'IDLE',
     SCRAPING = 'SCRAPING',
@@ -19,11 +24,17 @@ export const service = Object.freeze({
 
 export enum MSMessage {
     DEAL_FOUND,
+    UNKNOWN_DEAL,
 }
 
 export interface IMSPayload {
     [MSMessage.DEAL_FOUND]: {
         deals: IProductDeal[];
+        shop: string;
+    };
+
+    [MSMessage.UNKNOWN_DEAL]: {
+        deal: IUnknownDeal;
         shop: string;
     };
 }

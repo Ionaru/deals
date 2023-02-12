@@ -34,7 +34,8 @@
                 "dot-notation": "off",
                 "@typescript-eslint/dot-notation": "warn",
                 "import/no-unresolved": "off",
-                "import/extensions": "off"
+                "import/extensions": "off",
+                "unicorn/prefer-top-level-await": "off"
             }
         },
         {
