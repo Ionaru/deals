@@ -21,14 +21,14 @@ import { UnknownDealService } from './services/unknown-deal.service';
                 const sslEnabled =
                     configService.getOrThrow('STORAGE_DB_SSL') === 'true';
 
-                if (!sslEnabled) {
-                    Logger.warn(
-                        'SSL is disabled for the database connection!',
+                if (sslEnabled) {
+                    Logger.log(
+                        'SSL is enabled for the database connection.',
                         AppModule.name,
                     );
                 } else {
-                    Logger.log(
-                        'SSL is enabled for the database connection.',
+                    Logger.warn(
+                        'SSL is disabled for the database connection!',
                         AppModule.name,
                     );
                 }
