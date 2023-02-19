@@ -24,6 +24,12 @@
             },
             "configurations": {
                 "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/client/src/environments/environment.ts",
+                            "with": "apps/client/src/environments/environment.production.ts"
+                        }
+                    ],
                     "budgets": [
                         {
                             "type": "initial",
@@ -39,6 +45,12 @@
                     "outputHashing": "all"
                 },
                 "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/client/src/environments/environment.ts",
+                            "with": "apps/client/src/environments/environment.development.ts"
+                        }
+                    ],
                     "buildOptimizer": false,
                     "optimization": false,
                     "vendorChunk": true,

@@ -7,6 +7,7 @@ import { Deal } from './models/deal';
 import { Product } from './models/product';
 import { Shop } from './models/shop';
 import { UnknownDeal } from './models/unknown-deal';
+import { DealsService } from './services/deals.service';
 import { FoundDealsService } from './services/found-deals.service';
 import { UnknownDealService } from './services/unknown-deal.service';
 
@@ -65,6 +66,6 @@ import { UnknownDealService } from './services/unknown-deal.service';
         }),
         TypeOrmModule.forFeature([Shop, Product, Deal, UnknownDeal]),
     ],
-    providers: [FoundDealsService, UnknownDealService],
+    providers: [FoundDealsService, UnknownDealService, DealsService],
 })
 export class AppModule {}

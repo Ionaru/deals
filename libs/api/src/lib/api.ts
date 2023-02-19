@@ -25,6 +25,7 @@ export const service = Object.freeze({
 export enum MSMessage {
     DEAL_FOUND,
     UNKNOWN_DEAL,
+    GET_DEALS,
 }
 
 export interface IMSPayload {
@@ -36,5 +37,9 @@ export interface IMSPayload {
     [MSMessage.UNKNOWN_DEAL]: {
         deal: IUnknownDeal;
         shop: string;
+    };
+
+    [MSMessage.GET_DEALS]: {
+        deals: IProductDeal[];
     };
 }

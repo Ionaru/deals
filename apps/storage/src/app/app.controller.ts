@@ -1,7 +1,8 @@
 import { IMSPayload, MSMessage } from '@deals/api';
 import { Controller, Logger } from '@nestjs/common';
-import { EventPattern } from '@nestjs/microservices';
+import { EventPattern, MessagePattern } from '@nestjs/microservices';
 
+import { DealsService } from './services/deals.service';
 import { FoundDealsService } from './services/found-deals.service';
 import { UnknownDealService } from './services/unknown-deal.service';
 
@@ -10,6 +11,7 @@ export class AppController {
     private readonly logger = new Logger(AppController.name);
 
     public constructor(
+        private readonly dealsService: DealsService,
         private readonly foundDealsService: FoundDealsService,
         private readonly unknownDealService: UnknownDealService,
     ) {}
@@ -24,5 +26,11 @@ export class AppController {
     public handleUnknownDeal(data: IMSPayload[MSMessage.UNKNOWN_DEAL]) {
         this.logger.log('Saving unknown deal...', data.shop);
         return this.unknownDealService.store(data.shop, data.deal);
+    }
+
+    @MessagePattern(MSMessage.GET_DEALS)
+    public handleGetDeals() {
+        this.logger.log('Getting deals...');
+        return this.dealsService.getDeals();
     }
 }
