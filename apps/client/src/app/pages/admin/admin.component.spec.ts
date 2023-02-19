@@ -17,6 +17,7 @@ describe('adminComponent', () => {
     });
 
     it('should create', () => {
+        expect.assertions(1);
         expect(component).toBeTruthy();
     });
 });

@@ -11,7 +11,11 @@ import { environment } from './environments/environment';
 bootstrapApplication(AppComponent, {
     providers: [
         provideRouter(appRouting),
-        provideHttpClient(withInterceptors(environment.production ? [] : [mockDataInterceptor])),
+        provideHttpClient(
+            withInterceptors(
+                environment.production ? [] : [mockDataInterceptor],
+            ),
+        ),
         provideAnimations(),
     ],
     // eslint-disable-next-line no-console

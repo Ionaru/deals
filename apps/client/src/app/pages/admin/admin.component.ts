@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { Observable } from 'rxjs';
 
 import { HealthService } from '../../services/health.service';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     imports: [CommonModule, MatButtonModule],

@@ -13,7 +13,8 @@
                 "outputPath": "dist/apps/storage",
                 "main": "apps/storage/src/main.ts",
                 "tsConfig": "apps/storage/tsconfig.app.json",
-                "webpackConfig": "apps/storage/webpack.config.js"
+                "webpackConfig": "apps/storage/webpack.config.js",
+                "babelUpwardRootMode": true
             },
             "configurations": {
                 "production": {
