@@ -1,0 +1,16 @@
+:host(deals-home) {
+    //padding: 1em;
+
+    .deals-container {
+        display: flex;
+        grid-gap: 1rem;
+        margin: 1rem;
+        flex-wrap: wrap;
+
+        mat-card {
+            min-width: 300px;
+            flex-grow: 1;
+            width: 0;
+        }
+    }
+}

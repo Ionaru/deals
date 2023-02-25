@@ -1,0 +1,99 @@
+@use 'node_modules/@angular/material/index' as material;
+@import 'node_modules/@angular/material/theming';
+
+// Modify material theming to include a dark mode.
+
+@include material.core();
+
+$ns-old-sprinter-blue-palette: (
+    50: #e2f6ff,
+    100: #b5e8ff,
+    200: #85d8ff,
+    300: #55c9ff,
+    400: #34bdff,
+    500: #20b0ff,
+    600: #1ea2ef,
+    700: #1c8fdb,
+    800: #1a7dc7,
+    900: #165da5,
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: rgba(black, 0.87),
+        600: rgba(black, 0.87),
+        700: white,
+        800: white,
+        900: white,
+    ),
+);
+
+$ns-old-sprinter-yellow-palette: (
+    50: #fffde6,
+    100: #fef8c0,
+    200: #fdf397,
+    300: #fcef6c,
+    400: #faea48,
+    500: #f8e51c,
+    600: #fad51b,
+    700: #f9bc10,
+    800: #f8a403,
+    900: #f67900,
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: rgba(black, 0.87),
+        600: rgba(black, 0.87),
+        700: rgba(black, 0.87),
+        800: rgba(black, 0.87),
+        900: rgba(black, 0.87),
+    ),
+);
+
+$angular-primary: material.define-palette(
+    $ns-old-sprinter-blue-palette,
+    700,
+    100,
+    900
+);
+$angular-accent: material.define-palette(
+    $ns-old-sprinter-yellow-palette,
+    400,
+    100,
+    900
+);
+
+$angular-warn: material.define-palette(material.$red-palette);
+
+$angular-default-theme: material.define-light-theme(
+    (
+        color: (
+            primary: $angular-primary,
+            accent: $angular-accent,
+            warn: $angular-warn,
+        ),
+        typography: material.define-typography-config(),
+        density: 0,
+    )
+);
+
+@include material.all-component-themes($angular-default-theme);
+
+$angular-dark-theme: material.define-dark-theme(
+    (
+        color: (
+            primary: $angular-primary,
+            accent: $angular-accent,
+            warn: $angular-warn,
+        ),
+    )
+);
+
+.dark-mode {
+    @include material.all-component-colors($angular-dark-theme);
+}

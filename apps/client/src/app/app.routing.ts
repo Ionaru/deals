@@ -9,4 +9,13 @@ export default [
         loadChildren: () => import('./pages/admin/admin.routing'),
         path: 'admin',
     },
+    {
+        loadChildren: () => import('./pages/settings/settings.routing'),
+        path: 'settings',
+    },
+    {
+        loadChildren: () =>
+            import('./pages/notifications/notifications.routing'),
+        path: 'notifications',
+    },
 ] as Routes;

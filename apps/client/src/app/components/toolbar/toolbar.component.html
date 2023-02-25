@@ -1,0 +1,36 @@
+<mat-toolbar>
+    <a mat-button routerLink="/">
+        <mat-icon>sell</mat-icon>
+        {{ title }}
+    </a>
+    <span class="navbar-spacer"></span>
+    <nav class="navbar-links">
+        <a
+            mat-button
+            routerLink="/"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="active"
+        >
+            Home
+        </a>
+        <a mat-button routerLink="/admin" routerLinkActive="active"> Admin </a>
+    </nav>
+    <span class="navbar-spacer"></span>
+    <a mat-icon-button routerLink="/notifications" routerLinkActive="active">
+        <mat-icon
+            matBadgeHidden="true"
+            [matBadge]="0"
+            [matBadgeSize]="'small'"
+            matBadgeColor="accent"
+        >
+            notifications
+        </mat-icon>
+    </a>
+    <button mat-icon-button (click)="toggleDarkMode()">
+        <mat-icon *ngIf="!isDarkMode"> light_mode </mat-icon>
+        <mat-icon *ngIf="isDarkMode"> dark_mode </mat-icon>
+    </button>
+    <a mat-icon-button routerLink="/settings" routerLinkActive="active">
+        <mat-icon>settings</mat-icon>
+    </a>
+</mat-toolbar>
