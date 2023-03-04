@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <a mat-button routerLink="/">
+    <a class="toolbar-brand" mat-button routerLink="/" color="primary">
         <mat-icon>sell</mat-icon>
         {{ title }}
     </a>
@@ -13,7 +13,7 @@
         >
             Home
         </a>
-        <a mat-button routerLink="/admin" routerLinkActive="active"> Admin </a>
+        <a mat-button routerLink="/admin" routerLinkActive="active">Admin</a>
     </nav>
     <span class="navbar-spacer"></span>
     <a mat-icon-button routerLink="/notifications" routerLinkActive="active">
@@ -27,8 +27,8 @@
         </mat-icon>
     </a>
     <button mat-icon-button (click)="toggleDarkMode()">
-        <mat-icon *ngIf="!isDarkMode"> light_mode </mat-icon>
-        <mat-icon *ngIf="isDarkMode"> dark_mode </mat-icon>
+        <mat-icon *ngIf="!isDarkMode">light_mode</mat-icon>
+        <mat-icon *ngIf="isDarkMode">dark_mode</mat-icon>
     </button>
     <a mat-icon-button routerLink="/settings" routerLinkActive="active">
         <mat-icon>settings</mat-icon>

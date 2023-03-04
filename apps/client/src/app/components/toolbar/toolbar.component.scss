@@ -1,24 +1,29 @@
 :host(deals-toolbar) {
     mat-toolbar {
         background: transparent;
-    }
 
-    .navbar-spacer {
-        flex: 1 1 auto;
-    }
-
-    .navbar-links {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-
-        a {
-            margin: 0 0.5rem;
+        .toolbar-brand {
+            font-size: 1.5rem;
+            letter-spacing: 0;
         }
-    }
 
-    a.active {
-        //text-decoration: underline;
-        background: rgba(0, 0, 0, 0.2);
+        .navbar-spacer {
+            flex: 1 1 auto;
+        }
+
+        .navbar-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+
+            a {
+                margin: 0 0.5rem;
+            }
+        }
+
+        a.active {
+            //text-decoration: underline;
+            background: rgba(0, 0, 0, 0.2);
+        }
     }
 }

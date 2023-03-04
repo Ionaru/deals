@@ -18,10 +18,10 @@ export class AdminComponent implements OnInit {
     public health?: Observable<any>;
 
     public ngOnInit() {
-        this.health = this.getHealth();
+        this.health = this.#getHealth();
     }
 
-    public getHealth() {
+    #getHealth() {
         return this.#healthService.getHealth();
     }
 }
