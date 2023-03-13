@@ -14,19 +14,17 @@ import { DealsService } from '../../services/deals.service';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-
     #dealsService = inject(DealsService);
 
     public deals?: Observable<any>;
 
     public ngOnInit() {
-        this.deals = this.#dealsService.getDeals().pipe(
-            map((deals) => deals.deals),
-        );
+        this.deals = this.#dealsService
+            .getDeals()
+            .pipe(map((deals) => deals.deals));
     }
 
     public trackDealsBy(_index: number, deal: any) {
         return deal.id;
     }
-
 }

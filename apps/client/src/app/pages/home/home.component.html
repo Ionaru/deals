@@ -5,10 +5,17 @@
     <div class="deals-container" *ngIf="deals">
         <mat-card *ngFor="let deal of deals | async; trackBy: trackDealsBy">
             <mat-card-header>
-                <mat-card-title>{{deal.product.name}}</mat-card-title>
-                <mat-card-subtitle>{{deal.product.price}} -> {{deal.price}}</mat-card-subtitle>
+                <mat-card-title>{{ deal.product.name }}</mat-card-title>
+                <mat-card-subtitle
+                    >{{ deal.product.price }} ->
+                    {{ deal.price }}</mat-card-subtitle
+                >
             </mat-card-header>
-            <img mat-card-image [src]="deal.product.imageUrl" alt="Photo of a Shiba Inu">
+            <img
+                mat-card-image
+                [src]="deal.product.imageUrl"
+                alt="Photo of a Shiba Inu"
+            />
             <mat-card-content>
                 <p>Meow</p>
             </mat-card-content>
