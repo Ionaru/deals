@@ -10,6 +10,7 @@ import { AppService } from './app.service';
     imports: [
         ClientsModule.register([
             { name: service.STORAGE, transport: Transport.TCP },
+            { name: 'SCRAPER', transport: Transport.TCP },
         ]),
     ],
     providers: [AppService],

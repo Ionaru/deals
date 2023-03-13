@@ -11,7 +11,7 @@ export class DealsService {
         private readonly dealRepository: Repository<Deal>,
     ) {}
 
-    public async getDeals(): Promise<Deal[]> {
+    public getDeals(): Promise<Deal[]> {
         return this.dealRepository.find({
             relations: ['product'],
         });

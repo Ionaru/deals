@@ -7,6 +7,7 @@ import {
 import { IHTTPAPI } from '@deals/api';
 import { Observable, of } from 'rxjs';
 
+// import getDeals from '../../mock-data/get-deals';
 import getHealth from '../../mock-data/get-health';
 
 /**
@@ -27,6 +28,14 @@ export const mockDataInterceptor = (
             }),
         );
     }
+
+    // if (request.method === 'GET' && request.url.endsWith('/api/v1/deals')) {
+    //     return of(
+    //         new HttpResponse<IHTTPAPI['v1/deals']['response']>({
+    //             body: getDeals,
+    //         }),
+    //     );
+    // }
 
     return next(request);
 };

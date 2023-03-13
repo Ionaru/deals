@@ -26,6 +26,7 @@ export enum MSMessage {
     DEAL_FOUND,
     UNKNOWN_DEAL,
     GET_DEALS,
+    GET_HEALTH,
 }
 
 export interface IMSPayload {
@@ -41,5 +42,9 @@ export interface IMSPayload {
 
     [MSMessage.GET_DEALS]: {
         deals: IProductDeal[];
+    };
+
+    [MSMessage.GET_HEALTH]: {
+        status: 'ok';
     };
 }

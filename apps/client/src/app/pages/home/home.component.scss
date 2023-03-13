@@ -7,9 +7,15 @@
         flex-wrap: wrap;
 
         mat-card {
-            min-width: 300px;
-            flex-grow: 1;
-            width: 0;
+            //width: 45%;
+            //max-width: 400px;
+            //flex-grow: 1;
+            //width: 0;
+
+            img {
+                height: 15rem;
+                object-fit: contain;
+            }
         }
     }
 }
