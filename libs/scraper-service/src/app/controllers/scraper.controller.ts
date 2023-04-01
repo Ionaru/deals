@@ -22,6 +22,7 @@ export class ScraperController {
     //         return;
     //     }
     //
+
     //     this.status = ScraperStatus.SCRAPING;
     //     try {
     //         const result = await this.scraper.scrape();
@@ -30,6 +31,7 @@ export class ScraperController {
     //             shop: this.scraper.shopName,
     //         });
     //         this.status = ScraperStatus.IDLE;
+
     //     } catch (error) {
     //         this.status = ScraperStatus.ERROR;
     //         // eslint-disable-next-line no-console
@@ -39,7 +41,8 @@ export class ScraperController {
     // }
 
     @MessagePattern(MSMessage.GET_HEALTH)
-    public handleGetDeals(): IMSPayload[MSMessage.GET_HEALTH] {
+    public handleGetHealth(): IMSPayload[MSMessage.GET_HEALTH] {
+        console.log('GET_HEALTH');
         return { status: 'ok' };
     }
 }

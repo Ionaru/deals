@@ -25,7 +25,8 @@
         "baseUrl": ".",
         "paths": {
             "@deals/api": ["libs/api/src/index.ts"],
-            "@deals/scraper-service": ["libs/scraper-service/src/index.ts"]
+            "@deals/scraper-service": ["libs/scraper-service/src/index.ts"],
+            "@deals/service-registry": ["libs/service-registry/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

@@ -9,14 +9,13 @@ const bootstrap = async () => {
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(
         ScraperServiceModule.forRoot(Kruidvat),
         {
-            options: {
-                port: 3001,
-            },
-            transport: Transport.TCP,
+            options: {},
+            transport: Transport.NATS,
         },
     );
+    app.enableShutdownHooks();
     await app.listen();
-    Logger.log(`🚀 Microservice is running`);
+    Logger.log(`🚀 Microservice for ${Kruidvat.name} is running`);
 };
 
 bootstrap();

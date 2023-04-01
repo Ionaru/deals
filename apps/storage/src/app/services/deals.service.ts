@@ -13,7 +13,7 @@ export class DealsService {
 
     public getDeals(): Promise<Deal[]> {
         return this.dealRepository.find({
-            relations: ['product'],
+            relations: ['product', 'product.shop'],
         });
     }
 }

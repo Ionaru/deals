@@ -1,18 +1,16 @@
-import { service } from '@deals/api';
 import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { DealsModule } from './api/deals/deals.module';
+import { ScrapersModule } from './api/scrapers/scrapers.module';
+import { ServiceRegistryModule } from '@deals/service-registry';
+import { HealthModule } from './api/health/health.module';
 
 @Module({
-    controllers: [AppController],
     imports: [
-        ClientsModule.register([
-            { name: service.STORAGE, transport: Transport.TCP },
-            { name: 'SCRAPER', transport: Transport.TCP },
-        ]),
+        DealsModule,
+        ScrapersModule,
+        HealthModule,
+        ServiceRegistryModule.forRoot('Gateway'),
     ],
-    providers: [AppService],
 })
 export class AppModule {}

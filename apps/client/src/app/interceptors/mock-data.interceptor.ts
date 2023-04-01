@@ -2,13 +2,13 @@ import {
     HttpEvent,
     HttpHandlerFn,
     HttpRequest,
-    HttpResponse,
+    // HttpResponse,
 } from '@angular/common/http';
-import { IHTTPAPI } from '@deals/api';
-import { Observable, of } from 'rxjs';
+// import { IHTTPAPI } from '@deals/api';
+import { Observable } from 'rxjs';
 
 // import getDeals from '../../mock-data/get-deals';
-import getHealth from '../../mock-data/get-health';
+// import getHealth from '../../mock-data/get-health';
 
 /**
  * Intercepts requests and returns mock data used for easier development.
@@ -21,13 +21,13 @@ export const mockDataInterceptor = (
     // eslint-disable-next-line no-console
     console.warn('MockDataInterceptor', request.url);
 
-    if (request.method === 'GET' && request.url.endsWith('/api/v1/health')) {
-        return of(
-            new HttpResponse<IHTTPAPI['v1/health']['response']>({
-                body: getHealth,
-            }),
-        );
-    }
+    // if (request.method === 'GET' && request.url.endsWith('/api/v1/health')) {
+    //     return of(
+    //         new HttpResponse<IHTTPAPI['v1/health']['response']>({
+    //             body: getHealth,
+    //         }),
+    //     );
+    // }
 
     // if (request.method === 'GET' && request.url.endsWith('/api/v1/deals')) {
     //     return of(

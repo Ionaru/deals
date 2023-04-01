@@ -4,6 +4,7 @@ import { EventPattern, MessagePattern } from '@nestjs/microservices';
 
 import { DealsService } from './services/deals.service';
 import { FoundDealsService } from './services/found-deals.service';
+import { ServicesService } from './services/services.service';
 import { UnknownDealService } from './services/unknown-deal.service';
 
 @Controller()
@@ -14,6 +15,7 @@ export class AppController {
         private readonly dealsService: DealsService,
         private readonly foundDealsService: FoundDealsService,
         private readonly unknownDealService: UnknownDealService,
+        private readonly servicesService: ServicesService,
     ) {}
 
     @EventPattern(MSMessage.DEAL_FOUND)
@@ -32,5 +34,24 @@ export class AppController {
     public handleGetDeals() {
         this.logger.log('Getting deals...');
         return this.dealsService.getDeals();
+    }
+
+    @MessagePattern(MSMessage.REGISTER_SERVICE)
+    // Does not receive after emit?
+    public handleRegisterService(data: IMSPayload[MSMessage.REGISTER_SERVICE]) {
+        // this.logger.log(`Registering service... ${data.name} (${data.queue})`);
+        return this.servicesService.registerService(data.name, data.queue, data.isScraper);
+    }
+
+    @MessagePattern(MSMessage.UNREGISTER_SERVICE)
+    public handleUnregisterService(data: IMSPayload[MSMessage.UNREGISTER_SERVICE]) {
+        this.logger.log('Unregistering service... ' + data.queue);
+        return this.servicesService.unregisterService(data.queue);
+    }
+
+    @MessagePattern(MSMessage.GET_SERVICES)
+    public handleGetServices() {
+        this.logger.log('Getting services...');
+        return this.servicesService.getServices();
     }
 }
