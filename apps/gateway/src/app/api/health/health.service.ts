@@ -4,9 +4,7 @@ import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class HealthService {
-    public constructor(
-        @Inject(network.PRIMARY) private storage: ClientProxy,
-    ) {}
+    public constructor(@Inject(network.PRIMARY) private storage: ClientProxy) {}
 
     public getHealth() {
         return this.storage.send(MSMessage.GET_SERVICES, {});

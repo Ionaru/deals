@@ -8,7 +8,6 @@ import { ServicesService } from './app/services/services.service';
 const bootstrap = async () => {
     // const app2 = await NestFactory.create(AppModule);
 
-
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(
         AppModule,
         {

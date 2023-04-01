@@ -1,8 +1,6 @@
-// import { randomUUID } from 'node:crypto';
-
 import { network } from '@deals/api';
 import { ServiceRegistryModule } from '@deals/service-registry';
-import { Logger, Module, OnModuleInit } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -80,17 +78,11 @@ import { UnknownDealService } from './services/unknown-deal.service';
         TypeOrmModule.forFeature([Shop, Product, Deal, UnknownDeal, Service]),
         ServiceRegistryModule.forRoot('Storage', true),
     ],
-    providers: [FoundDealsService, UnknownDealService, DealsService, ServicesService],
+    providers: [
+        FoundDealsService,
+        UnknownDealService,
+        DealsService,
+        ServicesService,
+    ],
 })
-export class AppModule implements OnModuleInit {
-
-    public constructor(
-        // private readonly servicesService: ServicesService,
-    ) {}
-
-    public async onModuleInit() {
-        // await this.servicesService.init();
-        // await this.servicesService.registerService('Storage', randomUUID());
-    }
-
-}
+export class AppModule {}

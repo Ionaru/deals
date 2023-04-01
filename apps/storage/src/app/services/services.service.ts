@@ -9,7 +9,6 @@ import { Service } from '../models/service';
 
 @Injectable()
 export class ServicesService {
-
     private readonly logger = new Logger(ServicesService.name);
 
     public constructor(
@@ -24,7 +23,11 @@ export class ServicesService {
         this.client.emit(MSMessage.REPORT_SERVICE, {});
     }
 
-    public async registerService(name: string, queue: string, _isScraper = false): Promise<Service> {
+    public async registerService(
+        name: string,
+        queue: string,
+        _isScraper = false,
+    ): Promise<Service> {
         const service = new Service();
         service.name = name;
         service.queue = queue;
@@ -33,26 +36,31 @@ export class ServicesService {
     }
 
     public async unregisterService(queue: string): Promise<void> {
-        console.log('DELETE', queue);
         await this.serviceRepository.delete({ queue });
     }
 
     public async getServices(): Promise<any> {
         const services = await this.serviceRepository.find();
-        const serviceCalls = services.map(
-            (serv) => this.client.send(serv.queue, {}).pipe(
+        const serviceCalls = services.map((serv) =>
+            this.client.send(serv.queue, {}).pipe(
                 catchError((error) => {
-                    if (error instanceof Error && error.message.includes('There are no subscribers listening to that message')) {
+                    if (
+                        error instanceof Error &&
+                        error.message.includes(
+                            'There are no subscribers listening to that message',
+                        )
+                    ) {
                         return of({ status: 'no response' });
                     }
                     throw error;
                 }),
                 map((status) => ({ ...serv, status })),
-            ));
+            ),
+        );
         return zip(serviceCalls).pipe(
             catchError((error) => {
                 if (error) {
-                    console.log(error);
+                    this.logger.error(error);
                 }
                 return of({});
             }),

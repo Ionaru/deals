@@ -24,7 +24,7 @@ export const network = Object.freeze({
 });
 
 export enum MSMessage {
-    DEAL_FOUND= 'DEAL_FOUND',
+    DEAL_FOUND = 'DEAL_FOUND',
     UNKNOWN_DEAL = 'UNKNOWN_DEAL',
     GET_DEALS = 'GET_DEALS',
     GET_HEALTH = 'GET_HEALTH',

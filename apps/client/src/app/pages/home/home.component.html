@@ -3,7 +3,10 @@
     <p>Welcome to the home page</p>
 
     <div class="deals-container" *ngIf="deals">
-        <mat-card appearance="outlined" *ngFor="let deal of deals | async; trackBy: trackDealsBy">
+        <mat-card
+            appearance="outlined"
+            *ngFor="let deal of deals | async; trackBy: trackDealsBy"
+        >
             <mat-card-header>
                 <mat-card-title>{{ deal.product.name }}</mat-card-title>
                 <mat-card-subtitle

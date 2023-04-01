@@ -24,25 +24,21 @@ import { ServiceRegistryService } from './service-registry.service';
         ClientsModule.register([
             {
                 name: network.PRIMARY,
-                options: {} ,
+                options: {},
                 transport: Transport.NATS,
             },
         ]),
     ],
     providers: [ServiceRegistryService],
 })
-export class ServiceRegistryModule implements OnModuleInit, BeforeApplicationShutdown {
-
+export class ServiceRegistryModule
+implements OnModuleInit, BeforeApplicationShutdown {
     public constructor(
         private readonly serviceRegistryService: ServiceRegistryService,
         @Inject('DELAY') private readonly delay: string,
     ) {}
 
-    public static forRoot(
-        name: string,
-        delay = false,
-    ): DynamicModule {
-
+    public static forRoot(name: string, delay = false): DynamicModule {
         const id = randomUUID();
 
         return {
@@ -59,24 +55,27 @@ export class ServiceRegistryModule implements OnModuleInit, BeforeApplicationShu
 
     public onModuleInit() {
         if (!this.delay) {
-            this.serviceRegistryService.storeService().pipe(
-                catchError(this.#registryErrorHandler),
-            ).subscribe();
+            this.serviceRegistryService
+                .storeService()
+                .pipe(catchError(this.#registryErrorHandler))
+                .subscribe();
         }
     }
 
     public beforeApplicationShutdown() {
-        return this.serviceRegistryService.removeService().pipe(
-            catchError(this.#registryErrorHandler),
-        );
+        return this.serviceRegistryService
+            .removeService()
+            .pipe(catchError(this.#registryErrorHandler));
     }
 
     #registryErrorHandler(error: unknown) {
         if (error instanceof EmptyResponseException) {
-            Logger.warn('Service registry is not available, is storage online?', ServiceRegistryModule.name);
+            Logger.warn(
+                'Service registry is not available, is storage online?',
+                ServiceRegistryModule.name,
+            );
             return [];
         }
         throw error;
     }
-
 }

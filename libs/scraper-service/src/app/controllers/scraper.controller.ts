@@ -42,7 +42,6 @@ export class ScraperController {
 
     @MessagePattern(MSMessage.GET_HEALTH)
     public handleGetHealth(): IMSPayload[MSMessage.GET_HEALTH] {
-        console.log('GET_HEALTH');
         return { status: 'ok' };
     }
 }

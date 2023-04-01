@@ -6,7 +6,6 @@ import { ServiceRegistryService } from './service-registry.service';
 
 @Controller()
 export class ServiceRegistryController {
-
     private readonly logger = new Logger(ServiceRegistryController.name);
 
     public constructor(
@@ -18,5 +17,4 @@ export class ServiceRegistryController {
         this.logger.log('Reporting service...');
         return this.serviceRegistryService.storeService();
     }
-
 }

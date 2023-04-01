@@ -5,7 +5,6 @@ import { tap } from 'rxjs';
 
 @Injectable()
 export class ServiceRegistryService {
-
     private readonly logger = new Logger(ServiceRegistryService.name);
 
     public constructor(
@@ -27,9 +26,7 @@ export class ServiceRegistryService {
         this.logger.log('Removing service...');
         return this.#emit(MSMessage.UNREGISTER_SERVICE, {
             queue: this.id,
-        }).pipe(
-            tap(() => this.logger.log('Removed service')),
-        );
+        }).pipe(tap(() => this.logger.log('Removed service')));
     }
 
     #emit<T extends keyof IMSPayload>(event: T, payload: IMSPayload[T]) {

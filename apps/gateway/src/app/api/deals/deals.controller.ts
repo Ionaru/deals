@@ -9,6 +9,8 @@ export class DealsController {
 
     @Get()
     public getData() {
-        return this.dealsService.getDeals().pipe(map((data) => ({ deals: data })));
+        return this.dealsService
+            .getDeals()
+            .pipe(map((data) => ({ deals: data })));
     }
 }

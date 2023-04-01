@@ -1,11 +1,11 @@
 import { network } from '@deals/api';
+import { ServiceRegistryModule } from '@deals/service-registry';
 import { DynamicModule, Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 import { ScraperController } from './controllers/scraper.controller';
 import { ScrapeWebsiteService } from './services/scrape-website.service';
 import { StorageService } from './services/storage.service';
-import { ServiceRegistryModule } from '@deals/service-registry';
 
 @Module({
     controllers: [ScraperController],
@@ -14,7 +14,7 @@ import { ServiceRegistryModule } from '@deals/service-registry';
         ClientsModule.register([
             {
                 name: network.PRIMARY,
-                options: {} ,
+                options: {},
                 transport: Transport.NATS,
             },
         ]),
@@ -22,7 +22,6 @@ import { ServiceRegistryModule } from '@deals/service-registry';
     providers: [StorageService],
 })
 export class ScraperServiceModule {
-
     public static forRoot(
         scraper: new (storage: StorageService) => ScrapeWebsiteService,
     ): DynamicModule {

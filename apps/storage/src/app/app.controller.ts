@@ -40,11 +40,17 @@ export class AppController {
     // Does not receive after emit?
     public handleRegisterService(data: IMSPayload[MSMessage.REGISTER_SERVICE]) {
         // this.logger.log(`Registering service... ${data.name} (${data.queue})`);
-        return this.servicesService.registerService(data.name, data.queue, data.isScraper);
+        return this.servicesService.registerService(
+            data.name,
+            data.queue,
+            data.isScraper,
+        );
     }
 
     @MessagePattern(MSMessage.UNREGISTER_SERVICE)
-    public handleUnregisterService(data: IMSPayload[MSMessage.UNREGISTER_SERVICE]) {
+    public handleUnregisterService(
+        data: IMSPayload[MSMessage.UNREGISTER_SERVICE],
+    ) {
         this.logger.log('Unregistering service... ' + data.queue);
         return this.servicesService.unregisterService(data.queue);
     }
