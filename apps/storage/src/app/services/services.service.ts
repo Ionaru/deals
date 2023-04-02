@@ -1,6 +1,6 @@
-import { MSMessage, network } from '@deals/api';
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { MSEvent } from '@deals/api';
+import { ServiceGatewayService } from '@deals/service-registry';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { catchError, map, of, zip } from 'rxjs';
 import { Repository } from 'typeorm';
@@ -14,13 +14,12 @@ export class ServicesService {
     public constructor(
         @InjectRepository(Service)
         private readonly serviceRepository: Repository<Service>,
-
-        @Inject(network.PRIMARY) private client: ClientProxy,
+        private gateway: ServiceGatewayService,
     ) {}
 
     public async init(): Promise<void> {
         await this.serviceRepository.clear();
-        this.client.emit(MSMessage.REPORT_SERVICE, {});
+        this.gateway.emit(MSEvent.REPORT_SERVICE, {});
     }
 
     public async registerService(
@@ -31,7 +30,6 @@ export class ServicesService {
         const service = new Service();
         service.name = name;
         service.queue = queue;
-        this.logger.log(`Registering service ${name} with queue ${queue}`);
         return this.serviceRepository.save(service);
     }
 
@@ -42,7 +40,7 @@ export class ServicesService {
     public async getServices(): Promise<any> {
         const services = await this.serviceRepository.find();
         const serviceCalls = services.map((serv) =>
-            this.client.send(serv.queue, {}).pipe(
+            this.gateway.sendDirect(serv.queue, {}).pipe(
                 catchError((error) => {
                     if (
                         error instanceof Error &&

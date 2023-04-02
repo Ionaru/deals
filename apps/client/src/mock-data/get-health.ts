@@ -1,4 +1,4 @@
-import { IHTTPAPI } from '@deals/api';
+import { IRequest } from '@deals/api';
 
 export default {
     gateway: {
@@ -9,4 +9,4 @@ export default {
         ok: true,
         uptime: 0,
     },
-} as IHTTPAPI['v1/health']['response'];
+} as IRequest['v1/health']['response'];

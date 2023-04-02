@@ -1,4 +1,4 @@
-import { ServiceRegistryModule } from '@deals/service-registry';
+import { MicroserviceModule } from '@deals/service-registry';
 import { Module } from '@nestjs/common';
 
 import { DealsModule } from './api/deals/deals.module';
@@ -10,7 +10,7 @@ import { ScrapersModule } from './api/scrapers/scrapers.module';
         DealsModule,
         ScrapersModule,
         HealthModule,
-        ServiceRegistryModule.forRoot('Gateway'),
+        MicroserviceModule.forRoot('Gateway'),
     ],
 })
 export class AppModule {}

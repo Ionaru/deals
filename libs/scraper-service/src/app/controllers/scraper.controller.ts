@@ -1,16 +1,14 @@
-import { IMSPayload, MSMessage } from '@deals/api';
+// import { MSMessage, MSMPayload, MSMResponse } from '@deals/api';
 import { Controller } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
+// import { MessagePattern } from '@nestjs/microservices';
 
 @Controller()
 export class ScraperController {
     // private status = ScraperStatus.IDLE;
-
     // public constructor(
     //     @Inject('SCRAPER') private readonly scraper: ScrapeWebsiteService,
     //     private readonly storage: StorageService,
     // ) {}
-
     // @Get()
     // public getStatus() {
     //     return { status: this.status };
@@ -22,7 +20,6 @@ export class ScraperController {
     //         return;
     //     }
     //
-
     //     this.status = ScraperStatus.SCRAPING;
     //     try {
     //         const result = await this.scraper.scrape();
@@ -31,7 +28,6 @@ export class ScraperController {
     //             shop: this.scraper.shopName,
     //         });
     //         this.status = ScraperStatus.IDLE;
-
     //     } catch (error) {
     //         this.status = ScraperStatus.ERROR;
     //         // eslint-disable-next-line no-console
@@ -39,9 +35,10 @@ export class ScraperController {
     //         // TODO: send error to storage
     //     }
     // }
-
-    @MessagePattern(MSMessage.GET_HEALTH)
-    public handleGetHealth(): IMSPayload[MSMessage.GET_HEALTH] {
-        return { status: 'ok' };
-    }
+    // @MessagePattern(MSMessage.GET_HEALTH)
+    // public handleGetHealth(
+    //     _payload: MSMPayload<MSMessage.GET_HEALTH>,
+    // ): MSMResponse<MSMessage.GET_HEALTH> {
+    //     return { status: 'ok' };
+    // }
 }

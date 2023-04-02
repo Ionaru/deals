@@ -1,17 +1,12 @@
-import { network } from '@deals/api';
+import { MicroserviceModule } from '@deals/service-registry';
 import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 
 import { ScrapersController } from './scrapers.controller';
 import { ScrapersService } from './scrapers.service';
 
 @Module({
     controllers: [ScrapersController],
-    imports: [
-        ClientsModule.register([
-            { name: network.PRIMARY, options: {}, transport: Transport.NATS },
-        ]),
-    ],
+    imports: [MicroserviceModule],
     providers: [ScrapersService],
 })
 export class ScrapersModule {}

@@ -1,4 +1,4 @@
-import { IHTTPAPI } from '@deals/api';
+import { IRequest } from '@deals/api';
 
 export default {
     deals: [
@@ -23,4 +23,4 @@ export default {
             },
         },
     ],
-} as IHTTPAPI['v1/deals']['response'];
+} as IRequest['v1/deals']['response'];

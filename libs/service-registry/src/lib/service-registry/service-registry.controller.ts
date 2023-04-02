@@ -1,4 +1,4 @@
-import { MSMessage } from '@deals/api';
+import { MSEvent } from '@deals/api';
 import { Controller, Logger } from '@nestjs/common';
 import { EventPattern } from '@nestjs/microservices';
 
@@ -12,7 +12,7 @@ export class ServiceRegistryController {
         private readonly serviceRegistryService: ServiceRegistryService,
     ) {}
 
-    @EventPattern(MSMessage.REPORT_SERVICE)
+    @EventPattern(MSEvent.REPORT_SERVICE)
     public handleReportService() {
         this.logger.log('Reporting service...');
         return this.serviceRegistryService.storeService();

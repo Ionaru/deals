@@ -1,17 +1,12 @@
-import { network } from '@deals/api';
+import { MicroserviceModule } from '@deals/service-registry';
 import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 
 import { HealthController } from './health.controller';
 import { HealthService } from './health.service';
 
 @Module({
     controllers: [HealthController],
-    imports: [
-        ClientsModule.register([
-            { name: network.PRIMARY, options: {}, transport: Transport.NATS },
-        ]),
-    ],
+    imports: [MicroserviceModule],
     providers: [HealthService],
 })
 export class HealthModule {}

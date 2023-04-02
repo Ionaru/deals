@@ -28,7 +28,8 @@
                 "plugin:@nrwl/nx/typescript",
                 "plugin:unicorn/recommended",
                 "plugin:promise/recommended",
-                "@ionaru"
+                "@ionaru",
+                "prettier"
             ],
             "rules": {
                 "dot-notation": "off",

@@ -1,13 +1,14 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { IDeal } from '@deals/api';
 import { map, Observable } from 'rxjs';
 
 import { DealsService } from '../../services/deals.service';
 
 @Component({
-    imports: [CommonModule, MatCardModule, MatButtonModule],
+    imports: [CommonModule, MatCardModule, MatButtonModule, NgOptimizedImage],
     selector: 'deals-home',
     standalone: true,
     styleUrls: ['./home.component.scss'],
@@ -16,7 +17,7 @@ import { DealsService } from '../../services/deals.service';
 export class HomeComponent implements OnInit {
     #dealsService = inject(DealsService);
 
-    public deals?: Observable<any>;
+    public deals!: Observable<IDeal[]>;
 
     public ngOnInit() {
         this.deals = this.#dealsService

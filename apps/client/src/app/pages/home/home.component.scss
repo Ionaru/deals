@@ -15,6 +15,8 @@
             img {
                 height: 15rem;
                 object-fit: contain;
+                mix-blend-mode: multiply;
+                filter: contrast(1);
             }
         }
     }

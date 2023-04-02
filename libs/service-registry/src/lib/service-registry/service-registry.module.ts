@@ -1,6 +1,5 @@
 import { randomUUID } from 'node:crypto';
 
-import { network } from '@deals/api';
 import {
     BeforeApplicationShutdown,
     DynamicModule,
@@ -9,9 +8,10 @@ import {
     Module,
     OnModuleInit,
 } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EmptyResponseException } from '@nestjs/microservices/errors/empty-response.exception';
 import { catchError } from 'rxjs';
+
+import { ServiceGatewayModule } from '../service-gateway/service-gateway.module';
 
 import { createServiceIdController } from './service-id.controller';
 import { ServiceRegistryController } from './service-registry.controller';
@@ -20,19 +20,12 @@ import { ServiceRegistryService } from './service-registry.service';
 @Module({
     controllers: [ServiceRegistryController],
     exports: [],
-    imports: [
-        ClientsModule.register([
-            {
-                name: network.PRIMARY,
-                options: {},
-                transport: Transport.NATS,
-            },
-        ]),
-    ],
+    imports: [ServiceGatewayModule],
     providers: [ServiceRegistryService],
 })
 export class ServiceRegistryModule
-implements OnModuleInit, BeforeApplicationShutdown {
+    implements OnModuleInit, BeforeApplicationShutdown
+{
     public constructor(
         private readonly serviceRegistryService: ServiceRegistryService,
         @Inject('DELAY') private readonly delay: string,

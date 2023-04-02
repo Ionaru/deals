@@ -1,8 +1,6 @@
-import { network } from '@deals/api';
-import { ServiceRegistryModule } from '@deals/service-registry';
+import { MicroserviceModule } from '@deals/service-registry';
 import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
@@ -19,13 +17,6 @@ import { UnknownDealService } from './services/unknown-deal.service';
 @Module({
     controllers: [AppController],
     imports: [
-        ClientsModule.register([
-            {
-                name: network.PRIMARY,
-                options: {},
-                transport: Transport.NATS,
-            },
-        ]),
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
@@ -76,7 +67,7 @@ import { UnknownDealService } from './services/unknown-deal.service';
             },
         }),
         TypeOrmModule.forFeature([Shop, Product, Deal, UnknownDeal, Service]),
-        ServiceRegistryModule.forRoot('Storage', true),
+        MicroserviceModule.forRoot('Storage', true),
     ],
     providers: [
         FoundDealsService,

@@ -1,12 +1,12 @@
-import { MSMessage, network } from '@deals/api';
-import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { MSMessage } from '@deals/api';
+import { ServiceGatewayService } from '@deals/service-registry';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class DealsService {
-    public constructor(@Inject(network.PRIMARY) private client: ClientProxy) {}
+    public constructor(private gateway: ServiceGatewayService) {}
 
     public getDeals() {
-        return this.client.send(MSMessage.GET_DEALS, {});
+        return this.gateway.send(MSMessage.GET_DEALS, {});
     }
 }
