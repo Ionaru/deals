@@ -28,4 +28,5 @@ export class HomeComponent implements OnInit {
     public trackDealsBy(_index: number, deal: any) {
         return deal.id;
     }
+
 }

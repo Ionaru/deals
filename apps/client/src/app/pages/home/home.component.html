@@ -7,20 +7,19 @@
             appearance="outlined"
             *ngFor="let deal of deals | async; trackBy: trackDealsBy"
         >
-            <mat-card-header>
-                <mat-card-title>{{ deal.product.name }}</mat-card-title>
-                <mat-card-subtitle
-                    >{{ deal.product.price }} ->
-                    {{ deal.dealPrice }}</mat-card-subtitle
-                >
-            </mat-card-header>
-            <div mat-card-image style="height: 5rem">
+            <div mat-card-image class="card-image">
                 <img
                     [ngSrc]="deal.product.imageUrl"
                     [alt]="'Picture of ' + deal.product.name"
                     fill
                 />
             </div>
+            <mat-card-header>
+                <mat-card-title>{{ deal.product.name }}</mat-card-title>
+                <mat-card-subtitle>
+                    {{ deal.product.price }} -> {{ deal.dealPrice }}
+                </mat-card-subtitle>
+            </mat-card-header>
             <mat-card-content>
                 <p>Meow</p>
             </mat-card-content>

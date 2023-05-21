@@ -2,9 +2,11 @@
     //padding: 1em;
 
     .deals-container {
-        display: flex;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 1rem;
-        flex-wrap: wrap;
+        justify-items: center;
 
         mat-card {
             //width: 45%;
@@ -12,11 +14,27 @@
             //flex-grow: 1;
             //width: 0;
 
+            height: 500px;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+
+            width: min-content;
+
+            --mdc-elevated-card-container-shape: 0.5rem;
+            --mdc-outlined-card-outline-color: transparent;
+
+            .card-image {
+                //height: 100%;
+                //object-fit: contain;
+                //mix-blend-mode: multiply;
+                //filter: contrast(1);
+            }
+
             img {
                 height: 15rem;
                 object-fit: contain;
-                mix-blend-mode: multiply;
-                filter: contrast(1);
+                //mix-blend-mode: multiply;
+                //filter: contrast(1);
             }
         }
     }
