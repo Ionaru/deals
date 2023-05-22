@@ -13,9 +13,9 @@ import { HealthService } from '../../services/health.service';
     templateUrl: './admin.component.html',
 })
 export class AdminComponent implements OnInit {
-    readonly #healthService = inject(HealthService);
-
     public health?: Observable<any>;
+
+    readonly #healthService = inject(HealthService);
 
     public ngOnInit() {
         this.health = this.#getHealth();

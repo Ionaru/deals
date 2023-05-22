@@ -24,9 +24,9 @@ import { DarkModeService } from '../../services/dark-mode.service';
     templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent {
-    readonly #darkModeService = inject(DarkModeService);
-
     @Input() public title?: string;
+
+    readonly #darkModeService = inject(DarkModeService);
 
     public get isDarkMode(): boolean {
         return this.#darkModeService.isDarkModeActive();

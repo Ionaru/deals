@@ -15,9 +15,9 @@ import { DealsService } from '../../services/deals.service';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    #dealsService = inject(DealsService);
-
     public deals!: Observable<IDeal[]>;
+
+    #dealsService = inject(DealsService);
 
     public ngOnInit() {
         this.deals = this.#dealsService
@@ -28,5 +28,4 @@ export class HomeComponent implements OnInit {
     public trackDealsBy(_index: number, deal: any) {
         return deal.id;
     }
-
 }

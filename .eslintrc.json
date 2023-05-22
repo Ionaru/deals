@@ -1,13 +1,13 @@
 {
     "root": true,
     "ignorePatterns": ["**/*"],
-    "plugins": ["@nrwl/nx", "promise"],
+    "plugins": ["@nx", "promise"],
     "overrides": [
         {
             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
             "extends": ["prettier"],
             "rules": {
-                "@nrwl/nx/enforce-module-boundaries": [
+                "@nx/enforce-module-boundaries": [
                     "error",
                     {
                         "enforceBuildableLibDependency": true,
@@ -25,8 +25,7 @@
         {
             "files": ["*.ts", "*.tsx"],
             "extends": [
-                "plugin:@nrwl/nx/typescript",
-                "plugin:unicorn/recommended",
+                "plugin:@nx/typescript",
                 "plugin:promise/recommended",
                 "@ionaru",
                 "prettier"
@@ -41,7 +40,7 @@
         },
         {
             "files": ["*.js", "*.jsx"],
-            "extends": ["plugin:@nrwl/nx/javascript"],
+            "extends": ["plugin:@nx/javascript"],
             "rules": {}
         }
     ]
