@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Storage + Gateway + Client" type="CompoundRunConfigurationType">
+    <toRun name="Client" type="NxRunConfigurationType" />
+    <toRun name="Storage + Gateway" type="NxRunConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

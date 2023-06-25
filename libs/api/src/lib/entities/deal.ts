@@ -1,8 +1,14 @@
-import { IProduct } from './product';
+import { ApiProperty } from '@nestjs/swagger';
 
-export interface IDeal {
-    id: string;
-    dealPrice: number;
-    dealQuantity: number;
-    product: IProduct;
+import type { IProduct } from './product';
+
+export class IDeal {
+    @ApiProperty()
+    id!: string;
+    @ApiProperty()
+    dealPrice!: number;
+    @ApiProperty()
+    dealQuantity!: number;
+    @ApiProperty()
+    product!: IProduct;
 }

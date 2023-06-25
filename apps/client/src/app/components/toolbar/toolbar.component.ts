@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,13 +10,13 @@ import { DarkModeService } from '../../services/dark-mode.service';
 
 @Component({
     imports: [
-        CommonModule,
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
         RouterLink,
         RouterLinkActive,
         MatBadgeModule,
+        NgIf,
     ],
     selector: 'deals-toolbar',
     standalone: true,
@@ -24,7 +24,7 @@ import { DarkModeService } from '../../services/dark-mode.service';
     templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent {
-    @Input() public title?: string;
+    @Input({ required: true }) public title!: string;
 
     readonly #darkModeService = inject(DarkModeService);
 

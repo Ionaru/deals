@@ -8,7 +8,6 @@ import {
 } from '@deals/api';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { Observable } from 'rxjs';
 
 /**
  * A strongly typed microservice gateway.
@@ -24,16 +23,16 @@ export class ServiceGatewayService {
         payload: MSMPayload<T>,
     ) {
         this.#logger.log(`Sending ${message}...`);
-        return this.client.send(message, payload) as Observable<MSMResponse<T>>;
+        return this.client.send<MSMResponse<T>>(message, payload);
     }
 
     public emit<T extends keyof IMSEvent>(event: T, payload: MSEPayload<T>) {
         this.#logger.log(`Emitting ${event}...`);
-        return this.client.emit(event, payload) as Observable<void>;
+        return this.client.emit<void>(event, payload);
     }
 
-    public sendDirect(to: string, payload: any) {
+    public sendDirect(to: string, payload: MSMPayload<'direct'>) {
         this.#logger.log(`Sending direct to ${to}...`);
-        return this.client.send(to, payload) as Observable<any>;
+        return this.client.send<MSMResponse<'direct'>>(to, payload);
     }
 }

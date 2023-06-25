@@ -1,5 +1,6 @@
 import { IDeal } from '../entities/deal';
 import { IService } from '../entities/service';
+import { IHealthResponse } from '../routes/get-health';
 
 export enum MSMessage {
     GET_DEALS = 'GET_DEALS',
@@ -32,7 +33,15 @@ export interface IMSMessage {
 
     [MSMessage.GET_SERVICES]: {
         payload: Record<string, never>;
-        response: IService[];
+        response: IHealthResponse;
+    };
+
+    direct: {
+        payload: Record<string, never>;
+        response: {
+            status: string;
+            uptime: number;
+        };
     };
 }
 

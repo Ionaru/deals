@@ -2,7 +2,7 @@ import { MSEvent } from '@deals/api';
 import { ServiceGatewayService } from '@deals/service-registry';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { catchError, map, of, zip } from 'rxjs';
+import { catchError, firstValueFrom, map, of, zip } from 'rxjs';
 import { Repository } from 'typeorm';
 
 import { Service } from '../models/service';
@@ -37,7 +37,7 @@ export class ServicesService {
         await this.serviceRepository.delete({ queue });
     }
 
-    public async getServices(): Promise<any> {
+    public async getServices() {
         const services = await this.serviceRepository.find();
         const serviceCalls = services.map((serv) =>
             this.gateway.sendDirect(serv.queue, {}).pipe(
@@ -55,13 +55,15 @@ export class ServicesService {
                 map((status) => ({ ...serv, status })),
             ),
         );
-        return zip(serviceCalls).pipe(
-            catchError((error) => {
-                if (error) {
-                    this.logger.error(error);
-                }
-                return of({});
-            }),
+        return firstValueFrom(
+            zip(serviceCalls).pipe(
+                catchError((error) => {
+                    if (error) {
+                        this.logger.error(error);
+                    }
+                    return of([]);
+                }),
+            ),
         );
     }
 }

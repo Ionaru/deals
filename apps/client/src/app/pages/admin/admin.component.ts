@@ -1,27 +1,52 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import {
+    AsyncPipe,
+    DatePipe,
+    JsonPipe,
+    NgForOf,
+    NgIf,
+    NgOptimizedImage,
+} from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { Observable } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
+import { interval, map, share, switchMap, tap } from 'rxjs';
 
+import { TimePipe } from '../../pipes/time.pipe';
 import { HealthService } from '../../services/health.service';
 
 @Component({
-    imports: [CommonModule, MatButtonModule],
+    imports: [
+        MatButtonModule,
+        JsonPipe,
+        AsyncPipe,
+        MatCardModule,
+        NgForOf,
+        NgOptimizedImage,
+        NgIf,
+        DatePipe,
+        TimePipe,
+    ],
     selector: 'deals-admin',
     standalone: true,
     styleUrls: ['./admin.component.scss'],
     templateUrl: './admin.component.html',
 })
-export class AdminComponent implements OnInit {
-    public health?: Observable<any>;
-
+export class AdminComponent {
     readonly #healthService = inject(HealthService);
 
-    public ngOnInit() {
-        this.health = this.#getHealth();
-    }
-
-    #getHealth() {
-        return this.#healthService.getHealth();
-    }
+    public health = this.#healthService.getHealth().pipe(
+        switchMap((health) =>
+            interval(1000).pipe(
+                tap(() => {
+                    for (const service of health) {
+                        if (service.status.uptime !== undefined) {
+                            service.status.uptime++;
+                        }
+                    }
+                }),
+                map(() => health),
+            ),
+        ),
+        share(),
+    );
 }

@@ -4,7 +4,6 @@ import {
     HttpRequest,
     // HttpResponse,
 } from '@angular/common/http';
-// import { IHTTPAPI } from '@deals/api';
 import { Observable } from 'rxjs';
 
 // import getDeals from '../../mock-data/get-deals';

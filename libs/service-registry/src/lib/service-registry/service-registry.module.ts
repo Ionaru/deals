@@ -8,7 +8,6 @@ import {
     Module,
     OnModuleInit,
 } from '@nestjs/common';
-import { EmptyResponseException } from '@nestjs/microservices/errors/empty-response.exception';
 import { catchError } from 'rxjs';
 
 import { ServiceGatewayModule } from '../service-gateway/service-gateway.module';
@@ -62,7 +61,7 @@ export class ServiceRegistryModule
     }
 
     #registryErrorHandler(error: unknown) {
-        if (error instanceof EmptyResponseException) {
+        if (error instanceof Error && error.message.includes('Empty response')) {
             Logger.warn(
                 'Service registry is not available, is storage online?',
                 ServiceRegistryModule.name,

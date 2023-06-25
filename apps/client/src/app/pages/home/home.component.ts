@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -8,7 +8,14 @@ import { map, Observable } from 'rxjs';
 import { DealsService } from '../../services/deals.service';
 
 @Component({
-    imports: [CommonModule, MatCardModule, MatButtonModule, NgOptimizedImage],
+    imports: [
+        MatCardModule,
+        MatButtonModule,
+        NgOptimizedImage,
+        NgIf,
+        NgForOf,
+        AsyncPipe,
+    ],
     selector: 'deals-home',
     standalone: true,
     styleUrls: ['./home.component.scss'],

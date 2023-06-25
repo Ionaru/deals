@@ -1,8 +1,12 @@
+import { IService } from '../entities/service';
+
 export type IHealthRequest = Record<string, never>;
 
-export interface IHealthResponse {
-    [key: string]: {
-        ok: boolean;
-        uptime: number;
+interface HealthResponse extends IService {
+    status: {
+        status: string;
+        uptime?: number;
     };
 }
+
+export type IHealthResponse = HealthResponse[];

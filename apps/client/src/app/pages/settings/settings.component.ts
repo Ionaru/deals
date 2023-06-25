@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
-    imports: [CommonModule],
+    imports: [],
     selector: 'deals-settings',
     standalone: true,
     styleUrls: ['./settings.component.scss'],

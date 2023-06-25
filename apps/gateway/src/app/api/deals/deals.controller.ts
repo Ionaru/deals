@@ -1,5 +1,7 @@
+import { IDeal } from '@deals/api';
 import { Controller, Get } from '@nestjs/common';
-import { map } from 'rxjs';
+import { ApiOkResponse } from '@nestjs/swagger';
+import { map, Observable } from 'rxjs';
 
 import { DealsService } from './deals.service';
 
@@ -8,7 +10,8 @@ export class DealsController {
     public constructor(private readonly dealsService: DealsService) {}
 
     @Get()
-    public getData() {
+    @ApiOkResponse({ type: [IDeal] })
+    public getData(): Observable<{ deals: IDeal[] }> {
         return this.dealsService
             .getDeals()
             .pipe(map((data) => ({ deals: data })));

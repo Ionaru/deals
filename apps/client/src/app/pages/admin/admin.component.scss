@@ -1,0 +1,10 @@
+:host {
+    .services-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+        column-gap: 1em;
+        padding: 0 1em;
+    }
+}
