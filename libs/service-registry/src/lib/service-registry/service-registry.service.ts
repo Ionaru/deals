@@ -1,4 +1,4 @@
-import { MSMessage } from '@deals/api';
+import { MSMessage, ServiceType } from '@deals/api';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { tap } from 'rxjs';
 
@@ -11,15 +11,16 @@ export class ServiceRegistryService {
     public constructor(
         @Inject('NAME') private readonly name: string,
         @Inject('ID') private readonly id: string,
+        @Inject('TYPE') private readonly type: ServiceType,
         @Inject(ServiceGatewayService) private gateway: ServiceGatewayService,
     ) {}
 
     public storeService() {
         this.logger.log('Storing service...');
         return this.gateway.send(MSMessage.REGISTER_SERVICE, {
-            isScraper: true,
             name: this.name,
             queue: this.id,
+            type: this.type,
         });
     }
 

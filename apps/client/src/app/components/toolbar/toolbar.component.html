@@ -1,7 +1,9 @@
 <mat-toolbar>
-    <a class="toolbar-brand" mat-button routerLink="/" color="primary">
+    <a class="toolbar-brand" mat-button routerLink="/" color="primary"
+       (mouseenter)="setHovering(true)" (mouseleave)="setHovering(false)"
+    >
         <mat-icon>sell</mat-icon>
-        {{ title }}
+        {{ hovering ? alternateTitle : title }}
     </a>
     <span class="navbar-spacer"></span>
     <nav class="navbar-links">

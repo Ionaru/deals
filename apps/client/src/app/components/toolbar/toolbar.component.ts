@@ -25,6 +25,9 @@ import { DarkModeService } from '../../services/dark-mode.service';
 })
 export class ToolbarComponent {
     @Input({ required: true }) public title!: string;
+    @Input({ required: true }) public alternateTitle!: string;
+
+    hovering = false;
 
     readonly #darkModeService = inject(DarkModeService);
 
@@ -34,5 +37,9 @@ export class ToolbarComponent {
 
     public toggleDarkMode(): void {
         this.#darkModeService.toggleDarkMode();
+    }
+
+    setHovering(hovering: boolean) {
+        this.hovering = hovering;
     }
 }

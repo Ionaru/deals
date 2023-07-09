@@ -1,3 +1,4 @@
+import { ServiceType } from '@deals/api';
 import { MicroserviceModule } from '@deals/service-registry';
 import { DynamicModule, Module } from '@nestjs/common';
 
@@ -17,7 +18,7 @@ export class ScraperServiceModule {
     ): DynamicModule {
         return {
             exports: [],
-            imports: [MicroserviceModule.forRoot(scraper.name)],
+            imports: [MicroserviceModule.forRoot(scraper.name, ServiceType.SCRAPER)],
             module: ScraperServiceModule,
             providers: [
                 { provide: 'SCRAPER', useClass: scraper },

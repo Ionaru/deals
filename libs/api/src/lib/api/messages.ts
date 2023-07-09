@@ -1,3 +1,5 @@
+import { ScraperStatus } from '../common/scraper-status';
+import { ServiceType } from '../common/service-type';
 import { IDeal } from '../entities/deal';
 import { IService } from '../entities/service';
 import { IHealthResponse } from '../routes/get-health';
@@ -7,6 +9,7 @@ export enum MSMessage {
     REGISTER_SERVICE = 'REGISTER_SERVICE',
     UNREGISTER_SERVICE = 'UNREGISTER_SERVICE',
     GET_SERVICES = 'GET_SERVICES',
+    SCRAPER_STATUS = 'SCRAPER_STATUS',
 }
 
 export interface IMSMessage {
@@ -19,7 +22,7 @@ export interface IMSMessage {
         payload: {
             name: string;
             queue: string;
-            isScraper?: boolean;
+            type: ServiceType;
         };
         response: IService;
     };
@@ -34,6 +37,11 @@ export interface IMSMessage {
     [MSMessage.GET_SERVICES]: {
         payload: Record<string, never>;
         response: IHealthResponse;
+    };
+
+    [MSMessage.SCRAPER_STATUS]: {
+        payload: Record<string, never>;
+        response: ScraperStatus;
     };
 
     direct: {

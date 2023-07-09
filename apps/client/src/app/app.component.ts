@@ -11,5 +11,6 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     templateUrl: './app.component.html',
 })
 export class AppComponent {
-    public title = 'Deals';
+    public title = 'Dealert';
+    public alternateTitle = 'Deal Alert';
 }

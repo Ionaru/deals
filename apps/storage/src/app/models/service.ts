@@ -1,3 +1,4 @@
+import { ServiceType } from '@deals/api';
 import { Column, Entity } from 'typeorm';
 
 import { BaseModel } from './base.model';
@@ -14,4 +15,10 @@ export class Service extends BaseModel {
         unique: true,
     })
     public queue!: string;
+
+    @Column({
+        type: 'varchar',
+        unique: false,
+    })
+    public type!: ServiceType;
 }

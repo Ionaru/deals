@@ -13,6 +13,7 @@ import { DealsService } from './services/deals.service';
 import { FoundDealsService } from './services/found-deals.service';
 import { ServicesService } from './services/services.service';
 import { UnknownDealService } from './services/unknown-deal.service';
+import { ServiceType } from '@deals/api';
 
 @Module({
     controllers: [AppController],
@@ -60,14 +61,14 @@ import { UnknownDealService } from './services/unknown-deal.service';
                     password: configService.getOrThrow('STORAGE_DB_PASS'),
                     port: configService.getOrThrow('STORAGE_DB_PORT'),
                     ssl: sslEnabled ? getSSLConfiguration() : false,
-                    synchronize: false,
+                    synchronize: true,
                     type: 'mysql',
                     username: configService.getOrThrow('STORAGE_DB_USER'),
                 };
             },
         }),
         TypeOrmModule.forFeature([Shop, Product, Deal, UnknownDeal, Service]),
-        MicroserviceModule.forRoot('Storage', true),
+        MicroserviceModule.forRoot('Storage', ServiceType.CORE, true),
     ],
     providers: [
         FoundDealsService,

@@ -13,7 +13,7 @@
                 "outputPath": "dist/apps/scrapers/jumbo",
                 "main": "apps/scrapers/jumbo/src/main.ts",
                 "tsConfig": "apps/scrapers/jumbo/tsconfig.app.json",
-                "webpackConfig": "apps/scrapers/jumbo/webpack.config.js",
+                "webpackConfig": "apps/scrapers/jumbo/webpack.config.cjs",
                 "babelUpwardRootMode": true
             },
             "configurations": {

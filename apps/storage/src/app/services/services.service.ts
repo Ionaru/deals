@@ -1,4 +1,4 @@
-import { MSEvent } from '@deals/api';
+import { MSEvent, ServiceType } from '@deals/api';
 import { ServiceGatewayService } from '@deals/service-registry';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -25,11 +25,12 @@ export class ServicesService {
     public async registerService(
         name: string,
         queue: string,
-        _isScraper = false,
+        type: ServiceType,
     ): Promise<Service> {
         const service = new Service();
         service.name = name;
         service.queue = queue;
+        service.type = type;
         return this.serviceRepository.save(service);
     }
 

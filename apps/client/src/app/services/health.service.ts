@@ -9,9 +9,5 @@ import { GatewayService } from './gateway.service';
 export class HealthService {
     readonly #gateway = inject(GatewayService);
 
-    readonly #health$ = this.#gateway.get('v1/health', {}).pipe(share());
-
-    public getHealth() {
-        return this.#health$;
-    }
+    readonly health$ = this.#gateway.get('v1/health', {}).pipe(share());
 }

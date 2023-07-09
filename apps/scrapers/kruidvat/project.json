@@ -13,7 +13,7 @@
                 "outputPath": "dist/apps/scrapers/kruidvat",
                 "main": "apps/scrapers/kruidvat/src/main.ts",
                 "tsConfig": "apps/scrapers/kruidvat/tsconfig.app.json",
-                "webpackConfig": "apps/scrapers/kruidvat/webpack.config.js",
+                "webpackConfig": "apps/scrapers/kruidvat/webpack.config.cjs",
                 "babelUpwardRootMode": true
             },
             "configurations": {
