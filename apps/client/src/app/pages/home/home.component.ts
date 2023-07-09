@@ -2,7 +2,7 @@ import { AsyncPipe, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { IDeal } from '@deals/api';
+import { DealDTO } from '@deals/api';
 import { map, Observable } from 'rxjs';
 
 import { DealsService } from '../../services/deals.service';
@@ -22,7 +22,7 @@ import { DealsService } from '../../services/deals.service';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    public deals!: Observable<IDeal[]>;
+    public deals!: Observable<DealDTO[]>;
 
     #dealsService = inject(DealsService);
 

@@ -1,8 +1,8 @@
-import { IService } from '../entities/service';
+import { ServiceDTO } from '../entities/service';
 
 export type IHealthRequest = Record<string, never>;
 
-interface HealthResponse extends IService {
+interface HealthResponse extends ServiceDTO {
     status: {
         status: string;
         uptime?: number;

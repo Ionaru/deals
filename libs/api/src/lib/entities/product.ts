@@ -1,10 +1,23 @@
-import { IShop } from './shop';
+import { ApiProperty } from '@nestjs/swagger';
 
-export interface IProduct {
-    id: string;
-    name: string;
-    imageUrl: string;
-    price: number;
-    productUrl: string;
-    shop: IShop;
+import { ShopDTO } from './shop';
+
+export class ProductDTO {
+    @ApiProperty()
+    id!: string;
+
+    @ApiProperty()
+    name!: string;
+
+    @ApiProperty()
+    imageUrl!: string;
+
+    @ApiProperty()
+    price!: number;
+
+    @ApiProperty()
+    productUrl!: string;
+
+    @ApiProperty()
+    shop!: ShopDTO;
 }

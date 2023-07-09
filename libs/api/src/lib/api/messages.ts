@@ -1,7 +1,7 @@
 import { ScraperStatus } from '../common/scraper-status';
 import { ServiceType } from '../common/service-type';
-import { IDeal } from '../entities/deal';
-import { IService } from '../entities/service';
+import { DealDTO } from '../entities/deal';
+import { ServiceDTO } from '../entities/service';
 import { IHealthResponse } from '../routes/get-health';
 
 export enum MSMessage {
@@ -15,7 +15,7 @@ export enum MSMessage {
 export interface IMSMessage {
     [MSMessage.GET_DEALS]: {
         payload: Record<string, never>;
-        response: IDeal[];
+        response: DealDTO[];
     };
 
     [MSMessage.REGISTER_SERVICE]: {
@@ -24,7 +24,7 @@ export interface IMSMessage {
             queue: string;
             type: ServiceType;
         };
-        response: IService;
+        response: ServiceDTO;
     };
 
     [MSMessage.UNREGISTER_SERVICE]: {

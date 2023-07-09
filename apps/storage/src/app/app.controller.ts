@@ -53,7 +53,9 @@ export class AppController {
     public handleRegisterService(
         payload: MSMPayload<MSMessage.REGISTER_SERVICE>,
     ): Async<MSMResponse<MSMessage.REGISTER_SERVICE>> {
-        this.logger.log(`Registering ${payload.type} service... ${payload.name}`);
+        this.logger.log(
+            `Registering ${payload.type} service... ${payload.name}`,
+        );
         return this.servicesService.registerService(
             payload.name,
             payload.queue,

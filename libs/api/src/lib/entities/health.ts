@@ -2,7 +2,9 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { ServiceType } from '../common/service-type';
 
-export class ServiceDTO {
+import { StatusDTO } from './status';
+
+export class ServiceHealthDTO {
     @ApiProperty()
     id!: string;
 
@@ -14,4 +16,7 @@ export class ServiceDTO {
 
     @ApiProperty()
     type!: ServiceType;
+
+    @ApiProperty()
+    status!: StatusDTO;
 }

@@ -18,7 +18,9 @@ export class ScraperServiceModule {
     ): DynamicModule {
         return {
             exports: [],
-            imports: [MicroserviceModule.forRoot(scraper.name, ServiceType.SCRAPER)],
+            imports: [
+                MicroserviceModule.forRoot(scraper.name, ServiceType.SCRAPER),
+            ],
             module: ScraperServiceModule,
             providers: [
                 { provide: 'SCRAPER', useClass: scraper },

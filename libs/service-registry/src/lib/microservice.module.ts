@@ -11,7 +11,11 @@ import { ServiceRegistryModule } from './service-registry/service-registry.modul
     providers: [],
 })
 export class MicroserviceModule {
-    public static forRoot(name: string, type: ServiceType, autoAnnounce = false): DynamicModule {
+    public static forRoot(
+        name: string,
+        type: ServiceType,
+        autoAnnounce = false,
+    ): DynamicModule {
         return {
             controllers: [],
             exports: [],

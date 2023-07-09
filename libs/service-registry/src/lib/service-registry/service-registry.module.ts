@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 
+import { ServiceType } from '@deals/api';
 import {
     BeforeApplicationShutdown,
     DynamicModule,
@@ -15,7 +16,6 @@ import { ServiceGatewayModule } from '../service-gateway/service-gateway.module'
 import { createServiceIdController } from './service-id.controller';
 import { ServiceRegistryController } from './service-registry.controller';
 import { ServiceRegistryService } from './service-registry.service';
-import { ServiceType } from '@deals/api';
 
 @Module({
     controllers: [ServiceRegistryController],
@@ -31,7 +31,11 @@ export class ServiceRegistryModule
         @Inject('DELAY') private readonly delay: string,
     ) {}
 
-    public static forRoot(name: string, type: ServiceType, delay = false): DynamicModule {
+    public static forRoot(
+        name: string,
+        type: ServiceType,
+        delay = false,
+    ): DynamicModule {
         const id = randomUUID();
 
         return {

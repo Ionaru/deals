@@ -1,3 +1,4 @@
+import { ServiceType } from '@deals/api';
 import { MicroserviceModule } from '@deals/service-registry';
 import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -13,7 +14,6 @@ import { DealsService } from './services/deals.service';
 import { FoundDealsService } from './services/found-deals.service';
 import { ServicesService } from './services/services.service';
 import { UnknownDealService } from './services/unknown-deal.service';
-import { ServiceType } from '@deals/api';
 
 @Module({
     controllers: [AppController],

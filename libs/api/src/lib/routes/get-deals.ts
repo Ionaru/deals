@@ -1,7 +1,7 @@
-import { IDeal } from '../entities/deal';
+import { DealDTO } from '../entities/deal';
 
 export type IDealsRequest = Record<string, never>;
 
 export interface IDealsResponse {
-    deals: IDeal[];
+    deals: DealDTO[];
 }

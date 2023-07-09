@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+import { APITag } from './app/api-tag';
 import { AppModule } from './app/app.module';
 
 const bootstrap = async () => {
@@ -19,7 +20,9 @@ const bootstrap = async () => {
         .setTitle('Deals Gateway API')
         .setDescription('API documentation for the Deals application')
         .setVersion('0.1')
-        // .addTag('cats')
+        .addTag(APITag.DEALS)
+        .addTag(APITag.HEALTH)
+        .addTag(APITag.DEALS)
         .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, document);
