@@ -6,8 +6,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 
 const bootstrap = async () => {
-    const { filterArray } = await import('@ionaru/array-utils');
-
     const app = await NestFactory.create(AppModule);
 
     const globalPrefix = 'api';
@@ -25,8 +23,6 @@ const bootstrap = async () => {
         .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, document);
-
-    console.log(filterArray([1, 2, undefined, null, 5]));
 
     const port = process.env['PORT'] || 3333;
     await app.listen(port);

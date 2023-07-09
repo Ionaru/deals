@@ -61,7 +61,10 @@ export class ServiceRegistryModule
     }
 
     #registryErrorHandler(error: unknown) {
-        if (error instanceof Error && error.message.includes('Empty response')) {
+        if (
+            error instanceof Error &&
+            error.message.includes('Empty response')
+        ) {
             Logger.warn(
                 'Service registry is not available, is storage online?',
                 ServiceRegistryModule.name,
