@@ -1,8 +1,15 @@
+import { Pagination } from 'nestjs-typeorm-paginate';
+
 import { ScraperStatus } from '../common/scraper-status';
 import { ServiceType } from '../common/service-type';
-import { DealDTO } from '../entities/deal';
+import { DealDTO, DealSortChoices } from '../entities/deal';
 import { ServiceDTO } from '../entities/service';
 import { IHealthResponse } from '../routes/get-health';
+
+export enum Order {
+    Ascending = 'ASC',
+    Descending = 'DESC',
+}
 
 export enum MSMessage {
     GET_DEALS = 'GET_DEALS',
@@ -14,8 +21,13 @@ export enum MSMessage {
 
 export interface IMSMessage {
     [MSMessage.GET_DEALS]: {
-        payload: Record<string, never>;
-        response: DealDTO[];
+        payload: {
+            sort: DealSortChoices[];
+            order: Order;
+            limit: number;
+            page: number;
+        };
+        response: Pagination<DealDTO>;
     };
 
     [MSMessage.REGISTER_SERVICE]: {

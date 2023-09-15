@@ -10,7 +10,7 @@ import { ScrapersService } from './scrapers.service';
 export class ScrapersController {
     public constructor(private readonly scrapersService: ScrapersService) {}
 
-    @Get('health')
+    @Get('status')
     public getHealth() {
         return this.scrapersService.getHealth();
     }

@@ -43,10 +43,10 @@ export class AppController {
 
     @MessagePattern(MSMessage.GET_DEALS)
     public handleGetDeals(
-        _payload: MSMPayload<MSMessage.GET_DEALS>,
+        payload: MSMPayload<MSMessage.GET_DEALS>,
     ): Async<MSMResponse<MSMessage.GET_DEALS>> {
         this.logger.log('Getting deals...');
-        return this.dealsService.getDeals();
+        return this.dealsService.getDeals(payload);
     }
 
     @MessagePattern(MSMessage.REGISTER_SERVICE)

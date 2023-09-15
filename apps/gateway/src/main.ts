@@ -2,6 +2,7 @@ import { Logger, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { SwaggerTheme } from 'swagger-themes';
 
 import { APITag } from './app/api-tag';
 import { AppModule } from './app/app.module';
@@ -25,7 +26,9 @@ const bootstrap = async () => {
         .addTag(APITag.DEALS)
         .build();
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api', app, document);
+    const theme = new SwaggerTheme('v3');
+    const options = theme.getDefaultConfig('dark');
+    SwaggerModule.setup('api', app, document, options);
 
     const port = process.env['PORT'] || 3333;
     await app.listen(port);

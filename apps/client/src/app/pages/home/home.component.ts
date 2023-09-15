@@ -27,9 +27,7 @@ export class HomeComponent implements OnInit {
     #dealsService = inject(DealsService);
 
     public ngOnInit() {
-        this.deals = this.#dealsService
-            .getDeals()
-            .pipe(map((deals) => deals.deals));
+        this.deals = this.#dealsService.getDeals();
     }
 
     public trackDealsBy(_index: number, deal: any) {
