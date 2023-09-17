@@ -38,6 +38,28 @@ export class ServicesService {
         await this.serviceRepository.delete({ queue });
     }
 
+    public async getService(id: string) {
+        const service = await this.serviceRepository.findOneBy({ id });
+        if (!service) {
+            return service;
+        }
+
+        return firstValueFrom(this.gateway.sendDirect(service.queue, {}).pipe(
+            catchError((error) => {
+                if (
+                    error instanceof Error &&
+                    error.message.includes(
+                        'There are no subscribers listening to that message',
+                    )
+                ) {
+                    return of({ status: 'no response' });
+                }
+                throw error;
+            }),
+            map((status) => ({ ...service, status })),
+        ));
+    }
+
     public async getServices() {
         const services = await this.serviceRepository.find();
         const serviceCalls = services.map((serv) =>

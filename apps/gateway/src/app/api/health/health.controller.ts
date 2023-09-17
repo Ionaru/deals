@@ -15,6 +15,6 @@ export class HealthController {
     @Get()
     @ApiOkResponse({ type: [ServiceHealthDTO] })
     public getHealth(): Observable<ServiceHealthDTO[]> {
-        return this.scrapersService.getHealth();
+        return this.scrapersService.getServices();
     }
 }

@@ -1,4 +1,4 @@
-import { Field, Float, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ID, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { ShopDTO } from './shop';
@@ -6,7 +6,7 @@ import { ShopDTO } from './shop';
 @ObjectType()
 export class ProductDTO {
     @ApiProperty()
-    @Field(() => String)
+    @Field(() => ID)
     id!: string;
 
     @ApiProperty()

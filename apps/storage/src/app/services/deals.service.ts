@@ -13,6 +13,13 @@ export class DealsService {
         private readonly dealRepository: Repository<Deal>,
     ) {}
 
+    getDeal(id: string) {
+        return this.dealRepository.findOne({
+            relations: ['product', 'product.shop'],
+            where: { id },
+        });
+    }
+
     public getDeals(payload: MSMPayload<MSMessage.GET_DEALS>) {
         const queryBuilder = this.dealRepository.createQueryBuilder('deal');
         queryBuilder.leftJoinAndSelect('deal.product', 'product');

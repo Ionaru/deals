@@ -1,4 +1,4 @@
-import { ArgsType, Field, Float, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { ArgsType, Field, Float, ID, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { Order } from '../api/messages';
@@ -18,7 +18,7 @@ registerEnumType(DealSortChoices, { name: 'DealSortChoices' });
 @ObjectType()
 export class DealDTO {
     @ApiProperty()
-    @Field(() => String)
+    @Field(() => ID)
     id!: string;
 
     @ApiProperty()

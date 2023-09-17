@@ -49,6 +49,13 @@ export class AppController {
         return this.dealsService.getDeals(payload);
     }
 
+    @MessagePattern(MSMessage.GET_DEAL)
+    public handleGetDeal(
+        payload: MSMPayload<MSMessage.GET_DEAL>,
+    ): Async<MSMResponse<MSMessage.GET_DEAL>> {
+        return this.dealsService.getDeal(payload.id);
+    }
+
     @MessagePattern(MSMessage.REGISTER_SERVICE)
     public handleRegisterService(
         payload: MSMPayload<MSMessage.REGISTER_SERVICE>,
@@ -75,7 +82,13 @@ export class AppController {
     public handleGetServices(
         _payload: MSMPayload<MSMessage.GET_SERVICES>,
     ): Async<MSMResponse<MSMessage.GET_SERVICES>> {
-        this.logger.log('Getting services...');
         return this.servicesService.getServices();
+    }
+
+    @MessagePattern(MSMessage.GET_SERVICE)
+    public handleGetService(
+        payload: MSMPayload<MSMessage.GET_SERVICE>,
+    ): Async<MSMResponse<MSMessage.GET_SERVICE>> {
+        return this.servicesService.getService(payload.id);
     }
 }

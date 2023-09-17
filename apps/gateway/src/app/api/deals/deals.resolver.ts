@@ -1,10 +1,10 @@
-import { DealDTO, DealPaginatedType, DealsArguments } from '@deals/api';
-import { Resolver, Query, Args, Int } from '@nestjs/graphql';
+import { DealDTO, DealPaginatedType, DealsArguments, Nullable } from '@deals/api';
+import { Resolver, Query, Args, ID } from '@nestjs/graphql';
 import { Observable } from 'rxjs';
 
 import { DealsService } from './deals.service';
 
-@Resolver(() => DealDTO)
+@Resolver()
 export class DealsResolver {
     constructor(private readonly dealsService: DealsService) {}
 
@@ -20,8 +20,8 @@ export class DealsResolver {
         );
     }
 
-    @Query(() => DealDTO)
-    deal(@Args('id', { type: () => Int }) id: number): Observable<DealDTO> {
+    @Query(() => DealDTO, { nullable: true })
+    deal(@Args('id', { type: () => ID }) id: string): Observable<Nullable<DealDTO>> {
         return this.dealsService.getDeal(id);
     }
 }

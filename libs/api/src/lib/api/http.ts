@@ -1,6 +1,6 @@
 import { DealDTO } from '../entities/deal';
 import { IDealsRequest } from '../routes/get-deals';
-import { IHealthRequest, IHealthResponse } from '../routes/get-health';
+import { HealthResponse, IHealthRequest } from '../routes/get-health';
 import {
     IScraperStatusRequest,
     IScraperStatusResponse,
@@ -9,7 +9,7 @@ import {
 export interface IRequest {
     'v1/health': {
         request: IHealthRequest;
-        response: IHealthResponse;
+        response: HealthResponse;
     };
 
     'v1/scraper-status': {

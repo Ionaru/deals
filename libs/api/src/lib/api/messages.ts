@@ -5,7 +5,9 @@ import { ScraperStatus } from '../common/scraper-status';
 import { ServiceType } from '../common/service-type';
 import { DealDTO, DealSortChoices } from '../entities/deal';
 import { ServiceDTO } from '../entities/service';
-import { IHealthResponse } from '../routes/get-health';
+import { HealthResponse } from '../routes/get-health';
+
+export type Nullable<T> = T | null;
 
 export enum Order {
     ASCENDING = 'ASC',
@@ -20,6 +22,7 @@ export enum MSMessage {
     REGISTER_SERVICE = 'REGISTER_SERVICE',
     UNREGISTER_SERVICE = 'UNREGISTER_SERVICE',
     GET_SERVICES = 'GET_SERVICES',
+    GET_SERVICE = 'GET_SERVICE',
     SCRAPER_STATUS = 'SCRAPER_STATUS',
     START_SCRAPER = 'START_SCRAPER',
 }
@@ -34,9 +37,9 @@ export interface IMSMessage {
 
     [MSMessage.GET_DEAL]: {
         payload: {
-            id: number;
+            id: string;
         };
-        response: DealDTO;
+        response: Nullable<DealDTO>;
     };
 
     [MSMessage.GET_DEALS]: {
@@ -67,7 +70,14 @@ export interface IMSMessage {
 
     [MSMessage.GET_SERVICES]: {
         payload: Record<string, never>;
-        response: IHealthResponse;
+        response: HealthResponse[];
+    };
+
+    [MSMessage.GET_SERVICE]: {
+        payload: {
+            id: string;
+        };
+        response: Nullable<HealthResponse>;
     };
 
     [MSMessage.SCRAPER_STATUS]: {

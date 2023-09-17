@@ -6,7 +6,11 @@ import { Injectable } from '@nestjs/common';
 export class HealthService {
     public constructor(private gateway: ServiceGatewayService) {}
 
-    public getHealth() {
+    public getServices() {
         return this.gateway.send(MSMessage.GET_SERVICES, {});
+    }
+
+    public getService(id: string) {
+        return this.gateway.send(MSMessage.GET_SERVICE, { id });
     }
 }

@@ -1,6 +1,7 @@
-import { DealSortChoices, MSMessage, Order } from '@deals/api';
+import { DealDTO, DealSortChoices, MSMessage, Order } from '@deals/api';
 import { ServiceGatewayService } from '@deals/service-registry';
 import { Injectable } from '@nestjs/common';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class DealsService {
@@ -21,7 +22,7 @@ export class DealsService {
     }
 
     public getDeal(
-        id: number,
+        id: string,
     ) {
         return this.gateway.send(MSMessage.GET_DEAL, { id });
     }

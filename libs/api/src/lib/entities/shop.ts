@@ -1,10 +1,10 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
 @ObjectType()
 export class ShopDTO {
     @ApiProperty()
-    @Field(() => String)
+    @Field(() => ID)
     id!: string;
 
     @ApiProperty()
