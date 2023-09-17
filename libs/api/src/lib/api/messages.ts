@@ -1,3 +1,4 @@
+import { registerEnumType } from '@nestjs/graphql';
 import { Pagination } from 'nestjs-typeorm-paginate';
 
 import { ScraperStatus } from '../common/scraper-status';
@@ -7,19 +8,37 @@ import { ServiceDTO } from '../entities/service';
 import { IHealthResponse } from '../routes/get-health';
 
 export enum Order {
-    Ascending = 'ASC',
-    Descending = 'DESC',
+    ASCENDING = 'ASC',
+    DESCENDING = 'DESC',
 }
 
+registerEnumType(Order, { name: 'Order' });
+
 export enum MSMessage {
+    GET_DEAL = 'GET_DEAL',
     GET_DEALS = 'GET_DEALS',
     REGISTER_SERVICE = 'REGISTER_SERVICE',
     UNREGISTER_SERVICE = 'UNREGISTER_SERVICE',
     GET_SERVICES = 'GET_SERVICES',
     SCRAPER_STATUS = 'SCRAPER_STATUS',
+    START_SCRAPER = 'START_SCRAPER',
 }
 
 export interface IMSMessage {
+    [MSMessage.START_SCRAPER]: {
+        payload: {
+            name: string;
+        };
+        response: void;
+    };
+
+    [MSMessage.GET_DEAL]: {
+        payload: {
+            id: number;
+        };
+        response: DealDTO;
+    };
+
     [MSMessage.GET_DEALS]: {
         payload: {
             sort: DealSortChoices[];

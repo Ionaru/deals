@@ -1,10 +1,10 @@
-import { DealDTO, DealSortChoices } from '@deals/api';
+import { DealDTO, DealSortChoices, Order } from '@deals/api';
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
 
 import { APITag } from '../../api-tag';
 
-import { DealsService, Order } from './deals.service';
+import { DealsService } from './deals.service';
 
 @Controller('deals')
 @ApiTags(APITag.DEALS)
@@ -19,11 +19,11 @@ export class DealsController {
         required: false,
     })
     @ApiQuery({
-        // description: 'Sort property',
-        enum: ['Admin', 'Moderator', 'User'],
+        description: 'Sort property',
+        enum: DealSortChoices,
         isArray: true,
         name: 'sort',
-        // required: false,
+        required: false,
     })
     @ApiQuery({
         description: 'Limit',
@@ -39,8 +39,8 @@ export class DealsController {
     })
     @ApiOkResponse({ type: [DealDTO] })
     getData(
-        @Query('order') order: Order = Order.Ascending,
-        @Query('sort') sort: DealSortChoices[] = [DealSortChoices.productName],
+        @Query('order') order: Order = Order.ASCENDING,
+        @Query('sort') sort: DealSortChoices[] = [DealSortChoices.PRODUCT_NAME],
         @Query('limit') limit = 10,
         @Query('page') page = 1,
     ) {

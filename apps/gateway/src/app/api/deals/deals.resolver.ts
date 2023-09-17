@@ -1,10 +1,8 @@
-import { DealDTO, DealPaginatedType, DealSortChoices } from '@deals/api';
-import { Resolver, Query, Args, Int, registerEnumType } from '@nestjs/graphql';
-import { map } from 'rxjs';
+import { DealDTO, DealPaginatedType, DealsArguments } from '@deals/api';
+import { Resolver, Query, Args, Int } from '@nestjs/graphql';
+import { Observable } from 'rxjs';
 
-import { DealsService, Order } from './deals.service';
-
-registerEnumType(Order, { name: 'Order' });
+import { DealsService } from './deals.service';
 
 @Resolver(() => DealDTO)
 export class DealsResolver {
@@ -12,21 +10,18 @@ export class DealsResolver {
 
     @Query(() => DealPaginatedType)
     deals(
-        @Args('order', { nullable: true, type: () => Order })
-        _order: Order = Order.Ascending,
-    ) {
+        @Args() queryArguments: DealsArguments,
+    ): Observable<DealPaginatedType> {
         return this.dealsService.getDeals(
-            Order.Ascending,
-            [DealSortChoices.productName],
-            10,
-            1,
+            queryArguments.order,
+            queryArguments.sort,
+            queryArguments.limit,
+            queryArguments.page,
         );
     }
 
     @Query(() => DealDTO)
-    deal(@Args('id', { type: () => Int }) _id: number) {
-        return this.dealsService
-            .getDeals(Order.Ascending, [DealSortChoices.productName], 1, 1)
-            .pipe(map((deals) => deals.items[0]));
+    deal(@Args('id', { type: () => Int }) id: number): Observable<DealDTO> {
+        return this.dealsService.getDeal(id);
     }
 }

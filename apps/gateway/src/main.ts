@@ -1,4 +1,4 @@
-import { Logger, VersioningType } from '@nestjs/common';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -16,6 +16,8 @@ const bootstrap = async () => {
         defaultVersion: '1',
         type: VersioningType.URI,
     });
+
+    app.useGlobalPipes(new ValidationPipe());
 
     const config = new DocumentBuilder()
         .setTitle('Deals Gateway API')

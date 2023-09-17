@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { ShopDTO } from './shop';
@@ -18,7 +18,7 @@ export class ProductDTO {
     imageUrl!: string;
 
     @ApiProperty()
-    @Field(() => Int)
+    @Field(() => Float)
     price!: number;
 
     @ApiProperty()

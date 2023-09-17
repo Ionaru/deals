@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { APITag } from '../../api-tag';
@@ -13,5 +13,10 @@ export class ScrapersController {
     @Get('status')
     public getHealth() {
         return this.scrapersService.getHealth();
+    }
+
+    @Post('start')
+    public startScraping() {
+        return this.scrapersService.startScraping('Kruidvat');
     }
 }

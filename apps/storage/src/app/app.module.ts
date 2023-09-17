@@ -50,7 +50,7 @@ import { UnknownDealService } from './services/unknown-deal.service';
                     ca: configService.getOrThrow('STORAGE_DB_CA'),
                     cert: configService.getOrThrow('STORAGE_DB_CRT'),
                     key: configService.getOrThrow('STORAGE_DB_KEY'),
-                    rejectUnauthorized: true,
+                    rejectUnauthorized: false,
                 });
 
                 return {

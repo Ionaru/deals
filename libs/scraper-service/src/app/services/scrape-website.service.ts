@@ -29,7 +29,7 @@ export abstract class ScrapeWebsiteService {
     }
 
     protected reportUnknownDeal(unknownDeal: IUnknownDeal) {
-        this.logger.log(`Storing unknown deal for ${this.shopName}...`);
+        // this.logger.log(`Storing unknown deal for ${this.shopName}...`);
         this.storage
             .storeUnknownDeal({
                 deal: unknownDeal,
@@ -45,10 +45,10 @@ export abstract class ScrapeWebsiteService {
         const firstPageUrl = this.buildPageUrl(path, 0);
         const document = await this.getPage(firstPageUrl);
         const pages = this.getPageAmount(document);
-        this.logger.log(`Path ${path} has ${pages} pages.`);
+        this.logger.log(`Path ${path} has ${pages} extra page(s).`);
         const url = this.buildUrl(path);
 
-        for (let page = 0; page < pages; page++) {
+        for (let page = 0; page <= pages; page++) {
             const pageUrl = this.setPage(url, page);
             const pageDeals = await this.scrapePage(
                 pageUrl,

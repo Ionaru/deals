@@ -39,6 +39,7 @@ enum KruidvatDealType {
     ALL_FOR_SIX_EACH,
     ALL_FOR_NINE_EACH,
     THREE_FOR_TWO,
+    FOUR_FOR_FIVE,
     FIVE_FOR_FIVE,
     FOUR_FOR_SEVEN,
     FOUR_FOR_TEN,
@@ -156,6 +157,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
             calculation: (price: number) => price * 0.75,
             code: '1039',
             purchaseAmount: 2,
+        },
+        [KruidvatDealType.FOUR_FOR_FIVE]: {
+            calculation: () => 5 / 4,
+            code: '1054',
+            purchaseAmount: 5,
         },
         [KruidvatDealType.TWENTY_FIVE_PERCENT_OFF]: {
             calculation: (price: number) => price - price * 0.25,
@@ -294,7 +300,7 @@ export class Kruidvat extends ScrapeWebsiteService {
     protected getPageDeals(document: Document): IProductDeal[] {
         const deals: IProductDeal[] = [];
 
-        const productList = document.querySelector('div#productList');
+        const productList = document.querySelector('#productList');
 
         if (!productList) {
             return deals;
@@ -375,7 +381,7 @@ export class Kruidvat extends ScrapeWebsiteService {
     }
 
     private getDealCodeFromSrc(source: string): KruidvatDealType | void {
-        const dealCode = source.match(/\/(\d*).png\?/);
+        const dealCode = source.match(/\/(\d*)\.png/);
         if (dealCode) {
             const code = Number(dealCode[1]).toString();
             const dealType = Object.entries(kruidvatDealInformation).find(

@@ -35,4 +35,9 @@ export class ServiceGatewayService {
         this.#logger.log(`Sending direct to ${to}...`);
         return this.client.send<MSMResponse<'direct'>>(to, payload);
     }
+
+    public sendCommand(to: string) {
+        this.#logger.log(`Sending command to ${to}...`);
+        return this.client.send(to, {});
+    }
 }

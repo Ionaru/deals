@@ -1,21 +1,17 @@
 import { Type } from '@nestjs/common';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { ArgsType, Field, Int, ObjectType } from '@nestjs/graphql';
+import { Max, Min } from 'class-validator';
+import { IPaginationMeta } from 'nestjs-typeorm-paginate';
 
 export interface IPaginatedType<T> {
     items: T[];
-    meta: {
-        totalItems: number;
-        itemCount: number;
-        itemsPerPage: number;
-        totalPages: number;
-        currentPage: number;
-    };
+    meta: IPaginationMeta;
 }
 
 @ObjectType(`PaginationMeta`)
 class PaginationMeta {
-    @Field(() => Int)
-    totalItems!: number;
+    @Field(() => Int, { nullable: true })
+    totalItems?: number;
 
     @Field(() => Int)
     itemCount!: number;
@@ -23,12 +19,28 @@ class PaginationMeta {
     @Field(() => Int)
     itemsPerPage!: number;
 
-    @Field(() => Int)
-    totalPages!: number;
+    @Field(() => Int, { nullable: true })
+    totalPages?: number;
 
     @Field(() => Int)
     currentPage!: number;
 }
+
+export const getPaginationArguments = (maximumLimit = 100, defaultLimit = 10) => {
+
+    @ArgsType()
+    class PaginationArguments {
+        @Field(() => Int, { defaultValue: defaultLimit })
+        @Max(maximumLimit)
+        @Min(1)
+        limit!: number;
+
+        @Field(() => Int, { defaultValue: 1 })
+        page!: number;
+    }
+
+    return PaginationArguments;
+};
 
 export const paginated = <T>(type: Type<T>): Type<IPaginatedType<T>> => {
     @ObjectType({ isAbstract: true })

@@ -15,7 +15,6 @@ import { ScrapersModule } from './api/scrapers/scrapers.module';
         HealthModule,
         MicroserviceModule.forRoot('Gateway', ServiceType.CORE),
         GraphQLModule.forRoot<ApolloDriverConfig>({
-            // autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
             autoSchemaFile: true,
             driver: ApolloDriver,
             sortSchema: true,

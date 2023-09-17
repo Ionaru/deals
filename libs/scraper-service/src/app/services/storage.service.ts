@@ -15,8 +15,8 @@ export class StorageService {
     }
 
     public async storeUnknownDeal(deals: MSEPayload<MSEvent.UNKNOWN_DEAL>) {
-        this.logger.log('Storing unknown deal...');
+        // this.logger.log('Storing unknown deal...');
         this.gateway.emit(MSEvent.UNKNOWN_DEAL, deals);
-        this.logger.log('Stored unknown deal');
+        // this.logger.log('Stored unknown deal');
     }
 }

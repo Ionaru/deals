@@ -2,12 +2,12 @@ import { ServiceType } from '@deals/api';
 import { MicroserviceModule } from '@deals/service-registry';
 import { DynamicModule, Module } from '@nestjs/common';
 
-import { ScraperController } from './controllers/scraper.controller';
+import { createScraperController } from './controllers/scraper.controller';
 import { ScrapeWebsiteService } from './services/scrape-website.service';
 import { StorageService } from './services/storage.service';
 
 @Module({
-    controllers: [ScraperController],
+    controllers: [],
     exports: [],
     imports: [],
     providers: [StorageService],
@@ -17,6 +17,7 @@ export class ScraperServiceModule {
         scraper: new (storage: StorageService) => ScrapeWebsiteService,
     ): DynamicModule {
         return {
+            controllers: [createScraperController(scraper.name)],
             exports: [],
             imports: [
                 MicroserviceModule.forRoot(scraper.name, ServiceType.SCRAPER),

@@ -20,26 +20,22 @@ export class DealsService {
 
         for (const sort of payload.sort) {
             switch (sort) {
-                case DealSortChoices.dealPrice: {
+                case DealSortChoices.DEAL_PRICE: {
                     queryBuilder.addOrderBy('dealPrice', payload.order);
                     break;
                 }
-                case DealSortChoices.productName: {
+                case DealSortChoices.PRODUCT_NAME: {
                     queryBuilder.addOrderBy('product.name', payload.order);
                     break;
                 }
-                case DealSortChoices.shopName: {
+                case DealSortChoices.SHOP_NAME: {
                     queryBuilder.addOrderBy('shop.name', payload.order);
                     break;
                 }
-                case DealSortChoices.productPrice: {
+                case DealSortChoices.PRODUCT_PRICE: {
                     queryBuilder.addOrderBy('product.price', payload.order);
                     break;
                 }
-                // case DealSortChoices.savings: {
-                //     queryBuilder.addOrderBy('savings', payload.order);
-                //     break;
-                // }
             }
         }
 

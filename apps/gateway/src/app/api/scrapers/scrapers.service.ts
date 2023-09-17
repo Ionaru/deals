@@ -8,14 +8,9 @@ export class ScrapersService {
 
     public getHealth() {
         return this.gateway.send(MSMessage.GET_SERVICES, {});
-        //
-        //
-        //     const x = ClientProxyFactory.create({
-        //         transport: Transport.RMQ,
-        //         options: {
-        //             queue
-        //         }
-        //     })
-        //     return x.send(MSMessage.GET_HEALTH, {});
+    }
+
+    public startScraping(name: string) {
+        this.gateway.sendCommand(name).subscribe();
     }
 }

@@ -1,11 +1,6 @@
-import { DealSortChoices, MSMessage } from '@deals/api';
+import { DealSortChoices, MSMessage, Order } from '@deals/api';
 import { ServiceGatewayService } from '@deals/service-registry';
 import { Injectable } from '@nestjs/common';
-
-export enum Order {
-    Ascending = 'ASC',
-    Descending = 'DESC',
-}
 
 @Injectable()
 export class DealsService {
@@ -23,5 +18,11 @@ export class DealsService {
             page,
             sort,
         });
+    }
+
+    public getDeal(
+        id: number,
+    ) {
+        return this.gateway.send(MSMessage.GET_DEAL, { id });
     }
 }
