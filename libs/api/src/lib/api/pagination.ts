@@ -26,16 +26,18 @@ class PaginationMeta {
     currentPage!: number;
 }
 
-export const getPaginationArguments = (maximumLimit = 100, defaultLimit = 10) => {
-
+export const getPaginationArguments = (
+    maximumLimit = 100,
+    defaultLimit = 10,
+) => {
     @ArgsType()
     class PaginationArguments {
-        @Field(() => Int, { defaultValue: defaultLimit })
+        @Field(() => Int, { defaultValue: defaultLimit, nullable: true })
         @Max(maximumLimit)
         @Min(1)
         limit!: number;
 
-        @Field(() => Int, { defaultValue: 1 })
+        @Field(() => Int, { defaultValue: 1, nullable: true })
         page!: number;
     }
 

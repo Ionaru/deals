@@ -1,13 +1,28 @@
 import { inject, Injectable } from '@angular/core';
-import { share } from 'rxjs';
+import { Apollo } from 'apollo-angular';
+import { map } from 'rxjs';
 
-import { GatewayService } from './gateway.service';
+import { typedGql } from '../zeus/typedDocumentNode';
 
 @Injectable({
     providedIn: 'root',
 })
 export class HealthService {
-    readonly #gateway = inject(GatewayService);
+    readonly #apollo = inject(Apollo);
 
-    readonly health$ = this.#gateway.get('v1/health', {}).pipe(share());
+    readonly services$ = this.#apollo
+        .query({
+            query: typedGql('query')({
+                services: {
+                    id: true,
+                    name: true,
+                    queue: true,
+                    status: {
+                        uptime: true,
+                    },
+                    type: true,
+                },
+            }),
+        })
+        .pipe(map((result) => result.data.services));
 }

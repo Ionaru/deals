@@ -45,7 +45,6 @@ export class AppController {
     public handleGetDeals(
         payload: MSMPayload<MSMessage.GET_DEALS>,
     ): Async<MSMResponse<MSMessage.GET_DEALS>> {
-        this.logger.log('Getting deals...');
         return this.dealsService.getDeals(payload);
     }
 

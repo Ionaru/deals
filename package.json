@@ -8,7 +8,8 @@
         "build": "nx build",
         "test": "nx test",
         "lint": "prettier --check . && nx run-many --target=lint --all",
-        "format": "prettier --write . && nx run-many --skip-nx-cache --target=lint --all --fix"
+        "format": "prettier --write . && nx run-many --skip-nx-cache --target=lint --all --fix",
+        "generate-gql-types": "npx graphql-zeus schema.graphql --typedDocumentNode apps/client/src/app"
     },
     "private": true,
     "devDependencies": {
@@ -33,7 +34,6 @@
         "@nx/nest": "16.8.1",
         "@nx/node": "16.8.1",
         "@nx/webpack": "16.8.1",
-        "@nx/workspace": "16.8.1",
         "@schematics/angular": "16.2.2",
         "@types/jest": "^29.5.4",
         "@types/jsdom": "^21.1.2",
@@ -57,6 +57,7 @@
         "jest-preset-angular": "~13.1.1",
         "nx": "16.8.1",
         "prettier": "^3.0.3",
+        "ts-essentials": "^9.4.0",
         "ts-jest": "29.1.1",
         "ts-node": "10.9.1",
         "typescript": "5.1.6"
@@ -72,6 +73,7 @@
         "@angular/platform-browser": "16.2.5",
         "@angular/platform-browser-dynamic": "16.2.5",
         "@angular/router": "16.2.5",
+        "@apollo/client": "^3.8.3",
         "@apollo/server": "^4.9.3",
         "@ionaru/array-utils": "^9.0.0",
         "@nestjs/apollo": "^12.0.9",
@@ -83,6 +85,7 @@
         "@nestjs/platform-express": "10.2.5",
         "@nestjs/swagger": "7.1.11",
         "@nestjs/typeorm": "^10.0.0",
+        "apollo-angular": "^5.0.1",
         "axios": "^1.5.0",
         "bootstrap": "^5.3.2",
         "class-transformer": "^0.5.1",

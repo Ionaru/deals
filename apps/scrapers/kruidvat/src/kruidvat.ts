@@ -161,7 +161,7 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
         [KruidvatDealType.FOUR_FOR_FIVE]: {
             calculation: () => 5 / 4,
             code: '1054',
-            purchaseAmount: 5,
+            purchaseAmount: 4,
         },
         [KruidvatDealType.TWENTY_FIVE_PERCENT_OFF]: {
             calculation: (price: number) => price - price * 0.25,

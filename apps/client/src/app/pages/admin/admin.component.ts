@@ -10,7 +10,7 @@ import { Component, inject, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { share, tap } from 'rxjs';
+import { share } from 'rxjs';
 
 import { TimePipe } from '../../pipes/time.pipe';
 import { HealthService } from '../../services/health.service';
@@ -38,18 +38,7 @@ export class AdminComponent implements OnDestroy {
 
     healthUptimeInterval?: ReturnType<typeof setInterval>;
 
-    health$ = this.#healthService.health$.pipe(
-        share(),
-        tap((health) => {
-            this.healthUptimeInterval = setInterval(() => {
-                for (const service of health) {
-                    if (service.status.uptime !== undefined) {
-                        service.status.uptime++;
-                    }
-                }
-            }, 1000);
-        }),
-    );
+    health$ = this.#healthService.services$.pipe(share());
 
     public ngOnDestroy(): void {
         if (this.healthUptimeInterval) {
@@ -58,6 +47,6 @@ export class AdminComponent implements OnDestroy {
     }
 
     isCoreService(service: { type: string }): boolean {
-        return service.type === 'core';
+        return service.type === 'CORE';
     }
 }

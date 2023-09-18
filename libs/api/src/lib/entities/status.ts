@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Field, Float, ObjectType } from '@nestjs/graphql';
+import { ApiProperty } from '@nestjs/swagger';
 
 @ObjectType()
 export class StatusDTO {

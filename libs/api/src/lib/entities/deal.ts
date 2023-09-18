@@ -1,4 +1,12 @@
-import { ArgsType, Field, Float, ID, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
+import {
+    ArgsType,
+    Field,
+    Float,
+    ID,
+    Int,
+    ObjectType,
+    registerEnumType,
+} from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { Order } from '../api/messages';
@@ -39,9 +47,12 @@ export class DealPaginatedType extends paginated(DealDTO) {}
 
 @ArgsType()
 export class DealsArguments extends getPaginationArguments(100) {
-    @Field(() => Order, { defaultValue: Order.ASCENDING })
+    @Field(() => Order, { defaultValue: Order.ASCENDING, nullable: true })
     order!: Order;
 
-    @Field(() => [DealSortChoices], { defaultValue: [DealSortChoices.PRODUCT_NAME] })
+    @Field(() => [DealSortChoices], {
+        defaultValue: [DealSortChoices.PRODUCT_NAME],
+        nullable: true,
+    })
     sort!: [DealSortChoices];
 }

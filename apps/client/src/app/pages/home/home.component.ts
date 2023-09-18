@@ -1,9 +1,13 @@
-import { AsyncPipe, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import {
+    AsyncPipe,
+    DecimalPipe,
+    NgForOf,
+    NgIf,
+    NgOptimizedImage,
+} from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { DealDTO } from '@deals/api';
-import { map, Observable } from 'rxjs';
 
 import { DealsService } from '../../services/deals.service';
 
@@ -15,6 +19,7 @@ import { DealsService } from '../../services/deals.service';
         NgIf,
         NgForOf,
         AsyncPipe,
+        DecimalPipe,
     ],
     selector: 'deals-home',
     standalone: true,
@@ -22,12 +27,14 @@ import { DealsService } from '../../services/deals.service';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    public deals!: Observable<DealDTO[]>;
+    public deals!: ReturnType<DealsService['getDeals']>;
+
+    page = 1;
 
     #dealsService = inject(DealsService);
 
     public ngOnInit() {
-        this.deals = this.#dealsService.getDeals();
+        this.deals = this.#dealsService.getDeals(this.page);
     }
 
     public trackDealsBy(_index: number, deal: any) {

@@ -4,3 +4,5 @@ dist
 coverage
 .angular
 node_modules
+schema.graphql
+apps/client/src/app/zeus/*.ts

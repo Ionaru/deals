@@ -14,7 +14,9 @@ export class HealthResolver {
     }
 
     @Query(() => ServiceHealthDTO, { nullable: true })
-    service(@Args('id', { type: () => ID }) id: string): Observable<Nullable<ServiceHealthDTO>> {
+    service(
+        @Args('id', { type: () => ID }) id: string,
+    ): Observable<Nullable<ServiceHealthDTO>> {
         return this.scrapersService.getService(id);
     }
 }

@@ -6,10 +6,8 @@ import { ScrapeWebsiteService } from '../services/scrape-website.service';
 import { StorageService } from '../services/storage.service';
 
 export const createScraperController = (name: string) => {
-
     @Controller()
     class ScraperController {
-
         status = ScraperStatus.IDLE;
 
         public constructor(

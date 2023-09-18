@@ -1,0 +1,78 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type DealDTO {
+  dealPrice: Float!
+  dealQuantity: Int!
+  id: ID!
+  product: ProductDTO!
+}
+
+type DealPaginatedType {
+  items: [DealDTO!]!
+  meta: PaginationMeta!
+}
+
+enum DealSortChoices {
+  DEAL_PRICE
+  PRODUCT_NAME
+  PRODUCT_PRICE
+  SHOP_NAME
+}
+
+type Mutation {
+  startScraper(name: String!): Boolean!
+}
+
+enum Order {
+  ASCENDING
+  DESCENDING
+}
+
+type PaginationMeta {
+  currentPage: Int!
+  itemCount: Int!
+  itemsPerPage: Int!
+  totalItems: Int
+  totalPages: Int
+}
+
+type ProductDTO {
+  id: ID!
+  imageUrl: String!
+  name: String!
+  price: Float!
+  productUrl: String!
+  shop: ShopDTO!
+}
+
+type Query {
+  deal(id: ID!): DealDTO
+  deals(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, sort: [DealSortChoices!] = [PRODUCT_NAME]): DealPaginatedType!
+  service(id: ID!): ServiceHealthDTO
+  services: [ServiceHealthDTO!]!
+}
+
+type ServiceHealthDTO {
+  id: ID!
+  name: String!
+  queue: String!
+  status: StatusDTO!
+  type: ServiceType!
+}
+
+enum ServiceType {
+  CORE
+  SCRAPER
+}
+
+type ShopDTO {
+  id: ID!
+  name: String!
+}
+
+type StatusDTO {
+  status: String!
+  uptime: Float
+}

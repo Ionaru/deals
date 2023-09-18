@@ -9,7 +9,7 @@ import {
 export interface IRequest {
     'v1/health': {
         request: IHealthRequest;
-        response: HealthResponse;
+        response: HealthResponse[];
     };
 
     'v1/scraper-status': {

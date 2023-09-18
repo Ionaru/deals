@@ -2,3 +2,4 @@ node_modules
 .angular
 dist
 coverage
+apps/client/src/app/zeus/*.ts

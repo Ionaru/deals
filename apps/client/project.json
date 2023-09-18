@@ -5,9 +5,13 @@
     "sourceRoot": "apps/client/src",
     "prefix": "deals",
     "targets": {
+        "generate-gql-types": {
+            "command": "npm run generate-gql-types"
+        },
         "build": {
             "executor": "@angular-devkit/build-angular:browser",
             "outputs": ["{options.outputPath}"],
+            "dependsOn": ["generate-gql-types"],
             "options": {
                 "outputPath": "dist/apps/client",
                 "index": "apps/client/src/index.html",
@@ -63,6 +67,7 @@
         },
         "serve": {
             "executor": "@angular-devkit/build-angular:dev-server",
+            "dependsOn": ["generate-gql-types"],
             "configurations": {
                 "production": {
                     "browserTarget": "client:build:production"
