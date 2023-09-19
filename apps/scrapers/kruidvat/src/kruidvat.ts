@@ -19,6 +19,7 @@ enum KruidvatDealType {
     TWO_FOR_NINE_NINETY_FIVE,
     TWO_FOR_NINE,
     TWO_FOR_TEN,
+    TWO_FOR_TEN_NINETY_FIVE,
     TWO_FOR_ELEVEN,
     TWO_FOR_TWELVE,
     TWO_FOR_EIGHTEEN,
@@ -28,19 +29,23 @@ enum KruidvatDealType {
     SECOND_FOR_ONE,
     SECOND_HALF_PRICE,
     THREE_FOR_THREE,
+    THREE_FOR_FIVE,
     THREE_FOR_NINE,
     THREE_FOR_TEN,
+    TWENTY_PERCENT_OFF,
     TWENTY_FIVE_PERCENT_OFF,
     FOURTY_PERCENT_OFF,
     FIFTY_PERCENT_OFF,
     THREE_FOR_SEVEN,
     EVERYTHING_FOR_ONE,
+    ALL_FOR_ONE_FIFTY_EACH,
     ALL_FOR_SEVEN_NINETY_NINE_EACH,
     ALL_FOR_SIX_EACH,
     ALL_FOR_NINE_EACH,
     THREE_FOR_TWO,
     FOUR_FOR_FIVE,
     FIVE_FOR_FIVE,
+    FIVE_FOR_TEN,
     FOUR_FOR_SEVEN,
     FOUR_FOR_TEN,
     TWO_FOR_THIRTEEN,
@@ -98,6 +103,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
             code: '1022',
             purchaseAmount: 2,
         },
+        [KruidvatDealType.TWO_FOR_TEN_NINETY_FIVE]: {
+            calculation: () => 10.95 / 2,
+            code: '4623',
+            purchaseAmount: 2,
+        },
         [KruidvatDealType.TWO_FOR_THIRTEEN]: {
             calculation: () => 13 / 2,
             code: '1237',
@@ -116,6 +126,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
         [KruidvatDealType.THREE_FOR_THREE]: {
             calculation: () => 1,
             code: '1042',
+            purchaseAmount: 3,
+        },
+        [KruidvatDealType.THREE_FOR_FIVE]: {
+            calculation: () => 5 / 3,
+            code: '4160',
             purchaseAmount: 3,
         },
         [KruidvatDealType.THREE_FOR_NINE]: {
@@ -163,6 +178,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
             code: '1054',
             purchaseAmount: 4,
         },
+        [KruidvatDealType.TWENTY_PERCENT_OFF]: {
+            calculation: (price: number) => price - price * 0.2,
+            code: '1061',
+            purchaseAmount: 1,
+        },
         [KruidvatDealType.TWENTY_FIVE_PERCENT_OFF]: {
             calculation: (price: number) => price - price * 0.25,
             code: '1062',
@@ -193,6 +213,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
             code: '1176',
             purchaseAmount: 5,
         },
+        [KruidvatDealType.FIVE_FOR_TEN]: {
+            calculation: () => 2,
+            code: '1145',
+            purchaseAmount: 5,
+        },
         [KruidvatDealType.FOUR_FOR_TEN]: {
             calculation: () => 10 / 4,
             code: '1183',
@@ -212,6 +237,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
             calculation: () => 9.95 / 2,
             code: '1024',
             purchaseAmount: 2,
+        },
+        [KruidvatDealType.ALL_FOR_ONE_FIFTY_EACH]: {
+            calculation: () => 1.5,
+            code: '1088',
+            purchaseAmount: 1,
         },
         [KruidvatDealType.ALL_FOR_SEVEN_NINETY_NINE_EACH]: {
             calculation: () => 7.99,
@@ -345,6 +375,7 @@ export class Kruidvat extends ScrapeWebsiteService {
                 .querySelector('.tile__product-slide-product-description')
                 ?.textContent?.trim();
             if (description) {
+                // TODO: Separate description from title.
                 text = `${text} - ${description}`;
             }
 
@@ -358,7 +389,8 @@ export class Kruidvat extends ScrapeWebsiteService {
 
             deals.push({
                 dealPrice:
-                    kruidvatDealInformation[dealCode].calculation(priceText),
+                    // Deal prices are rounded down when they are not whole cents.
+                    Math.floor(kruidvatDealInformation[dealCode].calculation(priceText) * 100) / 100,
                 imageUrl: this.baseUrl + productImage || '',
                 name: text || 'Unknown product',
                 price: priceText,
@@ -382,15 +414,31 @@ export class Kruidvat extends ScrapeWebsiteService {
 
     private getDealCodeFromSrc(source: string): KruidvatDealType | void {
         const dealCode = source.match(/\/(\d*)\.png/);
-        if (dealCode) {
-            const code = Number(dealCode[1]).toString();
-            const dealType = Object.entries(kruidvatDealInformation).find(
-                (value) => value[1].code === code,
-            );
+        if (dealCode && dealCode[1]) {
+            return this.getDealTypeFromCode(dealCode[1]);
+        }
 
-            if (dealType) {
-                return dealType[0] as unknown as KruidvatDealType;
+        const dealContext = source.match(/context=(.*)/);
+        if (dealContext) {
+            const contextText = dealContext[1];
+            if (contextText) {
+                const context = Buffer.from(contextText, 'base64').toString('ascii');
+                const contextCodeMatch = context.match(/\|(\d*)\|/);
+                if (contextCodeMatch && contextCodeMatch[1]) {
+                    return this.getDealTypeFromCode(contextCodeMatch[1]);
+                }
             }
+        }
+    }
+
+    private getDealTypeFromCode(codeText: string): KruidvatDealType | void {
+        const code = Number(codeText).toString();
+        const dealType = Object.entries(kruidvatDealInformation).find(
+            (value) => value[1].code === code,
+        );
+
+        if (dealType) {
+            return dealType[0] as unknown as KruidvatDealType;
         }
     }
 }
