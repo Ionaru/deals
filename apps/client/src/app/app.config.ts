@@ -16,6 +16,9 @@ import {
 import appRouting from './app.routing';
 import { mockDataInterceptor } from './interceptors/mock-data.interceptor';
 
+export const appName = 'Dealert';
+export const appNameAlternate = 'Deal Alert';
+
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(appRouting),
@@ -31,9 +34,7 @@ export const appConfig: ApplicationConfig = {
             provide: APOLLO_OPTIONS,
             useFactory: (httpLink: HttpLink) => ({
                 cache: new InMemoryCache(),
-                link: httpLink.create({
-                    uri: 'http://localhost:4200/graphql',
-                }),
+                link: httpLink.create({ uri: '/graphql' }),
             }),
         },
         { provide: LOCAL_STORAGE, useValue: localStorage },

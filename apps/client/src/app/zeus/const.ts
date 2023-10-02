@@ -3,6 +3,12 @@
 export const AllTypesProps: Record<string,any> = {
 	DealSortChoices: "enum" as const,
 	Mutation:{
+		loginUser:{
+
+		},
+		registerUser:{
+
+		},
 		startScraper:{
 
 		}
@@ -35,6 +41,8 @@ export const ReturnTypes: Record<string,any> = {
 		meta:"PaginationMeta"
 	},
 	Mutation:{
+		loginUser:"Boolean",
+		registerUser:"Boolean",
 		startScraper:"Boolean"
 	},
 	PaginationMeta:{
@@ -55,6 +63,7 @@ export const ReturnTypes: Record<string,any> = {
 	Query:{
 		deal:"DealDTO",
 		deals:"DealPaginatedType",
+		getChallenge:"String",
 		service:"ServiceHealthDTO",
 		services:"ServiceHealthDTO"
 	},

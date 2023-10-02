@@ -4,12 +4,14 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
+import { AuthModule } from './api/auth/auth.module';
 import { DealsModule } from './api/deals/deals.module';
 import { HealthModule } from './api/health/health.module';
 import { ScrapersModule } from './api/scrapers/scrapers.module';
 
 @Module({
     imports: [
+        AuthModule,
         DealsModule,
         ScrapersModule,
         HealthModule,

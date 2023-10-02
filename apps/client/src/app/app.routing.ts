@@ -14,6 +14,10 @@ export default [
         path: 'settings',
     },
     {
+        loadChildren: () => import('./pages/login/login.routing'),
+        path: 'login',
+    },
+    {
         loadChildren: () =>
             import('./pages/notifications/notifications.routing'),
         path: 'notifications',

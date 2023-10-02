@@ -390,7 +390,11 @@ export class Kruidvat extends ScrapeWebsiteService {
             deals.push({
                 dealPrice:
                     // Deal prices are rounded down when they are not whole cents.
-                    Math.floor(kruidvatDealInformation[dealCode].calculation(priceText) * 100) / 100,
+                    Math.floor(
+                        kruidvatDealInformation[dealCode].calculation(
+                            priceText,
+                        ) * 100,
+                    ) / 100,
                 imageUrl: this.baseUrl + productImage || '',
                 name: text || 'Unknown product',
                 price: priceText,
@@ -422,7 +426,9 @@ export class Kruidvat extends ScrapeWebsiteService {
         if (dealContext) {
             const contextText = dealContext[1];
             if (contextText) {
-                const context = Buffer.from(contextText, 'base64').toString('ascii');
+                const context = Buffer.from(contextText, 'base64').toString(
+                    'ascii',
+                );
                 const contextCodeMatch = context.match(/\|(\d*)\|/);
                 if (contextCodeMatch && contextCodeMatch[1]) {
                     return this.getDealTypeFromCode(contextCodeMatch[1]);

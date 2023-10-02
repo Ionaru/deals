@@ -846,6 +846,8 @@ export type ValueTypes = {
 }>;
 	["DealSortChoices"]:DealSortChoices;
 	["Mutation"]: AliasType<{
+loginUser?: [{	authentication: string | Variable<any, string>},boolean | `@${string}`],
+registerUser?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
 startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
@@ -870,6 +872,7 @@ startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 	["Query"]: AliasType<{
 deal?: [{	id: string | Variable<any, string>},ValueTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
+	getChallenge?:boolean | `@${string}`,
 service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
 		__typename?: boolean | `@${string}`
@@ -910,6 +913,8 @@ export type ResolverInputTypes = {
 }>;
 	["DealSortChoices"]:DealSortChoices;
 	["Mutation"]: AliasType<{
+loginUser?: [{	authentication: string},boolean | `@${string}`],
+registerUser?: [{	registration: string},boolean | `@${string}`],
 startScraper?: [{	name: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
@@ -934,6 +939,7 @@ startScraper?: [{	name: string},boolean | `@${string}`],
 	["Query"]: AliasType<{
 deal?: [{	id: string},ResolverInputTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
+	getChallenge?:boolean | `@${string}`,
 service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
 		__typename?: boolean | `@${string}`
@@ -977,7 +983,9 @@ export type ModelTypes = {
 };
 	["DealSortChoices"]:DealSortChoices;
 	["Mutation"]: {
-		startScraper: boolean
+		loginUser: boolean,
+	registerUser: boolean,
+	startScraper: boolean
 };
 	["Order"]:Order;
 	["PaginationMeta"]: {
@@ -998,6 +1006,7 @@ export type ModelTypes = {
 	["Query"]: {
 		deal?: ModelTypes["DealDTO"] | undefined,
 	deals: ModelTypes["DealPaginatedType"],
+	getChallenge: string,
 	service?: ModelTypes["ServiceHealthDTO"] | undefined,
 	services: Array<ModelTypes["ServiceHealthDTO"]>
 };
@@ -1042,6 +1051,8 @@ export type GraphQLTypes = {
 	["DealSortChoices"]: DealSortChoices;
 	["Mutation"]: {
 	__typename: "Mutation",
+	loginUser: boolean,
+	registerUser: boolean,
 	startScraper: boolean
 };
 	["Order"]: Order;
@@ -1066,6 +1077,7 @@ export type GraphQLTypes = {
 	__typename: "Query",
 	deal?: GraphQLTypes["DealDTO"] | undefined,
 	deals: GraphQLTypes["DealPaginatedType"],
+	getChallenge: string,
 	service?: GraphQLTypes["ServiceHealthDTO"] | undefined,
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>
 };

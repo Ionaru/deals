@@ -1,6 +1,7 @@
 import {
     AsyncPipe,
     DecimalPipe,
+    JsonPipe,
     NgForOf,
     NgIf,
     NgOptimizedImage,
@@ -20,6 +21,7 @@ import { DealsService } from '../../services/deals.service';
         NgForOf,
         AsyncPipe,
         DecimalPipe,
+        JsonPipe,
     ],
     selector: 'deals-home',
     standalone: true,
@@ -27,14 +29,14 @@ import { DealsService } from '../../services/deals.service';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    public deals!: ReturnType<DealsService['getDeals']>;
+    public deals$!: ReturnType<DealsService['getDeals']>;
 
     page = 1;
 
     #dealsService = inject(DealsService);
 
     public ngOnInit() {
-        this.deals = this.#dealsService.getDeals(this.page);
+        this.deals$ = this.#dealsService.getDeals(this.page);
     }
 
     public trackDealsBy(_index: number, deal: any) {

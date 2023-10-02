@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { map } from 'rxjs';
 
+import { withApolloErrorHandling } from '../utils/observables';
 import { typedGql } from '../zeus/typedDocumentNode';
 
 @Injectable({
@@ -11,8 +11,9 @@ export class DealsService {
     readonly #apollo = inject(Apollo);
 
     public getDeals(page = 1) {
-        return this.#apollo
-            .query({
+        return withApolloErrorHandling(
+            this.#apollo.query({
+                errorPolicy: 'all',
                 query: typedGql('query')({
                     deals: [
                         {
@@ -36,7 +37,7 @@ export class DealsService {
                         },
                     ],
                 }),
-            })
-            .pipe(map((result) => result.data.deals.items));
+            }),
+        );
     }
 }

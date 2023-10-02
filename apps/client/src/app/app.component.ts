@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
 
+import { appName, appNameAlternate } from './app.config';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @Component({
@@ -11,6 +13,12 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     templateUrl: './app.component.html',
 })
 export class AppComponent {
-    public title = 'Dealert';
-    public alternateTitle = 'Deal Alert';
+    title = appName;
+    alternateTitle = appNameAlternate;
+
+    readonly #iconRegistry = inject(MatIconRegistry);
+
+    constructor() {
+        this.#iconRegistry.setDefaultFontSetClass('material-symbols-outlined');
+    }
 }

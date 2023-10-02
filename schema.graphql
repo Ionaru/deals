@@ -22,6 +22,8 @@ enum DealSortChoices {
 }
 
 type Mutation {
+  loginUser(authentication: String!): Boolean!
+  registerUser(registration: String!): Boolean!
   startScraper(name: String!): Boolean!
 }
 
@@ -50,6 +52,7 @@ type ProductDTO {
 type Query {
   deal(id: ID!): DealDTO
   deals(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, sort: [DealSortChoices!] = [PRODUCT_NAME]): DealPaginatedType!
+  getChallenge: String!
   service(id: ID!): ServiceHealthDTO
   services: [ServiceHealthDTO!]!
 }

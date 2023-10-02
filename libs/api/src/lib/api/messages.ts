@@ -1,6 +1,7 @@
 import { registerEnumType } from '@nestjs/graphql';
 import { Pagination } from 'nestjs-typeorm-paginate';
 
+import { Async } from '../api';
 import { ScraperStatus } from '../common/scraper-status';
 import { ServiceType } from '../common/service-type';
 import { DealDTO, DealSortChoices } from '../entities/deal';
@@ -25,6 +26,10 @@ export enum MSMessage {
     GET_SERVICE = 'GET_SERVICE',
     SCRAPER_STATUS = 'SCRAPER_STATUS',
     START_SCRAPER = 'START_SCRAPER',
+    GET_CHALLENGE = 'GET_CHALLENGE',
+    CHECK_CHALLENGE = 'CHECK_CHALLENGE',
+    LOGIN_USER = 'LOGIN_USER',
+    REGISTER_USER = 'REGISTER_USER',
 }
 
 export interface IMSMessage {
@@ -68,6 +73,32 @@ export interface IMSMessage {
         response: void;
     };
 
+    [MSMessage.GET_CHALLENGE]: {
+        payload: Record<string, never>;
+        response: string;
+    };
+
+    [MSMessage.CHECK_CHALLENGE]: {
+        payload: {
+            challenge: string;
+        };
+        response: boolean;
+    };
+
+    [MSMessage.LOGIN_USER]: {
+        payload: {
+            authentication: string;
+        };
+        response: boolean;
+    };
+
+    [MSMessage.REGISTER_USER]: {
+        payload: {
+            registration: string;
+        };
+        response: boolean;
+    };
+
     [MSMessage.GET_SERVICES]: {
         payload: Record<string, never>;
         response: HealthResponse[];
@@ -96,3 +127,4 @@ export interface IMSMessage {
 
 export type MSMPayload<T extends keyof IMSMessage> = IMSMessage[T]['payload'];
 export type MSMResponse<T extends keyof IMSMessage> = IMSMessage[T]['response'];
+export type AMSMResponse<T extends keyof IMSMessage> = Async<MSMResponse<T>>;

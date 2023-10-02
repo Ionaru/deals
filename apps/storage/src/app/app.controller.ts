@@ -1,10 +1,10 @@
 import {
+    AMSMResponse,
     Async,
     MSEPayload,
     MSEvent,
     MSMessage,
     MSMPayload,
-    MSMResponse,
 } from '@deals/api';
 import { Controller, Logger } from '@nestjs/common';
 import { EventPattern, MessagePattern } from '@nestjs/microservices';
@@ -44,21 +44,21 @@ export class AppController {
     @MessagePattern(MSMessage.GET_DEALS)
     public handleGetDeals(
         payload: MSMPayload<MSMessage.GET_DEALS>,
-    ): Async<MSMResponse<MSMessage.GET_DEALS>> {
+    ): AMSMResponse<MSMessage.GET_DEALS> {
         return this.dealsService.getDeals(payload);
     }
 
     @MessagePattern(MSMessage.GET_DEAL)
     public handleGetDeal(
         payload: MSMPayload<MSMessage.GET_DEAL>,
-    ): Async<MSMResponse<MSMessage.GET_DEAL>> {
+    ): AMSMResponse<MSMessage.GET_DEAL> {
         return this.dealsService.getDeal(payload.id);
     }
 
     @MessagePattern(MSMessage.REGISTER_SERVICE)
     public handleRegisterService(
         payload: MSMPayload<MSMessage.REGISTER_SERVICE>,
-    ): Async<MSMResponse<MSMessage.REGISTER_SERVICE>> {
+    ): AMSMResponse<MSMessage.REGISTER_SERVICE> {
         this.logger.log(
             `Registering ${payload.type} service... ${payload.name}`,
         );
@@ -72,7 +72,7 @@ export class AppController {
     @MessagePattern(MSMessage.UNREGISTER_SERVICE)
     public handleUnregisterService(
         payload: MSMPayload<MSMessage.UNREGISTER_SERVICE>,
-    ): Async<MSMResponse<MSMessage.UNREGISTER_SERVICE>> {
+    ): AMSMResponse<MSMessage.UNREGISTER_SERVICE> {
         this.logger.log('Unregistering service... ' + payload.queue);
         return this.servicesService.unregisterService(payload.queue);
     }
@@ -80,14 +80,14 @@ export class AppController {
     @MessagePattern(MSMessage.GET_SERVICES)
     public handleGetServices(
         _payload: MSMPayload<MSMessage.GET_SERVICES>,
-    ): Async<MSMResponse<MSMessage.GET_SERVICES>> {
+    ): AMSMResponse<MSMessage.GET_SERVICES> {
         return this.servicesService.getServices();
     }
 
     @MessagePattern(MSMessage.GET_SERVICE)
     public handleGetService(
         payload: MSMPayload<MSMessage.GET_SERVICE>,
-    ): Async<MSMResponse<MSMessage.GET_SERVICE>> {
+    ): AMSMResponse<MSMessage.GET_SERVICE> {
         return this.servicesService.getService(payload.id);
     }
 }

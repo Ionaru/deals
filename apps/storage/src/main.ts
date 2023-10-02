@@ -6,8 +6,6 @@ import { AppModule } from './app/app.module';
 import { ServicesService } from './app/services/services.service';
 
 const bootstrap = async () => {
-    // const app2 = await NestFactory.create(AppModule);
-
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(
         AppModule,
         {
@@ -16,17 +14,6 @@ const bootstrap = async () => {
         },
     );
 
-    // app2.connectMicroservice({
-    //     options: {},
-    //     transport: Transport.NATS,
-    // });
-    //
-    // app2.connectMicroservice({
-    //     options: {},
-    //     transport: Transport.NATS,
-    // });
-
-    // await app2.startAllMicroservices();
     await app.listen();
     Logger.log(`🚀 Storage is running`);
     const servicesService = app.get(ServicesService);

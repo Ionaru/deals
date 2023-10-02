@@ -61,11 +61,26 @@ $angular-primary: material.define-palette(
     100,
     900
 );
+
+$angular-primary-dark: material.define-palette(
+    $ns-old-sprinter-blue-palette,
+    200,
+    900,
+    100
+);
+
 $angular-accent: material.define-palette(
     $ns-old-sprinter-yellow-palette,
     400,
     100,
     900
+);
+
+$angular-accent-dark: material.define-palette(
+    $ns-old-sprinter-yellow-palette,
+    600,
+    900,
+    100
 );
 
 $angular-warn: material.define-palette(material.$red-palette);
@@ -87,8 +102,8 @@ $angular-default-theme: material.define-light-theme(
 $angular-dark-theme: material.define-dark-theme(
     (
         color: (
-            primary: $angular-primary,
-            accent: $angular-accent,
+            primary: $angular-primary-dark,
+            accent: $angular-accent-dark,
             warn: $angular-warn,
         ),
     )
