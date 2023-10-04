@@ -6,26 +6,19 @@ import { IRequest } from '@deals/api';
     providedIn: 'root',
 })
 export class GatewayService {
-    private static readonly url = '/api/';
+    readonly #url = '/api/';
 
     readonly #http = inject(HttpClient);
 
-    public get<T extends keyof IRequest>(
-        path: T,
-        parameters: IRequest[T]['request'],
-    ) {
-        return this.#http.get<IRequest[T]['response']>(
-            `${GatewayService.url}${path}`,
-            { params: parameters },
-        );
+    get<T extends keyof IRequest>(path: T, parameters: IRequest[T]['request']) {
+        return this.#http.get<IRequest[T]['response']>(`${this.#url}${path}`, {
+            params: parameters,
+        });
     }
 
-    public post<T extends keyof IRequest>(
-        path: T,
-        data: IRequest[T]['request'],
-    ) {
+    post<T extends keyof IRequest>(path: T, data: IRequest[T]['request']) {
         return this.#http.post<IRequest[T]['response']>(
-            `${GatewayService.url}${path}`,
+            `${this.#url}${path}`,
             data,
         );
     }

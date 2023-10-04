@@ -1,12 +1,11 @@
 import { MicroserviceModule } from '@deals/service-registry';
 import { Module } from '@nestjs/common';
 
-import { DealsController } from './deals.controller';
 import { DealsResolver } from './deals.resolver';
 import { DealsService } from './deals.service';
 
 @Module({
-    controllers: [DealsController],
+    controllers: [],
     imports: [MicroserviceModule],
     providers: [DealsService, DealsResolver],
 })

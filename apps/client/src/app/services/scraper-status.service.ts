@@ -8,7 +8,7 @@ import { GatewayService } from './gateway.service';
 export class ScraperStatusService {
     readonly #gateway = inject(GatewayService);
 
-    public getScraperStatus() {
+    getScraperStatus() {
         return this.#gateway.get('v1/scraper-status', {});
     }
 }

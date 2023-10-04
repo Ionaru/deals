@@ -9,9 +9,9 @@ import { Shop } from '../models/shop';
 
 @Injectable()
 export class FoundDealsService {
-    private readonly logger = new Logger(FoundDealsService.name);
+    readonly #logger = new Logger(FoundDealsService.name);
 
-    public constructor(
+    constructor(
         @InjectRepository(Shop)
         private readonly shopRepository: Repository<Shop>,
         @InjectRepository(Product)
@@ -20,7 +20,7 @@ export class FoundDealsService {
         private readonly dealRepository: Repository<Deal>,
     ) {}
 
-    public async store(shop: string, deals: IProductDeal[]): Promise<void> {
+    async store(shop: string, deals: IProductDeal[]): Promise<void> {
         const shopEntity = await getOrCreate(this.shopRepository, {
             name: shop,
         });
@@ -51,22 +51,22 @@ export class FoundDealsService {
                 }),
             );
         }
-        this.logger.log(
+        this.#logger.log(
             `Saving ${productsToSave.length} products and ${dealsToSave.length} deals`,
         );
         await this.productRepository.save(productsToSave, {
             chunk: 100,
             reload: false,
         });
-        await this.deleteExistingDeals(shopEntity.id);
+        await this.#deleteExistingDeals(shopEntity.id);
         await this.dealRepository.save(dealsToSave, {
             chunk: 100,
             reload: false,
         });
-        this.logger.log('Saved');
+        this.#logger.log('Saved');
     }
 
-    private async deleteExistingDeals(shopId: string): Promise<void> {
+    async #deleteExistingDeals(shopId: string): Promise<void> {
         const existingDeals = await this.dealRepository.find({
             relations: ['product', 'product.shop'],
             where: {

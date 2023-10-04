@@ -6,15 +6,15 @@ import { ServiceRegistryService } from './service-registry.service';
 
 @Controller()
 export class ServiceRegistryController {
-    private readonly logger = new Logger(ServiceRegistryController.name);
+    readonly #logger = new Logger(ServiceRegistryController.name);
 
-    public constructor(
+    constructor(
         private readonly serviceRegistryService: ServiceRegistryService,
     ) {}
 
     @EventPattern(MSEvent.REPORT_SERVICE)
-    public handleReportService() {
-        this.logger.log('Reporting service...');
+    handleReportService() {
+        this.#logger.log('Reporting service...');
         return this.serviceRegistryService.storeService();
     }
 }

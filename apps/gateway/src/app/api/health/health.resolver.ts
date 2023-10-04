@@ -6,7 +6,7 @@ import { HealthService } from './health.service';
 
 @Resolver()
 export class HealthResolver {
-    public constructor(private readonly scrapersService: HealthService) {}
+    constructor(private readonly scrapersService: HealthService) {}
 
     @Query(() => [ServiceHealthDTO])
     services(): Observable<ServiceHealthDTO[]> {

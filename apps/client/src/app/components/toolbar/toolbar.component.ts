@@ -24,18 +24,18 @@ import { DarkModeService } from '../../services/dark-mode.service';
     templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent {
-    @Input({ required: true }) public title!: string;
-    @Input({ required: true }) public alternateTitle!: string;
+    @Input({ required: true }) title!: string;
+    @Input({ required: true }) alternateTitle!: string;
 
     hovering = false;
 
     readonly #darkModeService = inject(DarkModeService);
 
-    public get isDarkMode(): boolean {
+    get isDarkMode(): boolean {
         return this.#darkModeService.isDarkModeActive();
     }
 
-    public toggleDarkMode(): void {
+    toggleDarkMode(): void {
         this.#darkModeService.toggleDarkMode();
     }
 

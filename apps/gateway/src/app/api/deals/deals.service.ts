@@ -4,9 +4,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class DealsService {
-    public constructor(private gateway: ServiceGatewayService) {}
+    constructor(private readonly gateway: ServiceGatewayService) {}
 
-    public getDeals(
+    getDeals(
         order: Order,
         sort: DealSortChoices[],
         limit: number,
@@ -20,7 +20,7 @@ export class DealsService {
         });
     }
 
-    public getDeal(id: string) {
+    getDeal(id: string) {
         return this.gateway.send(MSMessage.GET_DEAL, { id });
     }
 }

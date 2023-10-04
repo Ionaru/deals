@@ -4,7 +4,7 @@ import { ScrapersService } from './scrapers.service';
 
 @Resolver()
 export class ScrapersResolver {
-    public constructor(private readonly scrapersService: ScrapersService) {}
+    constructor(private readonly scrapersService: ScrapersService) {}
 
     @Mutation(() => Boolean)
     startScraper(@Args('name', { type: () => String }) name: string): boolean {

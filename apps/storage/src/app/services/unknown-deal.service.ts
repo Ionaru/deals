@@ -8,14 +8,14 @@ import { UnknownDeal } from '../models/unknown-deal';
 
 @Injectable()
 export class UnknownDealService {
-    public constructor(
+    constructor(
         @InjectRepository(Shop)
         private readonly shopRepository: Repository<Shop>,
         @InjectRepository(UnknownDeal)
         private readonly unknownDealRepository: Repository<UnknownDeal>,
     ) {}
 
-    public async store(shop: string, deal: IUnknownDeal) {
+    async store(shop: string, deal: IUnknownDeal) {
         const shopEntity = await getOrCreate(this.shopRepository, {
             name: shop,
         });

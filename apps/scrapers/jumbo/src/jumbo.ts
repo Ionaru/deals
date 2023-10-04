@@ -23,7 +23,7 @@ const jumboDealInformation: { [key in JumboDealType]: JumboDeal } =
     });
 
 export class Jumbo extends ScrapeWebsiteService {
-    public shopName = 'Jumbo';
+    shopName = 'Jumbo';
 
     protected baseUrl = 'https://www.jumbo.com';
     protected paths = ['/producten/alle-aanbiedingen'];
@@ -70,7 +70,7 @@ export class Jumbo extends ScrapeWebsiteService {
                 .querySelector('a')
                 ?.getAttribute('href')}`;
 
-            const dealType = this.parseDealText(promotionText);
+            const dealType = this.#parseDealText(promotionText);
             if (!dealType) {
                 this.reportUnknownDeal({
                     productUrl,
@@ -111,7 +111,7 @@ export class Jumbo extends ScrapeWebsiteService {
         return url;
     }
 
-    private parseDealText(text: string): JumboDealType | void {
+    #parseDealText(text: string): JumboDealType | void {
         for (const [type, dealType] of Object.entries(jumboDealInformation)) {
             if (dealType.matcher.test(text)) {
                 return Number(type) as unknown as JumboDealType;

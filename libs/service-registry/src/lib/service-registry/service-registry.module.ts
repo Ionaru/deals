@@ -26,12 +26,12 @@ import { ServiceRegistryService } from './service-registry.service';
 export class ServiceRegistryModule
     implements OnModuleInit, BeforeApplicationShutdown
 {
-    public constructor(
+    constructor(
         private readonly serviceRegistryService: ServiceRegistryService,
         @Inject('DELAY') private readonly delay: string,
     ) {}
 
-    public static forRoot(
+    static forRoot(
         name: string,
         type: ServiceType,
         delay = false,
@@ -51,7 +51,7 @@ export class ServiceRegistryModule
         };
     }
 
-    public onModuleInit() {
+    onModuleInit() {
         if (!this.delay) {
             this.serviceRegistryService
                 .storeService()
@@ -60,7 +60,7 @@ export class ServiceRegistryModule
         }
     }
 
-    public beforeApplicationShutdown() {
+    beforeApplicationShutdown() {
         return this.serviceRegistryService
             .removeService()
             .pipe(catchError(this.#registryErrorHandler));

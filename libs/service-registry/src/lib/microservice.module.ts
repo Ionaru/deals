@@ -11,7 +11,7 @@ import { ServiceRegistryModule } from './service-registry/service-registry.modul
     providers: [],
 })
 export class MicroserviceModule {
-    public static forRoot(
+    static forRoot(
         name: string,
         type: ServiceType,
         autoAnnounce = false,

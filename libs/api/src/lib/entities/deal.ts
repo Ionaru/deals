@@ -7,7 +7,6 @@ import {
     ObjectType,
     registerEnumType,
 } from '@nestjs/graphql';
-import { ApiProperty } from '@nestjs/swagger';
 
 import { Order } from '../api/messages';
 import { getPaginationArguments, paginated } from '../api/pagination';
@@ -25,19 +24,15 @@ registerEnumType(DealSortChoices, { name: 'DealSortChoices' });
 
 @ObjectType()
 export class DealDTO {
-    @ApiProperty()
     @Field(() => ID)
     id!: string;
 
-    @ApiProperty()
     @Field(() => Float)
     dealPrice!: number;
 
-    @ApiProperty()
     @Field(() => Int)
     dealQuantity!: number;
 
-    @ApiProperty()
     @Field(() => ProductDTO)
     product!: ProductDTO;
 }

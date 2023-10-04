@@ -10,13 +10,13 @@ export const createScraperController = (name: string) => {
     class ScraperController {
         status = ScraperStatus.IDLE;
 
-        public constructor(
+        constructor(
             @Inject('SCRAPER') readonly scraper: ScrapeWebsiteService,
             readonly storage: StorageService,
         ) {}
 
         @MessagePattern(name)
-        public async handleDirectMessage() {
+        async handleDirectMessage() {
             if (this.status === ScraperStatus.SCRAPING) {
                 return;
             }

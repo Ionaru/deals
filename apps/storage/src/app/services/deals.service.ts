@@ -8,7 +8,7 @@ import { Deal } from '../models/deal';
 
 @Injectable()
 export class DealsService {
-    public constructor(
+    constructor(
         @InjectRepository(Deal)
         private readonly dealRepository: Repository<Deal>,
     ) {}
@@ -20,7 +20,7 @@ export class DealsService {
         });
     }
 
-    public getDeals(payload: MSMPayload<MSMessage.GET_DEALS>) {
+    getDeals(payload: MSMPayload<MSMessage.GET_DEALS>) {
         const queryBuilder = this.dealRepository.createQueryBuilder('deal');
         queryBuilder.leftJoinAndSelect('deal.product', 'product');
         queryBuilder.leftJoinAndSelect('product.shop', 'shop');

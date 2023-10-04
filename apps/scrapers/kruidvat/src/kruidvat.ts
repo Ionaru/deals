@@ -278,7 +278,7 @@ const parseProductPrice = (priceText: string | null = ''): number => {
 };
 
 export class Kruidvat extends ScrapeWebsiteService {
-    public shopName = 'Kruidvat';
+    shopName = 'Kruidvat';
 
     protected baseUrl = 'https://www.kruidvat.nl';
     protected paths = [
@@ -317,7 +317,7 @@ export class Kruidvat extends ScrapeWebsiteService {
 
     protected getPageAmount(document: Document): number {
         const pagerText = document.querySelector('.pager__range')?.textContent;
-        return pagerText ? this.getPagerNumbers(pagerText) : 0;
+        return pagerText ? this.#getPagerNumbers(pagerText) : 0;
     }
 
     protected modifyURL(url: URL): URL {
@@ -359,7 +359,7 @@ export class Kruidvat extends ScrapeWebsiteService {
 
             const productUrl = `${this.baseUrl}${title.getAttribute('href')}`;
 
-            const dealCode = this.getDealCodeFromSrc(deal);
+            const dealCode = this.#getDealCodeFromSrc(deal);
             if (dealCode && ignoredDeals.has(dealCode as unknown as string)) {
                 continue;
             } else if (!dealCode) {
@@ -407,7 +407,7 @@ export class Kruidvat extends ScrapeWebsiteService {
         return deals;
     }
 
-    private getPagerNumbers(pagerText: string): number {
+    #getPagerNumbers(pagerText: string): number {
         const pagerParts = pagerText.split('\n') || [];
         const pages = pagerParts
             .map((part) => part.trim())
@@ -416,10 +416,10 @@ export class Kruidvat extends ScrapeWebsiteService {
         return Number(lastPage || 0);
     }
 
-    private getDealCodeFromSrc(source: string): KruidvatDealType | void {
+    #getDealCodeFromSrc(source: string): KruidvatDealType | void {
         const dealCode = source.match(/\/(\d*)\.png/);
         if (dealCode && dealCode[1]) {
-            return this.getDealTypeFromCode(dealCode[1]);
+            return this.#getDealTypeFromCode(dealCode[1]);
         }
 
         const dealContext = source.match(/context=(.*)/);
@@ -431,13 +431,13 @@ export class Kruidvat extends ScrapeWebsiteService {
                 );
                 const contextCodeMatch = context.match(/\|(\d*)\|/);
                 if (contextCodeMatch && contextCodeMatch[1]) {
-                    return this.getDealTypeFromCode(contextCodeMatch[1]);
+                    return this.#getDealTypeFromCode(contextCodeMatch[1]);
                 }
             }
         }
     }
 
-    private getDealTypeFromCode(codeText: string): KruidvatDealType | void {
+    #getDealTypeFromCode(codeText: string): KruidvatDealType | void {
         const code = Number(codeText).toString();
         const dealType = Object.entries(kruidvatDealInformation).find(
             (value) => value[1].code === code,

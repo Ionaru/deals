@@ -6,19 +6,19 @@ interface IXPlusXDealMatcherGroups {
 }
 
 export class XPlusXDeal extends JumboDeal {
-    public matcher = /(?<purchaseAmount>\d)\+(?<freeAmount>\d) gratis/;
+    matcher = /(?<purchaseAmount>\d)\+(?<freeAmount>\d) gratis/;
 
-    public getDealPrice(productPrice: number, promotionText: string): number {
+    getDealPrice(productPrice: number, promotionText: string): number {
         const { purchaseAmount, freeAmount } =
             this.getMatcherGroups(promotionText);
         return (productPrice * purchaseAmount) / (purchaseAmount + freeAmount);
     }
 
-    public getPurchaseAmount(promotionText: string): number {
+    getPurchaseAmount(promotionText: string): number {
         return this.getMatcherGroups(promotionText).purchaseAmount;
     }
 
-    private getMatcherGroups(promotionText: string): IXPlusXDealMatcherGroups {
+    getMatcherGroups(promotionText: string): IXPlusXDealMatcherGroups {
         const resultGroups = this.matcher.exec(promotionText)?.groups;
         if (!resultGroups) {
             throw new Error('Could not find promotionText');

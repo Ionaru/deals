@@ -27,7 +27,7 @@ export class RegisterArguments {
 
 @Resolver()
 export class AuthResolver {
-    constructor(private authService: AuthService) {}
+    constructor(private readonly authService: AuthService) {}
 
     @Query(() => String)
     challenge() {

@@ -22,7 +22,7 @@ export class DarkModeService {
     readonly #darkModePreference = 'dark';
     readonly #lightModePreference = 'light';
 
-    public constructor() {
+    constructor() {
         const preference = this.#storage.getItem(this.#storageKey);
         if (preference === this.#darkModePreference) {
             this.enableDarkMode();
@@ -45,25 +45,25 @@ export class DarkModeService {
             });
     }
 
-    public isDarkModeActive(): boolean {
+    isDarkModeActive(): boolean {
         return this.#document.body.classList.contains(this.#darkModeClass);
     }
 
-    public enableDarkMode(save = false): void {
+    enableDarkMode(save = false): void {
         this.#document.body.classList.add(this.#darkModeClass);
         if (save) {
             this.#save(this.#darkModePreference);
         }
     }
 
-    public disableDarkMode(save = false): void {
+    disableDarkMode(save = false): void {
         this.#document.body.classList.remove(this.#darkModeClass);
         if (save) {
             this.#save(this.#lightModePreference);
         }
     }
 
-    public toggleDarkMode(): void {
+    toggleDarkMode(): void {
         if (this.isDarkModeActive()) {
             this.disableDarkMode(true);
         } else {

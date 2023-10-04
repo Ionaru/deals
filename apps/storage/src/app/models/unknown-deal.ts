@@ -8,16 +8,16 @@ export class UnknownDeal extends BaseModel {
     @Column({
         type: 'text',
     })
-    public deal!: string;
+    deal!: string;
 
     @Column({
         type: 'text',
     })
-    public productUrl!: string;
+    productUrl!: string;
 
     @ManyToOne(() => Shop, (shop) => shop.products, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })
-    public shop!: Shop;
+    shop!: Shop;
 }

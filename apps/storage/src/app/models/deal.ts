@@ -8,16 +8,16 @@ export class Deal extends BaseModel {
     @Column({
         type: 'double',
     })
-    public dealPrice!: number;
+    dealPrice!: number;
 
     @Column({
         type: 'integer',
     })
-    public dealQuantity!: number;
+    dealQuantity!: number;
 
     @ManyToOne(() => Product, (product) => product.deals, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })
-    public product!: Product;
+    product!: Product;
 }

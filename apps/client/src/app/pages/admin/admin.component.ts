@@ -40,7 +40,7 @@ export class AdminComponent implements OnDestroy {
 
     health$ = this.#healthService.services$.pipe(share());
 
-    public ngOnDestroy(): void {
+    ngOnDestroy(): void {
         if (this.healthUptimeInterval) {
             clearInterval(this.healthUptimeInterval);
         }

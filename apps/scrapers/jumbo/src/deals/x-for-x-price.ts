@@ -6,20 +6,18 @@ interface IXForXPriceDealMatcherGroups {
 }
 
 export class XForXPrice extends JumboDeal {
-    public matcher = /(?<amount>\d) voor € (?<price>\d\d?,\d\d)/;
+    matcher = /(?<amount>\d) voor € (?<price>\d\d?,\d\d)/;
 
-    public getDealPrice(_productPrice: number, promotionText: string): number {
+    getDealPrice(_productPrice: number, promotionText: string): number {
         const { amount, price } = this.getMatcherGroups(promotionText);
         return price / amount;
     }
 
-    public getPurchaseAmount(promotionText: string): number {
+    getPurchaseAmount(promotionText: string): number {
         return this.getMatcherGroups(promotionText).amount;
     }
 
-    private getMatcherGroups(
-        promotionText: string,
-    ): IXForXPriceDealMatcherGroups {
+    getMatcherGroups(promotionText: string): IXForXPriceDealMatcherGroups {
         const resultGroups = this.matcher.exec(promotionText)?.groups;
         if (!resultGroups) {
             throw new Error('Could not find promotionText');

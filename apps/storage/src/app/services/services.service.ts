@@ -11,18 +11,18 @@ import { Service } from '../models/service';
 export class ServicesService {
     private readonly logger = new Logger(ServicesService.name);
 
-    public constructor(
+    constructor(
         @InjectRepository(Service)
         private readonly serviceRepository: Repository<Service>,
-        private gateway: ServiceGatewayService,
+        private readonly gateway: ServiceGatewayService,
     ) {}
 
-    public async init(): Promise<void> {
+    async init(): Promise<void> {
         await this.serviceRepository.clear();
         this.gateway.emit(MSEvent.REPORT_SERVICE, {});
     }
 
-    public async registerService(
+    async registerService(
         name: string,
         queue: string,
         type: ServiceType,
@@ -34,11 +34,11 @@ export class ServicesService {
         return this.serviceRepository.save(service);
     }
 
-    public async unregisterService(queue: string): Promise<void> {
+    async unregisterService(queue: string): Promise<void> {
         await this.serviceRepository.delete({ queue });
     }
 
-    public async getService(id: string) {
+    async getService(id: string) {
         const service = await this.serviceRepository.findOneBy({ id });
         if (!service) {
             return service;
@@ -62,7 +62,7 @@ export class ServicesService {
         );
     }
 
-    public async getServices() {
+    async getServices() {
         const services = await this.serviceRepository.find();
         const serviceCalls = services.map((serv) =>
             this.gateway.sendDirect(serv.queue, {}).pipe(

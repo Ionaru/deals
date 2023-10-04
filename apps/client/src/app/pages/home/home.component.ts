@@ -29,17 +29,17 @@ import { DealsService } from '../../services/deals.service';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    public deals$!: ReturnType<DealsService['getDeals']>;
+    deals$!: ReturnType<DealsService['getDeals']>;
 
     page = 1;
 
-    #dealsService = inject(DealsService);
+    readonly #dealsService = inject(DealsService);
 
-    public ngOnInit() {
+    ngOnInit() {
         this.deals$ = this.#dealsService.getDeals(this.page);
     }
 
-    public trackDealsBy(_index: number, deal: any) {
+    trackDealsBy(_index: number, deal: any) {
         return deal.id;
     }
 }

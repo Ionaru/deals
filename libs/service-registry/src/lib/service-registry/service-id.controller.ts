@@ -6,7 +6,7 @@ export const createServiceIdController = (id: string) => {
     @Controller()
     class ServiceIdController {
         @MessagePattern(id)
-        public handleDirectMessage(): MSMResponse<'direct'> {
+        handleDirectMessage(): MSMResponse<'direct'> {
             return { status: 'ok', uptime: process.uptime() };
         }
     }

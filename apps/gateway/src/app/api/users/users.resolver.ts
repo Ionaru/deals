@@ -21,7 +21,7 @@ export class UserArguments {
 
 @Resolver()
 export class UsersResolver {
-    constructor(private usersService: UsersService) {}
+    constructor(private readonly usersService: UsersService) {}
 
     @Query(() => UserDTO, { nullable: true })
     user(

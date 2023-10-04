@@ -8,17 +8,17 @@ export class Service extends BaseModel {
     @Column({
         type: 'varchar',
     })
-    public name!: string;
+    name!: string;
 
     @Column({
         type: 'varchar',
         unique: true,
     })
-    public queue!: string;
+    queue!: string;
 
     @Column({
         type: 'varchar',
         unique: false,
     })
-    public type!: ServiceType;
+    type!: ServiceType;
 }

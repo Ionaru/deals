@@ -10,7 +10,7 @@ import { typedGql } from '../zeus/typedDocumentNode';
 export class DealsService {
     readonly #apollo = inject(Apollo);
 
-    public getDeals(page = 1) {
+    getDeals(page = 1) {
         return withApolloErrorHandling(
             this.#apollo.query({
                 errorPolicy: 'all',

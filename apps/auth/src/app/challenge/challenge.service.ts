@@ -12,7 +12,7 @@ export class ChallengeService {
 
     constructor(
         @InjectRepository(Challenge)
-        private challengeRepository: MongoRepository<Challenge>,
+        private readonly challengeRepository: MongoRepository<Challenge>,
     ) {}
 
     async getChallenge() {

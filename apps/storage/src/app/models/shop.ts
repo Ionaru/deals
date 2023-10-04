@@ -9,11 +9,11 @@ export class Shop extends BaseModel {
         type: 'varchar',
         unique: true,
     })
-    public name!: string;
+    name!: string;
 
     @OneToMany(() => Product, (product) => product.shop, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })
-    public products!: Product[];
+    products!: Product[];
 }

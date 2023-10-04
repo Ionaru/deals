@@ -10,7 +10,7 @@ import { Credential, User } from './user.model';
 
 @Injectable()
 export class UserService {
-    public constructor(
+    constructor(
         private readonly gateway: ServiceGatewayService,
         @InjectRepository(User)
         private readonly userRepository: MongoRepository<User>,

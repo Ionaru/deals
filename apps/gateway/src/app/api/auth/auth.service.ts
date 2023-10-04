@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
-    public constructor(private gateway: ServiceGatewayService) {}
+    constructor(private readonly gateway: ServiceGatewayService) {}
 
     getNewChallenge() {
         return this.gateway.send(MSMessage.GET_CHALLENGE, {});

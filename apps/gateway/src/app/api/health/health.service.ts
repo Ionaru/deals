@@ -4,13 +4,13 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class HealthService {
-    public constructor(private gateway: ServiceGatewayService) {}
+    constructor(private readonly gateway: ServiceGatewayService) {}
 
-    public getServices() {
+    getServices() {
         return this.gateway.send(MSMessage.GET_SERVICES, {});
     }
 
-    public getService(id: string) {
+    getService(id: string) {
         return this.gateway.send(MSMessage.GET_SERVICE, { id });
     }
 }

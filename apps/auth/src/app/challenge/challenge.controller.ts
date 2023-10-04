@@ -6,7 +6,7 @@ import { ChallengeService } from './challenge.service';
 
 @Controller()
 export class ChallengeController {
-    constructor(private challengeService: ChallengeService) {}
+    constructor(private readonly challengeService: ChallengeService) {}
 
     @MessagePattern(MSMessage.GET_CHALLENGE)
     getChallenge(): AMSMResponse<MSMessage.GET_CHALLENGE> {

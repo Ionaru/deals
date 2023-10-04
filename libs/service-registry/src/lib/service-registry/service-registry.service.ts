@@ -6,17 +6,18 @@ import { ServiceGatewayService } from '../service-gateway/service-gateway.servic
 
 @Injectable()
 export class ServiceRegistryService {
-    private readonly logger = new Logger(ServiceRegistryService.name);
+    readonly #logger = new Logger(ServiceRegistryService.name);
 
-    public constructor(
+    constructor(
         @Inject('NAME') private readonly name: string,
         @Inject('ID') private readonly id: string,
         @Inject('TYPE') private readonly type: ServiceType,
-        @Inject(ServiceGatewayService) private gateway: ServiceGatewayService,
+        @Inject(ServiceGatewayService)
+        private readonly gateway: ServiceGatewayService,
     ) {}
 
-    public storeService() {
-        this.logger.log('Storing service...');
+    storeService() {
+        this.#logger.log('Storing service...');
         return this.gateway.send(MSMessage.REGISTER_SERVICE, {
             name: this.name,
             queue: this.id,
@@ -24,12 +25,12 @@ export class ServiceRegistryService {
         });
     }
 
-    public removeService() {
-        this.logger.log('Removing service...');
+    removeService() {
+        this.#logger.log('Removing service...');
         return this.gateway
             .send(MSMessage.UNREGISTER_SERVICE, {
                 queue: this.id,
             })
-            .pipe(tap(() => this.logger.log('Removed service')));
+            .pipe(tap(() => this.#logger.log('Removed service')));
     }
 }
