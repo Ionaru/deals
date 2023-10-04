@@ -45,6 +45,7 @@ export const ReturnTypes: Record<string,any> = {
 	},
 	Mutation:{
 		loginUser:"Boolean",
+		logoutUser:"Boolean",
 		registerUser:"Boolean",
 		startScraper:"Boolean"
 	},

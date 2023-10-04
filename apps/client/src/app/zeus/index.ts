@@ -847,6 +847,7 @@ export type ValueTypes = {
 	["DealSortChoices"]:DealSortChoices;
 	["Mutation"]: AliasType<{
 loginUser?: [{	authentication: string | Variable<any, string>},boolean | `@${string}`],
+	logoutUser?:boolean | `@${string}`,
 registerUser?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
 startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
@@ -922,6 +923,7 @@ export type ResolverInputTypes = {
 	["DealSortChoices"]:DealSortChoices;
 	["Mutation"]: AliasType<{
 loginUser?: [{	authentication: string},boolean | `@${string}`],
+	logoutUser?:boolean | `@${string}`,
 registerUser?: [{	registration: string},boolean | `@${string}`],
 startScraper?: [{	name: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
@@ -1000,6 +1002,7 @@ export type ModelTypes = {
 	["DealSortChoices"]:DealSortChoices;
 	["Mutation"]: {
 		loginUser: boolean,
+	logoutUser: boolean,
 	registerUser: boolean,
 	startScraper: boolean
 };
@@ -1075,6 +1078,7 @@ export type GraphQLTypes = {
 	["Mutation"]: {
 	__typename: "Mutation",
 	loginUser: boolean,
+	logoutUser: boolean,
 	registerUser: boolean,
 	startScraper: boolean
 };

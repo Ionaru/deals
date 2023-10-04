@@ -37,6 +37,6 @@ import { ServiceUnavailableFilter } from './exception-filters/service-unavailabl
             provide: APP_FILTER,
             useClass: ServiceUnavailableFilter,
         },
-    ]
+    ],
 })
 export class AppModule {}
