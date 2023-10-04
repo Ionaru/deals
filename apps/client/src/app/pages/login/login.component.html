@@ -1,14 +1,20 @@
 <mat-card>
-    <mat-card-title *ngIf="state === states.INITIAL"
-        >Authenticate</mat-card-title
-    >
-    <mat-card-title *ngIf="state === states.LOGIN"
-        >Logging in...</mat-card-title
-    >
+    <mat-card-title *ngIf="state === states.INITIAL">
+        Authenticate
+    </mat-card-title>
+    <mat-card-title *ngIf="state === states.LOGIN">
+        Logging in...
+    </mat-card-title>
+    <mat-card-title *ngIf="state === states.LOGIN_ERROR">
+        Something went wrong...
+    </mat-card-title>
     <mat-card-title *ngIf="state === states.REGISTER">Register</mat-card-title>
-    <mat-card-title *ngIf="state === states.REGISTERING"
-        >Creating new account</mat-card-title
-    >
+    <mat-card-title *ngIf="state === states.REGISTERING">
+        Creating new account
+    </mat-card-title>
+    <mat-card-title *ngIf="state === states.REGISTERED">
+        Account created!
+    </mat-card-title>
     <mat-card-actions class="initial-state" *ngIf="state === states.INITIAL">
         <button mat-button (click)="startLogin()">
             I already have an account
@@ -28,8 +34,12 @@
         <button mat-button (click)="back()">Back</button>
     </mat-card-content>
 
+    <mat-card-content class="login-state" *ngIf="state === states.REGISTERED">
+        <p>Name: {{ createdName }}</p>
+        <button mat-button (click)="startLogin()">Log in</button>
+    </mat-card-content>
+
     <mat-card-content class="login-state" *ngIf="state === states.LOGIN_ERROR">
-        <p>Er ging iets mis</p>
         <button mat-button (click)="back()">Back</button>
     </mat-card-content>
 

@@ -1,14 +1,29 @@
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { SwaggerTheme } from 'swagger-themes';
+import * as session from 'express-session';
 
-import { APITag } from './app/api-tag';
 import { AppModule } from './app/app.module';
+
+declare module 'express-session' {
+    interface SessionData {
+        user: string;
+    }
+}
 
 const bootstrap = async () => {
     const app = await NestFactory.create(AppModule);
+
+    app.use(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        (session.default as typeof session)({
+            name: 'My_session_cookie',
+            resave: false,
+            saveUninitialized: false,
+            secret: 'my-secret',
+        }),
+    );
 
     const globalPrefix = 'api';
     app.setGlobalPrefix(globalPrefix);
@@ -18,19 +33,6 @@ const bootstrap = async () => {
     });
 
     app.useGlobalPipes(new ValidationPipe());
-
-    const config = new DocumentBuilder()
-        .setTitle('Deals Gateway API')
-        .setDescription('API documentation for the Deals application')
-        .setVersion('0.1')
-        .addTag(APITag.DEALS)
-        .addTag(APITag.HEALTH)
-        .addTag(APITag.DEALS)
-        .build();
-    const document = SwaggerModule.createDocument(app, config);
-    const theme = new SwaggerTheme('v3');
-    const options = theme.getDefaultConfig('dark');
-    SwaggerModule.setup('api', app, document, options);
 
     const port = process.env['PORT'] || 3333;
     await app.listen(port);

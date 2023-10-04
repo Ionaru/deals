@@ -2,11 +2,14 @@
 import {
     Args,
     ArgsType,
+    Context,
     Field,
     Mutation,
     Query,
     Resolver,
 } from '@nestjs/graphql';
+import { Request } from 'express';
+import { bindCallback, map, tap } from 'rxjs';
 
 import { AuthService } from './auth.service';
 
@@ -27,7 +30,7 @@ export class AuthResolver {
     constructor(private authService: AuthService) {}
 
     @Query(() => String)
-    getChallenge() {
+    challenge() {
         return this.authService.getNewChallenge();
     }
 
@@ -37,7 +40,24 @@ export class AuthResolver {
     }
 
     @Mutation(() => Boolean)
-    loginUser(@Args() queryArguments: LoginArguments) {
-        return this.authService.loginUser(queryArguments.authentication);
+    loginUser(
+        @Args() queryArguments: LoginArguments,
+        @Context() { req: { session } }: { req: Request },
+    ) {
+        return this.authService.loginUser(queryArguments.authentication).pipe(
+            tap((result) => {
+                if (result) {
+                    session.user = result;
+                }
+            }),
+            map(Boolean),
+        );
+    }
+
+    @Mutation(() => Boolean)
+    logoutUser(@Context() { req: { session } }: { req: Request }) {
+        return bindCallback(session.destroy.bind(session))().pipe(
+            map(() => true),
+        );
     }
 }

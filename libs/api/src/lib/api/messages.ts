@@ -6,6 +6,7 @@ import { ScraperStatus } from '../common/scraper-status';
 import { ServiceType } from '../common/service-type';
 import { DealDTO, DealSortChoices } from '../entities/deal';
 import { ServiceDTO } from '../entities/service';
+import { UserDTO } from '../entities/user';
 import { HealthResponse } from '../routes/get-health';
 
 export type Nullable<T> = T | null;
@@ -30,6 +31,8 @@ export enum MSMessage {
     CHECK_CHALLENGE = 'CHECK_CHALLENGE',
     LOGIN_USER = 'LOGIN_USER',
     REGISTER_USER = 'REGISTER_USER',
+    GET_USER = 'GET_USER',
+    GET_USERS = 'GET_USERS',
 }
 
 export interface IMSMessage {
@@ -89,7 +92,7 @@ export interface IMSMessage {
         payload: {
             authentication: string;
         };
-        response: boolean;
+        response: string | undefined | null;
     };
 
     [MSMessage.REGISTER_USER]: {
@@ -114,6 +117,13 @@ export interface IMSMessage {
     [MSMessage.SCRAPER_STATUS]: {
         payload: Record<string, never>;
         response: ScraperStatus;
+    };
+
+    [MSMessage.GET_USER]: {
+        payload: {
+            id: string;
+        };
+        response: Nullable<UserDTO>;
     };
 
     direct: {

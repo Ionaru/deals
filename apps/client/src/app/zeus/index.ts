@@ -870,11 +870,13 @@ startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
 	["Query"]: AliasType<{
+	challenge?:boolean | `@${string}`,
 deal?: [{	id: string | Variable<any, string>},ValueTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
-	getChallenge?:boolean | `@${string}`,
 service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
+user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["UserDTO"]],
+	users?:ValueTypes["UserDTO"],
 		__typename?: boolean | `@${string}`
 }>;
 	["ServiceHealthDTO"]: AliasType<{
@@ -894,6 +896,12 @@ service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]]
 	["StatusDTO"]: AliasType<{
 	status?:boolean | `@${string}`,
 	uptime?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["UserDTO"]: AliasType<{
+	id?:boolean | `@${string}`,
+	isAdmin?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>
   }
@@ -937,11 +945,13 @@ startScraper?: [{	name: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
 	["Query"]: AliasType<{
+	challenge?:boolean | `@${string}`,
 deal?: [{	id: string},ResolverInputTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
-	getChallenge?:boolean | `@${string}`,
 service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
+user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
+	users?:ResolverInputTypes["UserDTO"],
 		__typename?: boolean | `@${string}`
 }>;
 	["ServiceHealthDTO"]: AliasType<{
@@ -961,6 +971,12 @@ service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	["StatusDTO"]: AliasType<{
 	status?:boolean | `@${string}`,
 	uptime?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["UserDTO"]: AliasType<{
+	id?:boolean | `@${string}`,
+	isAdmin?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["schema"]: AliasType<{
@@ -1004,11 +1020,13 @@ export type ModelTypes = {
 	shop: ModelTypes["ShopDTO"]
 };
 	["Query"]: {
-		deal?: ModelTypes["DealDTO"] | undefined,
+		challenge: string,
+	deal?: ModelTypes["DealDTO"] | undefined,
 	deals: ModelTypes["DealPaginatedType"],
-	getChallenge: string,
 	service?: ModelTypes["ServiceHealthDTO"] | undefined,
-	services: Array<ModelTypes["ServiceHealthDTO"]>
+	services: Array<ModelTypes["ServiceHealthDTO"]>,
+	user?: ModelTypes["UserDTO"] | undefined,
+	users: Array<ModelTypes["UserDTO"]>
 };
 	["ServiceHealthDTO"]: {
 		id: string,
@@ -1025,6 +1043,11 @@ export type ModelTypes = {
 	["StatusDTO"]: {
 		status: string,
 	uptime?: number | undefined
+};
+	["UserDTO"]: {
+		id: string,
+	isAdmin: boolean,
+	username: string
 };
 	["schema"]: {
 	query?: ModelTypes["Query"] | undefined,
@@ -1075,11 +1098,13 @@ export type GraphQLTypes = {
 };
 	["Query"]: {
 	__typename: "Query",
+	challenge: string,
 	deal?: GraphQLTypes["DealDTO"] | undefined,
 	deals: GraphQLTypes["DealPaginatedType"],
-	getChallenge: string,
 	service?: GraphQLTypes["ServiceHealthDTO"] | undefined,
-	services: Array<GraphQLTypes["ServiceHealthDTO"]>
+	services: Array<GraphQLTypes["ServiceHealthDTO"]>,
+	user?: GraphQLTypes["UserDTO"] | undefined,
+	users: Array<GraphQLTypes["UserDTO"]>
 };
 	["ServiceHealthDTO"]: {
 	__typename: "ServiceHealthDTO",
@@ -1099,6 +1124,12 @@ export type GraphQLTypes = {
 	__typename: "StatusDTO",
 	status: string,
 	uptime?: number | undefined
+};
+	["UserDTO"]: {
+	__typename: "UserDTO",
+	id: string,
+	isAdmin: boolean,
+	username: string
 }
     }
 export const enum DealSortChoices {

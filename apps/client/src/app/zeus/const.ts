@@ -24,6 +24,9 @@ export const AllTypesProps: Record<string,any> = {
 		},
 		service:{
 
+		},
+		user:{
+
 		}
 	},
 	ServiceType: "enum" as const
@@ -61,11 +64,13 @@ export const ReturnTypes: Record<string,any> = {
 		shop:"ShopDTO"
 	},
 	Query:{
+		challenge:"String",
 		deal:"DealDTO",
 		deals:"DealPaginatedType",
-		getChallenge:"String",
 		service:"ServiceHealthDTO",
-		services:"ServiceHealthDTO"
+		services:"ServiceHealthDTO",
+		user:"UserDTO",
+		users:"UserDTO"
 	},
 	ServiceHealthDTO:{
 		id:"ID",
@@ -81,6 +86,11 @@ export const ReturnTypes: Record<string,any> = {
 	StatusDTO:{
 		status:"String",
 		uptime:"Float"
+	},
+	UserDTO:{
+		id:"ID",
+		isAdmin:"Boolean",
+		username:"String"
 	}
 }
 

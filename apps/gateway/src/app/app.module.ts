@@ -8,6 +8,7 @@ import { AuthModule } from './api/auth/auth.module';
 import { DealsModule } from './api/deals/deals.module';
 import { HealthModule } from './api/health/health.module';
 import { ScrapersModule } from './api/scrapers/scrapers.module';
+import { UsersModule } from './api/users/users.module';
 
 @Module({
     imports: [
@@ -15,10 +16,17 @@ import { ScrapersModule } from './api/scrapers/scrapers.module';
         DealsModule,
         ScrapersModule,
         HealthModule,
+        UsersModule,
         MicroserviceModule.forRoot('Gateway', ServiceType.CORE),
         GraphQLModule.forRoot<ApolloDriverConfig>({
             autoSchemaFile: { path: 'schema.graphql' },
+            context: ({ res }: any) => ({ res }),
             driver: ApolloDriver,
+            playground: {
+                settings: {
+                    'request.credentials': 'include',
+                },
+            },
             sortSchema: true,
         }),
     ],

@@ -50,7 +50,7 @@ export class UserController {
         );
 
         if (!existingUser) {
-            return false;
+            return;
         }
 
         const credential = existingUser.credentials.find(
@@ -58,7 +58,7 @@ export class UserController {
                 userCredential.id === authentication.credentialId,
         );
         if (!credential) {
-            return false;
+            return;
         }
 
         try {
@@ -70,9 +70,9 @@ export class UserController {
                 counter: 1,
             });
         } catch {
-            return false;
+            return;
         }
 
-        return true;
+        return existingUser.id.toHexString();
     }
 }

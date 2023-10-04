@@ -1,0 +1,12 @@
+import { MSMessage } from '@deals/api';
+import { ServiceGatewayService } from '@deals/service-registry';
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class UsersService {
+    public constructor(private gateway: ServiceGatewayService) {}
+
+    getUser(id: string) {
+        return this.gateway.send(MSMessage.GET_USER, { id });
+    }
+}
