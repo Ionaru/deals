@@ -1,12 +1,12 @@
 import { MSMessage, MSMPayload, MSMResponse } from "@deals/api";
-import { Controller } from "@nestjs/common";
+import { Controller, Inject } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 
 import { UserService } from "./user.service";
 
 @Controller()
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(@Inject(UserService) private readonly userService: UserService) {}
 
   @MessagePattern(MSMessage.GET_USER)
   async getUser(

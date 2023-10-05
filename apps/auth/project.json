@@ -46,11 +46,11 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
+      "executor": "@nx/vite:test",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/auth/jest.config.ts",
-        "passWithNoTests": true
+        "config": "apps/auth/vite.config.ts",
+        "passWithNoTests": false
       },
       "configurations": {
         "ci": {
