@@ -28,6 +28,7 @@ import { ServiceUnavailableFilter } from "./exception-filters/service-unavailabl
         settings: {
           "request.credentials": "include",
         },
+        title: "Deals API",
       },
       sortSchema: true,
     }),

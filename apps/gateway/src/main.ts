@@ -1,4 +1,4 @@
-import { Logger, ValidationPipe, VersioningType } from "@nestjs/common";
+import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { Transport } from "@nestjs/microservices";
 import * as session from "express-session";
@@ -19,20 +19,11 @@ const bootstrap = async () => {
     }),
   );
 
-  const globalPrefix = "api";
-  app.setGlobalPrefix(globalPrefix);
-  app.enableVersioning({
-    defaultVersion: "1",
-    type: VersioningType.URI,
-  });
-
   app.useGlobalPipes(new ValidationPipe());
 
   const port = process.env["PORT"] || 3333;
   await app.listen(port);
-  Logger.log(
-    `🚀 Gateway is running on: http://localhost:${port}/${globalPrefix}`,
-  );
+  Logger.log(`🚀 Gateway is running on: http://localhost:${port}/graphql`);
 
   app.connectMicroservice({
     options: {},
