@@ -4,11 +4,11 @@ import { Logger, Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { AuthModule } from "./auth/auth.module";
-import { Challenge } from "./challenge/challenge.model";
-import { ChallengeModule } from "./challenge/challenge.module";
-import { User } from "./user/user.model";
-import { UserModule } from "./user/user.module";
+import { Challenge } from "./models/challenge.model";
+import { User } from "./models/user.model";
+import { AuthModule } from "./modules/auth/auth.module";
+import { ChallengeModule } from "./modules/challenge/challenge.module";
+import { UserModule } from "./modules/user/user.module";
 
 @Module({
   imports: [

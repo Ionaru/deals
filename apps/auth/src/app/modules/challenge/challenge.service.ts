@@ -4,7 +4,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { MongoRepository } from "typeorm";
 
-import { Challenge } from "./challenge.model";
+import { Challenge } from "../../models/challenge.model";
 
 @Injectable()
 export class ChallengeService {

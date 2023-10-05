@@ -6,9 +6,9 @@ import { RegistrationParsed } from "@passwordless-id/webauthn/dist/esm/types";
 import { firstValueFrom } from "rxjs";
 import { MongoRepository } from "typeorm";
 
-import { User } from "../user/user.model";
+import { Credential } from "../../models/auth.model";
+import { User } from "../../models/user.model";
 
-import { Credential } from "./auth.model";
 
 @Injectable()
 export class AuthService {
