@@ -1,5 +1,5 @@
 export enum ScraperStatus {
-    IDLE = 'IDLE',
-    SCRAPING = 'SCRAPING',
-    ERROR = 'ERROR',
+  IDLE = "IDLE",
+  SCRAPING = "SCRAPING",
+  ERROR = "ERROR",
 }

@@ -1,14 +1,14 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable } from "@angular/core";
 
-import { GatewayService } from './gateway.service';
+import { GatewayService } from "./gateway.service";
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: "root",
 })
 export class ScraperStatusService {
-    readonly #gateway = inject(GatewayService);
+  readonly #gateway = inject(GatewayService);
 
-    getScraperStatus() {
-        return this.#gateway.get('v1/scraper-status', {});
-    }
+  getScraperStatus() {
+    return this.#gateway.get("v1/scraper-status", {});
+  }
 }

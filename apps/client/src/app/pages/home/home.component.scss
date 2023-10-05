@@ -1,68 +1,68 @@
 :host(deals-home) {
-    //padding: 1em;
+  //padding: 1em;
 
-    .deals-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 1rem;
-        justify-items: center;
+  .deals-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    justify-items: center;
 
-        mat-card {
-            //width: 45%;
-            //max-width: 400px;
-            //flex-grow: 1;
-            //width: 0;
+    mat-card {
+      //width: 45%;
+      //max-width: 400px;
+      //flex-grow: 1;
+      //width: 0;
 
-            //width: 100%;
+      //width: 100%;
 
-            //height: 500px;
-            display: grid;
+      //height: 500px;
+      display: grid;
 
-            grid-template-columns: auto auto;
-            grid-template-rows: auto auto auto;
-            grid-template-areas:
-                'image title'
-                'description description'
-                'buttons buttons';
-            padding: 1em;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        "image title"
+        "description description"
+        "buttons buttons";
+      padding: 1em;
 
-            //width: min-content;
+      //width: min-content;
 
-            --mdc-elevated-card-container-shape: 0.5rem;
-            --mdc-outlined-card-outline-color: transparent;
+      --mdc-elevated-card-container-shape: 0.5rem;
+      --mdc-outlined-card-outline-color: transparent;
 
-            .card-image {
-                grid-area: image;
-                //height: 100%;
-                //object-fit: contain;
-                //mix-blend-mode: multiply;
-                //filter: contrast(1);
+      .card-image {
+        grid-area: image;
+        //height: 100%;
+        //object-fit: contain;
+        //mix-blend-mode: multiply;
+        //filter: contrast(1);
 
-                img {
-                    position: relative;
-                    //height: 100%;
-                    //height: 15rem;
-                    object-fit: contain;
-                    //mix-blend-mode: multiply;
-                    //filter: contrast(1);
-                }
-            }
-
-            mat-card-header {
-                grid-area: title;
-            }
-
-            mat-card-content {
-                padding: 1em;
-                grid-area: description;
-            }
-
-            mat-card-actions {
-                grid-area: buttons;
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-end;
-            }
+        img {
+          position: relative;
+          //height: 100%;
+          //height: 15rem;
+          object-fit: contain;
+          //mix-blend-mode: multiply;
+          //filter: contrast(1);
         }
+      }
+
+      mat-card-header {
+        grid-area: title;
+      }
+
+      mat-card-content {
+        padding: 1em;
+        grid-area: description;
+      }
+
+      mat-card-actions {
+        grid-area: buttons;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
     }
+  }
 }

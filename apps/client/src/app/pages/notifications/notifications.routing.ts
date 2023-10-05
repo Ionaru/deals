@@ -1,10 +1,10 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
 
-import { NotificationsComponent } from './notifications.component';
+import { NotificationsComponent } from "./notifications.component";
 
 export default [
-    {
-        component: NotificationsComponent,
-        path: '',
-    },
+  {
+    component: NotificationsComponent,
+    path: "",
+  },
 ] as Routes;

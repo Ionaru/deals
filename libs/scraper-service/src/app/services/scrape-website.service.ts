@@ -1,96 +1,96 @@
-import { IProductDeal, IUnknownDeal } from '@deals/api';
-import { Injectable, Logger } from '@nestjs/common';
-import { JSDOM } from 'jsdom';
+import { IProductDeal, IUnknownDeal } from "@deals/api";
+import { Injectable, Logger } from "@nestjs/common";
+import { JSDOM } from "jsdom";
 
-import { StorageService } from './storage.service';
+import { StorageService } from "./storage.service";
 
 @Injectable()
 export abstract class ScrapeWebsiteService {
-    readonly #logger = new Logger(ScrapeWebsiteService.name);
+  readonly #logger = new Logger(ScrapeWebsiteService.name);
 
-    abstract shopName: string;
+  abstract shopName: string;
 
-    protected abstract baseUrl: string;
-    protected abstract paths: string[];
+  protected abstract baseUrl: string;
+  protected abstract paths: string[];
 
-    constructor(private readonly storage: StorageService) {}
+  constructor(private readonly storage: StorageService) {}
 
-    async scrape() {
-        const deals: IProductDeal[] = [];
+  async scrape() {
+    const deals: IProductDeal[] = [];
 
-        for (const path of this.paths) {
-            const pathDeals = await this.#scrapePath(path);
-            deals.push(...pathDeals);
-        }
-
-        this.#logger.log(`Found ${deals.length} deals.`);
-
-        return deals;
+    for (const path of this.paths) {
+      const pathDeals = await this.#scrapePath(path);
+      deals.push(...pathDeals);
     }
 
-    protected reportUnknownDeal(unknownDeal: IUnknownDeal) {
-        // this.#logger.log(`Storing unknown deal for ${this.shopName}...`);
-        this.storage
-            .storeUnknownDeal({
-                deal: unknownDeal,
-                shop: this.shopName,
-            })
-            .catch((error) => {
-                this.#logger.error('Failed to store unknown deal.', error);
-            });
+    this.#logger.log(`Found ${deals.length} deals.`);
+
+    return deals;
+  }
+
+  protected reportUnknownDeal(unknownDeal: IUnknownDeal) {
+    // this.#logger.log(`Storing unknown deal for ${this.shopName}...`);
+    this.storage
+      .storeUnknownDeal({
+        deal: unknownDeal,
+        shop: this.shopName,
+      })
+      .catch((error) => {
+        this.#logger.error("Failed to store unknown deal.", error);
+      });
+  }
+
+  async #scrapePath(path: string): Promise<IProductDeal[]> {
+    const deals = [];
+    const firstPageUrl = this.#buildPageUrl(path, 0);
+    const document = await this.#getPage(firstPageUrl);
+    const pages = this.getPageAmount(document);
+    this.#logger.log(`Path ${path} has ${pages} extra page(s).`);
+    const url = this.#buildUrl(path);
+
+    for (let page = 0; page <= pages; page++) {
+      const pageUrl = this.setPage(url, page);
+      const pageDeals = await this.#scrapePage(
+        pageUrl,
+        page === 0 ? document : undefined,
+      );
+      deals.push(...pageDeals);
     }
 
-    async #scrapePath(path: string): Promise<IProductDeal[]> {
-        const deals = [];
-        const firstPageUrl = this.#buildPageUrl(path, 0);
-        const document = await this.#getPage(firstPageUrl);
-        const pages = this.getPageAmount(document);
-        this.#logger.log(`Path ${path} has ${pages} extra page(s).`);
-        const url = this.#buildUrl(path);
+    return deals;
+  }
 
-        for (let page = 0; page <= pages; page++) {
-            const pageUrl = this.setPage(url, page);
-            const pageDeals = await this.#scrapePage(
-                pageUrl,
-                page === 0 ? document : undefined,
-            );
-            deals.push(...pageDeals);
-        }
+  async #getPage(url: URL): Promise<Document> {
+    const modifiedUrl = this.modifyURL(url);
+    this.#logger.log(`Fetching: ${modifiedUrl}`);
+    const result = await fetch(modifiedUrl);
+    const html = await result.text();
+    return new JSDOM(html).window.document;
+  }
 
-        return deals;
+  #buildPageUrl(path: string, page: number): URL {
+    return this.setPage(this.#buildUrl(path), page);
+  }
+
+  async #scrapePage(
+    url: URL,
+    fetchedDocument?: Document,
+  ): Promise<IProductDeal[]> {
+    if (!fetchedDocument) {
+      const pageDocument = await this.#getPage(url);
+      return this.getPageDeals(pageDocument);
     }
+    return this.getPageDeals(fetchedDocument);
+  }
 
-    async #getPage(url: URL): Promise<Document> {
-        const modifiedUrl = this.modifyURL(url);
-        this.#logger.log(`Fetching: ${modifiedUrl}`);
-        const result = await fetch(modifiedUrl);
-        const html = await result.text();
-        return new JSDOM(html).window.document;
-    }
+  #buildUrl(path: string): URL {
+    return new URL(path, this.baseUrl);
+  }
 
-    #buildPageUrl(path: string, page: number): URL {
-        return this.setPage(this.#buildUrl(path), page);
-    }
+  protected abstract setPage(url: URL, page: number): URL;
+  protected abstract getPageAmount(page: Document): number;
 
-    async #scrapePage(
-        url: URL,
-        fetchedDocument?: Document,
-    ): Promise<IProductDeal[]> {
-        if (!fetchedDocument) {
-            const pageDocument = await this.#getPage(url);
-            return this.getPageDeals(pageDocument);
-        }
-        return this.getPageDeals(fetchedDocument);
-    }
+  protected abstract getPageDeals(page: Document): IProductDeal[];
 
-    #buildUrl(path: string): URL {
-        return new URL(path, this.baseUrl);
-    }
-
-    protected abstract setPage(url: URL, page: number): URL;
-    protected abstract getPageAmount(page: Document): number;
-
-    protected abstract getPageDeals(page: Document): IProductDeal[];
-
-    protected abstract modifyURL(url: URL): URL;
+  protected abstract modifyURL(url: URL): URL;
 }

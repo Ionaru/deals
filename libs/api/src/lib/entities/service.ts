@@ -1,11 +1,11 @@
-import { ServiceType } from '../common/service-type';
+import { ServiceType } from "../common/service-type";
 
 export class ServiceDTO {
-    id!: string;
+  id!: string;
 
-    name!: string;
+  name!: string;
 
-    queue!: string;
+  queue!: string;
 
-    type!: ServiceType;
+  type!: ServiceType;
 }

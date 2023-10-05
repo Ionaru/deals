@@ -1,9 +1,9 @@
-import { TimePipe } from './time.pipe';
+import { TimePipe } from "./time.pipe";
 
-describe('timePipe', () => {
-    it('create an instance', () => {
-        expect.assertions(1);
-        const pipe = new TimePipe();
-        expect(pipe).toBeTruthy();
-    });
+describe("timePipe", () => {
+  it("create an instance", () => {
+    expect.assertions(1);
+    const pipe = new TimePipe();
+    expect(pipe).toBeTruthy();
+  });
 });

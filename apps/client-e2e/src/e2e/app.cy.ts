@@ -1,10 +1,10 @@
-describe('client', () => {
-    beforeEach(() => cy.visit('/'));
+describe("client", () => {
+  beforeEach(() => cy.visit("/"));
 
-    it('should display welcome message', () => {
-        // Custom command example, see `../support/commands.ts` file
-        cy.login('my-email@something.com', 'myPassword');
+  it("should display welcome message", () => {
+    // Custom command example, see `../support/commands.ts` file
+    cy.login("my-email@something.com", "myPassword");
 
-        cy.get('h1').contains('Welcome client');
-    });
+    cy.get("h1").contains("Welcome client");
+  });
 });

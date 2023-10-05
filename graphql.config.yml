@@ -1,7 +1,7 @@
-name: 'graphql'
+name: "graphql"
 schema: schema.graphql
 extensions:
-    endpoints:
-        default:
-            url: http://localhost:3333/graphql
-            introspect: true
+  endpoints:
+    default:
+      url: http://localhost:3333/graphql
+      introspect: true

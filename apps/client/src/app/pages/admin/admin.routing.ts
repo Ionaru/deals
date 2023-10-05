@@ -1,10 +1,10 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
 
-import { AdminComponent } from './admin.component';
+import { AdminComponent } from "./admin.component";
 
 export default [
-    {
-        component: AdminComponent,
-        path: '',
-    },
+  {
+    component: AdminComponent,
+    path: "",
+  },
 ] as Routes;

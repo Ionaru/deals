@@ -1,10 +1,10 @@
-import { Field, Float, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class StatusDTO {
-    @Field(() => String)
-    status!: string;
+  @Field(() => String)
+  status!: string;
 
-    @Field(() => Float, { nullable: true })
-    uptime?: number;
+  @Field(() => Float, { nullable: true })
+  uptime?: number;
 }

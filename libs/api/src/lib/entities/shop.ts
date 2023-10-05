@@ -1,10 +1,10 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class ShopDTO {
-    @Field(() => ID)
-    id!: string;
+  @Field(() => ID)
+  id!: string;
 
-    @Field(() => String)
-    name!: string;
+  @Field(() => String)
+  name!: string;
 }

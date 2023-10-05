@@ -1,19 +1,19 @@
 import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    ObjectId,
-    ObjectIdColumn,
-} from 'typeorm';
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectId,
+  ObjectIdColumn,
+} from "typeorm";
 
 @Entity()
 export class Challenge {
-    @ObjectIdColumn()
-    id!: ObjectId;
+  @ObjectIdColumn()
+  id!: ObjectId;
 
-    @Column()
-    challenge!: string;
+  @Column()
+  challenge!: string;
 
-    @CreateDateColumn()
-    createdAt!: string;
+  @CreateDateColumn()
+  createdAt!: string;
 }

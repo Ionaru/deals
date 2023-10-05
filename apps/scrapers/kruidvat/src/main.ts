@@ -1,21 +1,21 @@
-import { ScraperServiceModule } from '@deals/scraper-service';
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { ScraperServiceModule } from "@deals/scraper-service";
+import { Logger } from "@nestjs/common";
+import { NestFactory } from "@nestjs/core";
+import { MicroserviceOptions, Transport } from "@nestjs/microservices";
 
-import { Kruidvat } from './kruidvat';
+import { Kruidvat } from "./kruidvat";
 
 const bootstrap = async () => {
-    const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-        ScraperServiceModule.forRoot(Kruidvat),
-        {
-            options: {},
-            transport: Transport.NATS,
-        },
-    );
-    app.enableShutdownHooks();
-    await app.listen();
-    Logger.log(`🚀 Microservice for ${Kruidvat.name} is running`);
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    ScraperServiceModule.forRoot(Kruidvat),
+    {
+      options: {},
+      transport: Transport.NATS,
+    },
+  );
+  app.enableShutdownHooks();
+  await app.listen();
+  Logger.log(`🚀 Microservice for ${Kruidvat.name} is running`);
 };
 
 bootstrap();

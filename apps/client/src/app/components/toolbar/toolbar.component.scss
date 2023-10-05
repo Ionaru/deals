@@ -1,37 +1,37 @@
 :host(deals-toolbar) {
-    mat-toolbar {
-        background: transparent;
+  mat-toolbar {
+    background: transparent;
 
-        .toolbar-brand {
-            font-size: 1.5rem;
-            letter-spacing: 0;
-        }
-
-        .navbar-spacer {
-            flex: 1 1 auto;
-        }
-
-        .navbar-links {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-
-            a {
-                margin: 0 0.5rem;
-            }
-        }
-
-        a.active {
-            //text-decoration: underline;
-            background: rgba(0, 0, 0, 0.2);
-
-            mat-icon {
-                font-variation-settings:
-                    'FILL' 1,
-                    'wght' 400,
-                    'GRAD' 0,
-                    'opsz' 24;
-            }
-        }
+    .toolbar-brand {
+      font-size: 1.5rem;
+      letter-spacing: 0;
     }
+
+    .navbar-spacer {
+      flex: 1 1 auto;
+    }
+
+    .navbar-links {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      a {
+        margin: 0 0.5rem;
+      }
+    }
+
+    a.active {
+      //text-decoration: underline;
+      background: rgba(0, 0, 0, 0.2);
+
+      mat-icon {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    }
+  }
 }

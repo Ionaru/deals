@@ -1,5 +1,5 @@
-import { IEnvironment } from '../types/environment';
+import { IEnvironment } from "../types/environment";
 
 export const environment: IEnvironment = {
-    production: false,
+  production: false,
 };

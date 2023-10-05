@@ -1,68 +1,65 @@
 <mat-card>
-    <mat-card-title *ngIf="state === states.INITIAL">
-        Authenticate
-    </mat-card-title>
-    <mat-card-title *ngIf="state === states.LOGIN">
-        Logging in...
-    </mat-card-title>
-    <mat-card-title *ngIf="state === states.LOGIN_ERROR">
-        Something went wrong...
-    </mat-card-title>
-    <mat-card-title *ngIf="state === states.REGISTER">Register</mat-card-title>
-    <mat-card-title *ngIf="state === states.REGISTERING">
-        Creating new account
-    </mat-card-title>
-    <mat-card-title *ngIf="state === states.REGISTERED">
-        Account created!
-    </mat-card-title>
-    <mat-card-actions class="initial-state" *ngIf="state === states.INITIAL">
-        <button mat-button (click)="startLogin()">
-            I already have an account
-        </button>
-        <button mat-button (click)="startRegister()">
-            I want to create a new account
-        </button>
-    </mat-card-actions>
+  <mat-card-title *ngIf="state === states.INITIAL">
+    Authenticate
+  </mat-card-title>
+  <mat-card-title *ngIf="state === states.LOGIN">
+    Logging in...
+  </mat-card-title>
+  <mat-card-title *ngIf="state === states.LOGIN_ERROR">
+    Something went wrong...
+  </mat-card-title>
+  <mat-card-title *ngIf="state === states.REGISTER">Register</mat-card-title>
+  <mat-card-title *ngIf="state === states.REGISTERING">
+    Creating new account
+  </mat-card-title>
+  <mat-card-title *ngIf="state === states.REGISTERED">
+    Account created!
+  </mat-card-title>
+  <mat-card-actions class="initial-state" *ngIf="state === states.INITIAL">
+    <button mat-button (click)="startLogin()">I already have an account</button>
+    <button mat-button (click)="startRegister()">
+      I want to create a new account
+    </button>
+  </mat-card-actions>
 
-    <mat-card-content class="login-state" *ngIf="state === states.LOGIN">
-        <mat-spinner></mat-spinner>
+  <mat-card-content class="login-state" *ngIf="state === states.LOGIN">
+    <mat-spinner></mat-spinner>
+    <button mat-button (click)="back()">Back</button>
+  </mat-card-content>
+
+  <mat-card-content class="login-state" *ngIf="state === states.REGISTERING">
+    <mat-spinner></mat-spinner>
+    <button mat-button (click)="back()">Back</button>
+  </mat-card-content>
+
+  <mat-card-content class="login-state" *ngIf="state === states.REGISTERED">
+    <p>Name: {{ createdName }}</p>
+    <button mat-button (click)="startLogin()">Log in</button>
+  </mat-card-content>
+
+  <mat-card-content class="login-state" *ngIf="state === states.LOGIN_ERROR">
+    <button mat-button (click)="back()">Back</button>
+  </mat-card-content>
+
+  <ng-container *ngIf="state === states.REGISTER">
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <mat-card-content class="login-state">
+        <span
+          >Optionally choose a name to more easily identify this account.</span
+        >
+        <mat-form-field>
+          <mat-label>Optional name</mat-label>
+          <input type="text" matInput formControlName="displayName" />
+        </mat-form-field>
+
+        <!--&lt;!&ndash;      <p *ngIf="error" class="error">&ndash;&gt;-->
+        <!--&lt;!&ndash;        {{ error }}&ndash;&gt;-->
+        <!--&lt;!&ndash;      </p>&ndash;&gt;-->
+      </mat-card-content>
+      <mat-card-actions>
         <button mat-button (click)="back()">Back</button>
-    </mat-card-content>
-
-    <mat-card-content class="login-state" *ngIf="state === states.REGISTERING">
-        <mat-spinner></mat-spinner>
-        <button mat-button (click)="back()">Back</button>
-    </mat-card-content>
-
-    <mat-card-content class="login-state" *ngIf="state === states.REGISTERED">
-        <p>Name: {{ createdName }}</p>
-        <button mat-button (click)="startLogin()">Log in</button>
-    </mat-card-content>
-
-    <mat-card-content class="login-state" *ngIf="state === states.LOGIN_ERROR">
-        <button mat-button (click)="back()">Back</button>
-    </mat-card-content>
-
-    <ng-container *ngIf="state === states.REGISTER">
-        <form [formGroup]="form" (ngSubmit)="register()">
-            <mat-card-content class="login-state">
-                <span
-                    >Optionally choose a name to more easily identify this
-                    account.</span
-                >
-                <mat-form-field>
-                    <mat-label>Optional name</mat-label>
-                    <input type="text" matInput formControlName="displayName" />
-                </mat-form-field>
-
-                <!--&lt;!&ndash;      <p *ngIf="error" class="error">&ndash;&gt;-->
-                <!--&lt;!&ndash;        {{ error }}&ndash;&gt;-->
-                <!--&lt;!&ndash;      </p>&ndash;&gt;-->
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button (click)="back()">Back</button>
-                <button type="submit" mat-button>Register</button>
-            </mat-card-actions>
-        </form>
-    </ng-container>
+        <button type="submit" mat-button>Register</button>
+      </mat-card-actions>
+    </form>
+  </ng-container>
 </mat-card>

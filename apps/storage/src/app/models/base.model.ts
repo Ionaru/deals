@@ -1,36 +1,36 @@
-import { randomUUID } from 'node:crypto';
+import { randomUUID } from "node:crypto";
 
 import {
-    BaseEntity,
-    CreateDateColumn,
-    DeleteDateColumn,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
-} from 'typeorm';
+  BaseEntity,
+  CreateDateColumn,
+  DeleteDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 export type BaseModelProperties = Pick<
-    BaseModel,
-    'id' | 'createdOn' | 'updatedOn' | 'deletedOn'
+  BaseModel,
+  "id" | "createdOn" | "updatedOn" | "deletedOn"
 >;
 
 export abstract class BaseModel extends BaseEntity {
-    static readonly alias: string;
+  static readonly alias: string;
 
-    @PrimaryGeneratedColumn('uuid')
-    readonly id!: string;
+  @PrimaryGeneratedColumn("uuid")
+  readonly id!: string;
 
-    @CreateDateColumn()
-    readonly createdOn!: Date;
+  @CreateDateColumn()
+  readonly createdOn!: Date;
 
-    @UpdateDateColumn()
-    readonly updatedOn!: Date;
+  @UpdateDateColumn()
+  readonly updatedOn!: Date;
 
-    @DeleteDateColumn({ name: 'deletedOn', select: false })
-    readonly deletedOn?: Date;
+  @DeleteDateColumn({ name: "deletedOn", select: false })
+  readonly deletedOn?: Date;
 
-    // noinspection TypeScriptAbstractClassConstructorCanBeMadeProtected
-    constructor() {
-        super();
-        this.id = randomUUID();
-    }
+  // noinspection TypeScriptAbstractClassConstructorCanBeMadeProtected
+  constructor() {
+    super();
+    this.id = randomUUID();
+  }
 }

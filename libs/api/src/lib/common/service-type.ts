@@ -1,8 +1,8 @@
-import { registerEnumType } from '@nestjs/graphql';
+import { registerEnumType } from "@nestjs/graphql";
 
 export enum ServiceType {
-    CORE = 'core',
-    SCRAPER = 'scraper',
+  CORE = "core",
+  SCRAPER = "scraper",
 }
 
-registerEnumType(ServiceType, { name: 'ServiceType' });
+registerEnumType(ServiceType, { name: "ServiceType" });

@@ -1,9 +1,9 @@
-import { ScraperStatus } from '../common/scraper-status';
+import { ScraperStatus } from "../common/scraper-status";
 
 export type IScraperStatusRequest = Record<string, never>;
 
 export interface IScraperStatusResponse {
-    [key: string]: {
-        status: ScraperStatus;
-    };
+  [key: string]: {
+    status: ScraperStatus;
+  };
 }
