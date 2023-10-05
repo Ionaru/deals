@@ -1,4 +1,3 @@
-/* eslint-disable sort-keys,no-console */
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
@@ -21,8 +20,6 @@ enum LoginState {
 }
 
 @Component({
-  selector: "deals-login",
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonModule,
@@ -32,8 +29,10 @@ enum LoginState {
     MatIconModule,
     MatProgressSpinnerModule,
   ],
-  templateUrl: "./login.component.html",
+  selector: "deals-login",
+  standalone: true,
   styleUrls: ["./login.component.scss"],
+  templateUrl: "./login.component.html",
 })
 export class LoginComponent {
   state = LoginState.INITIAL;
@@ -57,7 +56,6 @@ export class LoginComponent {
       const credential = await this.#authService.register(
         this.form.get("displayName")?.value,
       );
-      console.log("credential", credential);
       if (credential) {
         this.createdName = credential;
         this.state = LoginState.REGISTERED;
@@ -75,7 +73,10 @@ export class LoginComponent {
       if (assertion) {
         this.state = LoginState.INITIAL;
         const u = await this.#authService.getUser();
-        console.log(u.data.user);
+        // eslint-disable-next-line no-console
+        console.log(u.data.user); // TODO: Save user data to application.
+      } else {
+        this.state = LoginState.LOGIN_ERROR;
       }
     } catch {
       this.state = LoginState.LOGIN_ERROR;

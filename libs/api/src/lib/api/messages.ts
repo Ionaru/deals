@@ -9,7 +9,7 @@ import { ServiceDTO } from "../entities/service";
 import { UserDTO } from "../entities/user";
 import { HealthResponse } from "../routes/get-health";
 
-export type Nullable<T> = T | null | undefined;
+export type Nullable<T> = T | null;
 
 export enum Order {
   ASCENDING = "ASC",
@@ -92,7 +92,7 @@ export interface IMSMessage {
     payload: {
       authentication: string;
     };
-    response: string | undefined | null;
+    response: Nullable<string>;
   };
 
   [MSMessage.REGISTER_USER]: {

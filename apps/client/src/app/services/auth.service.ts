@@ -1,4 +1,3 @@
-/* eslint-disable sort-keys */
 import { inject, Injectable, isDevMode } from "@angular/core";
 import { client } from "@passwordless-id/webauthn";
 import { Apollo } from "apollo-angular";
@@ -41,8 +40,6 @@ export class AuthService {
     window.navigator.credentials.create = (
       options: CredentialCreationOptions,
     ) => {
-      options.publicKey.authenticatorSelection.residentKey = "preferred";
-      options.publicKey.authenticatorSelection.requireResidentKey = true;
       options.publicKey.user.displayName = `${appName} Account`;
       options.publicKey.rp.name = appName;
       return originalFunction.call(window.navigator.credentials, options);
@@ -52,10 +49,11 @@ export class AuthService {
       nameToRegister,
       challenge.data.challenge,
       {
-        debug: isDevMode(),
         attestation: true,
-        userVerification: "required",
         authenticatorType: "roaming",
+        debug: isDevMode(),
+        discoverable: "required",
+        userVerification: "required",
       },
     );
 

@@ -1,5 +1,5 @@
 import { MSMessage, MSMPayload, MSMResponse } from "@deals/api";
-import { Controller } from "@nestjs/common";
+import { Controller, Logger } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 import {
   verifyAuthentication,
@@ -48,26 +48,36 @@ export class AuthController {
     );
 
     if (!existingUser) {
-      return;
+      Logger.warn(
+        `User not found: ${authentication.credentialId}`,
+        AuthController.name,
+      );
+      return null;
     }
 
     const credential = existingUser.credentials.find(
       (userCredential) => userCredential.id === authentication.credentialId,
     );
     if (!credential) {
-      return;
+      Logger.warn("Credentials not found", AuthController.name);
+      return null;
     }
 
     try {
       await verifyAuthentication(authentication, credential, {
         challenge: (challenge: string) =>
           this.authService.checkChallenge(challenge),
-        counter: 1,
+        counter: -1,
         origin: () => true,
         userVerified: true,
       });
-    } catch {
-      return;
+    } catch (error) {
+      Logger.warn(
+        `Authentication failed: ${credential.id}`,
+        AuthController.name,
+      );
+      Logger.error(error);
+      return null;
     }
 
     return existingUser.id.toHexString();

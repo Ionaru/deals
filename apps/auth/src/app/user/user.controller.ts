@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys */
-
 import { MSMessage, MSMPayload, MSMResponse } from "@deals/api";
 import { Controller } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
@@ -17,7 +15,7 @@ export class UserController {
     const user = await this.userService.getUser(payload.id);
 
     if (!user) {
-      return;
+      return null;
     }
 
     return {

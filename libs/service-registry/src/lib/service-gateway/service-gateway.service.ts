@@ -19,22 +19,22 @@ export class ServiceGatewayService {
   constructor(@Inject(network.PRIMARY) private readonly client: ClientProxy) {}
 
   send<T extends keyof IMSMessage>(message: T, payload: MSMPayload<T>) {
-    this.#logger.log(`Sending ${message}...`);
+    this.#logger.debug(`Sending ${message}...`);
     return this.client.send<MSMResponse<T>>(message, payload);
   }
 
   emit<T extends keyof IMSEvent>(event: T, payload: MSEPayload<T>) {
-    this.#logger.log(`Emitting ${event}...`);
+    this.#logger.debug(`Emitting ${event}...`);
     return this.client.emit<void>(event, payload);
   }
 
   sendDirect(to: string, payload: MSMPayload<"direct">) {
-    this.#logger.log(`Sending direct to ${to}...`);
+    this.#logger.debug(`Sending direct to ${to}...`);
     return this.client.send<MSMResponse<"direct">>(to, payload);
   }
 
   sendCommand(to: string) {
-    this.#logger.log(`Sending command to ${to}...`);
+    this.#logger.debug(`Sending command to ${to}...`);
     return this.client.send(to, {});
   }
 }
