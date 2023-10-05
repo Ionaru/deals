@@ -1,5 +1,3 @@
-/* eslint-disable max-classes-per-file */
-import { CredentialKey } from '@passwordless-id/webauthn/dist/esm/types';
 import {
     Column,
     CreateDateColumn,
@@ -8,14 +6,7 @@ import {
     ObjectIdColumn,
 } from 'typeorm';
 
-export class Credential implements CredentialKey {
-    @Column({ type: 'string' })
-    id!: string;
-    @Column({ type: 'string' })
-    publicKey!: string;
-    @Column({ type: 'string' })
-    algorithm!: 'RS256' | 'ES256';
-}
+import { Credential } from '../auth/auth.model';
 
 @Entity()
 export class User {
@@ -25,7 +16,6 @@ export class User {
     @Column({ type: 'string' })
     username!: string;
 
-    // @Type(() => Credential)
     @Column(() => Credential, { array: true })
     credentials!: Credential[];
 

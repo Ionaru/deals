@@ -7,5 +7,6 @@ export * from './lib/common/service-type.js';
 export * from './lib/entities/deal.js';
 export * from './lib/entities/health.js';
 export * from './lib/entities/product.js';
+export * from './lib/entities/session.js';
 export * from './lib/entities/shop.js';
 export * from './lib/entities/user.js';

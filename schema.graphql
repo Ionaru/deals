@@ -56,6 +56,7 @@ type Query {
   deals(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, sort: [DealSortChoices!] = [PRODUCT_NAME]): DealPaginatedType!
   service(id: ID!): ServiceHealthDTO
   services: [ServiceHealthDTO!]!
+  session: SessionDTO!
   user(id: String): UserDTO
   users: [UserDTO!]!
 }
@@ -71,6 +72,10 @@ type ServiceHealthDTO {
 enum ServiceType {
   CORE
   SCRAPER
+}
+
+type SessionDTO {
+  user: String
 }
 
 type ShopDTO {

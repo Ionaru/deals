@@ -9,4 +9,8 @@ export class UsersService {
     getUser(id: string) {
         return this.gateway.send(MSMessage.GET_USER, { id });
     }
+
+    getUsers() {
+        return this.gateway.send(MSMessage.GET_USERS, {});
+    }
 }

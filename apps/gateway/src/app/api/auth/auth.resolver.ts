@@ -1,4 +1,5 @@
 /* eslint-disable max-classes-per-file */
+import { SessionDTO } from '@deals/api';
 import {
     Args,
     ArgsType,
@@ -32,6 +33,13 @@ export class AuthResolver {
     @Query(() => String)
     challenge() {
         return this.authService.getNewChallenge();
+    }
+
+    @Query(() => SessionDTO)
+    session(
+        @Context() { req: { session } }: { req: Request },
+    ) {
+        return session;
     }
 
     @Mutation(() => Boolean)

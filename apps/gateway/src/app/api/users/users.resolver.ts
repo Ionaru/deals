@@ -46,7 +46,6 @@ export class UsersResolver {
 
     @Query(() => [UserDTO])
     users() {
-        // return this.authService.getUser();
-        return true;
+        return this.usersService.getUsers();
     }
 }

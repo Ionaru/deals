@@ -4,6 +4,7 @@ import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { AuthModule } from './auth/auth.module';
 import { Challenge } from './challenge/challenge.model';
 import { ChallengeModule } from './challenge/challenge.module';
 import { User } from './user/user.model';
@@ -27,6 +28,7 @@ import { UserModule } from './user/user.module';
         }),
 
         MicroserviceModule.forRoot('Auth', ServiceType.CORE),
+        AuthModule,
         ChallengeModule,
         UserModule,
     ],

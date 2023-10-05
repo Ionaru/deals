@@ -1,16 +1,8 @@
 /* eslint-disable sort-keys */
 
-import { AMSMResponse, MSMessage, MSMPayload } from '@deals/api';
+import { MSMessage, MSMPayload, MSMResponse } from '@deals/api';
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import {
-    verifyAuthentication,
-    verifyRegistration,
-} from '@passwordless-id/webauthn/dist/esm/server.js';
-import {
-    AuthenticationEncoded,
-    RegistrationEncoded,
-} from '@passwordless-id/webauthn/dist/esm/types';
 
 import { UserService } from './user.service';
 
@@ -18,61 +10,34 @@ import { UserService } from './user.service';
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-    @MessagePattern(MSMessage.REGISTER_USER)
-    async registerUser(
-        payload: MSMPayload<MSMessage.REGISTER_USER>,
-    ): Promise<AMSMResponse<MSMessage.REGISTER_USER>> {
-        const registration = JSON.parse(
-            payload.registration,
-        ) as RegistrationEncoded;
+    @MessagePattern(MSMessage.GET_USER)
+    async getUser(
+        payload: MSMPayload<MSMessage.GET_USER>,
+    ): Promise<MSMResponse<MSMessage.GET_USER>> {
+        const user = await this.userService.getUser(payload.id);
 
-        const registrationParsed = await verifyRegistration(registration, {
-            challenge: (challenge: string) =>
-                this.userService.checkChallenge(challenge),
-            origin: () => true,
-        });
+        if (!user) {
+            return null;
+        }
 
-        await this.userService.storeUser(registrationParsed);
-
-        return true;
+        return {
+            id: user.id.toHexString(),
+            isAdmin: false,
+            username: user.username,
+        }
     }
 
-    @MessagePattern(MSMessage.LOGIN_USER)
-    async loginUser(
-        payload: MSMPayload<MSMessage.LOGIN_USER>,
-    ): Promise<AMSMResponse<MSMessage.LOGIN_USER>> {
-        const authentication = JSON.parse(
-            payload.authentication,
-        ) as AuthenticationEncoded;
+    @MessagePattern(MSMessage.GET_USERS)
+    async getUsers(
+        _payload: MSMPayload<MSMessage.GET_USERS>,
+    ): Promise<MSMResponse<MSMessage.GET_USERS>> {
+        const users = await this.userService.getUsers();
 
-        const existingUser = await this.userService.findExistingUser(
-            authentication.credentialId,
-        );
-
-        if (!existingUser) {
-            return;
-        }
-
-        const credential = existingUser.credentials.find(
-            (userCredential) =>
-                userCredential.id === authentication.credentialId,
-        );
-        if (!credential) {
-            return;
-        }
-
-        try {
-            await verifyAuthentication(authentication, credential, {
-                challenge: (challenge: string) =>
-                    this.userService.checkChallenge(challenge),
-                origin: () => true,
-                userVerified: true,
-                counter: 1,
-            });
-        } catch {
-            return;
-        }
-
-        return existingUser.id.toHexString();
+        return users.map((user) => ({
+            id: user.id.toHexString(),
+            isAdmin: false,
+            username: user.username,
+        }));
     }
+
 }

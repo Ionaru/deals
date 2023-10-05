@@ -5,12 +5,6 @@ import * as session from 'express-session';
 
 import { AppModule } from './app/app.module';
 
-declare module 'express-session' {
-    interface SessionData {
-        user: string;
-    }
-}
-
 const bootstrap = async () => {
     const app = await NestFactory.create(AppModule);
 
