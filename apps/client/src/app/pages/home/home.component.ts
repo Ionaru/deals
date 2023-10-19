@@ -13,7 +13,7 @@ import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { BehaviorSubject, switchMap, tap } from "rxjs";
+import { BehaviorSubject, merge, switchMap, tap } from "rxjs";
 
 import { DealsService } from "../../services/deals.service";
 
@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   readonly #router = inject(Router);
 
   page$ = new BehaviorSubject(1);
+  reloader$ = new BehaviorSubject(0);
 
   ngOnInit() {
     const page = this.#router.parseUrl(this.#router.url).queryParams.page;
@@ -53,7 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  deals$ = this.page$.pipe(
+  deals$ = merge(this.page$, this.reloader$).pipe(
     switchMap((page) => this.#dealsService.getDeals(page).valueChanges),
     tap((data) => {
       if (data.errors?.length) {
@@ -62,7 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           "Opnieuw proberen",
         );
         snackBar.onAction().subscribe(() => {
-          // TODO: Retry
+          this.reloader$.next(this.reloader$.value + 1);
         });
       }
     }),
