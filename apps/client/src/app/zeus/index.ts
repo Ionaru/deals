@@ -876,6 +876,7 @@ deal?: [{	id: string | Variable<any, string>},ValueTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
 service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
+	session?:ValueTypes["SessionDTO"],
 user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["UserDTO"]],
 	users?:ValueTypes["UserDTO"],
 		__typename?: boolean | `@${string}`
@@ -889,6 +890,10 @@ user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["Us
 		__typename?: boolean | `@${string}`
 }>;
 	["ServiceType"]:ServiceType;
+	["SessionDTO"]: AliasType<{
+	user?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["ShopDTO"]: AliasType<{
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
@@ -952,6 +957,7 @@ deal?: [{	id: string},ResolverInputTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
 service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
+	session?:ResolverInputTypes["SessionDTO"],
 user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 	users?:ResolverInputTypes["UserDTO"],
 		__typename?: boolean | `@${string}`
@@ -965,6 +971,10 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["ServiceType"]:ServiceType;
+	["SessionDTO"]: AliasType<{
+	user?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["ShopDTO"]: AliasType<{
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
@@ -1028,6 +1038,7 @@ export type ModelTypes = {
 	deals: ModelTypes["DealPaginatedType"],
 	service?: ModelTypes["ServiceHealthDTO"] | undefined,
 	services: Array<ModelTypes["ServiceHealthDTO"]>,
+	session: ModelTypes["SessionDTO"],
 	user?: ModelTypes["UserDTO"] | undefined,
 	users: Array<ModelTypes["UserDTO"]>
 };
@@ -1039,6 +1050,9 @@ export type ModelTypes = {
 	type: ModelTypes["ServiceType"]
 };
 	["ServiceType"]:ServiceType;
+	["SessionDTO"]: {
+		user?: string | undefined
+};
 	["ShopDTO"]: {
 		id: string,
 	name: string
@@ -1107,6 +1121,7 @@ export type GraphQLTypes = {
 	deals: GraphQLTypes["DealPaginatedType"],
 	service?: GraphQLTypes["ServiceHealthDTO"] | undefined,
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>,
+	session: GraphQLTypes["SessionDTO"],
 	user?: GraphQLTypes["UserDTO"] | undefined,
 	users: Array<GraphQLTypes["UserDTO"]>
 };
@@ -1119,6 +1134,10 @@ export type GraphQLTypes = {
 	type: GraphQLTypes["ServiceType"]
 };
 	["ServiceType"]: ServiceType;
+	["SessionDTO"]: {
+	__typename: "SessionDTO",
+	user?: string | undefined
+};
 	["ShopDTO"]: {
 	__typename: "ShopDTO",
 	id: string,

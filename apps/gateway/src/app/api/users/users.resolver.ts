@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { UserDTO } from "@deals/api";
+import { HttpStatus, UseGuards } from "@nestjs/common";
 import {
   Args,
   ArgsType,
@@ -10,6 +11,8 @@ import {
 } from "@nestjs/graphql";
 import { Request } from "express";
 import { GraphQLError } from "graphql";
+
+import { IsAdminGuard } from "../../guards/is-admin.guard";
 
 import { UsersService } from "./users.service";
 
@@ -36,7 +39,7 @@ export class UsersResolver {
     if (queryArguments.id && queryArguments.id !== session.user) {
       throw new GraphQLError("You are not allowed to access this user", {
         extensions: {
-          code: "FORBIDDEN",
+          code: HttpStatus[HttpStatus.FORBIDDEN],
         },
       });
     }
@@ -45,6 +48,7 @@ export class UsersResolver {
   }
 
   @Query(() => [UserDTO])
+  @UseGuards(IsAdminGuard)
   users() {
     return this.usersService.getUsers();
   }

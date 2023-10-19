@@ -1,4 +1,10 @@
-import { Catch, ArgumentsHost, HttpException, Logger } from "@nestjs/common";
+import {
+  Catch,
+  ArgumentsHost,
+  HttpException,
+  Logger,
+  HttpStatus,
+} from "@nestjs/common";
 import { GqlExceptionFilter } from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 
@@ -10,10 +16,10 @@ export class ServiceUnavailableFilter implements GqlExceptionFilter {
         "Empty response. There are no subscribers listening to that message",
       )
     ) {
-      Logger.error(exception.message);
+      Logger.error(exception.message, ServiceUnavailableFilter.name);
       throw new GraphQLError("Service not available", {
         extensions: {
-          code: "SERVICE_UNAVAILABLE",
+          code: HttpStatus[HttpStatus.SERVICE_UNAVAILABLE],
         },
       });
     }

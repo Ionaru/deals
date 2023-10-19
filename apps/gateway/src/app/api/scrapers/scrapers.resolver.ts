@@ -1,8 +1,12 @@
+import { UseGuards } from "@nestjs/common";
 import { Resolver, Args, Mutation } from "@nestjs/graphql";
+
+import { LoggedInGuard } from "../../guards/logged-in.guard";
 
 import { ScrapersService } from "./scrapers.service";
 
 @Resolver()
+@UseGuards(LoggedInGuard)
 export class ScrapersResolver {
   constructor(private readonly scrapersService: ScrapersService) {}
 

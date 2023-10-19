@@ -1,12 +1,27 @@
 <div style="margin: 1em">
   <h1>Home</h1>
-  <ng-container *ngIf="deals$ | async as data">
-    <ng-container *ngIf="data.data as deals">
-      <p>{{ deals | json }}</p>
-      <div class="deals-container" *ngIf="deals$">
+  <ng-container *ngIf="deals$ | async as response">
+    <ng-container *ngIf="response.loading">
+      <mat-spinner></mat-spinner>
+    </ng-container>
+
+    <ng-container *ngIf="response.data as data">
+      <mat-paginator
+        (page)="handlePageEvent($event)"
+        [length]="data.deals.meta.totalItems"
+        [pageSize]="data.deals.meta.itemsPerPage"
+        [disabled]="false"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="[]"
+        [hidePageSize]="false"
+        [pageIndex]="data.deals.meta.currentPage - 1"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+      <div class="deals-container" *ngIf="data">
         <mat-card
           appearance="outlined"
-          *ngFor="let deal of deals.data.deals.items; trackBy: trackDealsBy"
+          *ngFor="let deal of data.deals.items; trackBy: trackDealsBy"
         >
           <div mat-card-image class="card-image">
             <img
@@ -42,8 +57,8 @@
         </mat-card>
       </div>
     </ng-container>
-    <ng-container *ngIf="data.error as error">
-      <p>Could not get deals: {{ error.message }}</p>
+    <ng-container *ngIf="response.errors as error">
+      <p>Could not get deals: {{ error[0].message }}</p>
     </ng-container>
   </ng-container>
 </div>

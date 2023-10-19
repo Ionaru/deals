@@ -2,23 +2,16 @@ import { ServiceType } from "@deals/api";
 import { MicroserviceModule } from "@deals/service-registry";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
 import { APP_FILTER } from "@nestjs/core";
 import { GraphQLModule } from "@nestjs/graphql";
 
-import { AuthModule } from "./api/auth/auth.module";
-import { DealsModule } from "./api/deals/deals.module";
-import { HealthModule } from "./api/health/health.module";
-import { ScrapersModule } from "./api/scrapers/scrapers.module";
-import { UsersModule } from "./api/users/users.module";
+import { ApiModule } from "./api/api.module";
 import { ServiceUnavailableFilter } from "./exception-filters/service-unavailable.filter";
 
 @Module({
   imports: [
-    AuthModule,
-    DealsModule,
-    ScrapersModule,
-    HealthModule,
-    UsersModule,
+    ConfigModule,
     MicroserviceModule.forRoot("Gateway", ServiceType.CORE),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: { path: "schema.graphql" },
@@ -32,6 +25,7 @@ import { ServiceUnavailableFilter } from "./exception-filters/service-unavailabl
       },
       sortSchema: true,
     }),
+    ApiModule,
   ],
   providers: [
     {

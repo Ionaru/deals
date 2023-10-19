@@ -70,6 +70,7 @@ export const ReturnTypes: Record<string,any> = {
 		deals:"DealPaginatedType",
 		service:"ServiceHealthDTO",
 		services:"ServiceHealthDTO",
+		session:"SessionDTO",
 		user:"UserDTO",
 		users:"UserDTO"
 	},
@@ -79,6 +80,9 @@ export const ReturnTypes: Record<string,any> = {
 		queue:"String",
 		status:"StatusDTO",
 		type:"ServiceType"
+	},
+	SessionDTO:{
+		user:"String"
 	},
 	ShopDTO:{
 		id:"ID",

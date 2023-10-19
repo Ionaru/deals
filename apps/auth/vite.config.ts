@@ -7,8 +7,6 @@ export default {
     cache: {
       dir: "../../node_modules/.vitest",
     },
-    environment: "jsdom",
-    globals: true,
     include: ["src/**/*.spec.ts"],
   },
 };

@@ -1,25 +1,28 @@
-import { Logger, ValidationPipe } from "@nestjs/common";
+import { Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { Transport } from "@nestjs/microservices";
-import * as session from "express-session";
+import MongoStore from "connect-mongo";
+import session from "express-session";
 
 import { AppModule } from "./app/app.module";
 
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
 
   app.use(
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    (session.default as typeof session)({
-      name: "My_session_cookie",
+    session({
+      name: configService.getOrThrow("GATEWAY_SESSION_NAME"),
       resave: false,
       saveUninitialized: false,
-      secret: "my-secret",
+      secret: configService.getOrThrow("GATEWAY_SESSION_SECRET"),
+      store: MongoStore.create({
+        dbName: "Deals-Session",
+        mongoUrl: configService.getOrThrow("AUTH_DB_URL"),
+      }),
     }),
   );
-
-  app.useGlobalPipes(new ValidationPipe());
 
   const port = process.env["PORT"] || 3333;
   await app.listen(port);
