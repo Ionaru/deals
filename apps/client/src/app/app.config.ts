@@ -16,8 +16,8 @@ import {
 import appRouting from "./app.routing";
 import { mockDataInterceptor } from "./interceptors/mock-data.interceptor";
 
-export const appName = "Dealert";
-export const appNameAlternate = "Deal Alert";
+export const appName = "BargainBee";
+export const appNameAlternate = appName + " 🐝";
 
 export const appConfig: ApplicationConfig = {
   providers: [

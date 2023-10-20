@@ -1,4 +1,4 @@
-import { Logger } from "@nestjs/common";
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { Transport } from "@nestjs/microservices";
@@ -23,6 +23,8 @@ const bootstrap = async () => {
       }),
     }),
   );
+
+  app.useGlobalPipes(new ValidationPipe());
 
   const port = process.env["PORT"] || 3333;
   await app.listen(port);

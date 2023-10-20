@@ -20,6 +20,7 @@
     <button mat-button (click)="startRegister()">
       I want to create a new account
     </button>
+    <button mat-button (click)="logout()">Logout</button>
   </mat-card-actions>
 
   <mat-card-content class="login-state" *ngIf="state === states.LOGIN">

@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, inject, Input } from "@angular/core";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
@@ -7,6 +7,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 import { DarkModeService } from "../../services/dark-mode.service";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   imports: [
@@ -17,6 +18,7 @@ import { DarkModeService } from "../../services/dark-mode.service";
     RouterLinkActive,
     MatBadgeModule,
     NgIf,
+    AsyncPipe,
   ],
   selector: "deals-toolbar",
   standalone: true,
@@ -29,7 +31,10 @@ export class ToolbarComponent {
 
   hovering = false;
 
+  readonly #authService = inject(AuthService);
   readonly #darkModeService = inject(DarkModeService);
+
+  isLoggedIn$ = this.#authService.isLoggedIn$;
 
   get isDarkMode(): boolean {
     return this.#darkModeService.isDarkModeActive();

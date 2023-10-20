@@ -1,9 +1,10 @@
 import { inject, Injectable, isDevMode } from "@angular/core";
 import { client } from "@passwordless-id/webauthn";
 import { Apollo } from "apollo-angular";
-import { firstValueFrom } from "rxjs";
+import { BehaviorSubject, firstValueFrom, map, tap } from 'rxjs';
 
 import { appName } from "../app.config";
+import { ModelTypes } from '../zeus';
 import { typedGql } from "../zeus/typedDocumentNode";
 
 @Injectable({
@@ -12,9 +13,12 @@ import { typedGql } from "../zeus/typedDocumentNode";
 export class AuthService {
   readonly #apollo = inject(Apollo);
 
-  async login() {
-    // TODO: If credentials are valid, log in.
+  readonly #user$ = new BehaviorSubject<ModelTypes['Query']['user'] | null>(null);
 
+  readonly user$ = this.#user$.asObservable();
+  readonly isLoggedIn$ = this.user$.pipe(map(Boolean));
+
+  async login() {
     const challenge = await firstValueFrom(this.#getChallenge());
     const authentication = await client.authenticate(
       [],
@@ -66,6 +70,12 @@ export class AuthService {
     return registerResult.data.registerUser ? nameToRegister : undefined;
   }
 
+  async logout() {
+    const logoutResult = await firstValueFrom(this.#sendLogout());
+    this.#user$.next(null);
+    return logoutResult.data.logoutUser;
+  }
+
   getUser(id?: string) {
     return firstValueFrom(
       this.#apollo.query({
@@ -77,16 +87,31 @@ export class AuthService {
             },
             {
               id: true,
+              isAdmin: true,
+              username: true,
             },
           ],
         }),
-      }),
+      }).pipe(
+        tap(({ data }) => {
+          this.#user$.next(data.user);
+        }),
+      ),
     );
   }
 
   #getDefaultAccountName() {
     const dateInIsoFormat = new Date().toISOString().slice(0, 10);
     return `${appName}-${dateInIsoFormat}`;
+  }
+
+  #sendLogout() {
+    return this.#apollo.query({
+      fetchPolicy: "no-cache",
+      query: typedGql("mutation")({
+        logoutUser: true,
+      }),
+    });
   }
 
   #sendLogin(authentication: string) {

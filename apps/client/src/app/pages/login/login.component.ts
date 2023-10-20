@@ -8,6 +8,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 import { AuthService } from "../../services/auth.service";
+import { Router } from '@angular/router';
 
 enum LoginState {
   INITIAL,
@@ -45,6 +46,7 @@ export class LoginComponent {
   });
 
   readonly #authService = inject(AuthService);
+  readonly #router = inject(Router);
 
   async startRegister() {
     this.state = LoginState.REGISTER;
@@ -72,15 +74,19 @@ export class LoginComponent {
       const assertion = await this.#authService.login();
       if (assertion) {
         this.state = LoginState.INITIAL;
-        const u = await this.#authService.getUser();
-        // eslint-disable-next-line no-console
-        console.log(u.data.user); // TODO: Save user data to application.
+        await this.#authService.getUser();
+        this.#router.navigate(["/"]);
       } else {
         this.state = LoginState.LOGIN_ERROR;
       }
     } catch {
       this.state = LoginState.LOGIN_ERROR;
     }
+  }
+
+  async logout() {
+    await this.#authService.logout();
+    this.state = LoginState.INITIAL;
   }
 
   back() {

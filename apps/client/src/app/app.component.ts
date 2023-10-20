@@ -1,50 +1,37 @@
-import { AsyncPipe, NgIf } from "@angular/common";
-import { Component, inject } from "@angular/core";
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
+import { Component, inject, OnInit } from '@angular/core';
+import { MatIconRegistry } from "@angular/material/icon";
 import {
-  NavigationEnd,
-  Router,
-  RouterLink,
   RouterOutlet,
 } from "@angular/router";
-import { filter, map } from "rxjs";
 
 import { appName, appNameAlternate } from "./app.config";
+import { SignupButtonComponent } from './components/signup-button/signup-button.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
+import { AuthService } from './services/auth.service';
 
 @Component({
   imports: [
     RouterOutlet,
     ToolbarComponent,
-    MatButtonModule,
-    MatIconModule,
-    RouterLink,
-    AsyncPipe,
-    NgIf,
+    SignupButtonComponent,
   ],
   selector: "deals-root",
   standalone: true,
   styleUrls: ["./app.component.scss"],
   templateUrl: "./app.component.html",
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = appName;
   alternateTitle = appNameAlternate;
-  readonly loginRoute = "/login";
 
+  readonly #authService = inject(AuthService);
   readonly #iconRegistry = inject(MatIconRegistry);
-  readonly #router = inject(Router);
-
-  showSignupButton = this.#router.events.pipe(
-    filter(
-      (routerEvent): routerEvent is NavigationEnd =>
-        routerEvent instanceof NavigationEnd,
-    ),
-    map((routerEvent) => routerEvent.url !== this.loginRoute),
-  );
 
   constructor() {
     this.#iconRegistry.setDefaultFontSetClass("material-symbols-outlined");
+  }
+
+  async ngOnInit() {
+    await this.#authService.getUser();
   }
 }

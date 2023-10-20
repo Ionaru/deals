@@ -1,0 +1,11 @@
+<button
+  *ngIf="showSignupButton | async"
+  class="signup-button"
+  mat-fab
+  extended
+  color="primary"
+  [routerLink]="loginRoute"
+>
+  <mat-icon>login</mat-icon>
+  Aanmelden
+</button>

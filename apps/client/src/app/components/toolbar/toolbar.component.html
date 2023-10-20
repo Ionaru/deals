@@ -7,7 +7,7 @@
     (mouseenter)="setHovering(true)"
     (mouseleave)="setHovering(false)"
   >
-    <mat-icon>sell</mat-icon>
+    <mat-icon>hive</mat-icon>
     {{ hovering ? alternateTitle : title }}
   </a>
   <span class="navbar-spacer"></span>
@@ -38,7 +38,7 @@
     <mat-icon *ngIf="!isDarkMode">light_mode</mat-icon>
     <mat-icon *ngIf="isDarkMode">dark_mode</mat-icon>
   </button>
-  <a mat-icon-button routerLink="/settings" routerLinkActive="active">
+  <a *ngIf="isLoggedIn$ | async" mat-icon-button routerLink="/settings" routerLinkActive="active">
     <mat-icon>settings</mat-icon>
   </a>
   <a mat-icon-button routerLink="/login" routerLinkActive="active">

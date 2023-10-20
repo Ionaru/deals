@@ -1,6 +1,6 @@
 import { Type } from "@nestjs/common";
 import { ArgsType, Field, Int, ObjectType } from "@nestjs/graphql";
-import { Max, Min } from "class-validator";
+import { IsInt, Max, Min } from 'class-validator';
 import { IPaginationMeta } from "nestjs-typeorm-paginate";
 
 export interface IPaginatedType<T> {
@@ -38,6 +38,7 @@ export const getPaginationArguments = (
     limit!: number;
 
     @Field(() => Int, { defaultValue: 1, nullable: true })
+    @Min(1)
     page!: number;
   }
 
