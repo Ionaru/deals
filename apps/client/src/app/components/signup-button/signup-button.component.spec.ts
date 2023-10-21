@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SignupButtonComponent } from './signup-button.component';
+import { SignupButtonComponent } from "./signup-button.component";
 
-describe('SignupButtonComponent', () => {
+describe("SignupButtonComponent", () => {
   let component: SignupButtonComponent;
   let fixture: ComponentFixture<SignupButtonComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SignupButtonComponent]
+      imports: [SignupButtonComponent],
     });
     fixture = TestBed.createComponent(SignupButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

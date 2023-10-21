@@ -1,10 +1,10 @@
 import { inject, Injectable, isDevMode } from "@angular/core";
 import { client } from "@passwordless-id/webauthn";
 import { Apollo } from "apollo-angular";
-import { BehaviorSubject, firstValueFrom, map, tap } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, tap } from "rxjs";
 
 import { appName } from "../app.config";
-import { ModelTypes } from '../zeus';
+import { ModelTypes } from "../zeus";
 import { typedGql } from "../zeus/typedDocumentNode";
 
 @Injectable({
@@ -13,7 +13,9 @@ import { typedGql } from "../zeus/typedDocumentNode";
 export class AuthService {
   readonly #apollo = inject(Apollo);
 
-  readonly #user$ = new BehaviorSubject<ModelTypes['Query']['user'] | null>(null);
+  readonly #user$ = new BehaviorSubject<ModelTypes["Query"]["user"] | null>(
+    null,
+  );
 
   readonly user$ = this.#user$.asObservable();
   readonly isLoggedIn$ = this.user$.pipe(map(Boolean));
@@ -78,25 +80,27 @@ export class AuthService {
 
   getUser(id?: string) {
     return firstValueFrom(
-      this.#apollo.query({
-        fetchPolicy: "no-cache",
-        query: typedGql("query")({
-          user: [
-            {
-              id,
-            },
-            {
-              id: true,
-              isAdmin: true,
-              username: true,
-            },
-          ],
-        }),
-      }).pipe(
-        tap(({ data }) => {
-          this.#user$.next(data.user);
-        }),
-      ),
+      this.#apollo
+        .query({
+          fetchPolicy: "no-cache",
+          query: typedGql("query")({
+            user: [
+              {
+                id,
+              },
+              {
+                id: true,
+                isAdmin: true,
+                username: true,
+              },
+            ],
+          }),
+        })
+        .pipe(
+          tap(({ data }) => {
+            this.#user$.next(data.user);
+          }),
+        ),
     );
   }
 

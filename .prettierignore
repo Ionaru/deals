@@ -6,3 +6,5 @@ coverage
 node_modules
 schema.graphql
 apps/client/src/app/zeus/*.ts
+
+/.nx/cache

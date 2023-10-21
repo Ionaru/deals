@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from "@angular/common";
 import { Component, inject, Input } from "@angular/core";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
@@ -6,8 +6,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
+import { AuthService } from "../../services/auth.service";
 import { DarkModeService } from "../../services/dark-mode.service";
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   imports: [

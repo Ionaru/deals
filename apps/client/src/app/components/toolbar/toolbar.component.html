@@ -38,7 +38,12 @@
     <mat-icon *ngIf="!isDarkMode">light_mode</mat-icon>
     <mat-icon *ngIf="isDarkMode">dark_mode</mat-icon>
   </button>
-  <a *ngIf="isLoggedIn$ | async" mat-icon-button routerLink="/settings" routerLinkActive="active">
+  <a
+    *ngIf="isLoggedIn$ | async"
+    mat-icon-button
+    routerLink="/settings"
+    routerLinkActive="active"
+  >
     <mat-icon>settings</mat-icon>
   </a>
   <a mat-icon-button routerLink="/login" routerLinkActive="active">

@@ -13,7 +13,7 @@ import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { BehaviorSubject, combineLatest, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, switchMap, tap } from "rxjs";
 
 import { DealsService } from "../../services/deals.service";
 
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     tap((data) => {
       if (data.errors?.length) {
         const snackBar = this.#snackBar.open(
-          'Error: ' + data.errors.at(0).message,
+          "Error: " + data.errors.at(0).message,
           "Opnieuw proberen",
         );
         snackBar.onAction().subscribe(() => {

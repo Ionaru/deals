@@ -1,6 +1,6 @@
 import { Type } from "@nestjs/common";
 import { ArgsType, Field, Int, ObjectType } from "@nestjs/graphql";
-import { IsInt, Max, Min } from 'class-validator';
+import { Max, Min } from "class-validator";
 import { IPaginationMeta } from "nestjs-typeorm-paginate";
 
 export interface IPaginatedType<T> {

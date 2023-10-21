@@ -1,20 +1,14 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
-import {
-  RouterOutlet,
-} from "@angular/router";
+import { RouterOutlet } from "@angular/router";
 
 import { appName, appNameAlternate } from "./app.config";
-import { SignupButtonComponent } from './components/signup-button/signup-button.component';
+import { SignupButtonComponent } from "./components/signup-button/signup-button.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
-import { AuthService } from './services/auth.service';
+import { AuthService } from "./services/auth.service";
 
 @Component({
-  imports: [
-    RouterOutlet,
-    ToolbarComponent,
-    SignupButtonComponent,
-  ],
+  imports: [RouterOutlet, ToolbarComponent, SignupButtonComponent],
   selector: "deals-root",
   standalone: true,
   styleUrls: ["./app.component.scss"],
