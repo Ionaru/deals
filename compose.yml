@@ -1,0 +1,43 @@
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: deploy/service.Dockerfile
+      args:
+        - SERVICE_NAME=auth
+    environment:
+      - AUTH_DB_URL
+      - NATS_HOST=nats
+    depends_on:
+      - nats
+    restart: no
+
+  gateway:
+    build:
+      context: .
+      dockerfile: deploy/service.Dockerfile
+      args:
+        - SERVICE_NAME=gateway
+    ports:
+      - "3333:3333"
+    environment:
+      - AUTH_DB_URL
+      - GATEWAY_SESSION_NAME
+      - GATEWAY_SESSION_SECRET
+      - NATS_HOST=nats
+    depends_on:
+      - nats
+    restart: no
+
+  client:
+    build:
+      context: .
+      dockerfile: deploy/client.Dockerfile
+    ports:
+      - "${DEALS_CLIENT_PORT:-80}:80"
+    depends_on:
+      - gateway
+    restart: no
+
+  nats:
+    image: nats:2

@@ -1,5 +1,5 @@
 import { Test } from "@nestjs/testing";
-import { getRepositoryToken } from '@nestjs/typeorm';
+import { getRepositoryToken } from "@nestjs/typeorm";
 import { ObjectId } from "mongodb";
 import { describe, beforeEach, it, expect } from "vitest";
 
@@ -33,9 +33,10 @@ describe("UserController", () => {
           provide: getRepositoryToken(User),
           useValue: {
             find: () => testingUsers,
-            findOneBy: ({ _id }: {_id: string}) => testingUsers.find((user) => user.id.equals(_id)) || null,
+            findOneBy: ({ _id }: { _id: string }) =>
+              testingUsers.find((user) => user.id.equals(_id)) || null,
           },
-        }
+        },
       ],
     }).compile();
 

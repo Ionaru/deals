@@ -1,7 +1,7 @@
+import { natsOptions } from "@deals/api";
 import { Logger, ValidationPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
-import { Transport } from "@nestjs/microservices";
 import MongoStore from "connect-mongo";
 import session from "express-session";
 
@@ -30,10 +30,7 @@ const bootstrap = async () => {
   await app.listen(port);
   Logger.log(`🚀 Gateway is running on: http://localhost:${port}/graphql`);
 
-  app.connectMicroservice({
-    options: {},
-    transport: Transport.NATS,
-  });
+  app.connectMicroservice(natsOptions);
   await app.startAllMicroservices();
 };
 

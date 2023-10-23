@@ -1,6 +1,6 @@
-import { network } from "@deals/api";
+import { natsOptions, network } from "@deals/api";
 import { Module } from "@nestjs/common";
-import { ClientsModule, Transport } from "@nestjs/microservices";
+import { ClientsModule } from "@nestjs/microservices";
 
 import { ServiceGatewayService } from "./service-gateway.service";
 
@@ -11,8 +11,7 @@ import { ServiceGatewayService } from "./service-gateway.service";
     ClientsModule.register([
       {
         name: network.PRIMARY,
-        options: {},
-        transport: Transport.NATS,
+        ...natsOptions,
       },
     ]),
   ],

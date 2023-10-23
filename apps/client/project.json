@@ -11,7 +11,6 @@
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
-      "dependsOn": ["generate-gql-types"],
       "options": {
         "outputPath": "dist/apps/client",
         "index": "apps/client/src/index.html",
