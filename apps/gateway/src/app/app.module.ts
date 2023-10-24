@@ -2,11 +2,11 @@ import { ServiceType } from "@deals/api";
 import { MicroserviceModule } from "@deals/service-registry";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { APP_FILTER } from "@nestjs/core";
 import { GraphQLModule } from "@nestjs/graphql";
-import MongoStore from 'connect-mongo';
-import { NestSessionOptions, SessionModule } from 'nestjs-session';
+import MongoStore from "connect-mongo";
+import { NestSessionOptions, SessionModule } from "nestjs-session";
 
 import { ApiModule } from "./api/api.module";
 import { ServiceUnavailableFilter } from "./exception-filters/service-unavailable.filter";
@@ -17,18 +17,20 @@ import { ServiceUnavailableFilter } from "./exception-filters/service-unavailabl
     SessionModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (config: ConfigService): Promise<NestSessionOptions> => ({
-          session: {
-            name: config.getOrThrow("GATEWAY_SESSION_NAME"),
-            resave: false,
-            saveUninitialized: false,
-            secret: config.getOrThrow("GATEWAY_SESSION_SECRET"),
-            store: MongoStore.create({
-              dbName: "Deals-Session",
-              mongoUrl: config.getOrThrow("AUTH_DB_URL"),
-            }),
-          },
-        }),
+      useFactory: async (
+        config: ConfigService,
+      ): Promise<NestSessionOptions> => ({
+        session: {
+          name: config.getOrThrow("GATEWAY_SESSION_NAME"),
+          resave: false,
+          saveUninitialized: false,
+          secret: config.getOrThrow("GATEWAY_SESSION_SECRET"),
+          store: MongoStore.create({
+            dbName: "Deals-Session",
+            mongoUrl: config.getOrThrow("AUTH_DB_URL"),
+          }),
+        },
+      }),
     }),
     MicroserviceModule.forRoot("Gateway", ServiceType.CORE),
     GraphQLModule.forRoot<ApolloDriverConfig>({

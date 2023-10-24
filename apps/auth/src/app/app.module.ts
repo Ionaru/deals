@@ -12,7 +12,6 @@ import { UserModule } from "./modules/user/user.module";
 
 @Module({
   imports: [
-    // ***REMOVED***
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

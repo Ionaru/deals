@@ -1,5 +1,5 @@
 {
-  "name": "scrapers-kruidvat",
+  "name": "scrapers/kruidvat",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/scrapers/kruidvat/src",
   "projectType": "application",
@@ -27,11 +27,11 @@
     "serve": {
       "executor": "@nx/js:node",
       "options": {
-        "buildTarget": "scrapers-kruidvat:build"
+        "buildTarget": "scrapers/kruidvat:build"
       },
       "configurations": {
         "production": {
-          "buildTarget": "scrapers-kruidvat:build:production"
+          "buildTarget": "scrapers/kruidvat:build:production"
         }
       }
     },

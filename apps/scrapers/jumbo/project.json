@@ -1,5 +1,5 @@
 {
-  "name": "scrapers-jumbo",
+  "name": "scrapers/jumbo",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/scrapers/jumbo/src",
   "projectType": "application",
@@ -27,11 +27,11 @@
     "serve": {
       "executor": "@nx/js:node",
       "options": {
-        "buildTarget": "scrapers-jumbo:build"
+        "buildTarget": "scrapers/jumbo:build"
       },
       "configurations": {
         "production": {
-          "buildTarget": "scrapers-jumbo:build:production"
+          "buildTarget": "scrapers/jumbo:build:production"
         }
       }
     },

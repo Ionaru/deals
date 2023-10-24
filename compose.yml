@@ -39,5 +39,29 @@ services:
       - gateway
     restart: no
 
+  scrapers-jumbo:
+    build:
+      context: .
+      dockerfile: deploy/service.Dockerfile
+      args:
+        - SERVICE_NAME=scrapers/jumbo
+    environment:
+      - NATS_HOST=nats
+    depends_on:
+      - nats
+    restart: no
+
+  scrapers-kruidvat:
+    build:
+      context: .
+      dockerfile: deploy/service.Dockerfile
+      args:
+        - SERVICE_NAME=scrapers/kruidvat
+    environment:
+      - NATS_HOST=nats
+    depends_on:
+      - nats
+    restart: no
+
   nats:
     image: nats:2
