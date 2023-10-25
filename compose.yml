@@ -63,5 +63,26 @@ services:
       - nats
     restart: no
 
+  storage:
+    build:
+      context: .
+      dockerfile: deploy/service.Dockerfile
+      args:
+        - SERVICE_NAME=storage
+    environment:
+      - STORAGE_DB_NAME
+      - STORAGE_DB_CA
+      - STORAGE_DB_CRT
+      - STORAGE_DB_KEY
+      - STORAGE_DB_HOST
+      - STORAGE_DB_PASS
+      - STORAGE_DB_PORT
+      - STORAGE_DB_USER
+      - STORAGE_DB_SSL
+      - NATS_HOST=nats
+    depends_on:
+      - nats
+    restart: no
+
   nats:
     image: nats:2
