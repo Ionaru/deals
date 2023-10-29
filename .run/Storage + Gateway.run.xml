@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Storage + Gateway" type="NxRunConfigurationType">
-    <option name="nx-projects" value="storage,gateway" />
-    <option name="nx-targets" value="serve" />
-    <envs />
-    <option name="arguments" value="" />
-    <method v="2" />
-  </configuration>
-</component>
