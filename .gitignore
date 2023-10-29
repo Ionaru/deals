@@ -10,6 +10,8 @@ node_modules
 
 # IDEs and editors
 /.idea
+/.vscode
+/.run
 .project
 .classpath
 .c9/
