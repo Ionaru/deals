@@ -24,11 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm run lint
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
+      - run: bun run lint
 
   test:
     needs: audit
@@ -38,8 +36,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
+      - uses: oven-sh/setup-bun@v1
       - run: npm ci
-      - run: npm test ${{matrix.app}}
+      - run: bun run test ${{matrix.app}}
