@@ -1,5 +1,6 @@
 services:
   auth:
+    image: docker.saturnserver.org/deals/auth:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
@@ -13,6 +14,7 @@ services:
     restart: no
 
   gateway:
+    image: docker.saturnserver.org/deals/gateway:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
@@ -30,6 +32,7 @@ services:
     restart: no
 
   client:
+    image: docker.saturnserver.org/deals/client:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/client.Dockerfile
@@ -40,6 +43,7 @@ services:
     restart: no
 
   scrapers-jumbo:
+    image: docker.saturnserver.org/deals/scrapers-jumbo:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
@@ -52,6 +56,7 @@ services:
     restart: no
 
   scrapers-kruidvat:
+    image: docker.saturnserver.org/deals/scrapers-kruidvat:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
@@ -64,6 +69,7 @@ services:
     restart: no
 
   storage:
+    image: docker.saturnserver.org/deals/storage:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
