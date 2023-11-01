@@ -21,8 +21,8 @@ ARG SERVICE_NAME
 
 WORKDIR /app
 
-COPY --from=build /app/package.json /app/bun.lockb ./
-RUN bun install --production --frozen-lockfile
+COPY --from=build /app/package.json ./
+RUN bun install --production
 
 COPY --from=build /app/dist/apps/$SERVICE_NAME /app
 
