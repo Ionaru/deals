@@ -58,6 +58,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - run: docker compose pull ${{matrix.app}}
       - run: docker compose build ${{matrix.app}}
       - run: docker save -o ${{matrix.app}}-image.tar docker.saturnserver.org/deals/${{matrix.app}}:latest
       - uses: actions/upload-artifact@v3
