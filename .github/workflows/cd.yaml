@@ -84,4 +84,4 @@ jobs:
           registry: docker.saturnserver.org
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - run: docker push -a docker.saturnserver.org/deals/${{matrix.app}}:latest
+      - run: docker push -a docker.saturnserver.org/deals/${{matrix.app}}
