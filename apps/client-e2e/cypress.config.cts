@@ -2,7 +2,9 @@ import { nxE2EPreset } from "@nx/cypress/plugins/cypress-preset";
 import { defineConfig } from "cypress";
 import { MongoClient } from "mongodb";
 
-const client = new MongoClient("mongodb://e2e:DontTellAnyoneThisPassword@localhost:27017");
+const client = new MongoClient(
+  "mongodb://e2e:DontTellAnyoneThisPassword@localhost:27017",
+);
 
 export const connectMongo = async () => {
   await client.connect();
