@@ -1,4 +1,5 @@
-const doRDPCommand = (command: string, parameters?: any) => Cypress.automation("remote:debugger:protocol", {
+const doRDPCommand = (command: string, parameters?: any) =>
+  Cypress.automation("remote:debugger:protocol", {
     command,
     params: parameters,
   });
