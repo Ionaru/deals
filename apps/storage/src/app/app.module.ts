@@ -61,7 +61,8 @@ import { UnknownDealService } from "./services/unknown-deal.service";
           password: configService.getOrThrow("STORAGE_DB_PASS"),
           port: configService.getOrThrow("STORAGE_DB_PORT"),
           ssl: sslEnabled ? getSSLConfiguration() : false,
-          synchronize: configService.getOrThrow("STORAGE_DB_SYNCHRONIZE") === "true",
+          synchronize:
+            configService.getOrThrow("STORAGE_DB_SYNCHRONIZE") === "true",
           type: "mysql",
           username: configService.getOrThrow("STORAGE_DB_USER"),
         };
