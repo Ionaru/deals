@@ -70,9 +70,10 @@ jobs:
     needs: build-image
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
+      - run: for f in *.tar; do docker load -i $f; done
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
-      - uses: actions/download-artifact@v3
       - run: docker compose --file apps/client-e2e/compose.yaml up --wait -d
       - run: docker compose --profile e2e up -d
         env:
