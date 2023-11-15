@@ -1,6 +1,17 @@
 import { nxE2EPreset } from "@nx/cypress/plugins/cypress-preset";
 import { defineConfig } from "cypress";
-import { connectMongo } from "./src/support/mongo.cts";
+import { MongoClient } from "mongodb";
+
+const client = new MongoClient("mongodb://e2e:whatever@localhost:27017");
+
+export const connectMongo = async () => {
+  await client.connect();
+  return client;
+};
+
+export const disconnectMongo = async () => {
+  await client.close();
+};
 
 export default defineConfig({
   e2e: {
