@@ -7,12 +7,11 @@
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/client-e2e/cypress.config.ts",
-        "devServerTarget": "client:serve:development",
+        "cypressConfig": "apps/client-e2e/cypress.config.cts",
         "testingType": "e2e"
       },
       "configurations": {
-        "production": {
+        "dev": {
           "devServerTarget": "client:serve:production"
         }
       }

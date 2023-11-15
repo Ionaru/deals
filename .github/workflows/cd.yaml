@@ -66,8 +66,32 @@ jobs:
           path: ${{matrix.app}}-image.tar
           retention-days: 1
 
+  e2e:
+    needs: build-image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      - uses: actions/download-artifact@v3
+      - run: docker compose --file apps/client-e2e/compose.yaml up --wait -d
+      - run: docker compose --profile e2e up -d
+        env:
+          STORAGE_DB_HOST: localhost
+          STORAGE_DB_PORT: 3306
+          STORAGE_DB_USER: e2e
+          STORAGE_DB_PASS: DontTellAnyoneThisPassword
+          STORAGE_DB_SSL: false
+          STORAGE_DB_NAME: deals_e2e
+          STORAGE_DB_SYNCHRONIZE: true
+          GATEWAY_SESSION_NAME: DealE2ESession
+          GATEWAY_SESSION_SECRET: DontTellAnyoneThisSecret
+          DEALS_CLIENT_PORT: 4200
+          AUTH_DB_URL: mongodb://e2e:DontTellAnyoneThisPassword@localhost:27017
+      - run: bun install
+      - run: bun x nx run client-e2e:e2e
+
   push-image:
-    needs: [build-image, get_sha]
+    needs: [e2e, get_sha]
     runs-on: ubuntu-latest
     strategy:
       matrix:

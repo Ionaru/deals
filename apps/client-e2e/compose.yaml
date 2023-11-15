@@ -1,0 +1,22 @@
+services:
+  mongo:
+    image: mongo:6
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=e2e
+      - MONGO_INITDB_ROOT_PASSWORD=DontTellAnyoneThisPassword
+    ports:
+      - "27017:27017"
+
+  mysql:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=DontTellAnyoneThisPassword
+      - MYSQL_DATABASE=deals_e2e
+      - MYSQL_USER=e2e
+      - MYSQL_PASSWORD=DontTellAnyoneThisPassword
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10

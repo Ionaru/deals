@@ -18,6 +18,7 @@ export class AuthService {
   );
 
   readonly user$ = this.#user$.asObservable();
+  readonly isAdmin$ = this.user$.pipe(map((user) => user.isAdmin));
   readonly isLoggedIn$ = this.user$.pipe(map(Boolean));
 
   async login() {

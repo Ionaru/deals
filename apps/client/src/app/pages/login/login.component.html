@@ -16,11 +16,11 @@
     Account created!
   </mat-card-title>
   <mat-card-actions class="initial-state" *ngIf="state === states.INITIAL">
-    <button mat-button (click)="startLogin()">I already have an account</button>
-    <button mat-button (click)="startRegister()">
+    <button *ngIf="(isLoggedIn$ | async) === false" mat-button (click)="startLogin()">I already have an account</button>
+    <button *ngIf="(isLoggedIn$ | async) === false" mat-button (click)="startRegister()">
       I want to create a new account
     </button>
-    <button mat-button (click)="logout()">Logout</button>
+    <button *ngIf="(isLoggedIn$ | async) === true" mat-button (click)="logout()">Logout</button>
   </mat-card-actions>
 
   <mat-card-content class="login-state" *ngIf="state === states.LOGIN">

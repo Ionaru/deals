@@ -28,4 +28,4 @@ RUN npm ci --omit=dev
 
 COPY --from=build /app/dist/apps/$SERVICE_NAME /app
 
-CMD ["npm", "run", "main.mjs"]
+CMD ["node", "main.mjs"]
