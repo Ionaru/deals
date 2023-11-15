@@ -75,7 +75,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
       - run: docker compose --file apps/client-e2e/compose.yaml up --wait -d
-      - run: docker compose --profile e2e up -d
+      - run: docker compose up --pull=never --no-build -d
         env:
           STORAGE_DB_HOST: localhost
           STORAGE_DB_PORT: 3306
