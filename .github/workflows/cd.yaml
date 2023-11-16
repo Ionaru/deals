@@ -80,7 +80,7 @@ jobs:
       - run: docker compose pull nats
       - run: docker compose up --pull=never --no-build -d
         env:
-          STORAGE_DB_HOST: host.docker.internal
+          STORAGE_DB_HOST: mysql
           STORAGE_DB_PORT: 3306
           STORAGE_DB_USER: e2e
           STORAGE_DB_PASS: DontTellAnyoneThisPassword
@@ -90,7 +90,7 @@ jobs:
           GATEWAY_SESSION_NAME: DealE2ESession
           GATEWAY_SESSION_SECRET: DontTellAnyoneThisSecret
           DEALS_CLIENT_PORT: 4200
-          AUTH_DB_URL: mongodb://e2e:DontTellAnyoneThisPassword@host.docker.internal:27017
+          AUTH_DB_URL: mongodb://e2e:DontTellAnyoneThisPassword@mongo
       - run: npm ci
       - run: npx nx run client-e2e:e2e
       - run: docker compose ps -a
