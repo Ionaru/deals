@@ -70,8 +70,6 @@ jobs:
     needs: build-image
     runs-on: ubuntu-latest
     steps:
-      - run: echo $PWD
-      - run: ls -lahF
       - uses: actions/download-artifact@v3
       - run: for f in */*.tar; do docker load -i $f; done
       - uses: actions/checkout@v4
@@ -82,7 +80,7 @@ jobs:
       - run: docker compose pull nats
       - run: docker compose up --pull=never --no-build -d
         env:
-          STORAGE_DB_HOST: localhost
+          STORAGE_DB_HOST: host.docker.internal
           STORAGE_DB_PORT: 3306
           STORAGE_DB_USER: e2e
           STORAGE_DB_PASS: DontTellAnyoneThisPassword
@@ -92,10 +90,10 @@ jobs:
           GATEWAY_SESSION_NAME: DealE2ESession
           GATEWAY_SESSION_SECRET: DontTellAnyoneThisSecret
           DEALS_CLIENT_PORT: 4200
-          AUTH_DB_URL: mongodb://e2e:DontTellAnyoneThisPassword@localhost:27017
-      - run: npm install
+          AUTH_DB_URL: mongodb://e2e:DontTellAnyoneThisPassword@host.docker.internal:27017
+      - run: npm ci
       - run: npx nx run client-e2e:e2e
-      - run: docker compose ps
+      - run: docker compose ps -a
 
   push-image:
     needs: [e2e, get_sha]
