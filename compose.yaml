@@ -85,7 +85,7 @@ services:
       - STORAGE_DB_PORT
       - STORAGE_DB_USER
       - STORAGE_DB_SSL
-      - STORAGE_DB_SYNCHRONIZE=false
+      - STORAGE_DB_SYNCHRONIZE
       - NATS_HOST=nats
     depends_on:
       - nats
