@@ -31,7 +31,8 @@ export class ServicesService {
     service.name = name;
     service.queue = queue;
     service.type = type;
-    return this.serviceRepository.save(service);
+    await this.serviceRepository.upsert(service, ["queue"]);
+    return service;
   }
 
   async unregisterService(queue: string): Promise<void> {

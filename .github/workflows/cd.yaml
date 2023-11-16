@@ -94,6 +94,7 @@ jobs:
       - run: npm ci
       - run: npx nx run client-e2e:e2e
       - run: docker compose ps -a
+      - run: docker compose logs
 
   push-image:
     needs: [e2e, get_sha]

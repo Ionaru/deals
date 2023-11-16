@@ -17,7 +17,6 @@ export class ServiceRegistryService {
   ) {}
 
   storeService() {
-    this.#logger.log("Storing service...");
     return this.gateway.send(MSMessage.REGISTER_SERVICE, {
       name: this.name,
       queue: this.id,

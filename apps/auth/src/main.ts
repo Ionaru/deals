@@ -11,6 +11,8 @@ const bootstrap = async () => {
     natsOptions,
   );
 
+  app.enableShutdownHooks();
+
   await app.listen();
   Logger.log(`🚀 Auth is running`);
 };

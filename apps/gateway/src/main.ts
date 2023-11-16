@@ -9,6 +9,8 @@ const bootstrap = async () => {
 
   app.useGlobalPipes(new ValidationPipe());
 
+  app.enableShutdownHooks();
+
   const port = process.env["PORT"] || 3333;
   await app.listen(port);
   Logger.log(`🚀 Gateway is running on: http://localhost:${port}/graphql`);

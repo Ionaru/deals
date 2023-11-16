@@ -1,8 +1,9 @@
 import { ServiceType } from "@deals/api";
 import { MicroserviceModule } from "@deals/service-registry";
-import { Logger, Module } from "@nestjs/common";
+import { Logger, Module, OnApplicationShutdown } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { DataSource } from "typeorm";
 
 import { Challenge } from "./models/challenge.model";
 import { User } from "./models/user.model";
@@ -36,4 +37,12 @@ import { UserModule } from "./modules/user/user.module";
     UserModule,
   ],
 })
-export class AppModule {}
+export class AppModule implements OnApplicationShutdown {
+  constructor(private dataSource: DataSource) {}
+
+  onApplicationShutdown() {
+    if (this.dataSource.isInitialized) {
+      this.dataSource.destroy();
+    }
+  }
+}

@@ -12,6 +12,8 @@ const bootstrap = async () => {
     natsOptions,
   );
 
+  app.enableShutdownHooks();
+
   await app.listen();
   Logger.log(`🚀 Storage is running`);
   const servicesService = app.get(ServicesService);
