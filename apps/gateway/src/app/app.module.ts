@@ -5,13 +5,13 @@ import { Module, OnApplicationShutdown } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { APP_FILTER } from "@nestjs/core";
 import { GraphQLModule } from "@nestjs/graphql";
-import MongoStore from "connect-mongo";
+import mongo from "connect-mongo";
 import { NestSessionOptions, SessionModule } from "nestjs-session";
 
 import { ApiModule } from "./api/api.module";
 import { ServiceUnavailableFilter } from "./exception-filters/service-unavailable.filter";
 
-let sessionStore: MongoStore | undefined;
+let sessionStore: mongo | undefined;
 
 @Module({
   imports: [
@@ -22,7 +22,7 @@ let sessionStore: MongoStore | undefined;
       useFactory: async (
         config: ConfigService,
       ): Promise<NestSessionOptions> => {
-        sessionStore = MongoStore.create({
+        sessionStore = mongo.create({
           dbName: "Deals-Session",
           mongoUrl: config.getOrThrow("AUTH_DB_URL"),
         });
