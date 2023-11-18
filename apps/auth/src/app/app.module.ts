@@ -17,10 +17,10 @@ import { UserModule } from "./modules/user/user.module";
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        Logger.log("Using database: Deals-Auth", AppModule.name);
-        Logger.log(configService.getOrThrow("AUTH_DB_URL"), AppModule.name);
+        const database = "Deals-Auth";
+        Logger.log(`Using database: ${database}`, AppModule.name);
         return {
-          database: "Deals-Auth",
+          database,
           entities: [Challenge, User],
           extra: {
             authSource: "admin",
