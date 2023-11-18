@@ -1,5 +1,4 @@
-@use "node_modules/@angular/material/index" as material;
-@import "node_modules/@angular/material/theming";
+@use '@angular/material' as material;
 
 // Modify material theming to include a dark mode.
 
