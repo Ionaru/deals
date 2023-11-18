@@ -64,7 +64,9 @@ export class LoginComponent {
         this.createdName = credential;
         this.state = LoginState.REGISTERED;
       }
-    } catch {
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
       this.state = LoginState.LOGIN_ERROR;
     }
   }
@@ -81,7 +83,9 @@ export class LoginComponent {
       } else {
         this.state = LoginState.LOGIN_ERROR;
       }
-    } catch {
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
       this.state = LoginState.LOGIN_ERROR;
     }
   }

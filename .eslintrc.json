@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nx", "promise"],
+  "plugins": ["@nx", "promise", "no-only-tests", "no-skip-tests"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -19,7 +19,9 @@
               }
             ]
           }
-        ]
+        ],
+        "no-only-tests/no-only-tests": "error",
+        "no-skip-tests/no-skip-tests": "error"
       }
     },
     {

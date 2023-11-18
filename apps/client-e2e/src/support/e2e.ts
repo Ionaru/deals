@@ -16,3 +16,39 @@
 // Import commands.js using ES2015 syntax:
 // eslint-disable-next-line unicorn/prevent-abbreviations
 import "./commands";
+
+const doRDPCommand = (command: string, parameters?: any) =>
+  Cypress.automation("remote:debugger:protocol", {
+    command,
+    params: parameters,
+  });
+
+beforeEach(() => {
+  cy.log("Clearing database");
+  cy.task("clearDB", undefined, { log: false });
+
+  cy.log("Enabling WebAuthn in RDP");
+  doRDPCommand("WebAuthn.enable");
+  doRDPCommand("WebAuthn.addVirtualAuthenticator", {
+    options: {
+      hasResidentKey: true,
+      hasUserVerification: true,
+      isUserVerified: true,
+      protocol: "ctap2",
+      transport: "usb",
+    },
+  });
+
+  cy.log("Setting up GraphQL spy");
+  cy.intercept("/graphql", (request) => {
+    request.on("response", (response) => {
+      response.setDelay(500);
+      response.setThrottle(1000);
+    });
+  }).as("GraphQL");
+});
+
+afterEach(() => {
+  cy.log("Disabling WebAuthn in RDP");
+  doRDPCommand("WebAuthn.disable");
+});

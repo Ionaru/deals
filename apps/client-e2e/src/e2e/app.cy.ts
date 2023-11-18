@@ -2,15 +2,12 @@
 describe("client", () => {
   beforeEach(() => {
     cy.visit("/");
-    cy.task("clearDB");
   });
 
-  it("should show the login page", () => {
-    cy.get(".signup-button").should("be.visible").click();
-    cy.get("button").contains("I already have an account").should("be.visible");
-    cy.get("button")
-      .contains("I want to create a new account")
-      .should("be.visible");
-    cy.get("button").contains("Logout").should("not.exist");
+  it("should show the home page", () => {
+    cy.get("mat-spinner").should("be.visible");
+    cy.get(".signup-button").contains("Aanmelden").should("be.visible");
+    cy.get("mat-spinner").should("not.exist");
+    cy.get(".mat-mdc-paginator-range-label").should("contain", "0 of 0");
   });
 });

@@ -11,6 +11,7 @@ on:
 
 jobs:
   audit:
+    name: Audit dependencies
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +21,7 @@ jobs:
       - run: npm audit --omit=dev
 
   get_sha:
+    name: Get short SHA for image tags
     runs-on: ubuntu-latest
     outputs:
       sha_short: ${{ steps.get_sha.outputs.sha_short }}
@@ -28,7 +30,32 @@ jobs:
       - id: get_sha
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
+  determine_buildable:
+    name: Determine buildable apps
+    runs-on: ubuntu-latest
+    outputs:
+      buildable: ${{ steps.determine_buildable.outputs.buildable }}
+    steps:
+        - uses: actions/checkout@v4
+        - uses: oven-sh/setup-bun@v1
+        - run: bun install
+        - id: determine_buildable
+          run: echo "buildable=$(bun run determine-buildable)" >> $GITHUB_OUTPUT
+
+  determine_testable:
+    name: Determine testable apps
+    runs-on: ubuntu-latest
+    outputs:
+      testable: ${{ steps.determine_testable.outputs.testable }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
+      - id: determine_testable
+        run: echo "testable=$(bun run determine-testable)" >> $GITHUB_OUTPUT
+
   lint:
+    name: Static code analysis
     needs: audit
     runs-on: ubuntu-latest
     steps:
@@ -38,9 +65,11 @@ jobs:
       - run: bun run lint
 
   test:
-    needs: audit
+    name: Unit tests
+    needs: [audit, determine_testable]
     strategy:
       matrix:
+#        app: ${{fromJson(needs.determine_testable.outputs.testable).replaceAll('/', '-')}}
         app: [auth]
     runs-on: ubuntu-latest
     steps:
@@ -50,11 +79,12 @@ jobs:
       - run: bun run test ${{matrix.app}}
 
   build-image:
-    needs: [lint, test]
+    name: Build image
+    needs: [lint, test, determine_buildable]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: [auth, gateway, client, scrapers-jumbo, scrapers-kruidvat, storage]
+        app: ${{fromJson(needs.determine_buildable.outputs.buildable).replaceAll('/', '-')}}
 
     steps:
       - uses: actions/checkout@v4
@@ -67,6 +97,7 @@ jobs:
           retention-days: 1
 
   e2e:
+    name: E2E tests
     needs: build-image
     runs-on: ubuntu-latest
     steps:
@@ -90,18 +121,19 @@ jobs:
           GATEWAY_SESSION_NAME: DealE2ESession
           GATEWAY_SESSION_SECRET: DontTellAnyoneThisSecret
           DEALS_CLIENT_PORT: 4200
-          AUTH_DB_URL: mongodb://e2e:DontTellAnyoneThisPassword@mongo
+          AUTH_DB_URL: "mongodb://e2e:DontTellAnyoneThisPassword@mongo"
       - run: npm ci
       - run: npx nx run client-e2e:e2e
       - run: docker compose ps -a
       - run: docker compose logs
 
   push-image:
-    needs: [e2e, get_sha]
+    name: Push image
+    needs: [e2e, get_sha, determine_buildable]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: [auth, gateway, client, scrapers-jumbo, scrapers-kruidvat, storage]
+        app: ${{fromJson(needs.determine_buildable.outputs.buildable).replaceAll('/', '-')}}
 
     steps:
       - uses: actions/download-artifact@v3

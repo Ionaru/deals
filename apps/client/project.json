@@ -66,6 +66,7 @@
       "dependsOn": ["generate-gql-types"],
       "configurations": {
         "production": {
+          "proxyConfig": "apps/client/src/proxy.conf.json",
           "buildTarget": "client:build:production"
         },
         "development": {
