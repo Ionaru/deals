@@ -9,6 +9,8 @@
     "test": "nx test",
     "lint": "prettier --check . && nx run-many --target=lint --all",
     "format": "prettier --write . && nx run-many --skip-nx-cache --target=lint --all --fix",
+    "determine-buildable": "nx show projects --with-target serve --json",
+    "determine-testable": "nx show projects --with-target test --json",
     "generate-gql-types": "npx graphql-zeus schema.graphql --typedDocumentNode apps/client/src/app"
   },
   "private": true,
