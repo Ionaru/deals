@@ -42,6 +42,7 @@ let sessionStore: MongoStore | undefined;
       autoSchemaFile: { path: "schema.graphql" },
       context: ({ res }: any) => ({ res }),
       driver: ApolloDriver,
+      introspection: true,
       playground: {
         settings: {
           "request.credentials": "include",

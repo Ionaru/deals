@@ -10,7 +10,8 @@ services:
       - AUTH_DB_URL
       - NATS_HOST=nats
     depends_on:
-      - nats
+      nats:
+        condition: service_healthy
     restart: no
 
   gateway:
@@ -28,8 +29,11 @@ services:
       - GATEWAY_SESSION_SECRET
       - NATS_HOST=nats
     depends_on:
-      - nats
+      nats:
+        condition: service_healthy
     restart: no
+    healthcheck:
+      test: 'wget --header="Accept: text/html" localhost:3333/graphql -q --spider'
 
   client:
     image: docker.saturnserver.org/deals/client:${DEALS_BUILD_TAG:-latest}
@@ -39,7 +43,8 @@ services:
     ports:
       - "${DEALS_CLIENT_PORT:-80}:80"
     depends_on:
-      - gateway
+      gateway:
+        condition: service_healthy
     restart: no
 
   scrapers-jumbo:
@@ -52,7 +57,8 @@ services:
     environment:
       - NATS_HOST=nats
     depends_on:
-      - nats
+      nats:
+        condition: service_healthy
     restart: no
 
   scrapers-kruidvat:
@@ -65,7 +71,8 @@ services:
     environment:
       - NATS_HOST=nats
     depends_on:
-      - nats
+      nats:
+        condition: service_healthy
     restart: no
 
   storage:
@@ -88,8 +95,11 @@ services:
       - STORAGE_DB_SYNCHRONIZE
       - NATS_HOST=nats
     depends_on:
-      - nats
+      nats:
+        condition: service_healthy
     restart: no
 
   nats:
-    image: nats:2
+    image: nats:2-alpine
+    healthcheck:
+      test: 'wget localhost:8222/healthz -q --spider'

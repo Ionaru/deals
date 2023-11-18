@@ -78,7 +78,7 @@ jobs:
           node-version: lts/*
       - run: docker compose --file apps/client-e2e/compose.yaml up --wait -d
       - run: docker compose pull nats
-      - run: docker compose up --pull=never --no-build -d
+      - run: docker compose up --pull=never --no-build --wait -d
         env:
           STORAGE_DB_HOST: mysql
           STORAGE_DB_PORT: 3306
