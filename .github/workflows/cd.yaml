@@ -40,7 +40,7 @@ jobs:
         - uses: oven-sh/setup-bun@v1
         - run: bun install
         - id: determine_buildable
-          run: echo "buildable=$(bun run determine-buildable)" >> $GITHUB_OUTPUT
+          run: echo 'buildable=$(bun run determine-buildable)' | tr / - >> $GITHUB_OUTPUT
 
   determine_testable:
     name: Determine testable apps
@@ -67,11 +67,11 @@ jobs:
   test:
     name: Unit tests
     needs: [audit, determine_testable]
+    runs-on: ubuntu-latest
     strategy:
       matrix:
 #        app: ${{fromJson(needs.determine_testable.outputs.testable).replaceAll('/', '-')}}
         app: [auth]
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
@@ -84,8 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: ${{fromJson(needs.determine_buildable.outputs.buildable).replaceAll('/', '-')}}
-
+        app: ${{fromJson(needs.determine_buildable.outputs.buildable)}}
     steps:
       - uses: actions/checkout@v4
       - run: docker compose build ${{matrix.app}}
@@ -133,8 +132,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: ${{fromJson(needs.determine_buildable.outputs.buildable).replaceAll('/', '-')}}
-
+        app: ${{fromJson(needs.determine_buildable.outputs.buildable)}}
     steps:
       - uses: actions/download-artifact@v3
         with:
