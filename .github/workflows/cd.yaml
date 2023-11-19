@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # app: ${{fromJson(needs.determine_testable.outputs.testable).replaceAll('/', '-')}}
+        # app: ${{fromJson(needs.determine_testable.outputs.testable)}}
         app: [auth]
     steps:
       - uses: actions/checkout@v4

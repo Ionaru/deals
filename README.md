@@ -1,5 +1,7 @@
 # Deals
 
+[![Build status](https://img.shields.io/github/actions/workflow/status/Ionaru/deals/cd.yaml?style=for-the-badge&logo=github)](https://github.com/Ionaru/deals/actions?query=branch%3Amain)
+
 This project was generated using [Nx](https://nx.dev).
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
