@@ -36,11 +36,11 @@ jobs:
     outputs:
       buildable: ${{ steps.determine_buildable.outputs.buildable }}
     steps:
-        - uses: actions/checkout@v4
-        - uses: oven-sh/setup-bun@v1
-        - run: bun install
-        - id: determine_buildable
-          run: echo 'buildable=$(bun run determine-buildable)' | tr / - >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
+      - id: determine_buildable
+        run: echo "buildable=$(bun run determine-buildable)" | tr / - >> $GITHUB_OUTPUT
 
   determine_testable:
     name: Determine testable apps
@@ -52,7 +52,7 @@ jobs:
       - uses: oven-sh/setup-bun@v1
       - run: bun install
       - id: determine_testable
-        run: echo "testable=$(bun run determine-testable)" >> $GITHUB_OUTPUT
+        run: echo "testable=$(bun run determine-testable)" | tr / - >> $GITHUB_OUTPUT
 
   lint:
     name: Static code analysis
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-#        app: ${{fromJson(needs.determine_testable.outputs.testable).replaceAll('/', '-')}}
+        # app: ${{fromJson(needs.determine_testable.outputs.testable).replaceAll('/', '-')}}
         app: [auth]
     steps:
       - uses: actions/checkout@v4
