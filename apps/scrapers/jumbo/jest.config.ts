@@ -3,7 +3,7 @@ export default {
   displayName: "scrapers-jumbo",
   globals: {},
   moduleFileExtensions: ["ts", "js", "html"],
-  preset: "../../../jest.preset.js",
+  preset: "../../../jest.preset.cjs",
   testEnvironment: "node",
   transform: {
     "^.+\\.[tj]s$": [

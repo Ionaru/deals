@@ -1,5 +1,4 @@
 import { inject, Injectable, isDevMode } from "@angular/core";
-import { client } from "@passwordless-id/webauthn";
 import { Apollo } from "apollo-angular";
 import { BehaviorSubject, firstValueFrom, map, tap } from "rxjs";
 
@@ -22,6 +21,7 @@ export class AuthService {
   readonly isLoggedIn$ = this.user$.pipe(map(Boolean));
 
   async login() {
+    const { client } = await import("@passwordless-id/webauthn");
     const challenge = await firstValueFrom(this.#getChallenge());
     const authentication = await client.authenticate(
       [],
@@ -39,6 +39,7 @@ export class AuthService {
   }
 
   async register(username?: string) {
+    const { client } = await import("@passwordless-id/webauthn");
     const challenge = await firstValueFrom(this.#getChallenge());
     const nameToRegister = username || this.#getDefaultAccountName();
 

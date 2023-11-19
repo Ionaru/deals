@@ -65,6 +65,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-environment-node": "^29.7.0",
     "jest-preset-angular": "13.1.4",
+    "ng-mocks": "^14.12.0",
     "nx": "17.1.2",
     "prettier": "^3.1.0",
     "ts-essentials": "^9.4.1",

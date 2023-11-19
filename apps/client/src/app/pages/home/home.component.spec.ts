@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+
+import { TypedMockProvider } from "../../../testing/mocks";
+import { DealsService } from "../../services/deals.service";
 
 import { HomeComponent } from "./home.component";
 
@@ -8,7 +12,8 @@ describe("homeComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent],
+      imports: [RouterTestingModule],
+      providers: [TypedMockProvider(DealsService, { getDeals: jest.fn() })],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);

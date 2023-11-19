@@ -3,7 +3,7 @@ export default {
   displayName: "api",
   globals: {},
   moduleFileExtensions: ["ts", "js", "html"],
-  preset: "../../jest.preset.js",
+  preset: "../../jest.preset.cjs",
   transform: {
     "^.+\\.[tj]s$": [
       "ts-jest",

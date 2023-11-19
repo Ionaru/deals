@@ -7,9 +7,7 @@ describe("notificationsComponent", () => {
   let fixture: ComponentFixture<NotificationsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [NotificationsComponent],
-    }).compileComponents();
+    await TestBed.configureTestingModule({}).compileComponents();
 
     fixture = TestBed.createComponent(NotificationsComponent);
     component = fixture.componentInstance;
