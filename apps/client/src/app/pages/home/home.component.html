@@ -1,23 +1,17 @@
 <div style="margin: 1em">
-  <h1>Home</h1>
+  <h1>Huidige deals</h1>
   <ng-container *ngIf="deals$ | async as response">
     <ng-container *ngIf="response.loading">
       <mat-spinner></mat-spinner>
     </ng-container>
 
     <ng-container *ngIf="response.data as data">
-      <mat-paginator
+      <deals-deals-paginator
         (page)="handlePageEvent($event)"
-        [length]="data.deals.meta.totalItems"
-        [pageSize]="data.deals.meta.itemsPerPage"
-        [disabled]="false"
-        [showFirstLastButtons]="true"
-        [pageSizeOptions]="[]"
-        [hidePageSize]="false"
-        [pageIndex]="data.deals.meta.currentPage - 1"
-        aria-label="Select page"
-      >
-      </mat-paginator>
+        [totalItems]="data.deals.meta.totalItems"
+        [itemsPerPage]="data.deals.meta.itemsPerPage"
+        [currentPage]="data.deals.meta.currentPage - 1"
+      />
       <div class="deals-container" *ngIf="data">
         <mat-card
           appearance="outlined"

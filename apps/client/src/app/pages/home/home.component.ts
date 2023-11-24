@@ -15,6 +15,7 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { BehaviorSubject, combineLatest, switchMap, tap } from "rxjs";
 
+import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component";
 import { DealsService } from "../../services/deals.service";
 
 @Component({
@@ -30,6 +31,7 @@ import { DealsService } from "../../services/deals.service";
     JsonPipe,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    DealsPaginatorComponent,
   ],
   selector: "deals-home",
   standalone: true,

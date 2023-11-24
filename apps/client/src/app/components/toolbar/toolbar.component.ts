@@ -35,6 +35,7 @@ export class ToolbarComponent {
   readonly #darkModeService = inject(DarkModeService);
 
   isLoggedIn$ = this.#authService.isLoggedIn$;
+  isAdmin$ = this.#authService.isAdmin$;
 
   get isDarkMode(): boolean {
     return this.#darkModeService.isDarkModeActive();
