@@ -69,6 +69,7 @@ jobs:
     needs: [audit, determine_testable]
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         app: ${{fromJson(needs.determine_testable.outputs.testable)}}
     steps:
@@ -79,9 +80,10 @@ jobs:
 
   build-image:
     name: Build image
-    needs: [lint, test, determine_buildable]
+    needs: [audit, determine_buildable]
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         app: ${{fromJson(needs.determine_buildable.outputs.buildable)}}
     steps:
@@ -143,7 +145,7 @@ jobs:
 
   push-image:
     name: Push image
-    needs: [e2e, get_sha, determine_buildable]
+    needs: [lint, test, e2e, get_sha, determine_buildable]
     runs-on: ubuntu-latest
     strategy:
       matrix:
