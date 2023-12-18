@@ -9,7 +9,7 @@ COPY tsconfig.base.json nx.json ./
 COPY apps/client ./apps/client
 COPY libs ./libs
 
-RUN npm run build client
+RUN npm run build client -- -- --localize
 
 
 FROM nginx:mainline-alpine as serve

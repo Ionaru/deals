@@ -13,6 +13,8 @@
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,
     "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,

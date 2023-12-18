@@ -19,9 +19,9 @@ import { DealsPaginatorI18nProvider } from "./deals-paginator-i18n.provider";
   templateUrl: "./deals-paginator.component.html",
 })
 export class DealsPaginatorComponent {
-  @Input() totalItems: number;
-  @Input() itemsPerPage: number;
-  @Input() currentPage: number;
+  @Input({ required: true }) totalItems!: number;
+  @Input({ required: true }) itemsPerPage!: number;
+  @Input({ required: true }) currentPage!: number;
   @Output() page = new EventEmitter<PageEvent>();
 
   handlePageEvent($event: PageEvent) {

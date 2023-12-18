@@ -1,5 +1,5 @@
 <div style="margin: 1em">
-  <h1>Huidige deals</h1>
+  <h1>{{ messages.header }}</h1>
   <ng-container *ngIf="deals$ | async as response">
     <ng-container *ngIf="response.loading">
       <mat-spinner></mat-spinner>
@@ -8,7 +8,7 @@
     <ng-container *ngIf="response.data as data">
       <deals-deals-paginator
         (page)="handlePageEvent($event)"
-        [totalItems]="data.deals.meta.totalItems"
+        [totalItems]="data.deals.meta.totalItems || 0"
         [itemsPerPage]="data.deals.meta.itemsPerPage"
         [currentPage]="data.deals.meta.currentPage - 1"
       />
@@ -52,7 +52,7 @@
       </div>
     </ng-container>
     <ng-container *ngIf="response.errors as error">
-      <p>Could not get deals: {{ error[0].message }}</p>
+      <p>Could not get deals: {{ error.at(0)?.message }}</p>
     </ng-container>
   </ng-container>
 </div>

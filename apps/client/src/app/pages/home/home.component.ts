@@ -39,6 +39,10 @@ import { DealsService } from "../../services/deals.service";
   templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  readonly messages = {
+    header: $localize`Huidige deals`,
+  };
+
   readonly #snackBar = inject(MatSnackBar);
   readonly #dealsService = inject(DealsService);
   readonly #router = inject(Router);
@@ -61,7 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     tap((data) => {
       if (data.errors?.length) {
         const snackBar = this.#snackBar.open(
-          "Error: " + data.errors.at(0).message,
+          "Error: " + data.errors.at(0)?.message || "Unknown error",
           "Opnieuw proberen",
         );
         snackBar.onAction().subscribe(() => {

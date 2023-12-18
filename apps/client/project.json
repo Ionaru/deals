@@ -4,6 +4,15 @@
   "projectType": "application",
   "sourceRoot": "apps/client/src",
   "prefix": "deals",
+
+  "i18n": {
+    "sourceLocale": "en-US",
+    "locales": {
+      "en-GB": "apps/client/src/i18n/en-GB.xlf",
+      "nl": "apps/client/src/i18n/nl.xlf"
+    }
+  },
+
   "targets": {
     "generate-gql-types": {
       "command": "npm run generate-gql-types"
@@ -20,9 +29,17 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
         "styles": ["apps/client/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "i18nMissingTranslation": "warning",
+        "localize": ["en-US"]
       },
       "configurations": {
+        "en-GB": {
+          "localize": ["en-GB"]
+        },
+        "nl": {
+          "localize": ["nl"]
+        },
         "production": {
           "fileReplacements": [
             {
@@ -72,6 +89,14 @@
         "development": {
           "proxyConfig": "apps/client/src/proxy.conf.json",
           "buildTarget": "client:build:development"
+        },
+        "en-GB": {
+          "proxyConfig": "apps/client/src/proxy.conf.json",
+          "buildTarget": "<client:build:development,en-GB"
+        },
+        "nl": {
+          "proxyConfig": "apps/client/src/proxy.conf.json",
+          "buildTarget": "client:build:development,nl"
         }
       },
       "defaultConfiguration": "development"
@@ -79,7 +104,8 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "client:build"
+        "buildTarget": "client:build",
+        "outputPath": "apps/client/src/i18n"
       }
     },
     "lint": {

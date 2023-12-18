@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="8642445555713453888" datatype="html">
+        <source>First page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4743002849260529978" datatype="html">
+        <source>Items per page:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6784758141439994527" datatype="html">
+        <source>Last page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3337301694210287595" datatype="html">
+        <source>Next page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3629960544875360046" datatype="html">
+        <source>Previous page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="125401261339317585" datatype="html">
+        <source>Page 1 of 1</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6221116945238325541" datatype="html">
+        <source>Page <x id="PH" equiv-text="page + 1"/> of <x id="PH_1" equiv-text="amountPages"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2464568617042101525" datatype="html">
+        <source>Huidige deals</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/pages/home/home.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

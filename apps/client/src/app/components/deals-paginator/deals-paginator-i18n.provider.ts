@@ -8,20 +8,20 @@ export class DealsPaginatorI18nProvider implements MatPaginatorIntl {
 
   // For internationalization, the `$localize` function from
   // the `@angular/localize` package can be used.
-  firstPageLabel = `First page`;
-  itemsPerPageLabel = `Items per pagina:`;
-  lastPageLabel = `Last page`;
+  firstPageLabel = $localize`First page`;
+  itemsPerPageLabel = $localize`Items per page:`;
+  lastPageLabel = $localize`Last page`;
 
   // You can set labels to an arbitrary string too, or dynamically compute
   // it through other third-party internationalization libraries.
-  nextPageLabel = "Next page";
-  previousPageLabel = "Previous page";
+  nextPageLabel = $localize`Next page`;
+  previousPageLabel = $localize`Previous page`;
 
   getRangeLabel(page: number, pageSize: number, totalItems: number): string {
     if (totalItems === 0) {
-      return `Page 1 of 1`;
+      return $localize`Page 1 of 1`;
     }
     const amountPages = Math.ceil(totalItems / pageSize);
-    return `Page ${page + 1} of ${amountPages}`;
+    return $localize`Page ${page + 1} of ${amountPages}`;
   }
 }

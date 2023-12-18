@@ -17,7 +17,7 @@ export class AuthService {
   );
 
   readonly user$ = this.#user$.asObservable();
-  readonly isAdmin$ = this.user$.pipe(map((user) => user.isAdmin));
+  readonly isAdmin$ = this.user$.pipe(map((user) => user?.isAdmin));
   readonly isLoggedIn$ = this.user$.pipe(map(Boolean));
 
   async login() {
@@ -48,8 +48,10 @@ export class AuthService {
     window.navigator.credentials.create = (
       options: CredentialCreationOptions,
     ) => {
-      options.publicKey.user.displayName = `${appName} Account`;
-      options.publicKey.rp.name = appName;
+      if (options.publicKey) {
+        options.publicKey.user.displayName = `${appName} Account`;
+        options.publicKey.rp.name = appName;
+      }
       return originalFunction.call(window.navigator.credentials, options);
     };
 

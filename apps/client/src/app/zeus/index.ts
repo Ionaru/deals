@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable */
 
 import { AllTypesProps, ReturnTypes, Ops } from './const';
