@@ -126,19 +126,23 @@ jobs:
       - run: npm ci
       - run: npx nx run client-e2e:e2e
       - uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: cypress-screenshots
           path: dist/cypress/apps/client-e2e/screenshots
           retention-days: 1
           if-no-files-found: ignore
       - uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: cypress-videos
           path: dist/cypress/apps/client-e2e/videos
           retention-days: 1
           if-no-files-found: ignore
       - run: docker compose logs --no-color >& logs.txt
+        if: always()
       - uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: e2e-docker-logs
           path: logs.txt
