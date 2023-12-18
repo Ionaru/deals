@@ -97,6 +97,7 @@ jobs:
           retention-days: 1
 
   e2e:
+    # Loads all docker images from the build-image job and runs e2e tests against a fully local stack.
     name: E2E tests
     needs: build-image
     runs-on: ubuntu-latest
