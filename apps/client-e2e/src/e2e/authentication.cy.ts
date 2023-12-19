@@ -37,7 +37,7 @@ describe("Authentication", () => {
     cy.get("body").should("contain", "Account created!");
     cy.get("body").should("contain", "Name: E2E Test User");
     cy.get("button").contains("Log in").should("be.visible").click();
-    cy.location("pathname").should("equal", "/");
+    cy.url().should('eq', Cypress.config().baseUrl + '/')
     cy.get(".signup-button").should("not.exist");
     cy.visit("/login");
     cy.get("button").contains("Logout").should("be.visible");

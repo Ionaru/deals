@@ -18,7 +18,7 @@ export const disconnectMongo = async () => {
 export default defineConfig({
   e2e: {
     ...nxE2EPreset(__dirname),
-    baseUrl: "http://localhost:4200",
+    baseUrl: "http://localhost:4200/nl",
     setupNodeEvents(on) {
       on("task", {
         async clearDB() {
