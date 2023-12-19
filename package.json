@@ -119,10 +119,5 @@
     "tslib": "^2.6.2",
     "typeorm": "^0.3.17",
     "zone.js": "0.14.2"
-  },
-  "overrides": {
-    "@nestjs/apollo": {
-      "@nestjs/common": "10"
-    }
   }
 }
