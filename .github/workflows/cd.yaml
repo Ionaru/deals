@@ -153,6 +153,7 @@ jobs:
     needs: [lint, test, e2e, get_sha, determine_buildable]
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1
       matrix:
         app: ${{fromJson(needs.determine_buildable.outputs.buildable)}}
     steps:
