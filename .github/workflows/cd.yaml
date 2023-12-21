@@ -170,7 +170,7 @@ jobs:
       - run: docker push -a docker.saturnserver.org/deals/${{matrix.app}}
 
   deploy:
-    needs: [push-image]
+    needs: [get_sha, push-image]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v4
