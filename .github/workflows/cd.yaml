@@ -167,3 +167,14 @@ jobs:
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: docker push -a docker.saturnserver.org/deals/${{matrix.app}}
+
+  deploy:
+    needs: [push-image]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Deploy
+        if: github.event_name == 'push'
+        run: npx -q @ionaru/teamcity-deploy teamcity.saturnserver.org Deals_Build ${{ secrets.TEAMCITY_TOKEN }} image_tag=${{needs.get_sha.outputs.sha_short}}
