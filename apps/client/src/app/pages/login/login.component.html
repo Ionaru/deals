@@ -33,6 +33,13 @@
     <button
       *ngIf="(isLoggedIn$ | async) === true"
       mat-button
+      (click)="addPasskey()"
+    >
+      Add Passkey
+    </button>
+    <button
+      *ngIf="(isLoggedIn$ | async) === true"
+      mat-button
       (click)="logout()"
     >
       Logout

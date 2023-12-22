@@ -38,7 +38,7 @@ export class AuthService {
     return authenticationResult.data.loginUser;
   }
 
-  async register(username?: string) {
+  async register(username?: string, existingUser = false) {
     const { client } = await import("@passwordless-id/webauthn");
     const challenge = await firstValueFrom(this.#getChallenge());
     const nameToRegister = username || this.#getDefaultAccountName();
@@ -69,11 +69,17 @@ export class AuthService {
 
     window.navigator.credentials.create = originalFunction;
 
-    const registerResult = await firstValueFrom(
-      this.#sendRegister(JSON.stringify(registration)),
-    );
-
-    return registerResult.data.registerUser ? nameToRegister : undefined;
+    if (existingUser) {
+      const addResult = await firstValueFrom(
+        this.#sendAddPasskey(JSON.stringify(registration)),
+      );
+      return addResult.data.addPasskey ? nameToRegister : undefined;
+    } else {
+      const registerResult = await firstValueFrom(
+        this.#sendRegister(JSON.stringify(registration)),
+      );
+      return registerResult.data.registerUser ? nameToRegister : undefined;
+    }
   }
 
   async logout() {
@@ -141,6 +147,20 @@ export class AuthService {
       fetchPolicy: "no-cache",
       query: typedGql("mutation")({
         registerUser: [
+          {
+            registration,
+          },
+          true,
+        ],
+      }),
+    });
+  }
+
+  #sendAddPasskey(registration: string) {
+    return this.#apollo.query({
+      fetchPolicy: "no-cache",
+      query: typedGql("mutation")({
+        addPasskey: [
           {
             registration,
           },

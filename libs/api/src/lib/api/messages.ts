@@ -31,6 +31,7 @@ export enum MSMessage {
   CHECK_CHALLENGE = "CHECK_CHALLENGE",
   LOGIN_USER = "LOGIN_USER",
   REGISTER_USER = "REGISTER_USER",
+  ADD_PASSKEY = "ADD_PASSKEY",
   GET_USER = "GET_USER",
   GET_USERS = "GET_USERS",
 }
@@ -97,6 +98,14 @@ export interface IMSMessage {
 
   [MSMessage.REGISTER_USER]: {
     payload: {
+      registration: string;
+    };
+    response: boolean;
+  };
+
+  [MSMessage.ADD_PASSKEY]: {
+    payload: {
+      user: string;
       registration: string;
     };
     response: boolean;

@@ -2,16 +2,15 @@ import { MSMessage, MSMPayload, MSMResponse } from "@deals/api";
 import { Controller, Inject } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 
-import { User } from '../../models/user.model';
+import { User } from "../../models/user.model";
 
 import { UserService } from "./user.service";
 
 const userToMessage = (user: User) => ({
-    id: user.id.toHexString(),
-    isAdmin: user.isAdmin,
-    username: user.username,
-  }
-);
+  id: user.id.toHexString(),
+  isAdmin: user.isAdmin ?? false,
+  username: user.username,
+});
 
 @Controller()
 export class UserController {

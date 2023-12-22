@@ -3,6 +3,9 @@
 export const AllTypesProps: Record<string,any> = {
 	DealSortChoices: "enum" as const,
 	Mutation:{
+		addPasskey:{
+
+		},
 		loginUser:{
 
 		},
@@ -44,6 +47,7 @@ export const ReturnTypes: Record<string,any> = {
 		meta:"PaginationMeta"
 	},
 	Mutation:{
+		addPasskey:"Boolean",
 		loginUser:"Boolean",
 		logoutUser:"Boolean",
 		registerUser:"Boolean",

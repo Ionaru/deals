@@ -54,11 +54,12 @@ export class LoginComponent {
     this.state = LoginState.REGISTER;
   }
 
-  async register() {
+  async register(existingUser = false) {
     this.state = LoginState.REGISTERING;
     try {
       const credential = await this.#authService.register(
         this.form.get("displayName")?.value,
+        existingUser,
       );
       if (credential) {
         this.createdName = credential;
@@ -93,6 +94,10 @@ export class LoginComponent {
   async logout() {
     await this.#authService.logout();
     this.state = LoginState.INITIAL;
+  }
+
+  addPasskey() {
+    return this.register(true);
   }
 
   back() {

@@ -21,4 +21,11 @@ export class AuthService {
       registration,
     });
   }
+
+  addPasskey(user: string, registration: string) {
+    return this.gateway.send(MSMessage.ADD_PASSKEY, {
+      registration,
+      user,
+    });
+  }
 }

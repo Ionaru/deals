@@ -22,6 +22,7 @@ enum DealSortChoices {
 }
 
 type Mutation {
+  addPasskey(registration: String!): Boolean!
   loginUser(authentication: String!): Boolean!
   logoutUser: Boolean!
   registerUser(registration: String!): Boolean!

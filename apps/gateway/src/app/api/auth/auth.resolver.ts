@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { SessionDTO } from "@deals/api";
+import { UseGuards } from "@nestjs/common";
 import {
   Args,
   ArgsType,
@@ -11,6 +12,8 @@ import {
 } from "@nestjs/graphql";
 import { Request } from "express";
 import { bindCallback, map, tap } from "rxjs";
+
+import { LoggedInGuard } from "../../guards/logged-in.guard";
 
 import { AuthService } from "./auth.service";
 
@@ -43,6 +46,22 @@ export class AuthResolver {
   @Mutation(() => Boolean)
   registerUser(@Args() queryArguments: RegisterArguments) {
     return this.authService.registerUser(queryArguments.registration);
+  }
+
+  @Mutation(() => Boolean)
+  @UseGuards(LoggedInGuard)
+  addPasskey(
+    @Args() queryArguments: RegisterArguments,
+    @Context() { req: { session } }: { req: Request },
+  ) {
+    if (!session.user) {
+      throw new Error("User not logged in");
+    }
+
+    return this.authService.addPasskey(
+      session.user,
+      queryArguments.registration,
+    );
   }
 
   @Mutation(() => Boolean)

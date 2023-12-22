@@ -35,6 +35,25 @@ export class AuthController {
     return true;
   }
 
+  @MessagePattern(MSMessage.ADD_PASSKEY)
+  async addPasskey(
+    payload: MSMPayload<MSMessage.ADD_PASSKEY>,
+  ): Promise<MSMResponse<MSMessage.ADD_PASSKEY>> {
+    const registration = JSON.parse(
+      payload.registration,
+    ) as RegistrationEncoded;
+
+    const registrationParsed = await verifyRegistration(registration, {
+      challenge: (challenge: string) =>
+        this.authService.checkChallenge(challenge),
+      origin: () => true,
+    });
+
+    await this.authService.addPasskey(payload.user, registrationParsed);
+
+    return true;
+  }
+
   @MessagePattern(MSMessage.LOGIN_USER)
   async loginUser(
     payload: MSMPayload<MSMessage.LOGIN_USER>,

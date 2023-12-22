@@ -7,6 +7,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "dev": "nx run-many --target=serve --parallel 99",
     "lint": "prettier --check . && nx run-many --target=lint --all",
     "format": "prettier --write . && nx run-many --skip-nx-cache --target=lint --all --fix",
     "determine-buildable": "nx show projects --with-target serve --json",
