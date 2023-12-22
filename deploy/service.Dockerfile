@@ -1,5 +1,7 @@
 FROM node:20-alpine as build
 
+LABEL org.opencontainers.image.source=https://github.com/ionaru/deals
+
 ARG SERVICE_NAME
 
 WORKDIR /app

@@ -1,6 +1,6 @@
 services:
   auth:
-    image: docker.saturnserver.org/deals/auth:${DEALS_BUILD_TAG:-latest}
+    image: ghcr.io/ionaru/deals/auth:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
@@ -16,7 +16,7 @@ services:
     restart: no
 
   gateway:
-    image: docker.saturnserver.org/deals/gateway:${DEALS_BUILD_TAG:-latest}
+    image: ghcr.io/ionaru/deals/gateway:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
@@ -38,7 +38,7 @@ services:
       test: 'wget --header="Accept: text/html" localhost:3333/graphql -q --spider'
 
   client:
-    image: docker.saturnserver.org/deals/client:${DEALS_BUILD_TAG:-latest}
+    image: ghcr.io/ionaru/deals/client:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/client.Dockerfile
@@ -50,7 +50,7 @@ services:
     restart: no
 
   scrapers-jumbo:
-    image: docker.saturnserver.org/deals/scrapers-jumbo:${DEALS_BUILD_TAG:-latest}
+    image: ghcr.io/ionaru/deals/scrapers-jumbo:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
@@ -64,7 +64,7 @@ services:
     restart: no
 
   scrapers-kruidvat:
-    image: docker.saturnserver.org/deals/scrapers-kruidvat:${DEALS_BUILD_TAG:-latest}
+    image: ghcr.io/ionaru/deals/scrapers-kruidvat:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
@@ -78,7 +78,7 @@ services:
     restart: no
 
   storage:
-    image: docker.saturnserver.org/deals/storage:${DEALS_BUILD_TAG:-latest}
+    image: ghcr.io/ionaru/deals/storage:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
