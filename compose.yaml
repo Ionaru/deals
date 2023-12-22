@@ -8,6 +8,7 @@ services:
         - SERVICE_NAME=auth
     environment:
       - AUTH_DB_URL
+      - AUTH_DB_NAME
       - NATS_HOST=nats
     depends_on:
       nats:
@@ -25,6 +26,7 @@ services:
       - "3333:3333"
     environment:
       - AUTH_DB_URL
+      - SESSION_DB_NAME
       - GATEWAY_SESSION_NAME
       - GATEWAY_SESSION_SECRET
       - NATS_HOST=nats

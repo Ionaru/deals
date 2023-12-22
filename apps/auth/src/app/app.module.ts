@@ -17,7 +17,7 @@ import { UserModule } from "./modules/user/user.module";
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        const database = "Deals-Auth";
+        const database = configService.getOrThrow("AUTH_DB_NAME");
         Logger.log(`Using database: ${database}`, AppModule.name);
         return {
           database,

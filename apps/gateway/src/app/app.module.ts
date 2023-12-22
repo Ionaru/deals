@@ -23,7 +23,7 @@ let sessionStore: mongo | undefined;
         config: ConfigService,
       ): Promise<NestSessionOptions> => {
         sessionStore = mongo.create({
-          dbName: "Deals-Session",
+          dbName: config.getOrThrow("SESSION_DB_NAME"),
           mongoUrl: config.getOrThrow("AUTH_DB_URL"),
         });
         return {
