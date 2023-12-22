@@ -23,8 +23,8 @@ export default defineConfig({
       on("task", {
         async clearDB() {
           const db = await connectMongo();
-          await db.db("Deals-Auth").dropDatabase();
-          await db.db("Deals-Session").dropDatabase();
+          await db.db("E2E-Deals-Auth").dropDatabase();
+          await db.db("E2E-Deals-Session").dropDatabase();
           return null;
         },
       });

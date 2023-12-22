@@ -123,8 +123,8 @@ jobs:
           GATEWAY_SESSION_SECRET: DontTellAnyoneThisSecret
           DEALS_CLIENT_PORT: 4200
           AUTH_DB_URL: "mongodb://e2e:DontTellAnyoneThisPassword@mongo"
-          AUTH_DB_NAME: Deals-Auth
-          SESSION_DB_NAME: Deals-Session
+          AUTH_DB_NAME: E2E-Deals-Auth
+          SESSION_DB_NAME: E2E-Deals-Session
       - run: npm ci
       - run: npx nx run client-e2e:e2e
       - uses: actions/upload-artifact@v3

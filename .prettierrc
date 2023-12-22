@@ -1,1 +1,9 @@
-{}
+{
+  "plugins": ["@prettier/plugin-xml"],
+  "overrides": [
+    {
+      "files": "*.xlf",
+      "options": { "parser": "xml", "printWidth": 1000 }
+    }
+  ]
+}

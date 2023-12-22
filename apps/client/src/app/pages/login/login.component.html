@@ -8,7 +8,9 @@
   <mat-card-title *ngIf="state === states.LOGIN_ERROR" i18n>
     Something went wrong...
   </mat-card-title>
-  <mat-card-title *ngIf="state === states.REGISTER" i18n>Register</mat-card-title>
+  <mat-card-title *ngIf="state === states.REGISTER" i18n>
+    Register
+  </mat-card-title>
   <mat-card-title *ngIf="state === states.REGISTERING" i18n>
     Creating new account
   </mat-card-title>
@@ -72,7 +74,7 @@
   <ng-container *ngIf="state === states.REGISTER">
     <form [formGroup]="form" (ngSubmit)="register()">
       <mat-card-content class="login-state">
-        <span  i18n>
+        <span i18n>
           Optionally choose a name to more easily identify this account.
         </span>
         <mat-form-field>

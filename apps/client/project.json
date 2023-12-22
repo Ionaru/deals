@@ -100,10 +100,15 @@
       "defaultConfiguration": "nl"
     },
     "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "ng-extract-i18n-merge:ng-extract-i18n-merge",
       "options": {
-        "buildTarget": "client:build",
-        "outputPath": "apps/client/src/i18n"
+        "browserTarget": "client:build",
+        "format": "xlf",
+        "includeContext": "sourceFileOnly",
+        "outputPath": "apps/client/src/i18n",
+        "sort": "idAsc",
+        "targetFiles": ["en-GB.xlf", "nl.xlf"],
+        "trim": true
       }
     },
     "lint": {

@@ -2,197 +2,97 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="8642445555713453888" datatype="html">
-        <source>First page</source>
-        <target>Eerste pagina</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4743002849260529978" datatype="html">
-        <source>Items per page:</source>
-        <target>Items per pagina:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6784758141439994527" datatype="html">
-        <source>Last page</source>
-        <target>Laatste pagina</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3337301694210287595" datatype="html">
-        <source>Next page</source>
-        <target>Volgende pagina</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3629960544875360046" datatype="html">
-        <source>Previous page</source>
-        <target>Vorige pagina</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
+      <trans-unit id="1235599902347188344" datatype="html">
+        <source>Logging in...</source>
+        <target state="new">Inloggen...</target>
       </trans-unit>
       <trans-unit id="125401261339317585" datatype="html">
         <source>Page 1 of 1</source>
         <target>Pagina 1 van 1</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6221116945238325541" datatype="html">
-        <source>Page <x id="PH" equiv-text="page + 1"/> of <x id="PH_1" equiv-text="amountPages"/></source>
-        <target>Pagina <x id="PH" equiv-text="page + 1"/> van <x id="PH_1" equiv-text="amountPages"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3504688087357758415" datatype="html">
-        <source>Current deals</source>
-        <target>Huidige deals</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/home/home.component.ts</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6659583824626034043" datatype="html">
-        <source> Authenticate </source>
-        <target> Authenticeren </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">2,4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1235599902347188344" datatype="html">
-        <source> Logging in... </source>
-        <target> Inloggen... </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">5,7</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6407990436692402601" datatype="html">
-        <source> Something went wrong... </source>
-        <target> Er ging iets mis... </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">8,10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3301086086650990787" datatype="html">
-        <source>Register</source>
-        <target>Registreren</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">89</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2373466049183713702" datatype="html">
-        <source> Creating new account </source>
-        <target> Nieuw account aanmaken </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">12,14</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1842570175159292022" datatype="html">
-        <source> Account created! </source>
-        <target> Account aangemaakt! </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">15,17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7446220802750014386" datatype="html">
-        <source> I already have an account </source>
-        <target> Ik heb al een account </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">24,26</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6158566989947647798" datatype="html">
-        <source> I want to create a new account </source>
-        <target> Ik wil een nieuw account aanmaken </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">32,34</context>
-        </context-group>
+        <source>Account created!</source>
+        <target state="new">Account aangemaakt!</target>
       </trans-unit>
       <trans-unit id="2204195230451894729" datatype="html">
-        <source> Add Passkey </source>
-        <target> Passkey toevoegen </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">40,42</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7504940227782988572" datatype="html">
-        <source> Logout </source>
-        <target> Uitloggen </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">48,50</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8890553633144307762" datatype="html">
-        <source>Back</source>
-        <target>Terug</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">55</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">60</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">69</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">88</context>
-        </context-group>
+        <source>Add Passkey</source>
+        <target state="new">Passkey toevoegen</target>
       </trans-unit>
       <trans-unit id="2336550011721758066" datatype="html">
         <source>Log in</source>
         <target>Inloggen</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">65</context>
-        </context-group>
+      </trans-unit>
+      <trans-unit id="2373466049183713702" datatype="html">
+        <source>Creating new account</source>
+        <target state="new">Nieuw account aanmaken</target>
+      </trans-unit>
+      <trans-unit id="2907733796351584017" datatype="html">
+        <source>Register</source>
+        <target state="new">Registreren</target>
+      </trans-unit>
+      <trans-unit id="3301086086650990787" datatype="html">
+        <source>Register</source>
+        <target>Registreren</target>
+      </trans-unit>
+      <trans-unit id="3337301694210287595" datatype="html">
+        <source>Next page</source>
+        <target>Volgende pagina</target>
+      </trans-unit>
+      <trans-unit id="3504688087357758415" datatype="html">
+        <source>Current deals</source>
+        <target>Huidige deals</target>
+      </trans-unit>
+      <trans-unit id="3629960544875360046" datatype="html">
+        <source>Previous page</source>
+        <target>Vorige pagina</target>
+      </trans-unit>
+      <trans-unit id="4743002849260529978" datatype="html">
+        <source>Items per page:</source>
+        <target>Items per pagina:</target>
+      </trans-unit>
+      <trans-unit id="6158566989947647798" datatype="html">
+        <source>I want to create a new account</source>
+        <target state="new">Ik wil een nieuw account aanmaken</target>
+      </trans-unit>
+      <trans-unit id="6221116945238325541" datatype="html">
+        <source>Page <x id="PH" equiv-text="page + 1" /> of <x id="PH_1" equiv-text="amountPages" /></source>
+        <target>Pagina <x id="PH" equiv-text="page + 1" /> van <x id="PH_1" equiv-text="amountPages" /></target>
       </trans-unit>
       <trans-unit id="6348342432099037016" datatype="html">
-        <source> Optionally choose a name to more easily identify this account. </source>
-        <target> Kies optioneel een naam om dit account makkelijker te kunnen identificeren. </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">75,77</context>
-        </context-group>
+        <source>Optionally choose a name to more easily identify this account.</source>
+        <target state="new">Kies optioneel een naam om dit account makkelijker te kunnen identificeren.</target>
+      </trans-unit>
+      <trans-unit id="6407990436692402601" datatype="html">
+        <source>Something went wrong...</source>
+        <target state="new">Er ging iets mis...</target>
+      </trans-unit>
+      <trans-unit id="6659583824626034043" datatype="html">
+        <source>Authenticate</source>
+        <target state="new">Authenticeren</target>
+      </trans-unit>
+      <trans-unit id="6784758141439994527" datatype="html">
+        <source>Last page</source>
+        <target>Laatste pagina</target>
+      </trans-unit>
+      <trans-unit id="7446220802750014386" datatype="html">
+        <source>I already have an account</source>
+        <target state="new">Ik heb al een account</target>
+      </trans-unit>
+      <trans-unit id="7504940227782988572" datatype="html">
+        <source>Logout</source>
+        <target state="new">Uitloggen</target>
       </trans-unit>
       <trans-unit id="8387924884032192245" datatype="html">
         <source>Optional name</source>
         <target>Optionele naam</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">79</context>
-        </context-group>
+      </trans-unit>
+      <trans-unit id="8642445555713453888" datatype="html">
+        <source>First page</source>
+        <target>Eerste pagina</target>
+      </trans-unit>
+      <trans-unit id="8890553633144307762" datatype="html">
+        <source>Back</source>
+        <target>Terug</target>
       </trans-unit>
     </body>
   </file>

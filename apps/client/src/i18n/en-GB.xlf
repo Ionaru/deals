@@ -2,61 +2,90 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="8642445555713453888" datatype="html">
-        <source>First page</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4743002849260529978" datatype="html">
-        <source>Items per page:</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6784758141439994527" datatype="html">
-        <source>Last page</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3337301694210287595" datatype="html">
-        <source>Next page</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3629960544875360046" datatype="html">
-        <source>Previous page</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
+      <trans-unit id="1235599902347188344" datatype="html">
+        <source>Logging in...</source>
+        <target state="new">Logging in...</target>
       </trans-unit>
       <trans-unit id="125401261339317585" datatype="html">
         <source>Page 1 of 1</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
+      </trans-unit>
+      <trans-unit id="1842570175159292022" datatype="html">
+        <source>Account created!</source>
+        <target state="new">Account created!</target>
+      </trans-unit>
+      <trans-unit id="2204195230451894729" datatype="html">
+        <source>Add Passkey</source>
+        <target state="new">Add Passkey</target>
+      </trans-unit>
+      <trans-unit id="2336550011721758066" datatype="html">
+        <source>Log in</source>
+        <target state="new">Log in</target>
+      </trans-unit>
+      <trans-unit id="2373466049183713702" datatype="html">
+        <source>Creating new account</source>
+        <target state="new">Creating new account</target>
+      </trans-unit>
+      <trans-unit id="2907733796351584017" datatype="html">
+        <source>Register</source>
+        <target state="new">Register</target>
+      </trans-unit>
+      <trans-unit id="3301086086650990787" datatype="html">
+        <source>Register</source>
+        <target state="new">Register</target>
+      </trans-unit>
+      <trans-unit id="3337301694210287595" datatype="html">
+        <source>Next page</source>
+      </trans-unit>
+      <trans-unit id="3504688087357758415" datatype="html">
+        <source>Current deals</source>
+        <target state="new">Current deals</target>
+      </trans-unit>
+      <trans-unit id="3629960544875360046" datatype="html">
+        <source>Previous page</source>
+      </trans-unit>
+      <trans-unit id="4743002849260529978" datatype="html">
+        <source>Items per page:</source>
+      </trans-unit>
+      <trans-unit id="6158566989947647798" datatype="html">
+        <source>I want to create a new account</source>
+        <target state="new">I want to create a new account</target>
       </trans-unit>
       <trans-unit id="6221116945238325541" datatype="html">
-        <source>Page <x id="PH" equiv-text="page + 1"/> of <x id="PH_1" equiv-text="amountPages"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/components/deals-paginator/deals-paginator-i18n.provider.ts</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
+        <source>Page <x id="PH" equiv-text="page + 1" /> of <x id="PH_1" equiv-text="amountPages" /></source>
       </trans-unit>
-      <trans-unit id="2464568617042101525" datatype="html">
-        <source>Huidige deals</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">apps/client/src/app/pages/home/home.component.ts</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
+      <trans-unit id="6348342432099037016" datatype="html">
+        <source>Optionally choose a name to more easily identify this account.</source>
+        <target state="new">Optionally choose a name to more easily identify this account.</target>
+      </trans-unit>
+      <trans-unit id="6407990436692402601" datatype="html">
+        <source>Something went wrong...</source>
+        <target state="new">Something went wrong...</target>
+      </trans-unit>
+      <trans-unit id="6659583824626034043" datatype="html">
+        <source>Authenticate</source>
+        <target state="new">Authenticate</target>
+      </trans-unit>
+      <trans-unit id="6784758141439994527" datatype="html">
+        <source>Last page</source>
+      </trans-unit>
+      <trans-unit id="7446220802750014386" datatype="html">
+        <source>I already have an account</source>
+        <target state="new">I already have an account</target>
+      </trans-unit>
+      <trans-unit id="7504940227782988572" datatype="html">
+        <source>Logout</source>
+        <target state="new">Logout</target>
+      </trans-unit>
+      <trans-unit id="8387924884032192245" datatype="html">
+        <source>Optional name</source>
+        <target state="new">Optional name</target>
+      </trans-unit>
+      <trans-unit id="8642445555713453888" datatype="html">
+        <source>First page</source>
+      </trans-unit>
+      <trans-unit id="8890553633144307762" datatype="html">
+        <source>Back</source>
+        <target state="new">Back</target>
       </trans-unit>
     </body>
   </file>
