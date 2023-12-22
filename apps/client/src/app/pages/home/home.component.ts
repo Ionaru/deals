@@ -40,7 +40,7 @@ import { DealsService } from "../../services/deals.service";
 })
 export class HomeComponent implements OnInit, OnDestroy {
   readonly messages = {
-    header: $localize`Huidige deals`,
+    header: $localize`Current deals`,
   };
 
   readonly #snackBar = inject(MatSnackBar);

@@ -97,7 +97,7 @@
           "buildTarget": "client:build:development,nl"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "nl"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
