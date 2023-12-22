@@ -15,12 +15,14 @@ describe("UserController", () => {
       createdAt: new Date().toISOString(),
       credentials: [],
       id: ObjectId.createFromHexString("000000000000000000000001"),
+      isAdmin: false,
       username: "Test User",
     },
     {
       createdAt: new Date().toISOString(),
       credentials: [],
       id: ObjectId.createFromHexString("000000000000000000000002"),
+      isAdmin: true,
       username: "Test User 2",
     },
   ];
@@ -58,8 +60,13 @@ describe("UserController", () => {
     expect(user).toBeNull();
   });
 
-  it("should return 'null' when the user could not be found2", async () => {
+  it("should return user 1", async () => {
     const user = await userService.getUser("000000000000000000000001");
     expect(user).toEqual(testingUsers[0]);
+  });
+
+  it("should return user 2", async () => {
+    const user = await userService.getUser("000000000000000000000002");
+    expect(user).toEqual(testingUsers[1]);
   });
 });

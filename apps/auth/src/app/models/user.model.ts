@@ -16,6 +16,9 @@ export class User {
   @Column({ type: "string" })
   username!: string;
 
+  @Column({ type: "boolean" })
+  isAdmin!: boolean;
+
   @Column(() => Credential, { array: true })
   credentials!: Credential[];
 

@@ -2,7 +2,16 @@ import { MSMessage, MSMPayload, MSMResponse } from "@deals/api";
 import { Controller, Inject } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 
+import { User } from '../../models/user.model';
+
 import { UserService } from "./user.service";
+
+const userToMessage = (user: User) => ({
+    id: user.id.toHexString(),
+    isAdmin: user.isAdmin,
+    username: user.username,
+  }
+);
 
 @Controller()
 export class UserController {
@@ -18,11 +27,7 @@ export class UserController {
       return null;
     }
 
-    return {
-      id: user.id.toHexString(),
-      isAdmin: false,
-      username: user.username,
-    };
+    return userToMessage(user);
   }
 
   @MessagePattern(MSMessage.GET_USERS)
@@ -31,10 +36,6 @@ export class UserController {
   ): Promise<MSMResponse<MSMessage.GET_USERS>> {
     const users = await this.userService.getUsers();
 
-    return users.map((user) => ({
-      id: user.id.toHexString(),
-      isAdmin: false,
-      username: user.username,
-    }));
+    return users.map((user) => userToMessage(user));
   }
 }

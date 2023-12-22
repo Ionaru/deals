@@ -15,6 +15,7 @@ describe("UserController", () => {
       createdAt: new Date().toISOString(),
       credentials: [],
       id: ObjectId.createFromHexString("372458fbcc2a4a0af93394ae"),
+      isAdmin: false,
       username: "Test User",
     },
   ];
