@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import {
   MatPaginatorIntl,
@@ -9,7 +8,7 @@ import {
 import { DealsPaginatorI18nProvider } from "./deals-paginator-i18n.provider";
 
 @Component({
-  imports: [CommonModule, MatPaginatorModule],
+  imports: [MatPaginatorModule],
   providers: [
     { provide: MatPaginatorIntl, useClass: DealsPaginatorI18nProvider },
   ],

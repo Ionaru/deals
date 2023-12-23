@@ -2,8 +2,6 @@ import {
   AsyncPipe,
   DatePipe,
   JsonPipe,
-  NgForOf,
-  NgIf,
   NgOptimizedImage,
 } from "@angular/common";
 import { Component, inject, OnDestroy } from "@angular/core";
@@ -21,9 +19,7 @@ import { HealthService } from "../../services/health.service";
     JsonPipe,
     AsyncPipe,
     MatCardModule,
-    NgForOf,
     NgOptimizedImage,
-    NgIf,
     DatePipe,
     TimePipe,
     MatProgressSpinnerModule,

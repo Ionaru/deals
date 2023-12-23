@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -22,13 +22,13 @@ enum LoginState {
 
 @Component({
   imports: [
-    CommonModule,
     MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    AsyncPipe,
   ],
   selector: "deals-login",
   standalone: true,

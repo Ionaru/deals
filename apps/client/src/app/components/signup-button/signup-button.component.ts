@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
@@ -8,7 +8,7 @@ import { combineLatest, filter, map } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
-  imports: [CommonModule, MatIconModule, MatButtonModule, RouterLink],
+  imports: [MatIconModule, MatButtonModule, RouterLink, AsyncPipe],
   selector: "deals-signup-button",
   standalone: true,
   styleUrls: ["./signup-button.component.scss"],
