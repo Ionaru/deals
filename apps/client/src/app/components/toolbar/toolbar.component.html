@@ -22,6 +22,7 @@
   <deals-toolbar-icon-button
     routerLink="/notifications"
     routerLinkActive="active"
+    i18n-matTooltip
     matTooltip="Go to notifications page"
   >
     <mat-icon
@@ -35,6 +36,7 @@
     </mat-icon>
   </deals-toolbar-icon-button>
   <deals-toolbar-icon-button
+    i18n-matTooltip
     matTooltip="Toggle dark mode"
     [icon]="isDarkMode ? 'dark_mode' : 'light_mode'"
     (click)="toggleDarkMode()"
@@ -42,6 +44,7 @@
   <deals-toolbar-language-switch />
   @if (isLoggedIn$ | async) {
     <deals-toolbar-icon-button
+      i18n-matTooltip
       matTooltip="Go to settings page"
       icon="settings"
       routerLink="/settings"
@@ -49,6 +52,7 @@
     />
   }
   <deals-toolbar-icon-button
+    i18n-matTooltip
     matTooltip="Go to account page"
     icon="person"
     routerLink="/login"
