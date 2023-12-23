@@ -31,7 +31,7 @@ import { ToolbarLinkComponent } from "../toolbar-link/toolbar-link.component";
   ],
   selector: "deals-toolbar",
   standalone: true,
-  styleUrls: ["./toolbar.component.scss"],
+  styleUrls: ["./toolbar.component.css"],
   templateUrl: "./toolbar.component.html",
 })
 export class ToolbarComponent {

@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
   imports: [],
   selector: "deals-settings",
   standalone: true,
-  styleUrls: ["./settings.component.scss"],
+  styleUrls: ["./settings.component.css"],
   templateUrl: "./settings.component.html",
 })
 export class SettingsComponent {}

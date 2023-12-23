@@ -13,7 +13,7 @@ services:
     depends_on:
       nats:
         condition: service_healthy
-    restart: no
+    restart: unless-stopped
 
   gateway:
     image: ghcr.io/ionaru/deals/gateway:${DEALS_BUILD_TAG:-latest}
@@ -33,7 +33,7 @@ services:
     depends_on:
       nats:
         condition: service_healthy
-    restart: no
+    restart: unless-stopped
     healthcheck:
       test: 'wget --header="Accept: text/html" localhost:3333/graphql -q --spider'
 
@@ -47,7 +47,7 @@ services:
     depends_on:
       gateway:
         condition: service_healthy
-    restart: no
+    restart: unless-stopped
 
   scrapers-jumbo:
     image: ghcr.io/ionaru/deals/scrapers-jumbo:${DEALS_BUILD_TAG:-latest}
@@ -61,7 +61,7 @@ services:
     depends_on:
       nats:
         condition: service_healthy
-    restart: no
+    restart: unless-stopped
 
   scrapers-kruidvat:
     image: ghcr.io/ionaru/deals/scrapers-kruidvat:${DEALS_BUILD_TAG:-latest}
@@ -75,7 +75,7 @@ services:
     depends_on:
       nats:
         condition: service_healthy
-    restart: no
+    restart: unless-stopped
 
   storage:
     image: ghcr.io/ionaru/deals/storage:${DEALS_BUILD_TAG:-latest}
@@ -99,7 +99,7 @@ services:
     depends_on:
       nats:
         condition: service_healthy
-    restart: no
+    restart: unless-stopped
 
   nats:
     image: nats:2-alpine

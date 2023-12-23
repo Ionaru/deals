@@ -29,7 +29,7 @@
       [matBadgeHidden]="!notifications.length"
       aria-hidden="false"
       [matBadge]="notifications.length"
-      [matBadgeSize]="'small'"
+      matBadgeSize="small"
       matBadgeColor="accent"
     >
       notifications
@@ -55,6 +55,13 @@
     i18n-matTooltip
     matTooltip="Go to account page"
     icon="person"
+    routerLink="/login"
+    routerLinkActive="active"
+  />
+  <deals-toolbar-icon-button
+    i18n-matTooltip
+    matTooltip="Open navigation menu"
+    icon="menu"
     routerLink="/login"
     routerLinkActive="active"
   />

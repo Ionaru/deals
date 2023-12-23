@@ -32,7 +32,7 @@ enum LoginState {
   ],
   selector: "deals-login",
   standalone: true,
-  styleUrls: ["./login.component.scss"],
+  styleUrls: ["./login.component.css"],
   templateUrl: "./login.component.html",
 })
 export class LoginComponent {

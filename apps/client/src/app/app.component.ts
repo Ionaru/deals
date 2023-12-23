@@ -11,7 +11,7 @@ import { AuthService } from "./services/auth.service";
   imports: [RouterOutlet, ToolbarComponent, SignupButtonComponent],
   selector: "deals-root",
   standalone: true,
-  styleUrls: ["./app.component.scss"],
+  styleUrls: ["./app.component.css"],
   templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {

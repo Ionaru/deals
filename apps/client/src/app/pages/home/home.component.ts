@@ -31,7 +31,7 @@ import { DealsService } from "../../services/deals.service";
   ],
   selector: "deals-home",
   standalone: true,
-  styleUrls: ["./home.component.scss"],
+  styleUrls: ["./home.component.css"],
   templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit, OnDestroy {

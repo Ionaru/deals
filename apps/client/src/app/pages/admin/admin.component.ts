@@ -26,7 +26,7 @@ import { HealthService } from "../../services/health.service";
   ],
   selector: "deals-admin",
   standalone: true,
-  styleUrls: ["./admin.component.scss"],
+  styleUrls: ["./admin.component.css"],
   templateUrl: "./admin.component.html",
 })
 export class AdminComponent implements OnDestroy {

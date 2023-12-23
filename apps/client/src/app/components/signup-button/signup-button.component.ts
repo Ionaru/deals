@@ -11,7 +11,7 @@ import { AuthService } from "../../services/auth.service";
   imports: [MatIconModule, MatButtonModule, RouterLink, AsyncPipe],
   selector: "deals-signup-button",
   standalone: true,
-  styleUrls: ["./signup-button.component.scss"],
+  styleUrls: ["./signup-button.component.css"],
   templateUrl: "./signup-button.component.html",
 })
 export class SignupButtonComponent {

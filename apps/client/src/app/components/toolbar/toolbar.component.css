@@ -5,6 +5,10 @@
     .toolbar-brand {
       font-size: 1.5rem;
       letter-spacing: 0;
+
+      @media only screen and (max-width: 500px) {
+        display: none;
+      }
     }
 
     .navbar-spacer {
@@ -15,9 +19,14 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+
+      @media only screen and (max-width: 900px) {
+        display: none;
+      }
     }
 
     deals-toolbar-link,
+    deals-toolbar-language-switch,
     deals-toolbar-icon-button {
       margin-inline: 0.25rem;
     }
