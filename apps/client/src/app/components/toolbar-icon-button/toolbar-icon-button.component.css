@@ -1,0 +1,13 @@
+:host {
+  &.active button {
+    background: rgba(0, 0, 0, 0.2);
+
+    mat-icon {
+      font-variation-settings:
+        "FILL" 1,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+  }
+}

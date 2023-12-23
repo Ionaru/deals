@@ -1,58 +1,58 @@
 <div style="margin: 1em">
   <h1>{{ messages.header }}</h1>
-  <ng-container *ngIf="deals$ | async as response">
-    <ng-container *ngIf="response.loading">
+  @if (deals$ | async; as response) {
+    @if (response.loading) {
       <mat-spinner></mat-spinner>
-    </ng-container>
-
-    <ng-container *ngIf="response.data as data">
+    }
+    @if (response.data; as data) {
       <deals-deals-paginator
         (page)="handlePageEvent($event)"
         [totalItems]="data.deals.meta.totalItems || 0"
         [itemsPerPage]="data.deals.meta.itemsPerPage"
         [currentPage]="data.deals.meta.currentPage - 1"
       />
-      <div class="deals-container" *ngIf="data">
-        <mat-card
-          appearance="outlined"
-          *ngFor="let deal of data.deals.items; trackBy: trackDealsBy"
-        >
-          <div mat-card-image class="card-image">
-            <img
-              [ngSrc]="deal.product.imageUrl"
-              [alt]="'Picture of ' + deal.product.name"
-              width="200"
-              height="200"
-            />
-          </div>
-          <mat-card-header>
-            <mat-card-title>{{ deal.product.name }}</mat-card-title>
-            <mat-card-subtitle>
-              € {{ deal.dealPrice | number: "1.2-2" }} per item, total €
-              {{ deal.dealPrice * deal.dealQuantity | number: "1.2-2" }}.
-            </mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <h5>
-              Save €
-              {{
-                deal.product.price * deal.dealQuantity -
-                  deal.dealPrice * deal.dealQuantity | number: "1.2-2"
-              }}
-              when you buy {{ deal.dealQuantity }}
-            </h5>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <a [href]="deal.product.productUrl" target="_blank">
-              <button mat-button>Order product</button>
-            </a>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="response.errors as error">
+      @if (data) {
+        <div class="deals-container">
+          @for (deal of data.deals.items; track deal.id) {
+            <mat-card appearance="outlined">
+              <div mat-card-image class="card-image">
+                <img
+                  [ngSrc]="deal.product.imageUrl"
+                  [alt]="'Picture of ' + deal.product.name"
+                  width="200"
+                  height="200"
+                />
+              </div>
+              <mat-card-header>
+                <mat-card-title>{{ deal.product.name }}</mat-card-title>
+                <mat-card-subtitle>
+                  € {{ deal.dealPrice | number: "1.2-2" }} per item, total €
+                  {{ deal.dealPrice * deal.dealQuantity | number: "1.2-2" }}.
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <h5>
+                  Save €
+                  {{
+                    deal.product.price * deal.dealQuantity -
+                      deal.dealPrice * deal.dealQuantity | number: "1.2-2"
+                  }}
+                  when you buy {{ deal.dealQuantity }}
+                </h5>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <a [href]="deal.product.productUrl" target="_blank">
+                  <button mat-button>Order product</button>
+                </a>
+              </mat-card-actions>
+            </mat-card>
+          }
+        </div>
+      }
+    }
+    @if (response.errors; as error) {
       <p>Could not get deals: {{ error.at(0)?.message }}</p>
-    </ng-container>
-  </ng-container>
+    }
+  }
 </div>

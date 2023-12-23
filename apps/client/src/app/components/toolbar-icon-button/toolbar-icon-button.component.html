@@ -1,0 +1,6 @@
+<button mat-icon-button>
+  <span #slot><ng-content /></span>
+  @if (icon && !slot.hasChildNodes()) {
+    <mat-icon>{{ icon }}</mat-icon>
+  }
+</button>

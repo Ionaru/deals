@@ -2,8 +2,6 @@ import {
   AsyncPipe,
   DecimalPipe,
   JsonPipe,
-  NgForOf,
-  NgIf,
   NgOptimizedImage,
 } from "@angular/common";
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
@@ -24,8 +22,6 @@ import { DealsService } from "../../services/deals.service";
     MatButtonModule,
     MatSnackBarModule,
     NgOptimizedImage,
-    NgIf,
-    NgForOf,
     AsyncPipe,
     DecimalPipe,
     JsonPipe,
@@ -77,10 +73,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.#snackBar.dismiss();
-  }
-
-  trackDealsBy(_index: number, deal: any) {
-    return deal.id;
   }
 
   handlePageEvent($event: PageEvent) {
