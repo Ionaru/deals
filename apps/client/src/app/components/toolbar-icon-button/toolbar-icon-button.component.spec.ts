@@ -8,7 +8,7 @@ describe("ToolbarIconButtonComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolbarIconButtonComponent],
+      imports: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarIconButtonComponent);

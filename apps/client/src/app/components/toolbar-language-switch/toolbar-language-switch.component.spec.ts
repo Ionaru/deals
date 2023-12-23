@@ -8,7 +8,7 @@ describe("ToolbarLanguageSwitchComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolbarLanguageSwitchComponent],
+      imports: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarLanguageSwitchComponent);

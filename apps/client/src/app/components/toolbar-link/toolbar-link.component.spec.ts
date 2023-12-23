@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ToolbarLinkComponent } from "./toolbar-link.component";
 
@@ -8,7 +9,7 @@ describe("ToolbarLinkComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolbarLinkComponent],
+      imports: [RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarLinkComponent);

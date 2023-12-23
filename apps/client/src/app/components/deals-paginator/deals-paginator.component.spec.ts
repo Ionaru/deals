@@ -8,7 +8,7 @@ describe("DealsPaginatorComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DealsPaginatorComponent],
+      imports: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DealsPaginatorComponent);
