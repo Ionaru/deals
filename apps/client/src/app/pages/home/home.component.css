@@ -1,6 +1,4 @@
 :host {
-  //padding: 1em;
-
   .deals-container {
     margin-block: 1em;
     display: grid;
@@ -9,14 +7,6 @@
     justify-items: stretch;
 
     mat-card {
-      //width: 45%;
-      //max-width: 400px;
-      //flex-grow: 1;
-      //width: 0;
-
-      //width: 100%;
-
-      //height: 500px;
       display: grid;
 
       grid-template-columns: auto auto;
@@ -27,25 +17,15 @@
         "buttons buttons";
       padding: 1em;
 
-      //width: min-content;
-
       --mdc-elevated-card-container-shape: 0.5rem;
       --mdc-outlined-card-outline-color: transparent;
 
       .card-image {
         grid-area: image;
-        //height: 100%;
-        //object-fit: contain;
-        //mix-blend-mode: multiply;
-        //filter: contrast(1);
 
         img {
           position: relative;
-          //height: 100%;
-          //height: 15rem;
           object-fit: contain;
-          //mix-blend-mode: multiply;
-          //filter: contrast(1);
         }
       }
 
