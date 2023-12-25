@@ -1,5 +1,4 @@
 import { Component, inject, OnInit, ViewChild } from "@angular/core";
-import { MatListModule } from "@angular/material/list";
 import { MatDrawer, MatSidenavModule } from "@angular/material/sidenav";
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
@@ -15,7 +14,6 @@ import { ToolbarComponent } from "../toolbar/toolbar.component";
     SignupButtonComponent,
     ToolbarComponent,
     RouterLink,
-    MatListModule,
     RouterLinkActive,
     SidenavContentComponent,
   ],

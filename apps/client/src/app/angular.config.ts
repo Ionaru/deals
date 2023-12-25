@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptors } from "@angular/common/http";
+import { provideHttpClient } from "@angular/common/http";
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
@@ -6,7 +6,6 @@ import { InMemoryCache } from "@apollo/client/core";
 import { APOLLO_FLAGS, APOLLO_OPTIONS, ApolloModule } from "apollo-angular";
 import { HttpLink } from "apollo-angular/http";
 
-import { environment } from "../environments/environment";
 import {
   LOCAL_STORAGE,
   SESSION_STORAGE,
@@ -14,14 +13,11 @@ import {
 } from "../tokens/injection-tokens";
 
 import appRouting from "./app.routing";
-import { mockDataInterceptor } from "./interceptors/mock-data.interceptor";
 
 export const angularConfiguration: ApplicationConfig = {
   providers: [
     provideRouter(appRouting),
-    provideHttpClient(
-      withInterceptors(environment.production ? [] : [mockDataInterceptor]),
-    ),
+    provideHttpClient(),
     provideAnimations(),
     importProvidersFrom(ApolloModule),
     {

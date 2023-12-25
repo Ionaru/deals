@@ -3,5 +3,7 @@
     <deals-toolbar [title]="title"></deals-toolbar>
   </header>
   <router-outlet></router-outlet>
-  <deals-signup-button></deals-signup-button>
+  @defer {
+    <deals-signup-button></deals-signup-button>
+  }
 </deals-sidenav-container>

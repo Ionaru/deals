@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
-import { MatSidenavModule } from "@angular/material/sidenav";
 import { RouterOutlet } from "@angular/router";
 
 import { appName } from "./app.config";
@@ -14,7 +13,6 @@ import { AuthService } from "./services/auth.service";
     RouterOutlet,
     ToolbarComponent,
     SignupButtonComponent,
-    MatSidenavModule,
     SidenavContainerComponent,
   ],
   selector: "deals-root",

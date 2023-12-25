@@ -3,7 +3,6 @@ import { Component, inject, Input } from "@angular/core";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { MatMenuModule } from "@angular/material/menu";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterLink, RouterLinkActive } from "@angular/router";
@@ -18,18 +17,17 @@ import { ToolbarSidenavButtonComponent } from "../toolbar-sidenav-button/toolbar
 
 @Component({
   imports: [
-    MatToolbarModule,
-    MatIconModule,
+    AsyncPipe,
+    MatBadgeModule,
     MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatTooltipModule,
     RouterLink,
     RouterLinkActive,
-    MatBadgeModule,
-    AsyncPipe,
     ToolbarIconButtonComponent,
-    ToolbarLinkComponent,
-    MatMenuModule,
     ToolbarLanguageSwitchComponent,
-    MatTooltipModule,
+    ToolbarLinkComponent,
     ToolbarSidenavButtonComponent,
   ],
   selector: "deals-toolbar",
