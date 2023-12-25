@@ -1,21 +1,14 @@
 <mat-toolbar>
-  <a
-    class="toolbar-brand"
-    mat-button
-    routerLink="/"
-    color="primary"
-    (mouseenter)="setHovering(true)"
-    (mouseleave)="setHovering(false)"
-  >
-    <mat-icon>hexagon</mat-icon>
-    {{ hovering ? alternateTitle : title }}
+  <a class="toolbar-brand" mat-button routerLink="/" color="primary">
+    <img id="app-icon" src="favicon.ico" alt="brand icon" />
+    <span id="app-title">
+      {{ title }}
+    </span>
   </a>
   <span class="navbar-spacer"></span>
   <nav class="navbar-links">
-    <deals-toolbar-link href="/" name="Home" />
-    <deals-toolbar-link href="/faq" name="FAQ" />
-    @if (isAdmin$ | async) {
-      <deals-toolbar-link href="/admin" name="Admin" />
+    @for (route of routes$$(); track $index) {
+      <deals-toolbar-link [href]="route.path" [name]="route.name" />
     }
   </nav>
   <span class="navbar-spacer"></span>
@@ -44,6 +37,7 @@
   <deals-toolbar-language-switch />
   @if (isLoggedIn$ | async) {
     <deals-toolbar-icon-button
+      id="settings-page-button"
       i18n-matTooltip
       matTooltip="Go to settings page"
       icon="settings"
@@ -52,17 +46,12 @@
     />
   }
   <deals-toolbar-icon-button
+    id="account-page-button"
     i18n-matTooltip
     matTooltip="Go to account page"
     icon="person"
     routerLink="/login"
     routerLinkActive="active"
   />
-  <deals-toolbar-icon-button
-    i18n-matTooltip
-    matTooltip="Open navigation menu"
-    icon="menu"
-    routerLink="/login"
-    routerLinkActive="active"
-  />
+  <deals-toolbar-sidenav-button />
 </mat-toolbar>

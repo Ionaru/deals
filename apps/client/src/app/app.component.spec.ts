@@ -1,10 +1,13 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatIconRegistry } from "@angular/material/icon";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { overrideComponents, TypedMockProvider } from "../testing/mocks";
 
 import { AppComponent } from "./app.component";
+import { SidenavContainerComponent } from "./components/sidenav-container/sidenav-container.component";
+import { SidenavContentComponent } from "./components/sidenav-content/sidenav-content.component";
 import { SignupButtonComponent } from "./components/signup-button/signup-button.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { AuthService } from "./services/auth.service";
@@ -18,7 +21,7 @@ describe("appComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, NoopAnimationsModule],
       providers: [
         TypedMockProvider(AuthService, { getUser: mockGetUser }),
         TypedMockProvider(MatIconRegistry, {
@@ -28,7 +31,15 @@ describe("appComponent", () => {
     })
       .overrideComponent(
         AppComponent,
-        overrideComponents(ToolbarComponent, SignupButtonComponent),
+        overrideComponents(
+          ToolbarComponent,
+          SignupButtonComponent,
+          SidenavContentComponent,
+        ),
+      )
+      .overrideComponent(
+        SidenavContainerComponent,
+        overrideComponents(SidenavContentComponent),
       )
       .compileComponents();
 

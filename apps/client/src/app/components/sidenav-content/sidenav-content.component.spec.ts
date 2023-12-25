@@ -1,36 +1,30 @@
 import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
-import { of } from "rxjs";
 
 import { TypedMockProvider } from "../../../testing/mocks";
-import { AuthService } from "../../services/auth.service";
-import { DarkModeService } from "../../services/dark-mode.service";
 import { NavigationService } from "../../services/navigation.service";
 
-import { ToolbarComponent } from "./toolbar.component";
+import { SidenavContentComponent } from "./sidenav-content.component";
 
-describe("toolbarComponent", () => {
-  let component: ToolbarComponent;
-  let fixture: ComponentFixture<ToolbarComponent>;
+describe("SidenavContentComponent", () => {
+  let component: SidenavContentComponent;
+  let fixture: ComponentFixture<SidenavContentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       providers: [
-        TypedMockProvider(AuthService, { isLoggedIn$: of(false) }),
-        TypedMockProvider(DarkModeService, { isDarkModeActive: () => false }),
         TypedMockProvider(NavigationService, { routes$$: signal([]) }),
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ToolbarComponent);
+    fixture = TestBed.createComponent(SidenavContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it("should create", () => {
-    expect.assertions(1);
     expect(component).toBeTruthy();
   });
 });

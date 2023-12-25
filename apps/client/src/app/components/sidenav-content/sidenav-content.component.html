@@ -1,0 +1,29 @@
+<mat-nav-list>
+  @for (route of routes$$(); track $index) {
+    <a
+      [routerLink]="route.path"
+      mat-list-item
+      (click)="close()"
+      routerLinkActive="mdc-list-item--activated"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span matListItemTitle>{{ route.name }}</span>
+    </a>
+  }
+  <a
+    routerLink="/settings"
+    mat-list-item
+    (click)="close()"
+    routerLinkActive="mdc-list-item--activated"
+  >
+    <span matListItemTitle>Settings</span>
+  </a>
+  <a
+    routerLink="/login"
+    mat-list-item
+    (click)="close()"
+    routerLinkActive="mdc-list-item--activated"
+  >
+    <span matListItemTitle>Account</span>
+  </a>
+</mat-nav-list>

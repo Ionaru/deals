@@ -1,0 +1,6 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer mode="over" position="end" [autoFocus]="false">
+    <deals-sidenav-content (navigated)="close()" />
+  </mat-drawer>
+  <ng-content />
+</mat-drawer-container>

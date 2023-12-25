@@ -1,36 +1,31 @@
 import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
-import { of } from "rxjs";
 
 import { TypedMockProvider } from "../../../testing/mocks";
-import { AuthService } from "../../services/auth.service";
-import { DarkModeService } from "../../services/dark-mode.service";
 import { NavigationService } from "../../services/navigation.service";
 
-import { ToolbarComponent } from "./toolbar.component";
+import { SidenavContainerComponent } from "./sidenav-container.component";
 
-describe("toolbarComponent", () => {
-  let component: ToolbarComponent;
-  let fixture: ComponentFixture<ToolbarComponent>;
+describe("SidenavContainerComponent", () => {
+  let component: SidenavContainerComponent;
+  let fixture: ComponentFixture<SidenavContainerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [NoopAnimationsModule, RouterTestingModule],
       providers: [
-        TypedMockProvider(AuthService, { isLoggedIn$: of(false) }),
-        TypedMockProvider(DarkModeService, { isDarkModeActive: () => false }),
         TypedMockProvider(NavigationService, { routes$$: signal([]) }),
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ToolbarComponent);
+    fixture = TestBed.createComponent(SidenavContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it("should create", () => {
-    expect.assertions(1);
     expect(component).toBeTruthy();
   });
 });

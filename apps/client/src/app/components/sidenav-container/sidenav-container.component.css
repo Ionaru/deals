@@ -1,0 +1,9 @@
+:host {
+  mat-drawer-container {
+    min-height: 100svh;
+
+    mat-drawer {
+      padding: 1em;
+    }
+  }
+}

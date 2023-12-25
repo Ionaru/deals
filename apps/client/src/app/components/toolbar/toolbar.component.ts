@@ -10,9 +10,11 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 
 import { AuthService } from "../../services/auth.service";
 import { DarkModeService } from "../../services/dark-mode.service";
+import { NavigationService } from "../../services/navigation.service";
 import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-button.component";
 import { ToolbarLanguageSwitchComponent } from "../toolbar-language-switch/toolbar-language-switch.component";
 import { ToolbarLinkComponent } from "../toolbar-link/toolbar-link.component";
+import { ToolbarSidenavButtonComponent } from "../toolbar-sidenav-button/toolbar-sidenav-button.component";
 
 @Component({
   imports: [
@@ -28,6 +30,7 @@ import { ToolbarLinkComponent } from "../toolbar-link/toolbar-link.component";
     MatMenuModule,
     ToolbarLanguageSwitchComponent,
     MatTooltipModule,
+    ToolbarSidenavButtonComponent,
   ],
   selector: "deals-toolbar",
   standalone: true,
@@ -36,15 +39,13 @@ import { ToolbarLinkComponent } from "../toolbar-link/toolbar-link.component";
 })
 export class ToolbarComponent {
   @Input({ required: true }) title!: string;
-  @Input({ required: true }) alternateTitle!: string;
-
-  hovering = false;
 
   readonly #authService = inject(AuthService);
   readonly #darkModeService = inject(DarkModeService);
+  readonly #navigationService = inject(NavigationService);
 
   isLoggedIn$ = this.#authService.isLoggedIn$;
-  isAdmin$ = this.#authService.isAdmin$;
+  routes$$ = this.#navigationService.routes$$;
 
   notifications = [];
 
@@ -54,9 +55,5 @@ export class ToolbarComponent {
 
   toggleDarkMode(): void {
     this.#darkModeService.toggleDarkMode();
-  }
-
-  setHovering(hovering: boolean) {
-    this.hovering = hovering;
   }
 }

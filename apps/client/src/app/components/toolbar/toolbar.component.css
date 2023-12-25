@@ -1,13 +1,27 @@
 :host(deals-toolbar) {
   mat-toolbar {
     background: transparent;
+    user-select: none;
 
     .toolbar-brand {
       font-size: 1.5rem;
       letter-spacing: 0;
 
+      #app-title {
+        @media only screen and (max-width: 500px) {
+          display: none;
+        }
+      }
+
       @media only screen and (max-width: 500px) {
-        display: none;
+        background-color: #85d8ff14;
+        @media (prefers-color-scheme: light) {
+          background-color: #1c8fdb14;
+        }
+      }
+
+      #app-icon {
+        max-height: 1em;
       }
     }
 
@@ -25,10 +39,36 @@
       }
     }
 
+    #settings-page-button,
+    #account-page-button {
+      display: block;
+
+      @media only screen and (max-width: 900px) {
+        display: none;
+      }
+    }
+
     deals-toolbar-link,
     deals-toolbar-language-switch,
+    deals-toolbar-sidenav-button,
     deals-toolbar-icon-button {
       margin-inline: 0.25rem;
+
+      &:first-child {
+        margin-inline-start: 0;
+      }
+
+      &:last-child {
+        margin-inline-end: 0;
+      }
+    }
+
+    deals-toolbar-sidenav-button {
+      display: none;
+
+      @media only screen and (max-width: 900px) {
+        display: block;
+      }
     }
   }
 }

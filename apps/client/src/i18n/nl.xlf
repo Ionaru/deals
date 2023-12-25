@@ -94,6 +94,10 @@
         <source>Go to notifications page</source>
         <target>Ga naar notificaties</target>
       </trans-unit>
+      <trans-unit id="7959813314561481156" datatype="html">
+        <source>Open the navigation menu</source>
+        <target>Open het navigatiemenu</target>
+      </trans-unit>
       <trans-unit id="8387924884032192245" datatype="html">
         <source>Optional name</source>
         <target>Optionele naam</target>

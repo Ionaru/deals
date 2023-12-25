@@ -1,14 +1,22 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
+import { MatSidenavModule } from "@angular/material/sidenav";
 import { RouterOutlet } from "@angular/router";
 
-import { appName, appNameAlternate } from "./app.config";
+import { appName } from "./app.config";
+import { SidenavContainerComponent } from "./components/sidenav-container/sidenav-container.component";
 import { SignupButtonComponent } from "./components/signup-button/signup-button.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { AuthService } from "./services/auth.service";
 
 @Component({
-  imports: [RouterOutlet, ToolbarComponent, SignupButtonComponent],
+  imports: [
+    RouterOutlet,
+    ToolbarComponent,
+    SignupButtonComponent,
+    MatSidenavModule,
+    SidenavContainerComponent,
+  ],
   selector: "deals-root",
   standalone: true,
   styleUrls: ["./app.component.css"],
@@ -16,7 +24,6 @@ import { AuthService } from "./services/auth.service";
 })
 export class AppComponent implements OnInit {
   title = appName;
-  alternateTitle = appNameAlternate;
 
   readonly #authService = inject(AuthService);
   readonly #iconRegistry = inject(MatIconRegistry);
