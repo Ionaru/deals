@@ -5,12 +5,15 @@ import { paginate } from "nestjs-typeorm-paginate";
 import { Repository } from "typeorm";
 
 import { Deal } from "../models/deal";
+import { UnknownDeal } from "../models/unknown-deal";
 
 @Injectable()
 export class DealsService {
   constructor(
     @InjectRepository(Deal)
     private readonly dealRepository: Repository<Deal>,
+    @InjectRepository(UnknownDeal)
+    private readonly unknownDealRepository: Repository<UnknownDeal>,
   ) {}
 
   getDeal(id: string) {
@@ -50,5 +53,16 @@ export class DealsService {
       limit: payload.limit,
       page: payload.page,
     });
+  }
+
+  getUnknownDeals() {
+    return this.unknownDealRepository.find({
+      relations: ["shop"],
+    });
+  }
+
+  async resolveUnknownDeal(id: string) {
+    await this.unknownDealRepository.delete(id);
+    return true;
   }
 }

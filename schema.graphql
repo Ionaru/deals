@@ -26,7 +26,7 @@ type Mutation {
   loginUser(authentication: String!): Boolean!
   logoutUser: Boolean!
   registerUser(registration: String!): Boolean!
-  resolveUnknownDeal: Boolean!
+  resolveUnknownDeal(id: ID!): Boolean!
   startScraper(name: String!): Boolean!
 }
 

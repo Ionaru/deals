@@ -42,7 +42,9 @@ export class DealsResolver {
 
   @Mutation(() => Boolean)
   @UseGuards(IsAdminGuard)
-  resolveUnknownDeal(id: string): Observable<boolean> {
+  resolveUnknownDeal(
+    @Args("id", { type: () => ID }) id: string,
+  ): Observable<boolean> {
     return this.dealsService.resolveUnknownDeal(id);
   }
 }

@@ -51,6 +51,18 @@ export class AppController {
     return this.dealsService.getDeal(payload.id);
   }
 
+  @MessagePattern(MSMessage.GET_UNKNOWN_DEALS)
+  handleGetUnknownDeals(): AMSMResponse<MSMessage.GET_UNKNOWN_DEALS> {
+    return this.dealsService.getUnknownDeals();
+  }
+
+  @MessagePattern(MSMessage.RESOLVE_UNKNOWN_DEAL)
+  handleResolveUnknownDeal(
+    payload: MSMPayload<MSMessage.RESOLVE_UNKNOWN_DEAL>,
+  ): AMSMResponse<MSMessage.RESOLVE_UNKNOWN_DEAL> {
+    return this.dealsService.resolveUnknownDeal(payload.id);
+  }
+
   @MessagePattern(MSMessage.REGISTER_SERVICE)
   handleRegisterService(
     payload: MSMPayload<MSMessage.REGISTER_SERVICE>,

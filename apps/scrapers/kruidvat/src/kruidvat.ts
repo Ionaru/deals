@@ -8,52 +8,77 @@ interface IDealInformation {
 }
 
 enum KruidvatDealType {
-  ONE_PLUS_ONE,
-  TWO_FOR_TWO,
-  TWO_FOR_THREE,
-  TWO_FOR_FOUR,
-  TWO_FOR_FIVE,
-  TWO_FOR_SIX,
-  TWO_FOR_SEVEN,
-  TWO_FOR_EIGHT,
-  TWO_FOR_NINE_NINETY_FIVE,
-  TWO_FOR_NINE,
-  TWO_FOR_TEN,
-  TWO_FOR_TEN_NINETY_FIVE,
-  TWO_FOR_ELEVEN,
-  TWO_FOR_TWELVE,
-  TWO_FOR_EIGHTEEN,
-  TWO_FOR_TWENTY,
-  // TWO_PLUS_ONE,
+  // X + Y
+  ONE_PLUS_ONE = 1,
+  TWO_PLUS_ONE,
   TWO_PLUS_TWO,
-  SECOND_FOR_ONE,
-  SECOND_HALF_PRICE,
-  THREE_FOR_THREE,
-  THREE_FOR_FIVE,
-  THREE_FOR_NINE,
-  THREE_FOR_TEN,
+
+  // 2 for €X
+  TWO_FOR_10,
+  TWO_FOR_10_95,
+  TWO_FOR_11,
+  TWO_FOR_12,
+  TWO_FOR_13,
+  TWO_FOR_18,
+  TWO_FOR_2,
+  TWO_FOR_20,
+  TWO_FOR_3,
+  TWO_FOR_4,
+  TWO_FOR_5,
+  TWO_FOR_6,
+  TWO_FOR_7,
+  TWO_FOR_8,
+  TWO_FOR_9,
+  TWO_FOR_9_95,
+  TWO_FOR_59_99,
+
+  // 3 for €X
+  THREE_FOR_10,
+  THREE_FOR_12,
+  THREE_FOR_13,
+  THREE_FOR_2,
+  THREE_FOR_3,
+  THREE_FOR_5,
+  THREE_FOR_6_50,
+  THREE_FOR_7,
+  THREE_FOR_8,
+  THREE_FOR_9,
+
+  // 4 for €X
+  FOUR_FOR_10,
+  FOUR_FOR_5,
+  FOUR_FOR_7,
+  FOUR_FOR_9,
+
+  // 5 for €X
+  FIVE_FOR_5,
+  FIVE_FOR_10,
+
+  // X% off
+  TEN_PERCENT_OFF,
   TWENTY_PERCENT_OFF,
   TWENTY_FIVE_PERCENT_OFF,
   FOURTY_PERCENT_OFF,
   FIFTY_PERCENT_OFF,
-  THREE_FOR_SEVEN,
-  EVERYTHING_FOR_ONE,
-  ALL_FOR_ONE_FIFTY_EACH,
-  ALL_FOR_SEVEN_NINETY_NINE_EACH,
-  ALL_FOR_SIX_EACH,
-  ALL_FOR_NINE_EACH,
-  THREE_FOR_TWO,
-  FOUR_FOR_FIVE,
-  FIVE_FOR_FIVE,
-  FIVE_FOR_TEN,
-  FOUR_FOR_SEVEN,
-  FOUR_FOR_TEN,
-  TWO_FOR_THIRTEEN,
-  THREE_FOR_EIGHT,
-  ALL_FOR_ONE_TWENTY_NINE_EACH,
-  // TWO_FOR_NINETEEN_NINETY_NINE,
-  // ALL_FOR_SIXTEEN_NINETY_NINE,
-  // EXTRA_FIFTY_PERCENT_OFF,
+
+  // All for €X each
+  ALL_FOR_1_29_EACH,
+  ALL_FOR_1_50_EACH,
+  ALL_FOR_1_EACH,
+  ALL_FOR_29_99_EACH,
+  ALL_FOR_2_99_EACH,
+  ALL_FOR_3_99_EACH,
+  ALL_FOR_5_EACH,
+  ALL_FOR_6_EACH,
+  ALL_FOR_7_99_EACH,
+  ALL_FOR_9_EACH,
+
+  // Second for ...
+  SECOND_FOR_ONE,
+  SECOND_HALF_PRICE,
+
+  // €X off
+  THREE_OFF,
 }
 
 const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
@@ -63,100 +88,120 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1003",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_TWO]: {
+    [KruidvatDealType.TWO_FOR_2]: {
       calculation: () => 1,
       code: "1007",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_THREE]: {
+    [KruidvatDealType.TWO_FOR_3]: {
       calculation: () => 3 / 2,
       code: "1010",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_FOUR]: {
+    [KruidvatDealType.TWO_FOR_4]: {
       calculation: () => 4 / 2,
       code: "1013",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_FIVE]: {
+    [KruidvatDealType.TWO_FOR_5]: {
       calculation: () => 5 / 2,
       code: "1014",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_SIX]: {
+    [KruidvatDealType.TWO_FOR_6]: {
       calculation: () => 6 / 2,
       code: "1016",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_SEVEN]: {
+    [KruidvatDealType.TWO_FOR_7]: {
       calculation: () => 7 / 2,
       code: "1018",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_EIGHT]: {
+    [KruidvatDealType.TWO_FOR_8]: {
       calculation: () => 8 / 2,
       code: "1020",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_NINE]: {
+    [KruidvatDealType.TWO_FOR_9]: {
       calculation: () => 9 / 2,
       code: "1022",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_TEN_NINETY_FIVE]: {
+    [KruidvatDealType.TWO_FOR_10_95]: {
       calculation: () => 10.95 / 2,
       code: "4623",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_THIRTEEN]: {
+    [KruidvatDealType.TWO_FOR_13]: {
       calculation: () => 13 / 2,
       code: "1237",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_EIGHTEEN]: {
+    [KruidvatDealType.TWO_FOR_18]: {
       calculation: () => 18 / 2,
       code: "1239",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_TWENTY]: {
+    [KruidvatDealType.TWO_FOR_20]: {
       calculation: () => 20 / 2,
       code: "1034",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.THREE_FOR_THREE]: {
+    [KruidvatDealType.TWO_FOR_59_99]: {
+      calculation: () => 59.99 / 2,
+      code: "1034",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.THREE_FOR_3]: {
       calculation: () => 1,
-      code: "1042",
+      code: "4603",
       purchaseAmount: 3,
     },
-    [KruidvatDealType.THREE_FOR_FIVE]: {
+    [KruidvatDealType.THREE_FOR_5]: {
       calculation: () => 5 / 3,
       code: "4160",
       purchaseAmount: 3,
     },
-    [KruidvatDealType.THREE_FOR_NINE]: {
+    [KruidvatDealType.THREE_FOR_6_50]: {
+      calculation: () => 6.5 / 3,
+      code: "4267",
+      purchaseAmount: 3,
+    },
+    [KruidvatDealType.THREE_FOR_9]: {
       calculation: () => 9 / 3,
       code: "1047",
       purchaseAmount: 3,
     },
-    [KruidvatDealType.THREE_FOR_TEN]: {
+    [KruidvatDealType.THREE_FOR_10]: {
       calculation: () => 10 / 3,
       code: "1048",
       purchaseAmount: 3,
     },
-    [KruidvatDealType.TWO_FOR_TEN]: {
+    [KruidvatDealType.THREE_FOR_12]: {
+      calculation: () => 12 / 3,
+      code: "1226",
+      purchaseAmount: 3,
+    },
+    [KruidvatDealType.TWO_FOR_10]: {
       calculation: () => 10 / 2,
       code: "1025",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_TWELVE]: {
+    [KruidvatDealType.TWO_FOR_12]: {
       calculation: () => 12 / 2,
       code: "1028",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.TWO_FOR_ELEVEN]: {
+    [KruidvatDealType.TWO_FOR_11]: {
       calculation: () => 11 / 2,
       code: "1027",
       purchaseAmount: 2,
+    },
+    [KruidvatDealType.TWO_PLUS_ONE]: {
+      calculation: (price: number) => (price + price) / 3,
+      code: "1036",
+      purchaseAmount: 3,
     },
     [KruidvatDealType.TWO_PLUS_TWO]: {
       calculation: (price: number) => price / 2,
@@ -173,10 +218,15 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1039",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.FOUR_FOR_FIVE]: {
+    [KruidvatDealType.FOUR_FOR_5]: {
       calculation: () => 5 / 4,
       code: "1054",
       purchaseAmount: 4,
+    },
+    [KruidvatDealType.TEN_PERCENT_OFF]: {
+      calculation: (price: number) => price - price * 0.1,
+      code: "1058",
+      purchaseAmount: 1,
     },
     [KruidvatDealType.TWENTY_PERCENT_OFF]: {
       calculation: (price: number) => price - price * 0.2,
@@ -198,79 +248,114 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1068",
       purchaseAmount: 1,
     },
-    [KruidvatDealType.EVERYTHING_FOR_ONE]: {
+    [KruidvatDealType.ALL_FOR_1_EACH]: {
       calculation: () => 1,
       code: "1086",
       purchaseAmount: 1,
     },
-    [KruidvatDealType.THREE_FOR_TWO]: {
+    [KruidvatDealType.THREE_FOR_2]: {
       calculation: () => 2 / 3,
       code: "1167",
       purchaseAmount: 3,
     },
-    [KruidvatDealType.FIVE_FOR_FIVE]: {
+    [KruidvatDealType.FIVE_FOR_5]: {
       calculation: () => 1,
       code: "1176",
       purchaseAmount: 5,
     },
-    [KruidvatDealType.FIVE_FOR_TEN]: {
+    [KruidvatDealType.FIVE_FOR_10]: {
       calculation: () => 2,
       code: "1145",
       purchaseAmount: 5,
     },
-    [KruidvatDealType.FOUR_FOR_TEN]: {
+    [KruidvatDealType.FOUR_FOR_10]: {
       calculation: () => 10 / 4,
       code: "1183",
       purchaseAmount: 4,
     },
-    [KruidvatDealType.THREE_FOR_SEVEN]: {
+    [KruidvatDealType.THREE_FOR_7]: {
       calculation: () => 7 / 3,
       code: "1191",
       purchaseAmount: 3,
     },
-    [KruidvatDealType.FOUR_FOR_SEVEN]: {
+    [KruidvatDealType.THREE_FOR_13]: {
+      calculation: () => 13 / 3,
+      code: "4550",
+      purchaseAmount: 3,
+    },
+    [KruidvatDealType.FOUR_FOR_7]: {
       calculation: () => 7 / 4,
       code: "1382",
       purchaseAmount: 4,
     },
-    [KruidvatDealType.TWO_FOR_NINE_NINETY_FIVE]: {
+    [KruidvatDealType.FOUR_FOR_9]: {
+      calculation: () => 9 / 4,
+      code: "1402",
+      purchaseAmount: 4,
+    },
+    [KruidvatDealType.TWO_FOR_9_95]: {
       calculation: () => 9.95 / 2,
       code: "1024",
       purchaseAmount: 2,
     },
-    [KruidvatDealType.ALL_FOR_ONE_FIFTY_EACH]: {
+    [KruidvatDealType.ALL_FOR_1_50_EACH]: {
       calculation: () => 1.5,
       code: "1088",
       purchaseAmount: 1,
     },
-    [KruidvatDealType.ALL_FOR_SEVEN_NINETY_NINE_EACH]: {
+    [KruidvatDealType.ALL_FOR_2_99_EACH]: {
+      calculation: () => 2.99,
+      code: "1092",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_3_99_EACH]: {
+      calculation: () => 3.99,
+      code: "1412",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_7_99_EACH]: {
       calculation: () => 7.99,
       code: "1104",
       purchaseAmount: 1,
     },
-    [KruidvatDealType.ALL_FOR_SIX_EACH]: {
+    [KruidvatDealType.ALL_FOR_5_EACH]: {
+      calculation: () => 5,
+      code: "1097",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_6_EACH]: {
       calculation: () => 6,
       code: "1100",
       purchaseAmount: 1,
     },
-    [KruidvatDealType.ALL_FOR_NINE_EACH]: {
+    [KruidvatDealType.ALL_FOR_9_EACH]: {
       calculation: () => 9,
       code: "1107",
       purchaseAmount: 1,
     },
-    [KruidvatDealType.THREE_FOR_EIGHT]: {
+    [KruidvatDealType.THREE_FOR_8]: {
       calculation: () => 8 / 3,
       code: "1328",
       purchaseAmount: 3,
     },
-    [KruidvatDealType.ALL_FOR_ONE_TWENTY_NINE_EACH]: {
+    [KruidvatDealType.ALL_FOR_1_29_EACH]: {
       calculation: () => 1.29,
       code: "1411",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.ALL_FOR_29_99_EACH]: {
+      calculation: () => 29.99,
+      code: "1115",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.THREE_OFF]: {
+      calculation: (price: number) => price - 3,
+      code: "1040",
+      purchaseAmount: 1,
+    },
   });
 
-const ignoredDeals = new Set(["1404", "1142"]);
+const ignoredDeals = new Set(["1404", "1142", "1447", "4252"]);
 
 const parseProductPrice = (priceText: string | null = ""): number => {
   const priceParts = priceText?.split("\n").map((part) => part.trim()) || [];
@@ -358,12 +443,20 @@ export class Kruidvat extends ScrapeWebsiteService {
       const productUrl = `${this.baseUrl}${title.getAttribute("href")}`;
 
       const dealCode = this.#getDealCodeFromSrc(deal);
-      if (dealCode && ignoredDeals.has(dealCode as unknown as string)) {
-        continue;
-      } else if (!dealCode) {
+      if (!dealCode) {
+        const dealNumber = deal.split("/").at(-1)?.split(".").at(0);
+        if (dealNumber && ignoredDeals.has(dealNumber)) {
+          continue;
+        }
+
+        const contextCode = this.#decodeContext(deal);
+        if (contextCode && ignoredDeals.has(contextCode)) {
+          continue;
+        }
+
         this.reportUnknownDeal({
           productUrl,
-          promotionText: deal,
+          promotionText: deal.split("/").at(-1) || "Unknown Deal",
         });
         continue;
       }
@@ -415,14 +508,21 @@ export class Kruidvat extends ScrapeWebsiteService {
       return this.#getDealTypeFromCode(dealCode[1]);
     }
 
+    const contextCode = this.#decodeContext(source);
+    if (contextCode) {
+      return this.#getDealTypeFromCode(contextCode);
+    }
+  }
+
+  #decodeContext(source: string): string | void {
     const dealContext = source.match(/context=(.*)/);
     if (dealContext) {
-      const contextText = dealContext[1];
+      const contextText = dealContext.at(1);
       if (contextText) {
         const context = Buffer.from(contextText, "base64").toString("ascii");
         const contextCodeMatch = context.match(/\|(\d*)\|/);
-        if (contextCodeMatch && contextCodeMatch[1]) {
-          return this.#getDealTypeFromCode(contextCodeMatch[1]);
+        if (contextCodeMatch && contextCodeMatch.at(1)) {
+          return contextCodeMatch.at(1);
         }
       }
     }

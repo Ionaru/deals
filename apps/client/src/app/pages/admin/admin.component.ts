@@ -10,6 +10,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { share } from "rxjs";
 
+import { UnknownDealsComponent } from "../../components/unknown-deals/unknown-deals.component";
 import { TimePipe } from "../../pipes/time.pipe";
 import { HealthService } from "../../services/health.service";
 
@@ -23,6 +24,7 @@ import { HealthService } from "../../services/health.service";
     DatePipe,
     TimePipe,
     MatProgressSpinnerModule,
+    UnknownDealsComponent,
   ],
   selector: "deals-admin",
   standalone: true,

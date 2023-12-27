@@ -857,7 +857,7 @@ addPasskey?: [{	registration: string | Variable<any, string>},boolean | `@${stri
 loginUser?: [{	authentication: string | Variable<any, string>},boolean | `@${string}`],
 	logoutUser?:boolean | `@${string}`,
 registerUser?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
-	resolveUnknownDeal?:boolean | `@${string}`,
+resolveUnknownDeal?: [{	id: string | Variable<any, string>},boolean | `@${string}`],
 startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
@@ -948,7 +948,7 @@ addPasskey?: [{	registration: string},boolean | `@${string}`],
 loginUser?: [{	authentication: string},boolean | `@${string}`],
 	logoutUser?:boolean | `@${string}`,
 registerUser?: [{	registration: string},boolean | `@${string}`],
-	resolveUnknownDeal?:boolean | `@${string}`,
+resolveUnknownDeal?: [{	id: string},boolean | `@${string}`],
 startScraper?: [{	name: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;

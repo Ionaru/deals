@@ -12,6 +12,9 @@ export const AllTypesProps: Record<string,any> = {
 		registerUser:{
 
 		},
+		resolveUnknownDeal:{
+
+		},
 		startScraper:{
 
 		}
