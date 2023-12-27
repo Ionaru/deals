@@ -1,0 +1,41 @@
+:host {
+  mat-card {
+    display: grid;
+
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "image title"
+      "description description"
+      "buttons buttons";
+    padding: 1em;
+
+    --mdc-elevated-card-container-shape: 0.5rem;
+    --mdc-outlined-card-outline-color: transparent;
+
+    .card-image {
+      grid-area: image;
+
+      img {
+        position: relative;
+        object-fit: contain;
+      }
+    }
+
+    mat-card-header {
+      grid-area: title;
+    }
+
+    mat-card-content {
+      padding: 1em;
+      grid-area: description;
+    }
+
+    mat-card-actions {
+      grid-area: buttons;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+}

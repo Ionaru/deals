@@ -13,6 +13,7 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { BehaviorSubject, combineLatest, switchMap, tap } from "rxjs";
 
+import { DealCardComponent } from "../../components/deal-card/deal-card.component";
 import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component";
 import { DealsService } from "../../services/deals.service";
 
@@ -28,6 +29,7 @@ import { DealsService } from "../../services/deals.service";
     MatProgressSpinnerModule,
     MatPaginatorModule,
     DealsPaginatorComponent,
+    DealCardComponent,
   ],
   selector: "deals-home",
   standalone: true,

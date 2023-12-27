@@ -15,6 +15,7 @@ export class DealsService {
       query: typedGql("query")({
         deals: [
           {
+            limit: 24,
             page,
           },
           {

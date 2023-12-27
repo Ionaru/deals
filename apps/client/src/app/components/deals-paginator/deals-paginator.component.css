@@ -1,3 +1,11 @@
 :host {
   display: block;
+
+  mat-paginator {
+    border-radius: var(--mdc-outlined-card-container-shape);
+
+    .mat-mdc-paginator-container {
+      justify-content: center;
+    }
+  }
 }

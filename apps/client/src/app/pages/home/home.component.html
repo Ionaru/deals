@@ -14,39 +14,14 @@
       @if (data) {
         <div class="deals-container">
           @for (deal of data.deals.items; track deal.id) {
-            <mat-card appearance="outlined">
-              <div mat-card-image class="card-image">
-                <img
-                  [ngSrc]="deal.product.imageUrl"
-                  [alt]="'Picture of ' + deal.product.name"
-                  width="200"
-                  height="200"
-                />
-              </div>
-              <mat-card-header>
-                <mat-card-title>{{ deal.product.name }}</mat-card-title>
-                <mat-card-subtitle>
-                  € {{ deal.dealPrice | number: "1.2-2" }} per item, total €
-                  {{ deal.dealPrice * deal.dealQuantity | number: "1.2-2" }}.
-                </mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                <h5>
-                  Save €
-                  {{
-                    deal.product.price * deal.dealQuantity -
-                      deal.dealPrice * deal.dealQuantity | number: "1.2-2"
-                  }}
-                  when you buy {{ deal.dealQuantity }}
-                </h5>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <a [href]="deal.product.productUrl" target="_blank">
-                  <button mat-button>Order product</button>
-                </a>
-              </mat-card-actions>
-            </mat-card>
+            <deals-deal-card
+              [dealPrice]="deal.dealPrice"
+              [productPrice]="deal.product.price"
+              [productImageUrl]="deal.product.imageUrl"
+              [productName]="deal.product.name"
+              [productUrl]="deal.product.productUrl"
+              [dealQuantity]="deal.dealQuantity"
+            />
           }
         </div>
       }
