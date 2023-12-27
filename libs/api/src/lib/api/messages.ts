@@ -6,6 +6,7 @@ import { ScraperStatus } from "../common/scraper-status";
 import { ServiceType } from "../common/service-type";
 import { DealDTO, DealSortChoices } from "../entities/deal";
 import { ServiceDTO } from "../entities/service";
+import { UnknownDealDTO } from "../entities/unknown-deal";
 import { UserDTO } from "../entities/user";
 import { HealthResponse } from "../routes/get-health";
 
@@ -21,6 +22,8 @@ registerEnumType(Order, { name: "Order" });
 export enum MSMessage {
   GET_DEAL = "GET_DEAL",
   GET_DEALS = "GET_DEALS",
+  GET_UNKNOWN_DEALS = "GET_UNKNOWN_DEALS",
+  RESOLVE_UNKNOWN_DEAL = "RESOLVE_UNKNOWN_DEAL",
   REGISTER_SERVICE = "REGISTER_SERVICE",
   UNREGISTER_SERVICE = "UNREGISTER_SERVICE",
   GET_SERVICES = "GET_SERVICES",
@@ -59,6 +62,18 @@ export interface IMSMessage {
       page: number;
     };
     response: Pagination<DealDTO>;
+  };
+
+  [MSMessage.GET_UNKNOWN_DEALS]: {
+    payload: Record<string, never>;
+    response: UnknownDealDTO[];
+  };
+
+  [MSMessage.RESOLVE_UNKNOWN_DEAL]: {
+    payload: {
+      id: string;
+    };
+    response: boolean;
   };
 
   [MSMessage.REGISTER_SERVICE]: {

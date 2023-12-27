@@ -18,4 +18,12 @@ export class DealsService {
   getDeal(id: string) {
     return this.gateway.send(MSMessage.GET_DEAL, { id });
   }
+
+  getUnknownDeals() {
+    return this.gateway.send(MSMessage.GET_UNKNOWN_DEALS, {});
+  }
+
+  resolveUnknownDeal(id: string) {
+    return this.gateway.send(MSMessage.RESOLVE_UNKNOWN_DEAL, { id });
+  }
 }

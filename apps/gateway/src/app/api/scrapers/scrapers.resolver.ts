@@ -1,12 +1,12 @@
 import { UseGuards } from "@nestjs/common";
 import { Resolver, Args, Mutation } from "@nestjs/graphql";
 
-import { LoggedInGuard } from "../../guards/logged-in.guard";
+import { IsAdminGuard } from "../../guards/is-admin.guard";
 
 import { ScrapersService } from "./scrapers.service";
 
 @Resolver()
-@UseGuards(LoggedInGuard)
+@UseGuards(IsAdminGuard)
 export class ScrapersResolver {
   constructor(private readonly scrapersService: ScrapersService) {}
 

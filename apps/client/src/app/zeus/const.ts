@@ -51,6 +51,7 @@ export const ReturnTypes: Record<string,any> = {
 		loginUser:"Boolean",
 		logoutUser:"Boolean",
 		registerUser:"Boolean",
+		resolveUnknownDeal:"Boolean",
 		startScraper:"Boolean"
 	},
 	PaginationMeta:{
@@ -75,6 +76,7 @@ export const ReturnTypes: Record<string,any> = {
 		service:"ServiceHealthDTO",
 		services:"ServiceHealthDTO",
 		session:"SessionDTO",
+		unknownDeals:"UnknownDealDTO",
 		user:"UserDTO",
 		users:"UserDTO"
 	},
@@ -95,6 +97,12 @@ export const ReturnTypes: Record<string,any> = {
 	StatusDTO:{
 		status:"String",
 		uptime:"Float"
+	},
+	UnknownDealDTO:{
+		deal:"String",
+		id:"ID",
+		productUrl:"String",
+		shop:"ShopDTO"
 	},
 	UserDTO:{
 		id:"ID",

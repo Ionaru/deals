@@ -857,6 +857,7 @@ addPasskey?: [{	registration: string | Variable<any, string>},boolean | `@${stri
 loginUser?: [{	authentication: string | Variable<any, string>},boolean | `@${string}`],
 	logoutUser?:boolean | `@${string}`,
 registerUser?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
+	resolveUnknownDeal?:boolean | `@${string}`,
 startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
@@ -885,6 +886,7 @@ deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: Va
 service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
 	session?:ValueTypes["SessionDTO"],
+	unknownDeals?:ValueTypes["UnknownDealDTO"],
 user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["UserDTO"]],
 	users?:ValueTypes["UserDTO"],
 		__typename?: boolean | `@${string}`
@@ -910,6 +912,13 @@ user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["Us
 	["StatusDTO"]: AliasType<{
 	status?:boolean | `@${string}`,
 	uptime?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["UnknownDealDTO"]: AliasType<{
+	deal?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	productUrl?:boolean | `@${string}`,
+	shop?:ValueTypes["ShopDTO"],
 		__typename?: boolean | `@${string}`
 }>;
 	["UserDTO"]: AliasType<{
@@ -939,6 +948,7 @@ addPasskey?: [{	registration: string},boolean | `@${string}`],
 loginUser?: [{	authentication: string},boolean | `@${string}`],
 	logoutUser?:boolean | `@${string}`,
 registerUser?: [{	registration: string},boolean | `@${string}`],
+	resolveUnknownDeal?:boolean | `@${string}`,
 startScraper?: [{	name: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
@@ -967,6 +977,7 @@ deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"
 service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
 	session?:ResolverInputTypes["SessionDTO"],
+	unknownDeals?:ResolverInputTypes["UnknownDealDTO"],
 user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 	users?:ResolverInputTypes["UserDTO"],
 		__typename?: boolean | `@${string}`
@@ -992,6 +1003,13 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 	["StatusDTO"]: AliasType<{
 	status?:boolean | `@${string}`,
 	uptime?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["UnknownDealDTO"]: AliasType<{
+	deal?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	productUrl?:boolean | `@${string}`,
+	shop?:ResolverInputTypes["ShopDTO"],
 		__typename?: boolean | `@${string}`
 }>;
 	["UserDTO"]: AliasType<{
@@ -1024,6 +1042,7 @@ export type ModelTypes = {
 	loginUser: boolean,
 	logoutUser: boolean,
 	registerUser: boolean,
+	resolveUnknownDeal: boolean,
 	startScraper: boolean
 };
 	["Order"]:Order;
@@ -1049,6 +1068,7 @@ export type ModelTypes = {
 	service?: ModelTypes["ServiceHealthDTO"] | undefined,
 	services: Array<ModelTypes["ServiceHealthDTO"]>,
 	session: ModelTypes["SessionDTO"],
+	unknownDeals: Array<ModelTypes["UnknownDealDTO"]>,
 	user?: ModelTypes["UserDTO"] | undefined,
 	users: Array<ModelTypes["UserDTO"]>
 };
@@ -1070,6 +1090,12 @@ export type ModelTypes = {
 	["StatusDTO"]: {
 		status: string,
 	uptime?: number | undefined
+};
+	["UnknownDealDTO"]: {
+		deal: string,
+	id: string,
+	productUrl: string,
+	shop: ModelTypes["ShopDTO"]
 };
 	["UserDTO"]: {
 		id: string,
@@ -1105,6 +1131,7 @@ export type GraphQLTypes = {
 	loginUser: boolean,
 	logoutUser: boolean,
 	registerUser: boolean,
+	resolveUnknownDeal: boolean,
 	startScraper: boolean
 };
 	["Order"]: Order;
@@ -1133,6 +1160,7 @@ export type GraphQLTypes = {
 	service?: GraphQLTypes["ServiceHealthDTO"] | undefined,
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>,
 	session: GraphQLTypes["SessionDTO"],
+	unknownDeals: Array<GraphQLTypes["UnknownDealDTO"]>,
 	user?: GraphQLTypes["UserDTO"] | undefined,
 	users: Array<GraphQLTypes["UserDTO"]>
 };
@@ -1158,6 +1186,13 @@ export type GraphQLTypes = {
 	__typename: "StatusDTO",
 	status: string,
 	uptime?: number | undefined
+};
+	["UnknownDealDTO"]: {
+	__typename: "UnknownDealDTO",
+	deal: string,
+	id: string,
+	productUrl: string,
+	shop: GraphQLTypes["ShopDTO"]
 };
 	["UserDTO"]: {
 	__typename: "UserDTO",

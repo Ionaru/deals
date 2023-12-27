@@ -26,6 +26,7 @@ type Mutation {
   loginUser(authentication: String!): Boolean!
   logoutUser: Boolean!
   registerUser(registration: String!): Boolean!
+  resolveUnknownDeal: Boolean!
   startScraper(name: String!): Boolean!
 }
 
@@ -58,6 +59,7 @@ type Query {
   service(id: ID!): ServiceHealthDTO
   services: [ServiceHealthDTO!]!
   session: SessionDTO!
+  unknownDeals: [UnknownDealDTO!]!
   user(id: String): UserDTO
   users: [UserDTO!]!
 }
@@ -87,6 +89,13 @@ type ShopDTO {
 type StatusDTO {
   status: String!
   uptime: Float
+}
+
+type UnknownDealDTO {
+  deal: String!
+  id: ID!
+  productUrl: String!
+  shop: ShopDTO!
 }
 
 type UserDTO {
