@@ -2,8 +2,8 @@ import { provideHttpClient } from "@angular/common/http";
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
-import { InMemoryCache } from "@apollo/client/core";
-import { APOLLO_FLAGS, APOLLO_OPTIONS, ApolloModule } from "apollo-angular";
+import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
+import { APOLLO_FLAGS, APOLLO_OPTIONS, ApolloModule, Flags } from 'apollo-angular';
 import { HttpLink } from "apollo-angular/http";
 
 import {
@@ -22,16 +22,17 @@ export const angularConfiguration: ApplicationConfig = {
     importProvidersFrom(ApolloModule),
     {
       provide: APOLLO_FLAGS,
-      useValue: {
+      useFactory: (): Flags => ({
         useInitialLoading: true,
         useMutationLoading: true,
-      },
+      }),
     },
     {
       deps: [HttpLink],
       provide: APOLLO_OPTIONS,
-      useFactory: (httpLink: HttpLink) => ({
+      useFactory: (httpLink: HttpLink): ApolloClientOptions<unknown> => ({
         cache: new InMemoryCache(),
+        connectToDevTools: false,
         link: httpLink.create({ uri: "/graphql" }),
       }),
     },

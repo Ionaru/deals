@@ -141,13 +141,13 @@ jobs:
           path: dist/cypress/apps/client-e2e/videos
           retention-days: 1
           if-no-files-found: ignore
-      - run: docker compose logs --no-color >& logs.txt
+      - run: docker compose logs --no-color >& e2e.log
         if: always()
       - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: e2e-docker-logs
-          path: logs.txt
+          path: e2e.log
           retention-days: 1
 
   push-image:

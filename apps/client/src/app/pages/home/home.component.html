@@ -25,12 +25,14 @@
             />
           }
         </div>
-        <deals-deals-paginator
-          (page)="handlePageEvent($event)"
-          [totalItems]="data.deals.meta.totalItems || 0"
-          [itemsPerPage]="data.deals.meta.itemsPerPage"
-          [currentPage]="data.deals.meta.currentPage - 1"
-        />
+        @if(data.deals.items.length) {
+          <deals-deals-paginator
+            (page)="handlePageEvent($event)"
+            [totalItems]="data.deals.meta.totalItems || 0"
+            [itemsPerPage]="data.deals.meta.itemsPerPage"
+            [currentPage]="data.deals.meta.currentPage - 1"
+          />
+        }
       }
     }
     @if (response.errors; as error) {
