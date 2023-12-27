@@ -23,16 +23,13 @@
         <button mat-button (click)="startLogin()" i18n>
           I already have an account
         </button>
-      }
-      @if ((isLoggedIn$ | async) === false) {
         <button mat-button (click)="startRegister()" i18n>
           I want to create a new account
         </button>
       }
       @if ((isLoggedIn$ | async) === true) {
+        <p>{{ (user$ | async)?.username }}</p>
         <button mat-button (click)="addPasskey()" i18n>Add Passkey</button>
-      }
-      @if ((isLoggedIn$ | async) === true) {
         <button mat-button (click)="logout()" i18n>Logout</button>
       }
     </mat-card-actions>

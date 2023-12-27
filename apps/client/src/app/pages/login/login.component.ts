@@ -49,6 +49,7 @@ export class LoginComponent {
   readonly #router = inject(Router);
 
   readonly isLoggedIn$ = this.#authService.isLoggedIn$;
+  readonly user$ = this.#authService.user$;
 
   async startRegister() {
     this.state = LoginState.REGISTER;

@@ -6,7 +6,7 @@ interface IXForXPriceDealMatcherGroups {
 }
 
 export class XForXPrice extends JumboDeal {
-  matcher = /(?<amount>\d) voor € (?<price>\d\d?,\d\d)/;
+  matcher = /(?<amount>\d) voor € ?(?<price>\d\d?,\d\d)/;
 
   getDealPrice(_productPrice: number, promotionText: string): number {
     const { amount, price } = this.getMatcherGroups(promotionText);

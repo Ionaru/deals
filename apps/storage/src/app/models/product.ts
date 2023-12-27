@@ -8,7 +8,6 @@ import { Shop } from "./shop";
 export class Product extends BaseModel {
   @Column({
     type: "varchar",
-    unique: true,
   })
   name!: string;
 

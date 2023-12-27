@@ -28,25 +28,25 @@ export class FoundDealsService {
     const productsToSave: Product[] = [];
     const dealsToSave: Deal[] = [];
 
-    for (const deal of deals) {
+    for (const productDeal of deals) {
       let productEntity = await this.productRepository.findOneBy({
-        name: deal.name,
+        productUrl: productDeal.productUrl,
       });
       if (!productEntity) {
         productEntity = this.productRepository.create({
-          imageUrl: deal.imageUrl,
-          name: deal.name,
-          price: deal.price,
-          productUrl: deal.productUrl,
+          productUrl: productDeal.productUrl,
           shop: shopEntity,
         });
-        productsToSave.push(productEntity);
       }
+      productEntity.imageUrl = productDeal.imageUrl;
+      productEntity.name = productDeal.name;
+      productEntity.price = productDeal.price;
+      productsToSave.push(productEntity);
 
       dealsToSave.push(
         this.dealRepository.create({
-          dealPrice: deal.dealPrice,
-          dealQuantity: deal.purchaseAmount,
+          dealPrice: productDeal.dealPrice,
+          dealQuantity: productDeal.purchaseAmount,
           product: productEntity,
         }),
       );

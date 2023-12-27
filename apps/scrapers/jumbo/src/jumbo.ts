@@ -8,10 +8,10 @@ import { XPlusXDeal } from "./deals/x-plus-x";
 import { JumboDeal } from "./jumbo-deal";
 
 enum JumboDealType {
-  SECOND_HALF_PRICE,
-  X_FOR_X_PRICE,
-  X_PERCENT_OFF,
-  X_PLUS_X,
+  SECOND_HALF_PRICE = "SECOND_HALF_PRICE",
+  X_FOR_X_PRICE = "X_FOR_X_PRICE",
+  X_PERCENT_OFF = "X_PERCENT_OFF",
+  X_PLUS_X = "X_PLUS_X",
 }
 
 const jumboDealInformation: { [key in JumboDealType]: JumboDeal } =
@@ -30,8 +30,18 @@ export class Jumbo extends ScrapeWebsiteService {
 
   protected getPageAmount(document: Document): number {
     const pager = document.querySelector(".pages-grid");
-    const pagerText = pager?.textContent?.trim();
-    return Number(pagerText?.split(" ").at(-1)) || 0;
+    const children = [...(pager?.children || [])];
+    const pagerText = children.at(-1)?.textContent?.trim();
+    return Number(pagerText) || 0;
+  }
+
+  private getPrice(priceElement: Element | null): number | undefined {
+    if (priceElement) {
+      return Number(
+        [...priceElement.children].map((x) => x.textContent).join("."),
+      );
+    }
+    return undefined;
   }
 
   protected getPageDeals(page: Document) {
@@ -52,17 +62,14 @@ export class Jumbo extends ScrapeWebsiteService {
         continue;
       }
 
-      const promoPriceText = product
-        .querySelector(".promo-price")
-        ?.textContent?.trim()
-        .replace(",", ".");
-      const currentPriceText = product
-        .querySelector(".current-price")
-        ?.textContent?.trim()
-        .replace(" ", ".");
-      const productPrice = promoPriceText
-        ? Number(promoPriceText)
-        : Number(currentPriceText);
+      const promoPrice = this.getPrice(product.querySelector(".promo-price"));
+      const currentPrice = this.getPrice(
+        product.querySelector(".current-price"),
+      );
+      if (!currentPrice) {
+        continue;
+      }
+
       const productName = product
         .querySelector(".name .title")
         ?.textContent?.trim();
@@ -79,10 +86,12 @@ export class Jumbo extends ScrapeWebsiteService {
         continue;
       }
 
-      const dealPrice = jumboDealInformation[dealType].getDealPrice(
-        Number(productPrice),
-        promotionText,
-      );
+      const dealPrice =
+        promoPrice ??
+        jumboDealInformation[dealType].getDealPrice(
+          Number(currentPrice),
+          promotionText,
+        );
       const purchaseAmount =
         jumboDealInformation[dealType].getPurchaseAmount(promotionText);
 
@@ -92,7 +101,7 @@ export class Jumbo extends ScrapeWebsiteService {
           product.querySelector(".product-image img")?.getAttribute("src") ||
           "",
         name: productName || "Unknown product",
-        price: productPrice,
+        price: currentPrice,
         productUrl,
         purchaseAmount,
       });
@@ -113,7 +122,7 @@ export class Jumbo extends ScrapeWebsiteService {
   #parseDealText(text: string): JumboDealType | void {
     for (const [type, dealType] of Object.entries(jumboDealInformation)) {
       if (dealType.matcher.test(text)) {
-        return Number(type) as unknown as JumboDealType;
+        return type as JumboDealType;
       }
     }
   }

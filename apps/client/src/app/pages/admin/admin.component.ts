@@ -45,4 +45,8 @@ export class AdminComponent implements OnDestroy {
   isCoreService(service: { type: string }): boolean {
     return service.type === "CORE";
   }
+
+  startScraper(scraperName: string) {
+    this.#healthService.startScraper$(scraperName).subscribe();
+  }
 }

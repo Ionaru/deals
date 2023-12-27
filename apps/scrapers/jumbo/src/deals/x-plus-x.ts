@@ -6,7 +6,7 @@ interface IXPlusXDealMatcherGroups {
 }
 
 export class XPlusXDeal extends JumboDeal {
-  matcher = /(?<purchaseAmount>\d)\+(?<freeAmount>\d) gratis/;
+  matcher = /(?<purchaseAmount>\d)\+(?<freeAmount>\d) [Gg]ratis/;
 
   getDealPrice(productPrice: number, promotionText: string): number {
     const { purchaseAmount, freeAmount } = this.getMatcherGroups(promotionText);
@@ -14,7 +14,8 @@ export class XPlusXDeal extends JumboDeal {
   }
 
   getPurchaseAmount(promotionText: string): number {
-    return this.getMatcherGroups(promotionText).purchaseAmount;
+    const { purchaseAmount, freeAmount } = this.getMatcherGroups(promotionText);
+    return purchaseAmount + freeAmount;
   }
 
   getMatcherGroups(promotionText: string): IXPlusXDealMatcherGroups {

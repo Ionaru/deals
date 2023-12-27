@@ -25,4 +25,17 @@ export class HealthService {
       }),
     })
     .pipe(map((result) => result.data.services));
+
+  startScraper$(scraperName: string) {
+    return this.#apollo.mutate({
+      mutation: typedGql("mutation")({
+        startScraper: [
+          {
+            name: scraperName,
+          },
+          true,
+        ],
+      }),
+    });
+  }
 }
