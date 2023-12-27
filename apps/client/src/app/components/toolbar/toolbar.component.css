@@ -25,10 +25,6 @@
       }
     }
 
-    .navbar-spacer {
-      flex: 1 1 auto;
-    }
-
     .navbar-links {
       position: absolute;
       left: 50%;

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ApolloTestingModule } from "apollo-angular/testing";
 
 import { UnknownDealsComponent } from "./unknown-deals.component";
 
@@ -8,7 +9,7 @@ describe("UnknownDealsComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UnknownDealsComponent],
+      imports: [ApolloTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UnknownDealsComponent);

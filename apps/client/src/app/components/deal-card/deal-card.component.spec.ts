@@ -8,11 +8,18 @@ describe("DealCardComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DealCardComponent],
+      imports: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DealCardComponent);
     component = fixture.componentInstance;
+    component.shopName = "shopName";
+    component.productName = "productName";
+    component.productImageUrl = "productImageUrl";
+    component.productUrl = "productUrl";
+    component.productPrice = 1;
+    component.dealPrice = 1;
+    component.dealQuantity = 1;
     fixture.detectChanges();
   });
 

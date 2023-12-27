@@ -5,13 +5,13 @@
       {{ title }}
     </span>
   </a>
-  <span class="navbar-spacer"></span>
+  <deals-spacer />
   <nav class="navbar-links">
     @for (route of routes$$(); track $index) {
       <deals-toolbar-link [href]="route.path" [name]="route.name" />
     }
   </nav>
-  <span class="navbar-spacer"></span>
+  <deals-spacer />
   <deals-toolbar-icon-button
     routerLink="/notifications"
     routerLinkActive="active"

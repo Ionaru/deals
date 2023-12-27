@@ -3,7 +3,12 @@ import { Component, Input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatDividerModule } from "@angular/material/divider";
+import { RouterLink } from "@angular/router";
 
+import { PriceComponent } from "../price/price.component";
+import { PriceCurrentComponent } from "../price-current/price-current.component";
+import { PriceSlashedComponent } from "../price-slashed/price-slashed.component";
+import { SpacerComponent } from "../spacer/spacer.component";
 import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-button.component";
 
 @Component({
@@ -14,6 +19,11 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     NgOptimizedImage,
     ToolbarIconButtonComponent,
     MatDividerModule,
+    RouterLink,
+    SpacerComponent,
+    PriceSlashedComponent,
+    PriceCurrentComponent,
+    PriceComponent,
   ],
   selector: "deals-deal-card",
   standalone: true,
@@ -27,4 +37,5 @@ export class DealCardComponent {
   @Input({ required: true }) productUrl!: string;
   @Input({ required: true }) productImageUrl!: string;
   @Input({ required: true }) productPrice!: number;
+  @Input({ required: true }) shopName!: string;
 }

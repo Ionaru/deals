@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ApolloTestingModule } from "apollo-angular/testing";
 import { of } from "rxjs";
 
 import { TypedMockProvider } from "../../../testing/mocks";
@@ -12,6 +13,7 @@ describe("adminComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ApolloTestingModule],
       providers: [
         TypedMockProvider(HealthService, {
           services$: of(),

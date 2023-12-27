@@ -10,6 +10,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { DarkModeService } from "../../services/dark-mode.service";
 import { NavigationService } from "../../services/navigation.service";
+import { SpacerComponent } from "../spacer/spacer.component";
 import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-button.component";
 import { ToolbarLanguageSwitchComponent } from "../toolbar-language-switch/toolbar-language-switch.component";
 import { ToolbarLinkComponent } from "../toolbar-link/toolbar-link.component";
@@ -29,6 +30,7 @@ import { ToolbarSidenavButtonComponent } from "../toolbar-sidenav-button/toolbar
     ToolbarLanguageSwitchComponent,
     ToolbarLinkComponent,
     ToolbarSidenavButtonComponent,
+    SpacerComponent,
   ],
   selector: "deals-toolbar",
   standalone: true,

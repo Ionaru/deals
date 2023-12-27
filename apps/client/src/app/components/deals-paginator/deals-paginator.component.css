@@ -4,8 +4,39 @@
   mat-paginator {
     border-radius: var(--mdc-outlined-card-container-shape);
 
-    .mat-mdc-paginator-container {
-      justify-content: center;
+    @media (max-width: 700px) {
+      .mat-mdc-paginator-container {
+        .mat-mdc-paginator-page-size {
+          display: none;
+        }
+
+        .mat-mdc-paginator-range-actions {
+          flex-grow: 1;
+
+          .mat-mdc-paginator-navigation-first {
+            order: 1;
+          }
+
+          .mat-mdc-paginator-navigation-previous {
+            order: 2;
+          }
+
+          .mat-mdc-paginator-range-label {
+            order: 3;
+            flex-grow: 1;
+            margin: 0;
+            text-align: center;
+          }
+
+          .mat-mdc-paginator-navigation-next {
+            order: 4;
+          }
+
+          .mat-mdc-paginator-navigation-last {
+            order: 5;
+          }
+        }
+      }
     }
   }
 }

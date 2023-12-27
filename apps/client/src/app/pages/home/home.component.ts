@@ -10,8 +10,8 @@ import { MatCardModule } from "@angular/material/card";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
-import { Router } from "@angular/router";
-import { BehaviorSubject, combineLatest, switchMap, tap } from "rxjs";
+import { NavigationEnd, Router } from "@angular/router";
+import { BehaviorSubject, combineLatest, filter, switchMap, tap } from "rxjs";
 
 import { DealCardComponent } from "../../components/deal-card/deal-card.component";
 import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component";
@@ -49,10 +49,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   reloader$ = new BehaviorSubject(0);
 
   ngOnInit() {
-    const page = this.#router.parseUrl(this.#router.url).queryParams.page;
+    this.#parsePageFromUrl(this.#router.url);
+
+    this.#router.events
+      .pipe(
+        filter(
+          (navEvent): navEvent is NavigationEnd =>
+            navEvent instanceof NavigationEnd,
+        ),
+      )
+      .subscribe((navEvent) => {
+        this.#parsePageFromUrl(navEvent.urlAfterRedirects);
+      });
+  }
+
+  #parsePageFromUrl(url: string) {
+    const page = this.#router.parseUrl(url).queryParams.page ?? "1";
     if (page && typeof page === "string") {
       const pageAsNumber = Number.parseInt(page, 10);
-      if (pageAsNumber && pageAsNumber > 0) {
+      if (
+        pageAsNumber &&
+        pageAsNumber > 0 &&
+        this.page$.value !== pageAsNumber
+      ) {
         this.page$.next(pageAsNumber);
       }
     }
