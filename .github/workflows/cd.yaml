@@ -126,11 +126,7 @@ jobs:
           AUTH_DB_NAME: E2E-Deals-Auth
           SESSION_DB_NAME: E2E-Deals-Session
       - run: npm ci
-      - uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 30
-          max_attempts: 3
-          command: npx nx run client-e2e:e2e
+      - run: npx nx run client-e2e:e2e
       - uses: actions/upload-artifact@v3
         if: always()
         with:
