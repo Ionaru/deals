@@ -3,6 +3,7 @@ import { Component, Input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatDividerModule } from "@angular/material/divider";
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterLink } from "@angular/router";
 
 import { DealProblemButtonComponent } from "../deal-problem-button/deal-problem-button.component";
@@ -26,6 +27,7 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     PriceCurrentComponent,
     PriceComponent,
     DealProblemButtonComponent,
+    MatTooltipModule,
   ],
   selector: "deals-deal-card",
   standalone: true,

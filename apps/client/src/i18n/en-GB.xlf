@@ -94,6 +94,18 @@
       <trans-unit id="4743002849260529978" datatype="html">
         <source>Items per page:</source>
       </trans-unit>
+      <trans-unit id="5126965938337368807" datatype="html">
+        <source>Report a problem</source>
+        <target>Report a problem</target>
+      </trans-unit>
+      <trans-unit id="5306259690530191944" datatype="html">
+        <source>Go to product page</source>
+        <target>Go to product page</target>
+      </trans-unit>
+      <trans-unit id="5370306667617945339" datatype="html">
+        <source>Add to favorites</source>
+        <target>Add to favourites</target>
+      </trans-unit>
       <trans-unit id="588284100849805066" datatype="html">
         <source>Product name</source>
         <target>Product name</target>

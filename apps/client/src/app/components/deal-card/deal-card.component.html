@@ -21,7 +21,11 @@
     <deals-price-slashed [amount]="productPrice * dealQuantity" />
   </mat-card-content>
   <mat-card-actions>
-    <deals-deal-problem-button [dealId]="dealId" />
+    <deals-deal-problem-button
+      [dealId]="dealId"
+      i18n-matTooltip
+      matTooltip="Report a problem"
+    />
     <img
       class="shop-logo"
       [ngSrc]="'/assets/images/' + shopName + '.svg'"
@@ -31,8 +35,17 @@
       [priority]="true"
     />
     <deals-spacer />
-    <deals-toolbar-icon-button icon="favorite" />
-    <a [href]="productUrl" target="_blank">
+    <deals-toolbar-icon-button
+      icon="favorite"
+      i18n-matTooltip
+      matTooltip="Add to favorites"
+    />
+    <a
+      [href]="productUrl"
+      target="_blank"
+      i18n-matTooltip
+      matTooltip="Go to product page"
+    >
       <deals-toolbar-icon-button icon="open_in_new" />
     </a>
   </mat-card-actions>
