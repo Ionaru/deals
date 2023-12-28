@@ -4,11 +4,14 @@ import { Pagination } from "nestjs-typeorm-paginate";
 import { Async } from "../api";
 import { ScraperStatus } from "../common/scraper-status";
 import { ServiceType } from "../common/service-type";
-import { DealDTO, DealSortChoices } from "../entities/deal";
+import { DealDTO } from "../entities/deal";
 import { ServiceDTO } from "../entities/service";
+import { ShopDTO } from "../entities/shop";
 import { UnknownDealDTO } from "../entities/unknown-deal";
 import { UserDTO } from "../entities/user";
 import { HealthResponse } from "../routes/get-health";
+
+import { DealSortChoices } from "./deal-sort-choices";
 
 export type Nullable<T> = T | null;
 
@@ -37,6 +40,7 @@ export enum MSMessage {
   ADD_PASSKEY = "ADD_PASSKEY",
   GET_USER = "GET_USER",
   GET_USERS = "GET_USERS",
+  GET_SHOPS = "GET_SHOPS",
 }
 
 export interface IMSMessage {
@@ -45,6 +49,11 @@ export interface IMSMessage {
       name: string;
     };
     response: void;
+  };
+
+  [MSMessage.GET_SHOPS]: {
+    payload: Record<string, never>;
+    response: ShopDTO[];
   };
 
   [MSMessage.GET_DEAL]: {
@@ -60,6 +69,7 @@ export interface IMSMessage {
       order: Order;
       limit: number;
       page: number;
+      shop: string | undefined;
     };
     response: Pagination<DealDTO>;
   };

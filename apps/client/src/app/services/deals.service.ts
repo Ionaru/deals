@@ -1,6 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Apollo } from "apollo-angular";
 
+import { DealSortChoices, Order } from "../zeus";
 import { typedGql } from "../zeus/typedDocumentNode";
 
 @Injectable({
@@ -9,14 +10,17 @@ import { typedGql } from "../zeus/typedDocumentNode";
 export class DealsService {
   readonly #apollo = inject(Apollo);
 
-  getDeals(page = 1) {
+  getDeals(page = 1, shop: string | null, sort: DealSortChoices, order: Order) {
     return this.#apollo.watchQuery({
       errorPolicy: "all",
       query: typedGql("query")({
         deals: [
           {
             limit: 24,
+            order,
             page,
+            shop,
+            sort: [sort],
           },
           {
             items: {

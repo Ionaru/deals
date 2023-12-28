@@ -1,0 +1,10 @@
+<deals-toolbar-icon-button
+  icon="bug_report"
+  [matMenuTriggerFor]="languageMenu"
+/>
+<mat-menu #languageMenu="matMenu" yPosition="above">
+  <button mat-menu-item i18n>Report: Not on sale</button>
+  <button mat-menu-item i18n>Report: Wrong name</button>
+  <button mat-menu-item i18n>Report: Wrong price</button>
+  <button mat-menu-item i18n>Report: Other problem</button>
+</mat-menu>

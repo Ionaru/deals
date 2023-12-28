@@ -2,6 +2,7 @@ import { Transport } from "@nestjs/microservices";
 import { NatsOptions } from "@nestjs/microservices/interfaces/microservice-configuration.interface";
 
 export * from "./lib/api.js";
+export * from "./lib/api/deal-sort-choices.js";
 export * from "./lib/api/http.js";
 export * from "./lib/api/events.js";
 export * from "./lib/api/messages.js";

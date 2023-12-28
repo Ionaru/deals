@@ -37,9 +37,15 @@ export class Jumbo extends ScrapeWebsiteService {
 
   private getPrice(priceElement: Element | null): number | undefined {
     if (priceElement) {
-      return Number(
-        [...priceElement.children].map((x) => x.textContent).join("."),
-      );
+      const parts =
+        priceElement.children.length > 0
+          ? [...priceElement.children]
+          : [priceElement];
+      const adjusted = parts
+        .map((x) => x.textContent?.replaceAll(",", ".")?.trim())
+        .filter(Boolean);
+
+      return Number(adjusted.join("."));
     }
     return undefined;
   }
@@ -86,12 +92,12 @@ export class Jumbo extends ScrapeWebsiteService {
         continue;
       }
 
-      const dealPrice =
-        promoPrice ??
-        jumboDealInformation[dealType].getDealPrice(
-          Number(currentPrice),
-          promotionText,
-        );
+      const dealPrice = promoPrice
+        ? currentPrice
+        : jumboDealInformation[dealType].getDealPrice(
+            Number(currentPrice),
+            promotionText,
+          );
       const purchaseAmount =
         jumboDealInformation[dealType].getPurchaseAmount(promotionText);
 
@@ -101,7 +107,7 @@ export class Jumbo extends ScrapeWebsiteService {
           product.querySelector(".product-image img")?.getAttribute("src") ||
           "",
         name: productName || "Unknown product",
-        price: currentPrice,
+        price: promoPrice ?? currentPrice,
         productUrl,
         purchaseAmount,
       });

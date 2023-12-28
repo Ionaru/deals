@@ -6,11 +6,18 @@ import { Injectable } from "@nestjs/common";
 export class DealsService {
   constructor(private readonly gateway: ServiceGatewayService) {}
 
-  getDeals(order: Order, sort: DealSortChoices[], limit: number, page: number) {
+  getDeals(
+    order: Order,
+    sort: DealSortChoices[],
+    limit: number,
+    page: number,
+    shop: string,
+  ) {
     return this.gateway.send(MSMessage.GET_DEALS, {
       limit,
       order,
       page,
+      shop,
       sort,
     });
   }

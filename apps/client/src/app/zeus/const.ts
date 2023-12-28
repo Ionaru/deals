@@ -79,6 +79,7 @@ export const ReturnTypes: Record<string,any> = {
 		service:"ServiceHealthDTO",
 		services:"ServiceHealthDTO",
 		session:"SessionDTO",
+		shops:"ShopDTO",
 		unknownDeals:"UnknownDealDTO",
 		user:"UserDTO",
 		users:"UserDTO"

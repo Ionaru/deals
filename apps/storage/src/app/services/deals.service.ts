@@ -5,15 +5,12 @@ import { paginate } from "nestjs-typeorm-paginate";
 import { Repository } from "typeorm";
 
 import { Deal } from "../models/deal";
-import { UnknownDeal } from "../models/unknown-deal";
 
 @Injectable()
 export class DealsService {
   constructor(
     @InjectRepository(Deal)
     private readonly dealRepository: Repository<Deal>,
-    @InjectRepository(UnknownDeal)
-    private readonly unknownDealRepository: Repository<UnknownDeal>,
   ) {}
 
   getDeal(id: string) {
@@ -28,22 +25,32 @@ export class DealsService {
     queryBuilder.leftJoinAndSelect("deal.product", "product");
     queryBuilder.leftJoinAndSelect("product.shop", "shop");
 
+    if (payload.shop) {
+      queryBuilder.where("shop.id = :shop", { shop: payload.shop });
+    }
+
     for (const sort of payload.sort) {
       switch (sort) {
         case DealSortChoices.DEAL_PRICE: {
-          queryBuilder.addOrderBy("dealPrice", payload.order);
+          queryBuilder.addOrderBy("(dealPrice * dealQuantity)", payload.order);
           break;
         }
         case DealSortChoices.PRODUCT_NAME: {
           queryBuilder.addOrderBy("product.name", payload.order);
           break;
         }
-        case DealSortChoices.SHOP_NAME: {
-          queryBuilder.addOrderBy("shop.name", payload.order);
+        case DealSortChoices.PRODUCT_PRICE: {
+          queryBuilder.addOrderBy(
+            "(product.price * dealQuantity)",
+            payload.order,
+          );
           break;
         }
-        case DealSortChoices.PRODUCT_PRICE: {
-          queryBuilder.addOrderBy("product.price", payload.order);
+        case DealSortChoices.SAVINGS: {
+          queryBuilder.addOrderBy(
+            "(product.price * dealQuantity) - (dealPrice * dealQuantity)",
+            payload.order,
+          );
           break;
         }
       }
@@ -53,16 +60,5 @@ export class DealsService {
       limit: payload.limit,
       page: payload.page,
     });
-  }
-
-  getUnknownDeals() {
-    return this.unknownDealRepository.find({
-      relations: ["shop"],
-    });
-  }
-
-  async resolveUnknownDeal(id: string) {
-    await this.unknownDealRepository.delete(id);
-    return true;
   }
 }

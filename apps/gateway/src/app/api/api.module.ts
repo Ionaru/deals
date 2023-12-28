@@ -4,9 +4,17 @@ import { AuthModule } from "./auth/auth.module";
 import { DealsModule } from "./deals/deals.module";
 import { HealthModule } from "./health/health.module";
 import { ScrapersModule } from "./scrapers/scrapers.module";
+import { ShopsModule } from "./shops/shops.module";
 import { UsersModule } from "./users/users.module";
 
 @Module({
-  imports: [AuthModule, DealsModule, HealthModule, ScrapersModule, UsersModule],
+  imports: [
+    AuthModule,
+    DealsModule,
+    HealthModule,
+    ScrapersModule,
+    ShopsModule,
+    UsersModule,
+  ],
 })
 export class ApiModule {}

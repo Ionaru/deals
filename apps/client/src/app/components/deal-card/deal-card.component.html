@@ -21,7 +21,7 @@
     <deals-price-slashed [amount]="productPrice * dealQuantity" />
   </mat-card-content>
   <mat-card-actions>
-    <deals-toolbar-icon-button icon="bug_report" />
+    <deals-deal-problem-button [dealId]="dealId" />
     <img
       class="shop-logo"
       [ngSrc]="'/assets/images/' + shopName + '.svg'"

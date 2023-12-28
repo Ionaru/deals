@@ -882,10 +882,11 @@ startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 	["Query"]: AliasType<{
 	challenge?:boolean | `@${string}`,
 deal?: [{	id: string | Variable<any, string>},ValueTypes["DealDTO"]],
-deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
+deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
 service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
 	session?:ValueTypes["SessionDTO"],
+	shops?:ValueTypes["ShopDTO"],
 	unknownDeals?:ValueTypes["UnknownDealDTO"],
 user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["UserDTO"]],
 	users?:ValueTypes["UserDTO"],
@@ -973,10 +974,11 @@ startScraper?: [{	name: string},boolean | `@${string}`],
 	["Query"]: AliasType<{
 	challenge?:boolean | `@${string}`,
 deal?: [{	id: string},ResolverInputTypes["DealDTO"]],
-deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
+deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
 service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
 	session?:ResolverInputTypes["SessionDTO"],
+	shops?:ResolverInputTypes["ShopDTO"],
 	unknownDeals?:ResolverInputTypes["UnknownDealDTO"],
 user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 	users?:ResolverInputTypes["UserDTO"],
@@ -1068,6 +1070,7 @@ export type ModelTypes = {
 	service?: ModelTypes["ServiceHealthDTO"] | undefined,
 	services: Array<ModelTypes["ServiceHealthDTO"]>,
 	session: ModelTypes["SessionDTO"],
+	shops: Array<ModelTypes["ShopDTO"]>,
 	unknownDeals: Array<ModelTypes["UnknownDealDTO"]>,
 	user?: ModelTypes["UserDTO"] | undefined,
 	users: Array<ModelTypes["UserDTO"]>
@@ -1160,6 +1163,7 @@ export type GraphQLTypes = {
 	service?: GraphQLTypes["ServiceHealthDTO"] | undefined,
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>,
 	session: GraphQLTypes["SessionDTO"],
+	shops: Array<GraphQLTypes["ShopDTO"]>,
 	unknownDeals: Array<GraphQLTypes["UnknownDealDTO"]>,
 	user?: GraphQLTypes["UserDTO"] | undefined,
 	users: Array<GraphQLTypes["UserDTO"]>
@@ -1205,7 +1209,7 @@ export const enum DealSortChoices {
 	DEAL_PRICE = "DEAL_PRICE",
 	PRODUCT_NAME = "PRODUCT_NAME",
 	PRODUCT_PRICE = "PRODUCT_PRICE",
-	SHOP_NAME = "SHOP_NAME"
+	SAVINGS = "SAVINGS"
 }
 export const enum Order {
 	ASCENDING = "ASCENDING",

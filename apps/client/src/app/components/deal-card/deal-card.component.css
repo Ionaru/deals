@@ -29,6 +29,10 @@
 
     mat-card-actions {
       column-gap: 0.25em;
+
+      .shop-logo {
+        margin-inline: 0.25em;
+      }
     }
   }
 }

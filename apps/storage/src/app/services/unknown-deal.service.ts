@@ -33,6 +33,17 @@ export class UnknownDealService {
       );
     }
   }
+
+  getUnknownDeals() {
+    return this.unknownDealRepository.find({
+      relations: ["shop"],
+    });
+  }
+
+  async resolveUnknownDeal(id: string) {
+    await this.unknownDealRepository.delete(id);
+    return true;
+  }
 }
 
 const getOrCreate = async <T extends ObjectLiteral>(

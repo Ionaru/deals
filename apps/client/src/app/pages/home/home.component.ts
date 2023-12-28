@@ -7,15 +7,29 @@ import {
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { MatOptionModule } from "@angular/material/core";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSelectChange, MatSelectModule } from "@angular/material/select";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { NavigationEnd, Router } from "@angular/router";
-import { BehaviorSubject, combineLatest, filter, switchMap, tap } from "rxjs";
+import {
+  BehaviorSubject,
+  combineLatest,
+  filter,
+  map,
+  switchMap,
+  tap,
+} from "rxjs";
 
 import { DealCardComponent } from "../../components/deal-card/deal-card.component";
 import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component";
+import { SpacerComponent } from "../../components/spacer/spacer.component";
 import { DealsService } from "../../services/deals.service";
+import { ShopsService } from "../../services/shops.service";
+import { DealSortChoices, Order } from "../../zeus";
 
 @Component({
   imports: [
@@ -30,6 +44,11 @@ import { DealsService } from "../../services/deals.service";
     MatPaginatorModule,
     DealsPaginatorComponent,
     DealCardComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    SpacerComponent,
   ],
   selector: "deals-home",
   standalone: true,
@@ -43,13 +62,55 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   readonly #snackBar = inject(MatSnackBar);
   readonly #dealsService = inject(DealsService);
+  readonly #shopsService = inject(ShopsService);
   readonly #router = inject(Router);
 
+  initialSort = {
+    label: $localize`Product name`,
+    value: DealSortChoices.PRODUCT_NAME,
+  };
+
+  initialOrder = {
+    label: $localize`Ascending`,
+    value: Order.ASCENDING,
+  };
+
   page$ = new BehaviorSubject(1);
+  dealsShopFilter$ = new BehaviorSubject<string | null>(null);
+  dealsSort$ = new BehaviorSubject<DealSortChoices>(this.initialSort.value);
+  dealsOrder$ = new BehaviorSubject<Order>(this.initialOrder.value);
   reloader$ = new BehaviorSubject(0);
 
+  shops$ = this.#shopsService
+    .getShops()
+    .pipe(map((data) => data.data?.shops ?? []));
+
+  sorting = [
+    this.initialSort,
+    {
+      label: $localize`Product price`,
+      value: DealSortChoices.PRODUCT_PRICE,
+    },
+    {
+      label: $localize`Deal price`,
+      value: DealSortChoices.DEAL_PRICE,
+    },
+    {
+      label: $localize`Savings`,
+      value: DealSortChoices.SAVINGS,
+    },
+  ];
+
+  ordering = [
+    this.initialOrder,
+    {
+      label: $localize`Descending`,
+      value: Order.DESCENDING,
+    },
+  ];
+
   ngOnInit() {
-    this.#parsePageFromUrl(this.#router.url);
+    this.#parseUrl(this.#router.url);
 
     this.#router.events
       .pipe(
@@ -59,8 +120,15 @@ export class HomeComponent implements OnInit, OnDestroy {
         ),
       )
       .subscribe((navEvent) => {
-        this.#parsePageFromUrl(navEvent.urlAfterRedirects);
+        this.#parseUrl(navEvent.urlAfterRedirects);
       });
+  }
+
+  #parseUrl(url: string) {
+    this.#parsePageFromUrl(url);
+    this.#parseShopFromUrl(url);
+    this.#parseSortFromUrl(url);
+    this.#parseOrderFromUrl(url);
   }
 
   #parsePageFromUrl(url: string) {
@@ -77,8 +145,50 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  deals$ = combineLatest([this.page$, this.reloader$]).pipe(
-    switchMap(([page]) => this.#dealsService.getDeals(page).valueChanges),
+  #parseShopFromUrl(url: string) {
+    const shop = this.#router.parseUrl(url).queryParams.shop;
+    if (
+      shop &&
+      typeof shop === "string" &&
+      this.dealsShopFilter$.value !== shop
+    ) {
+      this.dealsShopFilter$.next(shop);
+    } else if (!shop && this.dealsShopFilter$.value !== null) {
+      this.dealsShopFilter$.next(null);
+    }
+  }
+
+  #parseSortFromUrl(url: string) {
+    const sort = this.#router.parseUrl(url).queryParams.sort;
+    const options = this.sorting.map((option) => option.value);
+    if (sort && options.includes(sort) && this.dealsSort$.value !== sort) {
+      this.dealsSort$.next(sort as unknown as DealSortChoices);
+    } else if (!sort && this.dealsSort$.value !== this.initialSort.value) {
+      this.dealsSort$.next(this.initialSort.value);
+    }
+  }
+
+  #parseOrderFromUrl(url: string) {
+    const order = this.#router.parseUrl(url).queryParams.order;
+    const options = this.ordering.map((option) => option.value);
+    if (order && options.includes(order) && this.dealsOrder$.value !== order) {
+      this.dealsOrder$.next(order as unknown as Order);
+    } else if (!order && this.dealsOrder$.value !== this.initialOrder.value) {
+      this.dealsOrder$.next(this.initialOrder.value);
+    }
+  }
+
+  deals$ = combineLatest([
+    this.page$,
+    this.dealsShopFilter$,
+    this.dealsSort$,
+    this.dealsOrder$,
+    this.reloader$,
+  ]).pipe(
+    switchMap(
+      ([page, shop, sort, order]) =>
+        this.#dealsService.getDeals(page, shop, sort, order).valueChanges,
+    ),
     tap((data) => {
       if (data.errors?.length) {
         const snackBar = this.#snackBar.open(
@@ -98,9 +208,34 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   handlePageEvent($event: PageEvent) {
     this.page$.next($event.pageIndex + 1);
+    this.#updateUrl();
+  }
+
+  onShopSelectionChange(change: MatSelectChange) {
+    this.dealsShopFilter$.next(change.value);
+    this.page$.next(1);
+    this.#updateUrl();
+  }
+
+  onSortingSelectionChange(change: MatSelectChange) {
+    this.dealsSort$.next(change.value);
+    this.page$.next(1);
+    this.#updateUrl();
+  }
+
+  onOrderSelectionChange(change: MatSelectChange) {
+    this.dealsOrder$.next(change.value);
+    this.page$.next(1);
+    this.#updateUrl();
+  }
+
+  #updateUrl() {
     this.#router.navigate([], {
       queryParams: {
-        page: $event.pageIndex + 1,
+        order: this.dealsOrder$.value,
+        page: this.page$.value,
+        shop: this.dealsShopFilter$.value,
+        sort: this.dealsSort$.value,
       },
     });
   }

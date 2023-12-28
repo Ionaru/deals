@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import { ApolloTestingModule } from "apollo-angular/testing";
 
 import { TypedMockProvider } from "../../../testing/mocks";
 import { DealsService } from "../../services/deals.service";
@@ -12,7 +13,7 @@ describe("homeComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, ApolloTestingModule],
       providers: [TypedMockProvider(DealsService, { getDeals: jest.fn() })],
     }).compileComponents();
 

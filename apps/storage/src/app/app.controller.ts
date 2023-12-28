@@ -12,6 +12,7 @@ import { EventPattern, MessagePattern } from "@nestjs/microservices";
 import { DealsService } from "./services/deals.service";
 import { FoundDealsService } from "./services/found-deals.service";
 import { ServicesService } from "./services/services.service";
+import { ShopsService } from "./services/shops.service";
 import { UnknownDealService } from "./services/unknown-deal.service";
 
 @Controller()
@@ -23,6 +24,7 @@ export class AppController {
     private readonly foundDealsService: FoundDealsService,
     private readonly unknownDealService: UnknownDealService,
     private readonly servicesService: ServicesService,
+    private readonly shopsService: ShopsService,
   ) {}
 
   @EventPattern(MSEvent.DEAL_FOUND)
@@ -53,14 +55,14 @@ export class AppController {
 
   @MessagePattern(MSMessage.GET_UNKNOWN_DEALS)
   handleGetUnknownDeals(): AMSMResponse<MSMessage.GET_UNKNOWN_DEALS> {
-    return this.dealsService.getUnknownDeals();
+    return this.unknownDealService.getUnknownDeals();
   }
 
   @MessagePattern(MSMessage.RESOLVE_UNKNOWN_DEAL)
   handleResolveUnknownDeal(
     payload: MSMPayload<MSMessage.RESOLVE_UNKNOWN_DEAL>,
   ): AMSMResponse<MSMessage.RESOLVE_UNKNOWN_DEAL> {
-    return this.dealsService.resolveUnknownDeal(payload.id);
+    return this.unknownDealService.resolveUnknownDeal(payload.id);
   }
 
   @MessagePattern(MSMessage.REGISTER_SERVICE)
@@ -95,5 +97,10 @@ export class AppController {
     payload: MSMPayload<MSMessage.GET_SERVICE>,
   ): AMSMResponse<MSMessage.GET_SERVICE> {
     return this.servicesService.getService(payload.id);
+  }
+
+  @MessagePattern(MSMessage.GET_SHOPS)
+  handleGetShops(): AMSMResponse<MSMessage.GET_SHOPS> {
+    return this.shopsService.getShops();
   }
 }

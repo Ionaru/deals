@@ -3,6 +3,45 @@
     text-align: center;
   }
 
+  .deals-toolbar {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+    user-select: none;
+
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      border-radius: var(--mdc-outlined-card-container-shape);
+    }
+
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    ::ng-deep .mdc-line-ripple:before {
+      border-bottom: 0;
+    }
+
+    deals-deals-paginator {
+      flex-grow: 1;
+    }
+
+    @media (max-width: 1200px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 1rem;
+
+      deals-deals-paginator {
+        grid-column: 1 / 4;
+      }
+    }
+
+    @media (max-width: 700px) {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
   .deals-container {
     margin-block: 1em;
     display: grid;

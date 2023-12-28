@@ -8,17 +8,11 @@ import {
   registerEnumType,
 } from "@nestjs/graphql";
 
+import { DealSortChoices } from "../api/deal-sort-choices";
 import { Order } from "../api/messages";
 import { getPaginationArguments, paginated } from "../api/pagination";
 
 import { ProductDTO } from "./product";
-
-export enum DealSortChoices {
-  DEAL_PRICE = "DEAL_PRICE",
-  PRODUCT_NAME = "PRODUCT_NAME",
-  PRODUCT_PRICE = "PRODUCT_PRICE",
-  SHOP_NAME = "SHOP_NAME",
-}
 
 registerEnumType(DealSortChoices, { name: "DealSortChoices" });
 
@@ -50,4 +44,7 @@ export class DealsArguments extends getPaginationArguments(100) {
     nullable: true,
   })
   sort!: [DealSortChoices];
+
+  @Field(() => String, { nullable: true })
+  shop!: string;
 }

@@ -24,6 +24,7 @@ export class DealsResolver {
       queryArguments.sort,
       queryArguments.limit,
       queryArguments.page,
+      queryArguments.shop,
     );
   }
 

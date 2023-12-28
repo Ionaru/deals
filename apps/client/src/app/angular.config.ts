@@ -2,8 +2,13 @@ import { provideHttpClient } from "@angular/common/http";
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
-import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
-import { APOLLO_FLAGS, APOLLO_OPTIONS, ApolloModule, Flags } from 'apollo-angular';
+import { ApolloClientOptions, InMemoryCache } from "@apollo/client/core";
+import {
+  APOLLO_FLAGS,
+  APOLLO_OPTIONS,
+  ApolloModule,
+  Flags,
+} from "apollo-angular";
 import { HttpLink } from "apollo-angular/http";
 
 import {

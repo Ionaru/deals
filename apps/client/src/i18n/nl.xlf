@@ -2,6 +2,14 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="1054498214311181686" datatype="html">
+        <source>Savings</source>
+        <target>Korting</target>
+      </trans-unit>
+      <trans-unit id="1147358182484006761" datatype="html">
+        <source>Shop</source>
+        <target>Winkel</target>
+      </trans-unit>
       <trans-unit id="1235599902347188344" datatype="html">
         <source>Logging in...</source>
         <target>Inloggen...</target>
@@ -9,6 +17,10 @@
       <trans-unit id="125401261339317585" datatype="html">
         <source>Page 1 of 1</source>
         <target>Pagina 1 van 1</target>
+      </trans-unit>
+      <trans-unit id="1616102757855967475" datatype="html">
+        <source>All</source>
+        <target>Alles</target>
       </trans-unit>
       <trans-unit id="1655602937917394671" datatype="html">
         <source>Toggle dark mode</source>
@@ -26,13 +38,25 @@
         <source>Creating new account</source>
         <target>Nieuw account aanmaken</target>
       </trans-unit>
+      <trans-unit id="2382330284069784226" datatype="html">
+        <source>Descending</source>
+        <target>Aflopend</target>
+      </trans-unit>
       <trans-unit id="2457696376400273422" datatype="html">
         <source>Add Passkey</source>
         <target>Passkey toevoegen</target>
       </trans-unit>
+      <trans-unit id="2774613742044941352" datatype="html">
+        <source>Sorting</source>
+        <target>Volgorde</target>
+      </trans-unit>
       <trans-unit id="2907733796351584017" datatype="html">
         <source>Register</source>
         <target>Registreren</target>
+      </trans-unit>
+      <trans-unit id="3289173984394538228" datatype="html">
+        <source>Report: Wrong name</source>
+        <target>Rapporteer: Verkeerde naam</target>
       </trans-unit>
       <trans-unit id="3301086086650990787" datatype="html">
         <source>Register</source>
@@ -44,11 +68,15 @@
       </trans-unit>
       <trans-unit id="3504688087357758415" datatype="html">
         <source>Current deals</source>
-        <target>Huidige deals</target>
+        <target>Huidige aanbiedingen</target>
       </trans-unit>
       <trans-unit id="3629960544875360046" datatype="html">
         <source>Previous page</source>
         <target>Vorige pagina</target>
+      </trans-unit>
+      <trans-unit id="3715748043269796565" datatype="html">
+        <source>Report: Other problem</source>
+        <target>Rapporteer: Ander probleem</target>
       </trans-unit>
       <trans-unit id="3797778920049399855" datatype="html">
         <source>Logout</source>
@@ -58,9 +86,21 @@
         <source>Go to settings page</source>
         <target>Ga naar instellingen</target>
       </trans-unit>
+      <trans-unit id="4568908149418530491" datatype="html">
+        <source>Deal price</source>
+        <target>Aanbiedingsprijs</target>
+      </trans-unit>
       <trans-unit id="4743002849260529978" datatype="html">
         <source>Items per page:</source>
         <target>Items per pagina:</target>
+      </trans-unit>
+      <trans-unit id="588284100849805066" datatype="html">
+        <source>Product name</source>
+        <target>Productnaam</target>
+      </trans-unit>
+      <trans-unit id="6093210751404423786" datatype="html">
+        <source>Ascending</source>
+        <target>Oplopend</target>
       </trans-unit>
       <trans-unit id="6158566989947647798" datatype="html">
         <source>I want to create a new account</source>
@@ -82,13 +122,25 @@
         <source>Authenticate</source>
         <target>Authenticeren</target>
       </trans-unit>
+      <trans-unit id="6781087732457115066" datatype="html">
+        <source>Report: Not on sale</source>
+        <target>Rapporteer: Geen aanbieding</target>
+      </trans-unit>
       <trans-unit id="6784758141439994527" datatype="html">
         <source>Last page</source>
         <target>Laatste pagina</target>
       </trans-unit>
+      <trans-unit id="7351184231172040714" datatype="html">
+        <source>Report: Wrong price</source>
+        <target>Rapporteer: Verkeerde prijs</target>
+      </trans-unit>
       <trans-unit id="7446220802750014386" datatype="html">
         <source>I already have an account</source>
         <target>Ik heb al een account</target>
+      </trans-unit>
+      <trans-unit id="7586318962489778221" datatype="html">
+        <source>Product price</source>
+        <target>Productprijs</target>
       </trans-unit>
       <trans-unit id="7699926905279065694" datatype="html">
         <source>Go to notifications page</source>
@@ -97,6 +149,10 @@
       <trans-unit id="7959813314561481156" datatype="html">
         <source>Open the navigation menu</source>
         <target>Open het navigatiemenu</target>
+      </trans-unit>
+      <trans-unit id="8238446802515534078" datatype="html">
+        <source>Ordering</source>
+        <target>Richting</target>
       </trans-unit>
       <trans-unit id="8387924884032192245" datatype="html">
         <source>Optional name</source>

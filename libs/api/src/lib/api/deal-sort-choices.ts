@@ -1,0 +1,6 @@
+export enum DealSortChoices {
+  DEAL_PRICE = "DEAL_PRICE",
+  PRODUCT_NAME = "PRODUCT_NAME",
+  PRODUCT_PRICE = "PRODUCT_PRICE",
+  SAVINGS = "SAVINGS",
+}
