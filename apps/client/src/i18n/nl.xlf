@@ -18,6 +18,10 @@
         <source>Page 1 of 1</source>
         <target>Pagina 1 van 1</target>
       </trans-unit>
+      <trans-unit id="1291696088945307456" datatype="html">
+        <source>Not implemented</source>
+        <target>Niet geïmplementeerd</target>
+      </trans-unit>
       <trans-unit id="1616102757855967475" datatype="html">
         <source>All</source>
         <target>Alles</target>
@@ -110,6 +114,10 @@
         <source>Add to favorites</source>
         <target>Toevoegen aan favorieten</target>
       </trans-unit>
+      <trans-unit id="5584536536461615036" datatype="html">
+        <source>This feature is not implemented yet.</source>
+        <target>Deze functionaliteit werkt nog niet.</target>
+      </trans-unit>
       <trans-unit id="588284100849805066" datatype="html">
         <source>Product name</source>
         <target>Productnaam</target>
@@ -172,7 +180,7 @@
       </trans-unit>
       <trans-unit id="837400319025626308" datatype="html">
         <source>Buy <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> for: <x id="START_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="START_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /></source>
-        <target state="new">Koop <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> voor: <x id="START_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="START_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /></target>
+        <target>Koop <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> voor: <x id="START_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="START_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /></target>
       </trans-unit>
       <trans-unit id="8387924884032192245" datatype="html">
         <source>Optional name</source>

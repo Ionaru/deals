@@ -17,6 +17,10 @@
       <trans-unit id="125401261339317585" datatype="html">
         <source>Page 1 of 1</source>
       </trans-unit>
+      <trans-unit id="1291696088945307456" datatype="html">
+        <source>Not implemented</source>
+        <target>Not implemented</target>
+      </trans-unit>
       <trans-unit id="1616102757855967475" datatype="html">
         <source>All</source>
         <target>All</target>
@@ -105,6 +109,10 @@
       <trans-unit id="5370306667617945339" datatype="html">
         <source>Add to favorites</source>
         <target>Add to favourites</target>
+      </trans-unit>
+      <trans-unit id="5584536536461615036" datatype="html">
+        <source>This feature is not implemented yet.</source>
+        <target>This feature is not implemented yet.</target>
       </trans-unit>
       <trans-unit id="588284100849805066" datatype="html">
         <source>Product name</source>

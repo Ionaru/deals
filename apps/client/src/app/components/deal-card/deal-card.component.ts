@@ -1,12 +1,14 @@
 import { DecimalPipe, NgOptimizedImage } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { Component, inject, Input, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { MatDialog } from "@angular/material/dialog";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterLink } from "@angular/router";
 
 import { DealProblemButtonComponent } from "../deal-problem-button/deal-problem-button.component";
+import { DialogInformativeComponent } from "../dialog-informative/dialog-informative.component";
 import { PriceComponent } from "../price/price.component";
 import { PriceCurrentComponent } from "../price-current/price-current.component";
 import { PriceSlashedComponent } from "../price-slashed/price-slashed.component";
@@ -43,4 +45,18 @@ export class DealCardComponent {
   @Input({ required: true }) productImageUrl!: string;
   @Input({ required: true }) productPrice!: number;
   @Input({ required: true }) shopName!: string;
+
+  readonly #dialog = inject(MatDialog);
+
+  broken$$ = signal(false);
+
+  openDialog() {
+    this.broken$$.set(true);
+    DialogInformativeComponent.open(this.#dialog, {
+      data: {
+        message: $localize`This feature is not implemented yet.`,
+        title: $localize`Not implemented`,
+      },
+    });
+  }
 }

@@ -36,9 +36,10 @@
     />
     <deals-spacer />
     <deals-toolbar-icon-button
-      icon="favorite"
+      [icon]="broken$$() ? 'heart_broken' : 'favorite'"
       i18n-matTooltip
       matTooltip="Add to favorites"
+      (click)="openDialog()"
     />
     <a
       [href]="productUrl"
