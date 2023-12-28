@@ -1,7 +1,7 @@
 <mat-card appearance="outlined">
   <mat-card-header>
     <mat-card-title>{{ productName }}</mat-card-title>
-    <mat-card-subtitle>
+    <mat-card-subtitle i18n>
       Buy {{ dealQuantity }} to save
       <deals-price
         [amount]="productPrice * dealQuantity - dealPrice * dealQuantity"
@@ -15,7 +15,7 @@
       [priority]="true"
     />
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content i18n>
     Buy {{ dealQuantity }} for:
     <deals-price-current [amount]="dealPrice * dealQuantity" />
     <deals-price-slashed [amount]="productPrice * dealQuantity" />

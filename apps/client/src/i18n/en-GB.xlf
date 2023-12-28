@@ -71,6 +71,10 @@
       <trans-unit id="3629960544875360046" datatype="html">
         <source>Previous page</source>
       </trans-unit>
+      <trans-unit id="3638977803166656243" datatype="html">
+        <source>Buy <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> to save <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /></source>
+        <target>Buy <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> to save <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /></target>
+      </trans-unit>
       <trans-unit id="3715748043269796565" datatype="html">
         <source>Report: Other problem</source>
         <target>Report: Other problem</target>
@@ -147,6 +151,10 @@
       <trans-unit id="8238446802515534078" datatype="html">
         <source>Ordering</source>
         <target>Ordering</target>
+      </trans-unit>
+      <trans-unit id="837400319025626308" datatype="html">
+        <source>Buy <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> for: <x id="START_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="START_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /></source>
+        <target>Buy <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> for: <x id="START_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_CURRENT" ctype="x-deals_price_current" equiv-text="&lt;deals-price-current [amount]=&quot;dealPrice * dealQuantity&quot; /&gt;" /><x id="START_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE_SLASHED" ctype="x-deals_price_slashed" equiv-text="&lt;deals-price-slashed [amount]=&quot;productPrice * dealQuantity&quot; /&gt;" /></target>
       </trans-unit>
       <trans-unit id="8387924884032192245" datatype="html">
         <source>Optional name</source>
