@@ -1,58 +1,58 @@
 <div style="margin: 1em">
   <h1>{{ messages.header }}</h1>
+  <div class="deals-toolbar">
+    <mat-form-field>
+      <mat-label i18n>Shop</mat-label>
+      <mat-select
+        [value]="dealsShopFilter$.value"
+        (selectionChange)="onShopSelectionChange($event)"
+      >
+        <mat-option i18n>All</mat-option>
+        @for (shop of shops$ | async; track $index) {
+          <mat-option [value]="shop.id">{{ shop.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label i18n>Sorting</mat-label>
+      <mat-select
+        [value]="dealsSort$.value"
+        (selectionChange)="onSortingSelectionChange($event)"
+      >
+        @for (sortOption of sorting; track $index) {
+          <mat-option [value]="sortOption.value">{{
+            sortOption.label
+          }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label i18n>Ordering</mat-label>
+      <mat-select
+        [value]="dealsOrder$.value"
+        (selectionChange)="onOrderSelectionChange($event)"
+      >
+        @for (order of ordering; track $index) {
+          <mat-option [value]="order.value">{{ order.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <deals-deals-query-input
+      [query]="dealsQuery$.value"
+      (queryChange)="onSearchChange($event)"
+    />
+    <deals-deals-paginator
+      (page)="handlePageEvent($event)"
+      [totalItems]="lastSeenTotalItems()"
+      [itemsPerPage]="lastSeenItemsPerPage()"
+      [currentPage]="this.page$.value - 1"
+    />
+  </div>
   @if (deals$ | async; as response) {
     @if (response.loading) {
       <mat-spinner></mat-spinner>
     }
     @if (response.data; as data) {
-      <div class="deals-toolbar">
-        <mat-form-field>
-          <mat-label i18n>Shop</mat-label>
-          <mat-select
-            [value]="dealsShopFilter$.value"
-            (selectionChange)="onShopSelectionChange($event)"
-          >
-            <mat-option i18n>All</mat-option>
-            @for (shop of shops$ | async; track $index) {
-              <mat-option [value]="shop.id">{{ shop.name }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label i18n>Sorting</mat-label>
-          <mat-select
-            [value]="dealsSort$.value"
-            (selectionChange)="onSortingSelectionChange($event)"
-          >
-            @for (sortOption of sorting; track $index) {
-              <mat-option [value]="sortOption.value">{{
-                sortOption.label
-              }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label i18n>Ordering</mat-label>
-          <mat-select
-            [value]="dealsOrder$.value"
-            (selectionChange)="onOrderSelectionChange($event)"
-          >
-            @for (order of ordering; track $index) {
-              <mat-option [value]="order.value">{{ order.label }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <deals-deals-query-input
-          [query]="dealsQuery$.value"
-          (queryChange)="onSearchChange($event)"
-        />
-        <deals-deals-paginator
-          (page)="handlePageEvent($event)"
-          [totalItems]="data.deals.meta.totalItems || 0"
-          [itemsPerPage]="data.deals.meta.itemsPerPage"
-          [currentPage]="data.deals.meta.currentPage - 1"
-        />
-      </div>
       @if (data) {
         <div class="deals-container">
           @for (deal of data.deals.items; track deal.id) {
@@ -75,6 +75,8 @@
             [itemsPerPage]="data.deals.meta.itemsPerPage"
             [currentPage]="data.deals.meta.currentPage - 1"
           />
+        } @else {
+          <p i18n>No matching deals found</p>
         }
       }
     }

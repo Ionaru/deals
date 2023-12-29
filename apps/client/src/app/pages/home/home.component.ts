@@ -3,8 +3,9 @@ import {
   DecimalPipe,
   JsonPipe,
   NgOptimizedImage,
+  NgTemplateOutlet,
 } from "@angular/common";
-import { Component, inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatOptionModule } from "@angular/material/core";
@@ -53,6 +54,7 @@ import { DealSortChoices, Order } from "../../zeus";
     SpacerComponent,
     MatIconModule,
     DealsQueryInputComponent,
+    NgTemplateOutlet,
   ],
   selector: "deals-home",
   standalone: true,
@@ -85,6 +87,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   dealsOrder$ = new BehaviorSubject<Order>(this.initialOrder.value);
   dealsQuery$ = new BehaviorSubject<string | null>(null);
   reloader$ = new BehaviorSubject(0);
+
+  lastSeenTotalItems = signal(0);
+  lastSeenItemsPerPage = signal(0);
 
   shops$ = this.#shopsService
     .getShops()
@@ -229,6 +234,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         snackBar.onAction().subscribe(() => {
           this.reloader$.next(this.reloader$.value + 1);
         });
+      }
+
+      if (!data.loading) {
+        this.lastSeenTotalItems.set(data.data?.deals?.meta.totalItems ?? 0);
+        this.lastSeenItemsPerPage.set(data.data?.deals?.meta.itemsPerPage ?? 0);
       }
     }),
   );

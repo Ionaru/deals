@@ -1,10 +1,19 @@
 @import "styles/reboot";
 @import "styles/material";
 
+html {
+  overflow-y: scroll;
+
+  &:has(body.dark-mode) {
+    color-scheme: dark;
+  }
+}
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

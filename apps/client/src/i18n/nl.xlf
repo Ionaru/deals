@@ -114,6 +114,10 @@
         <source>Add to favorites</source>
         <target>Toevoegen aan favorieten</target>
       </trans-unit>
+      <trans-unit id="5508995372470632621" datatype="html">
+        <source>No matching deals found</source>
+        <target>Geen overeenkomende aanbiedingen gevonden</target>
+      </trans-unit>
       <trans-unit id="5584536536461615036" datatype="html">
         <source>This feature is not implemented yet.</source>
         <target>Deze functionaliteit werkt nog niet.</target>

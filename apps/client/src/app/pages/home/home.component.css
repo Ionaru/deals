@@ -46,6 +46,11 @@
     }
   }
 
+  mat-spinner {
+    margin: 1em auto;
+    display: block;
+  }
+
   .deals-container {
     margin-block: 1em;
     display: grid;

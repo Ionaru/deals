@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ApolloTestingModule } from "apollo-angular/testing";
 
@@ -13,7 +14,7 @@ describe("homeComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, ApolloTestingModule],
+      imports: [RouterTestingModule, ApolloTestingModule, NoopAnimationsModule],
       providers: [TypedMockProvider(DealsService, { getDeals: jest.fn() })],
     }).compileComponents();
 

@@ -110,6 +110,10 @@
         <source>Add to favorites</source>
         <target>Add to favourites</target>
       </trans-unit>
+      <trans-unit id="5508995372470632621" datatype="html">
+        <source>No matching deals found</source>
+        <target>No matching deals found</target>
+      </trans-unit>
       <trans-unit id="5584536536461615036" datatype="html">
         <source>This feature is not implemented yet.</source>
         <target>This feature is not implemented yet.</target>
