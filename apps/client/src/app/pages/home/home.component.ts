@@ -9,6 +9,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatOptionModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
@@ -26,6 +27,7 @@ import {
 
 import { DealCardComponent } from "../../components/deal-card/deal-card.component";
 import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component";
+import { DealsQueryInputComponent } from "../../components/deals-query-input/deals-query-input.component";
 import { SpacerComponent } from "../../components/spacer/spacer.component";
 import { DealsService } from "../../services/deals.service";
 import { ShopsService } from "../../services/shops.service";
@@ -49,6 +51,8 @@ import { DealSortChoices, Order } from "../../zeus";
     MatOptionModule,
     MatSelectModule,
     SpacerComponent,
+    MatIconModule,
+    DealsQueryInputComponent,
   ],
   selector: "deals-home",
   standalone: true,
@@ -79,6 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   dealsShopFilter$ = new BehaviorSubject<string | null>(null);
   dealsSort$ = new BehaviorSubject<DealSortChoices>(this.initialSort.value);
   dealsOrder$ = new BehaviorSubject<Order>(this.initialOrder.value);
+  dealsQuery$ = new BehaviorSubject<string | null>(null);
   reloader$ = new BehaviorSubject(0);
 
   shops$ = this.#shopsService
@@ -129,6 +134,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.#parseShopFromUrl(url);
     this.#parseSortFromUrl(url);
     this.#parseOrderFromUrl(url);
+    this.#parseQueryFromUrl(url);
   }
 
   #parsePageFromUrl(url: string) {
@@ -178,16 +184,41 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  #parseQueryFromUrl(url: string) {
+    const query = this.#router.parseUrl(url).queryParams.query;
+    if (query && typeof query === "string") {
+      if (this.dealsQuery$.value !== query) {
+        this.dealsQuery$.next(query);
+      }
+    } else if (!query && this.dealsQuery$.value !== null) {
+      this.dealsQuery$.next(null);
+    }
+  }
+
   deals$ = combineLatest([
     this.page$,
     this.dealsShopFilter$,
     this.dealsSort$,
     this.dealsOrder$,
+    this.dealsQuery$.pipe(
+      map((query) => {
+        if (query === null) {
+          return query;
+        }
+
+        if (query.length < 3) {
+          return null;
+        }
+
+        return query;
+      }),
+    ),
     this.reloader$,
   ]).pipe(
     switchMap(
-      ([page, shop, sort, order]) =>
-        this.#dealsService.getDeals(page, shop, sort, order).valueChanges,
+      ([page, shop, sort, order, query]) =>
+        this.#dealsService.getDeals(page, shop, sort, order, query)
+          .valueChanges,
     ),
     tap((data) => {
       if (data.errors?.length) {
@@ -229,11 +260,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.#updateUrl();
   }
 
+  onSearchChange(query: string | null) {
+    this.dealsQuery$.next(query);
+    this.page$.next(1);
+    this.#updateUrl();
+  }
+
   #updateUrl() {
     this.#router.navigate([], {
       queryParams: {
         order: this.dealsOrder$.value,
         page: this.page$.value,
+        query: this.dealsQuery$.value,
         shop: this.dealsShopFilter$.value,
         sort: this.dealsSort$.value,
       },

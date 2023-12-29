@@ -12,11 +12,13 @@ export class DealsService {
     limit: number,
     page: number,
     shop: string,
+    query: string,
   ) {
     return this.gateway.send(MSMessage.GET_DEALS, {
       limit,
       order,
       page,
+      query,
       shop,
       sort,
     });

@@ -69,6 +69,7 @@ export interface IMSMessage {
       order: Order;
       limit: number;
       page: number;
+      query: string | undefined;
       shop: string | undefined;
     };
     response: Pagination<DealDTO>;

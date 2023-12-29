@@ -10,7 +10,13 @@ import { typedGql } from "../zeus/typedDocumentNode";
 export class DealsService {
   readonly #apollo = inject(Apollo);
 
-  getDeals(page = 1, shop: string | null, sort: DealSortChoices, order: Order) {
+  getDeals(
+    page = 1,
+    shop: string | null,
+    sort: DealSortChoices,
+    order: Order,
+    query: string | null,
+  ) {
     return this.#apollo.watchQuery({
       errorPolicy: "all",
       query: typedGql("query")({
@@ -19,6 +25,7 @@ export class DealsService {
             limit: 24,
             order,
             page,
+            query,
             shop,
             sort: [sort],
           },

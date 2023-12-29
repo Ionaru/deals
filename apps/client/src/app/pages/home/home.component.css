@@ -25,13 +25,17 @@
       flex-grow: 1;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1400px) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-gap: 1rem;
 
+      deals-deals-query-input {
+        grid-column: 1 / 2;
+      }
+
       deals-deals-paginator {
-        grid-column: 1 / 4;
+        grid-column: 2 / 4;
       }
     }
 

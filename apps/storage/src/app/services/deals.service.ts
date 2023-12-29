@@ -29,6 +29,12 @@ export class DealsService {
       queryBuilder.where("shop.id = :shop", { shop: payload.shop });
     }
 
+    if (payload.query) {
+      queryBuilder.andWhere("LOWER(product.name) LIKE LOWER(:query)", {
+        query: `%${payload.query}%`,
+      });
+    }
+
     for (const sort of payload.sort) {
       switch (sort) {
         case DealSortChoices.DEAL_PRICE: {

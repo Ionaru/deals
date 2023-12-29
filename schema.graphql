@@ -55,7 +55,7 @@ type ProductDTO {
 type Query {
   challenge: String!
   deal(id: ID!): DealDTO
-  deals(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, shop: String, sort: [DealSortChoices!] = [PRODUCT_NAME]): DealPaginatedType!
+  deals(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, query: String, shop: String, sort: [DealSortChoices!] = [PRODUCT_NAME]): DealPaginatedType!
   service(id: ID!): ServiceHealthDTO
   services: [ServiceHealthDTO!]!
   session: SessionDTO!

@@ -1,0 +1,18 @@
+<mat-form-field>
+  <mat-label i18n>Product name</mat-label>
+  <mat-icon matPrefix>search</mat-icon>
+  <input
+    type="text"
+    matInput
+    [formControl]="queryControl"
+    (change)="outputChange()"
+  />
+  @if (queryControl.value) {
+    <button matSuffix mat-icon-button (click)="clearQuery()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+  @if (queryControl.hasError("minLength")) {
+    <mat-error>Email is <strong>required</strong></mat-error>
+  }
+</mat-form-field>

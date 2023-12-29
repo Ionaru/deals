@@ -7,6 +7,7 @@ import {
   ObjectType,
   registerEnumType,
 } from "@nestjs/graphql";
+import { IsOptional, MaxLength, MinLength } from "class-validator";
 
 import { DealSortChoices } from "../api/deal-sort-choices";
 import { Order } from "../api/messages";
@@ -47,4 +48,10 @@ export class DealsArguments extends getPaginationArguments(100) {
 
   @Field(() => String, { nullable: true })
   shop!: string;
+
+  @Field(() => String, { nullable: true })
+  @MaxLength(100)
+  @MinLength(3)
+  @IsOptional()
+  query!: string;
 }

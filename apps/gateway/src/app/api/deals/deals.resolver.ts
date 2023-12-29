@@ -25,6 +25,7 @@ export class DealsResolver {
       queryArguments.limit,
       queryArguments.page,
       queryArguments.shop,
+      queryArguments.query,
     );
   }
 

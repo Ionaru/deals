@@ -42,6 +42,10 @@
             }
           </mat-select>
         </mat-form-field>
+        <deals-deals-query-input
+          [query]="dealsQuery$.value"
+          (queryChange)="onSearchChange($event)"
+        />
         <deals-deals-paginator
           (page)="handlePageEvent($event)"
           [totalItems]="data.deals.meta.totalItems || 0"
