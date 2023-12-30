@@ -50,7 +50,7 @@ services:
     restart: unless-stopped
 
   scheduler:
-    image: ghcr.io/ionaru/deals/auth:${DEALS_BUILD_TAG:-latest}
+    image: ghcr.io/ionaru/deals/scheduler:${DEALS_BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: deploy/service.Dockerfile
