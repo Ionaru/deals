@@ -859,6 +859,7 @@ loginUser?: [{	authentication: string | Variable<any, string>},boolean | `@${str
 registerUser?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
 resolveUnknownDeal?: [{	id: string | Variable<any, string>},boolean | `@${string}`],
 startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
+startTask?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
 	["Order"]:Order;
@@ -887,6 +888,8 @@ service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]]
 	services?:ValueTypes["ServiceHealthDTO"],
 	session?:ValueTypes["SessionDTO"],
 	shops?:ValueTypes["ShopDTO"],
+task?: [{	name: string | Variable<any, string>},ValueTypes["TaskDTO"]],
+	tasks?:ValueTypes["TaskDTO"],
 	unknownDeals?:ValueTypes["UnknownDealDTO"],
 user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["UserDTO"]],
 	users?:ValueTypes["UserDTO"],
@@ -913,6 +916,12 @@ user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["Us
 	["StatusDTO"]: AliasType<{
 	status?:boolean | `@${string}`,
 	uptime?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["TaskDTO"]: AliasType<{
+	lastRun?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	nextRun?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["UnknownDealDTO"]: AliasType<{
@@ -951,6 +960,7 @@ loginUser?: [{	authentication: string},boolean | `@${string}`],
 registerUser?: [{	registration: string},boolean | `@${string}`],
 resolveUnknownDeal?: [{	id: string},boolean | `@${string}`],
 startScraper?: [{	name: string},boolean | `@${string}`],
+startTask?: [{	name: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
 }>;
 	["Order"]:Order;
@@ -979,6 +989,8 @@ service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
 	session?:ResolverInputTypes["SessionDTO"],
 	shops?:ResolverInputTypes["ShopDTO"],
+task?: [{	name: string},ResolverInputTypes["TaskDTO"]],
+	tasks?:ResolverInputTypes["TaskDTO"],
 	unknownDeals?:ResolverInputTypes["UnknownDealDTO"],
 user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 	users?:ResolverInputTypes["UserDTO"],
@@ -1005,6 +1017,12 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 	["StatusDTO"]: AliasType<{
 	status?:boolean | `@${string}`,
 	uptime?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["TaskDTO"]: AliasType<{
+	lastRun?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	nextRun?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["UnknownDealDTO"]: AliasType<{
@@ -1045,7 +1063,8 @@ export type ModelTypes = {
 	logoutUser: boolean,
 	registerUser: boolean,
 	resolveUnknownDeal: boolean,
-	startScraper: boolean
+	startScraper: boolean,
+	startTask: boolean
 };
 	["Order"]:Order;
 	["PaginationMeta"]: {
@@ -1071,6 +1090,8 @@ export type ModelTypes = {
 	services: Array<ModelTypes["ServiceHealthDTO"]>,
 	session: ModelTypes["SessionDTO"],
 	shops: Array<ModelTypes["ShopDTO"]>,
+	task?: ModelTypes["TaskDTO"] | undefined,
+	tasks: Array<ModelTypes["TaskDTO"]>,
 	unknownDeals: Array<ModelTypes["UnknownDealDTO"]>,
 	user?: ModelTypes["UserDTO"] | undefined,
 	users: Array<ModelTypes["UserDTO"]>
@@ -1093,6 +1114,11 @@ export type ModelTypes = {
 	["StatusDTO"]: {
 		status: string,
 	uptime?: number | undefined
+};
+	["TaskDTO"]: {
+		lastRun?: string | undefined,
+	name: string,
+	nextRun: string
 };
 	["UnknownDealDTO"]: {
 		deal: string,
@@ -1135,7 +1161,8 @@ export type GraphQLTypes = {
 	logoutUser: boolean,
 	registerUser: boolean,
 	resolveUnknownDeal: boolean,
-	startScraper: boolean
+	startScraper: boolean,
+	startTask: boolean
 };
 	["Order"]: Order;
 	["PaginationMeta"]: {
@@ -1164,6 +1191,8 @@ export type GraphQLTypes = {
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>,
 	session: GraphQLTypes["SessionDTO"],
 	shops: Array<GraphQLTypes["ShopDTO"]>,
+	task?: GraphQLTypes["TaskDTO"] | undefined,
+	tasks: Array<GraphQLTypes["TaskDTO"]>,
 	unknownDeals: Array<GraphQLTypes["UnknownDealDTO"]>,
 	user?: GraphQLTypes["UserDTO"] | undefined,
 	users: Array<GraphQLTypes["UserDTO"]>
@@ -1190,6 +1219,12 @@ export type GraphQLTypes = {
 	__typename: "StatusDTO",
 	status: string,
 	uptime?: number | undefined
+};
+	["TaskDTO"]: {
+	__typename: "TaskDTO",
+	lastRun?: string | undefined,
+	name: string,
+	nextRun: string
 };
 	["UnknownDealDTO"]: {
 	__typename: "UnknownDealDTO",

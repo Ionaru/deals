@@ -20,7 +20,11 @@ export class FoundDealsService {
     private readonly dealRepository: Repository<Deal>,
   ) {}
 
-  async store(shop: string, deals: IProductDeal[]): Promise<void> {
+  async store(
+    shop: string,
+    deals: IProductDeal[],
+    clear: boolean,
+  ): Promise<void> {
     const shopEntity = await getOrCreate(this.shopRepository, {
       name: shop,
     });
@@ -58,7 +62,9 @@ export class FoundDealsService {
       chunk: 100,
       reload: false,
     });
-    await this.#deleteExistingDeals(shopEntity.id);
+    if (clear) {
+      await this.#deleteExistingDeals(shopEntity.id);
+    }
     await this.dealRepository.save(dealsToSave, {
       chunk: 100,
       reload: false,

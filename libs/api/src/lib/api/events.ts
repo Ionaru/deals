@@ -12,6 +12,7 @@ export interface IMSEvent {
   [MSEvent.DEAL_FOUND]: {
     deals: IProductDeal[];
     shop: string;
+    clear: boolean;
   };
 
   [MSEvent.UNKNOWN_DEAL]: {

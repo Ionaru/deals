@@ -1,6 +1,7 @@
 import { MSEvent, MSEPayload } from "@deals/api";
 import { ServiceGatewayService } from "@deals/service-registry";
 import { Injectable, Logger } from "@nestjs/common";
+import { firstValueFrom } from "rxjs";
 
 @Injectable()
 export class StorageService {
@@ -10,7 +11,7 @@ export class StorageService {
 
   async store(deals: MSEPayload<MSEvent.DEAL_FOUND>) {
     this.#logger.log("Storing...");
-    this.gateway.emit(MSEvent.DEAL_FOUND, deals);
+    await firstValueFrom(this.gateway.send(MSEvent.DEAL_FOUND as any, deals));
     this.#logger.log("Stored");
   }
 

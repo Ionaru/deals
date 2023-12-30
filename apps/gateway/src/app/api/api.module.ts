@@ -5,6 +5,7 @@ import { DealsModule } from "./deals/deals.module";
 import { HealthModule } from "./health/health.module";
 import { ScrapersModule } from "./scrapers/scrapers.module";
 import { ShopsModule } from "./shops/shops.module";
+import { TasksModule } from "./tasks/tasks.module";
 import { UsersModule } from "./users/users.module";
 
 @Module({
@@ -14,6 +15,7 @@ import { UsersModule } from "./users/users.module";
     HealthModule,
     ScrapersModule,
     ShopsModule,
+    TasksModule,
     UsersModule,
   ],
 })

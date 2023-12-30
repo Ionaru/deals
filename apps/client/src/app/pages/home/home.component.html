@@ -20,9 +20,9 @@
         (selectionChange)="onSortingSelectionChange($event)"
       >
         @for (sortOption of sorting; track $index) {
-          <mat-option [value]="sortOption.value">{{
-            sortOption.label
-          }}</mat-option>
+          <mat-option [value]="sortOption.value">
+            {{ sortOption.label }}
+          </mat-option>
         }
       </mat-select>
     </mat-form-field>

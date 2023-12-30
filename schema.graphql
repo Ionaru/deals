@@ -28,6 +28,7 @@ type Mutation {
   registerUser(registration: String!): Boolean!
   resolveUnknownDeal(id: ID!): Boolean!
   startScraper(name: String!): Boolean!
+  startTask(name: String!): Boolean!
 }
 
 enum Order {
@@ -60,6 +61,8 @@ type Query {
   services: [ServiceHealthDTO!]!
   session: SessionDTO!
   shops: [ShopDTO!]!
+  task(name: String!): TaskDTO
+  tasks: [TaskDTO!]!
   unknownDeals: [UnknownDealDTO!]!
   user(id: String): UserDTO
   users: [UserDTO!]!
@@ -90,6 +93,12 @@ type ShopDTO {
 type StatusDTO {
   status: String!
   uptime: Float
+}
+
+type TaskDTO {
+  lastRun: String
+  name: String!
+  nextRun: String!
 }
 
 type UnknownDealDTO {

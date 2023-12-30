@@ -49,6 +49,20 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  scheduler:
+    image: ghcr.io/ionaru/deals/auth:${DEALS_BUILD_TAG:-latest}
+    build:
+      context: .
+      dockerfile: deploy/service.Dockerfile
+      args:
+        - SERVICE_NAME=scheduler
+    environment:
+      - NATS_HOST=nats
+    depends_on:
+      nats:
+        condition: service_healthy
+    restart: unless-stopped
+
   scrapers-jumbo:
     image: ghcr.io/ionaru/deals/scrapers-jumbo:${DEALS_BUILD_TAG:-latest}
     build:

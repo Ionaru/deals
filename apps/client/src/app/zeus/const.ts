@@ -17,6 +17,9 @@ export const AllTypesProps: Record<string,any> = {
 		},
 		startScraper:{
 
+		},
+		startTask:{
+
 		}
 	},
 	Order: "enum" as const,
@@ -29,6 +32,9 @@ export const AllTypesProps: Record<string,any> = {
 			sort:"DealSortChoices"
 		},
 		service:{
+
+		},
+		task:{
 
 		},
 		user:{
@@ -55,7 +61,8 @@ export const ReturnTypes: Record<string,any> = {
 		logoutUser:"Boolean",
 		registerUser:"Boolean",
 		resolveUnknownDeal:"Boolean",
-		startScraper:"Boolean"
+		startScraper:"Boolean",
+		startTask:"Boolean"
 	},
 	PaginationMeta:{
 		currentPage:"Int",
@@ -80,6 +87,8 @@ export const ReturnTypes: Record<string,any> = {
 		services:"ServiceHealthDTO",
 		session:"SessionDTO",
 		shops:"ShopDTO",
+		task:"TaskDTO",
+		tasks:"TaskDTO",
 		unknownDeals:"UnknownDealDTO",
 		user:"UserDTO",
 		users:"UserDTO"
@@ -101,6 +110,11 @@ export const ReturnTypes: Record<string,any> = {
 	StatusDTO:{
 		status:"String",
 		uptime:"Float"
+	},
+	TaskDTO:{
+		lastRun:"String",
+		name:"String",
+		nextRun:"String"
 	},
 	UnknownDealDTO:{
 		deal:"String",

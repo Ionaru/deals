@@ -79,6 +79,9 @@ enum KruidvatDealType {
 
   // €X off
   THREE_OFF,
+
+  // For X
+  FOR_129_99,
 }
 
 const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
@@ -351,6 +354,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.THREE_OFF]: {
       calculation: (price: number) => price - 3,
       code: "1040",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_129_99]: {
+      calculation: () => 129.99,
+      code: "4496",
       purchaseAmount: 1,
     },
   });

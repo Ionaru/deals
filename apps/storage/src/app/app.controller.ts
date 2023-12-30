@@ -27,10 +27,15 @@ export class AppController {
     private readonly shopsService: ShopsService,
   ) {}
 
-  @EventPattern(MSEvent.DEAL_FOUND)
-  handleDealFound(payload: MSEPayload<MSEvent.DEAL_FOUND>): Async<void> {
-    this.logger.log("Saving...", payload.shop);
-    return this.foundDealsService.store(payload.shop, payload.deals);
+  @MessagePattern(MSEvent.DEAL_FOUND)
+  async handleDealFound(payload: MSEPayload<MSEvent.DEAL_FOUND>) {
+    this.logger.log(`Saving deals for ${payload.shop}`);
+    await this.foundDealsService.store(
+      payload.shop,
+      payload.deals,
+      payload.clear,
+    );
+    return true;
   }
 
   @EventPattern(MSEvent.UNKNOWN_DEAL)

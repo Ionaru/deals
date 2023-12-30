@@ -1,4 +1,5 @@
 import { ScraperStatus } from "@deals/api";
+import { splitArrayIntoChunks } from "@ionaru/array-utils";
 import { Controller, Inject } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 
@@ -24,10 +25,14 @@ export const createScraperController = (name: string) => {
       this.status = ScraperStatus.SCRAPING;
       try {
         const result = await this.scraper.scrape();
-        await this.storage.store({
-          deals: result,
-          shop: this.scraper.shopName,
-        });
+        const dealChunks = splitArrayIntoChunks(result, 500);
+        for (const chunk of dealChunks) {
+          await this.storage.store({
+            clear: chunk === dealChunks[0],
+            deals: chunk,
+            shop: this.scraper.shopName,
+          });
+        }
         this.status = ScraperStatus.IDLE;
       } catch (error) {
         this.status = ScraperStatus.ERROR;

@@ -7,6 +7,7 @@ import { ServiceType } from "../common/service-type";
 import { DealDTO } from "../entities/deal";
 import { ServiceDTO } from "../entities/service";
 import { ShopDTO } from "../entities/shop";
+import { TaskDTO } from "../entities/task";
 import { UnknownDealDTO } from "../entities/unknown-deal";
 import { UserDTO } from "../entities/user";
 import { HealthResponse } from "../routes/get-health";
@@ -41,6 +42,9 @@ export enum MSMessage {
   GET_USER = "GET_USER",
   GET_USERS = "GET_USERS",
   GET_SHOPS = "GET_SHOPS",
+  GET_TASKS = "GET_TASKS",
+  GET_TASK = "GET_TASK",
+  START_TASK = "START_TASK",
 }
 
 export interface IMSMessage {
@@ -164,6 +168,25 @@ export interface IMSMessage {
   [MSMessage.GET_USERS]: {
     payload: Record<string, never>;
     response: UserDTO[];
+  };
+
+  [MSMessage.GET_TASKS]: {
+    payload: Record<string, never>;
+    response: TaskDTO[];
+  };
+
+  [MSMessage.GET_TASK]: {
+    payload: {
+      name: string;
+    };
+    response: Nullable<TaskDTO>;
+  };
+
+  [MSMessage.START_TASK]: {
+    payload: {
+      name: string;
+    };
+    response: boolean;
   };
 
   direct: {

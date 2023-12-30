@@ -1,5 +1,13 @@
 import { AsyncPipe } from "@angular/common";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -20,7 +28,7 @@ import { MatInputModule } from "@angular/material/input";
   styleUrl: "./deals-query-input.component.css",
   templateUrl: "./deals-query-input.component.html",
 })
-export class DealsQueryInputComponent implements OnInit {
+export class DealsQueryInputComponent implements OnInit, OnChanges {
   queryControl = new FormControl("", [
     Validators.minLength(3),
     Validators.maxLength(100),
@@ -33,6 +41,15 @@ export class DealsQueryInputComponent implements OnInit {
     if (this.query) {
       this.queryControl.setValue(this.query);
       this.queryControl.markAsTouched();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      "query" in changes &&
+      this.queryControl.value !== changes.query.currentValue
+    ) {
+      this.queryControl.setValue(changes.query.currentValue);
     }
   }
 

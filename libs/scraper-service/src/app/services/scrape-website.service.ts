@@ -1,4 +1,5 @@
 import { IProductDeal, IUnknownDeal } from "@deals/api";
+import { uniquifyObjectsArray } from "@ionaru/array-utils";
 import { Injectable, Logger } from "@nestjs/common";
 import { JSDOM } from "jsdom";
 
@@ -23,9 +24,9 @@ export abstract class ScrapeWebsiteService {
       deals.push(...pathDeals);
     }
 
-    this.#logger.log(`Found ${deals.length} deals.`);
-
-    return deals;
+    const uniqueDeals = uniquifyObjectsArray(deals, (deal) => deal.productUrl);
+    this.#logger.log(`Found ${uniqueDeals.length} deals.`);
+    return uniqueDeals;
   }
 
   protected reportUnknownDeal(unknownDeal: IUnknownDeal) {
