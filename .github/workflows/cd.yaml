@@ -178,9 +178,15 @@ jobs:
     needs: [get_sha, push-image]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v4
+      - uses: appleboy/ssh-action@v1.0.3
         with:
-          node-version: lts/*
-      - name: Deploy
-        if: github.event_name == 'push'
-        run: npx -q @ionaru/teamcity-deploy teamcity.saturnserver.org Deals_Build ${{ secrets.TEAMCITY_TOKEN }} image_tag=${{needs.get_sha.outputs.sha_short}}
+          command_timeout: 30m
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SECRET }}
+          script: |
+            cd /home/${{ secrets.DEPLOY_USER }}/apps/deals
+            git fetch -a
+            git switch -d ${{needs.get_sha.outputs.sha_short}}
+            DEALS_BUILD_TAG=${{needs.get_sha.outputs.sha_short}} docker compose pull
+            DEALS_BUILD_TAG=${{needs.get_sha.outputs.sha_short}} docker compose up --pull=never --no-build --wait -d
