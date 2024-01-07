@@ -22,4 +22,4 @@ COPY deploy/nginx-proxy.conf /etc/nginx/conf.d/proxy
 RUN rm /etc/nginx/conf.d/default.conf
 
 COPY --from=build /app/dist/apps/client /app
-RUN ln -s en-US/assets browser/assets
+RUN ln -s en-US/assets app/browser/assets
