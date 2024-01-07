@@ -9,7 +9,7 @@ export class XPercentOff extends JumboDeal {
 
   getDealPrice(productPrice: number, promotionText: string): number {
     const { percentage } = this.getMatcherGroups(promotionText);
-    return productPrice * (percentage / 100);
+    return productPrice - productPrice * (percentage / 100);
   }
 
   getPurchaseAmount(_promotionText: string): number {
