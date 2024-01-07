@@ -12,7 +12,7 @@ COPY apps/client ./apps/client
 COPY libs ./libs
 
 RUN npm run build client -- -- --localize
-RUN ln ln -s en-US/assets browser/assets
+RUN ln -s en-US/assets browser/assets
 
 FROM nginx:mainline-alpine as serve
 
