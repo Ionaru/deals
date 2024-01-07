@@ -10,7 +10,7 @@ export class StorageService {
   constructor(private readonly gateway: ServiceGatewayService) {}
 
   async store(deals: MSEPayload<MSEvent.DEAL_FOUND>) {
-    this.#logger.log("Storing...");
+    this.#logger.log(`Storing ${deals.deals.length} items...`);
     await firstValueFrom(this.gateway.send(MSEvent.DEAL_FOUND as any, deals));
     this.#logger.log("Stored");
   }

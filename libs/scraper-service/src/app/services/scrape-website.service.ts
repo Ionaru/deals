@@ -19,8 +19,10 @@ export abstract class ScrapeWebsiteService {
   async scrape() {
     const deals: IProductDeal[] = [];
 
+    this.#logger.log(`Scraping ${this.shopName}...`);
+
     for (const path of this.paths) {
-      const pathDeals = await this.#scrapePath(path);
+      const pathDeals = await this.scrapePath(path);
       deals.push(...pathDeals);
     }
 
@@ -41,7 +43,7 @@ export abstract class ScrapeWebsiteService {
       });
   }
 
-  async #scrapePath(path: string): Promise<IProductDeal[]> {
+  async scrapePath(path: string): Promise<IProductDeal[]> {
     const deals = [];
     const firstPageUrl = this.#buildPageUrl(path, 0);
     const document = await this.#getPage(firstPageUrl);
