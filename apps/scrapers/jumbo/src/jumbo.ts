@@ -202,8 +202,10 @@ export class Jumbo extends ScrapeWebsiteService {
         continue;
       }
 
+      const productPrice = product.price.price / 100;
+
       const dealPrice = jumboDealInformation[dealType].getDealPrice(
-        product.price.price,
+        productPrice,
         promotionText,
       );
       const purchaseAmount =
@@ -213,8 +215,8 @@ export class Jumbo extends ScrapeWebsiteService {
         dealPrice,
         imageUrl: product.image,
         name: product.title,
-        price: product.price.price / 100,
-        productUrl: product.link,
+        price: productPrice,
+        productUrl: this.baseUrl + product.link,
         purchaseAmount,
       });
     }

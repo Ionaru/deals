@@ -36,6 +36,7 @@ services:
     restart: unless-stopped
     healthcheck:
       test: 'wget --header="Accept: text/html" localhost:3333/graphql -q --spider'
+      start_period: 30s
 
   client:
     image: ghcr.io/ionaru/deals/client:${DEALS_BUILD_TAG:-latest}
