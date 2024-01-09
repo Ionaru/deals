@@ -2,6 +2,8 @@ import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 import { BaseModel } from "./base.model";
 import { Deal } from "./deal";
+import { DealHistory } from "./deal-history";
+import { PriceHistory } from "./price-history";
 import { Shop } from "./shop";
 
 @Entity()
@@ -37,4 +39,16 @@ export class Product extends BaseModel {
     onUpdate: "CASCADE",
   })
   shop!: Shop;
+
+  @OneToMany(() => PriceHistory, (history) => history.product, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  priceHistory!: PriceHistory[];
+
+  @OneToMany(() => DealHistory, (history) => history.product, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  dealHistory!: DealHistory[];
 }

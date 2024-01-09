@@ -7,6 +7,8 @@ import { DataSource } from "typeorm";
 
 import { AppController } from "./app.controller";
 import { Deal } from "./models/deal";
+import { DealHistory } from "./models/deal-history";
+import { PriceHistory } from "./models/price-history";
 import { Product } from "./models/product";
 import { Service } from "./models/service";
 import { Shop } from "./models/shop";
@@ -57,7 +59,15 @@ import { UnknownDealService } from "./services/unknown-deal.service";
 
         return {
           database: configService.getOrThrow("STORAGE_DB_NAME"),
-          entities: [Shop, Product, Deal, UnknownDeal, Service],
+          entities: [
+            Shop,
+            Product,
+            Deal,
+            UnknownDeal,
+            Service,
+            PriceHistory,
+            DealHistory,
+          ],
           host: configService.getOrThrow("STORAGE_DB_HOST"),
           // logging: true,
           password: configService.getOrThrow("STORAGE_DB_PASS"),
@@ -70,7 +80,15 @@ import { UnknownDealService } from "./services/unknown-deal.service";
         };
       },
     }),
-    TypeOrmModule.forFeature([Shop, Product, Deal, UnknownDeal, Service]),
+    TypeOrmModule.forFeature([
+      Shop,
+      Product,
+      Deal,
+      UnknownDeal,
+      Service,
+      PriceHistory,
+      DealHistory,
+    ]),
     MicroserviceModule.forRoot("Storage", ServiceType.CORE, true),
   ],
   providers: [
