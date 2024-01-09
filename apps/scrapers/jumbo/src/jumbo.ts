@@ -16,6 +16,16 @@ enum Availability {
   TEMPORARILY_UNAVAILABLE = "TEMPORARILY_UNAVAILABLE",
 }
 
+type PromotionGroup = "GeenBestelkosten" | "seizoen";
+
+interface Promotion {
+  group: PromotionGroup;
+  isKiesAndMix: boolean;
+  tags: Array<{
+    text: string;
+  }>;
+}
+
 interface JumboGraphQLResponse {
   data: {
     searchProducts: {
@@ -35,12 +45,7 @@ interface JumboGraphQLResponse {
           };
           promoPrice: number;
         };
-        promotions: Array<{
-          isKiesAndMix: boolean;
-          tags: Array<{
-            text: string;
-          }>;
-        }>;
+        promotions: Promotion[];
       }>;
     };
   };
@@ -89,6 +94,7 @@ export class Jumbo extends ScrapeWebsiteService {
           promoPrice
         }
         promotions {
+          group
           isKiesAndMix
           tags {
             text
@@ -186,17 +192,15 @@ export class Jumbo extends ScrapeWebsiteService {
         continue;
       }
 
-      const promotion = product.promotions.at(0);
-      const text = promotion?.tags.at(0)?.text;
-      if (!text) {
+      const promotionText = this.#getPromotionText(product.promotions);
+      if (!promotionText) {
         continue;
       }
 
-      const promotionText = text;
       const dealType = this.#parseDealText(promotionText);
       if (!dealType) {
         this.reportUnknownDeal({
-          productUrl: product.link,
+          productUrl: this.baseUrl + product.link,
           promotionText,
         });
         continue;
@@ -243,5 +247,12 @@ export class Jumbo extends ScrapeWebsiteService {
         return type as JumboDealType;
       }
     }
+  }
+
+  #getPromotionText(promotions: Promotion[]): string | undefined {
+    const actualPromotions = promotions.filter(
+      (promotion) => promotion.group !== "GeenBestelkosten",
+    );
+    return actualPromotions.at(0)?.tags.at(0)?.text;
   }
 }
