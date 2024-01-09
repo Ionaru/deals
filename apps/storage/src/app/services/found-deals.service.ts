@@ -1,13 +1,13 @@
-import { IProductDeal } from '@deals/api';
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { DeepPartial, ObjectLiteral, Repository } from 'typeorm';
+import { IProductDeal } from "@deals/api";
+import { Injectable, Logger } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { DeepPartial, ObjectLiteral, Repository } from "typeorm";
 
-import { Deal } from '../models/deal';
-import { DealHistory } from '../models/deal-history';
-import { PriceHistory } from '../models/price-history';
-import { Product } from '../models/product';
-import { Shop } from '../models/shop';
+import { Deal } from "../models/deal";
+import { DealHistory } from "../models/deal-history";
+import { PriceHistory } from "../models/price-history";
+import { Product } from "../models/product";
+import { Shop } from "../models/shop";
 
 @Injectable()
 export class FoundDealsService {
@@ -44,11 +44,11 @@ export class FoundDealsService {
 
     await this.#saveDeals(deals);
 
-    this.#logger.log('All done');
+    this.#logger.log("All done");
   }
 
   async #saveProducts(deals: IProductDeal[], shop: Shop): Promise<void> {
-    this.#logger.log('Starting to save products');
+    this.#logger.log("Starting to save products");
 
     const productsToSave: Product[] = [];
 
@@ -69,20 +69,18 @@ export class FoundDealsService {
       productsToSave.push(productEntity);
     }
 
-    this.#logger.log(
-      `Saving ${productsToSave.length} products`,
-    );
+    this.#logger.log(`Saving ${productsToSave.length} products`);
 
     await this.productRepository.save(productsToSave, {
       chunk: 100,
       reload: false,
     });
 
-    this.#logger.log('Saved products');
+    this.#logger.log("Saved products");
   }
 
   async #saveDeals(deals: IProductDeal[]): Promise<void> {
-    this.#logger.log('Starting to save deals');
+    this.#logger.log("Starting to save deals");
 
     const dealsToSave: Deal[] = [];
 
@@ -104,9 +102,7 @@ export class FoundDealsService {
       );
     }
 
-    this.#logger.log(
-      `Saving ${dealsToSave.length} deals`,
-    );
+    this.#logger.log(`Saving ${dealsToSave.length} deals`);
 
     await this.dealRepository.save(dealsToSave, {
       chunk: 100,
@@ -117,11 +113,11 @@ export class FoundDealsService {
       reload: false,
     });
 
-    this.#logger.log('Saved deals');
+    this.#logger.log("Saved deals");
   }
 
   async #updateHistory(deals: IProductDeal[]): Promise<void> {
-    this.#logger.log('Starting to update price history');
+    this.#logger.log("Starting to update price history");
 
     const historyToSave: PriceHistory[] = [];
 
@@ -135,7 +131,7 @@ export class FoundDealsService {
 
       let lastHistory = await this.historyRepository.findOne({
         order: {
-          createdOn: 'DESC',
+          createdOn: "DESC",
         },
         where: {
           product: {
@@ -161,12 +157,12 @@ export class FoundDealsService {
       reload: false,
     });
 
-    this.#logger.log('Saved history');
+    this.#logger.log("Saved history");
   }
 
   async #deleteExistingDeals(shopId: string): Promise<void> {
     const existingDeals = await this.dealRepository.find({
-      relations: ['product', 'product.shop'],
+      relations: ["product", "product.shop"],
       where: {
         product: {
           shop: {
