@@ -68,6 +68,7 @@ enum KruidvatDealType {
   THIRTY_FIVE_PERCENT_OFF,
   FOURTY_PERCENT_OFF,
   FIFTY_PERCENT_OFF,
+  SIXTY_PERCENT_OFF,
 
   // All for €X each
   ALL_FOR_1_29_EACH,
@@ -86,6 +87,8 @@ enum KruidvatDealType {
   ALL_FOR_9_EACH,
   ALL_FOR_13_EACH,
   ALL_FOR_15_EACH,
+  ALL_FOR_19_99_EACH,
+  ALL_FOR_20_EACH,
   ALL_FOR_34_99_EACH,
 
   // Second for ...
@@ -300,6 +303,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1068",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.SIXTY_PERCENT_OFF]: {
+      calculation: (price: number) => price - price * 0.6,
+      code: "1133",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.ALL_FOR_1_EACH]: {
       calculation: () => 1,
       code: "1086",
@@ -423,6 +431,16 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.ALL_FOR_15_EACH]: {
       calculation: () => 15,
       code: "1112",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_19_99_EACH]: {
+      calculation: () => 19.99,
+      code: "1150",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_20_EACH]: {
+      calculation: () => 20,
+      code: "1114",
       purchaseAmount: 1,
     },
     [KruidvatDealType.THREE_FOR_8]: {
