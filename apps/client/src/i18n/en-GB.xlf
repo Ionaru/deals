@@ -75,10 +75,6 @@
       <trans-unit id="3629960544875360046" datatype="html">
         <source>Previous page</source>
       </trans-unit>
-      <trans-unit id="3638977803166656243" datatype="html">
-        <source>Buy <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> to save <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /></source>
-        <target>Buy <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> to save <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /></target>
-      </trans-unit>
       <trans-unit id="3715748043269796565" datatype="html">
         <source>Report: Other problem</source>
         <target>Report: Other problem</target>
@@ -94,6 +90,10 @@
       <trans-unit id="4568908149418530491" datatype="html">
         <source>Deal price</source>
         <target>Deal price</target>
+      </trans-unit>
+      <trans-unit id="4676382645049224072" datatype="html">
+        <source>Savings %</source>
+        <target>Savings %</target>
       </trans-unit>
       <trans-unit id="4743002849260529978" datatype="html">
         <source>Items per page:</source>
@@ -121,6 +121,10 @@
       <trans-unit id="588284100849805066" datatype="html">
         <source>Product name</source>
         <target>Product name</target>
+      </trans-unit>
+      <trans-unit id="5894306748192001649" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ savingsPercentage$$() | percent }}" /> off when you buy <x id="INTERPOLATION_1" equiv-text="{{ dealQuantity }}" />, save <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;savings$$()&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;savings$$()&quot; /&gt;" />!</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ savingsPercentage$$() | percent }}" /> off when you buy <x id="INTERPOLATION_1" equiv-text="{{ dealQuantity }}" />, save <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;savings$$()&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;savings$$()&quot; /&gt;" />!</target>
       </trans-unit>
       <trans-unit id="6093210751404423786" datatype="html">
         <source>Ascending</source>

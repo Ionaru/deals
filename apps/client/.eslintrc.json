@@ -23,7 +23,8 @@
             "prefix": "deals",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "unicorn/consistent-function-scoping": "off"
       },
       "extends": [
         "plugin:@nx/angular",

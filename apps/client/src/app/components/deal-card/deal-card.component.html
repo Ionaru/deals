@@ -2,10 +2,8 @@
   <mat-card-header>
     <mat-card-title>{{ productName }}</mat-card-title>
     <mat-card-subtitle i18n>
-      Buy {{ dealQuantity }} to save
-      <deals-price
-        [amount]="productPrice * dealQuantity - dealPrice * dealQuantity"
-      />
+      {{ savingsPercentage$$() | percent }} off when you buy {{ dealQuantity }},
+      save <deals-price [amount]="savings$$()" />!
     </mat-card-subtitle>
     <img
       [ngSrc]="productImageUrl"

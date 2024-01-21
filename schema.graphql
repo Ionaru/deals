@@ -19,6 +19,7 @@ enum DealSortChoices {
   PRODUCT_NAME
   PRODUCT_PRICE
   SAVINGS
+  SAVINGS_PERCENTAGE
 }
 
 type Mutation {

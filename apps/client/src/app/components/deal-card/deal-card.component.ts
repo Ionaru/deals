@@ -1,5 +1,5 @@
-import { DecimalPipe, NgOptimizedImage } from "@angular/common";
-import { Component, inject, Input, signal } from "@angular/core";
+import { DecimalPipe, NgOptimizedImage, PercentPipe } from "@angular/common";
+import { Component, computed, inject, Input, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatDialog } from "@angular/material/dialog";
@@ -30,6 +30,7 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     PriceComponent,
     DealProblemButtonComponent,
     MatTooltipModule,
+    PercentPipe,
   ],
   selector: "deals-deal-card",
   standalone: true,
@@ -50,6 +51,9 @@ export class DealCardComponent {
 
   broken$$ = signal(false);
 
+  savings$$ = computed(() => this.calculateSavings());
+  savingsPercentage$$ = computed(() => this.calculateSavingsPercentage());
+
   openDialog() {
     this.broken$$.set(true);
     DialogInformativeComponent.open(this.#dialog, {
@@ -58,5 +62,20 @@ export class DealCardComponent {
         title: $localize`Not implemented`,
       },
     });
+  }
+
+  calculateSavings() {
+    return (
+      this.productPrice * this.dealQuantity - this.dealPrice * this.dealQuantity
+    );
+  }
+
+  calculateSavingsPercentage() {
+    return (
+      ((this.dealPrice * this.dealQuantity -
+        this.productPrice * this.dealQuantity) /
+        (this.productPrice * this.dealQuantity)) *
+      -1
+    );
   }
 }

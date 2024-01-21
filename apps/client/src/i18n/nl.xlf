@@ -78,10 +78,6 @@
         <source>Previous page</source>
         <target>Vorige pagina</target>
       </trans-unit>
-      <trans-unit id="3638977803166656243" datatype="html">
-        <source>Buy <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> to save <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /></source>
-        <target>Koop <x id="INTERPOLATION" equiv-text="{{ dealQuantity }}" /> om <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;productPrice * dealQuantity - dealPrice * dealQuantity&quot; /&gt;" /> te besparen</target>
-      </trans-unit>
       <trans-unit id="3715748043269796565" datatype="html">
         <source>Report: Other problem</source>
         <target>Rapporteer: Ander probleem</target>
@@ -98,6 +94,10 @@
         <source>Deal price</source>
         <target>Aanbiedingsprijs</target>
       </trans-unit>
+      <trans-unit id="4676382645049224072" datatype="html">
+        <source>Savings %</source>
+        <target>Kortingspercentage</target>
+      </trans-unit>
       <trans-unit id="4743002849260529978" datatype="html">
         <source>Items per page:</source>
         <target>Items per pagina:</target>
@@ -108,7 +108,7 @@
       </trans-unit>
       <trans-unit id="5306259690530191944" datatype="html">
         <source>Go to product page</source>
-        <target state="new">Ga naar de productpagina</target>
+        <target>Ga naar de productpagina</target>
       </trans-unit>
       <trans-unit id="5370306667617945339" datatype="html">
         <source>Add to favorites</source>
@@ -125,6 +125,10 @@
       <trans-unit id="588284100849805066" datatype="html">
         <source>Product name</source>
         <target>Productnaam</target>
+      </trans-unit>
+      <trans-unit id="5894306748192001649" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ savingsPercentage$$() | percent }}" /> off when you buy <x id="INTERPOLATION_1" equiv-text="{{ dealQuantity }}" />, save <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;savings$$()&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;savings$$()&quot; /&gt;" />!</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ savingsPercentage$$() | percent }}" /> korting wanneer je er <x id="INTERPOLATION_1" equiv-text="{{ dealQuantity }}" /> koopt, <x id="START_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;savings$$()&quot; /&gt;" /><x id="CLOSE_TAG_DEALS_PRICE" ctype="x-deals_price" equiv-text="&lt;deals-price [amount]=&quot;savings$$()&quot; /&gt;" /> voordeel!</target>
       </trans-unit>
       <trans-unit id="6093210751404423786" datatype="html">
         <source>Ascending</source>

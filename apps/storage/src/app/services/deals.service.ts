@@ -59,6 +59,13 @@ export class DealsService {
           );
           break;
         }
+        case DealSortChoices.SAVINGS_PERCENTAGE: {
+          queryBuilder.addOrderBy(
+            "(((dealPrice * dealQuantity) - (product.price * dealQuantity)) / (product.price * dealQuantity)) * -1",
+            payload.order,
+          );
+          break;
+        }
       }
     }
 

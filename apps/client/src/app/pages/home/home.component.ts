@@ -109,6 +109,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       label: $localize`Savings`,
       value: DealSortChoices.SAVINGS,
     },
+    {
+      label: $localize`Savings %`,
+      value: DealSortChoices.SAVINGS_PERCENTAGE,
+    },
   ];
 
   ordering = [
