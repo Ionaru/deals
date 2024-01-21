@@ -120,3 +120,4 @@ services:
     image: nats:2-alpine
     healthcheck:
       test: "wget localhost:8222/healthz -q --spider"
+    restart: always
