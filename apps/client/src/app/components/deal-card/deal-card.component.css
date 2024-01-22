@@ -32,6 +32,10 @@
 
       .shop-logo {
         margin-inline: 0.25em;
+
+        &.Albert.Heijn {
+          width: 48px;
+        }
       }
     }
   }

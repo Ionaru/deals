@@ -1,4 +1,9 @@
-import { DecimalPipe, NgOptimizedImage, PercentPipe } from "@angular/common";
+import {
+  DecimalPipe,
+  NgClass,
+  NgOptimizedImage,
+  PercentPipe,
+} from "@angular/common";
 import { Component, computed, inject, Input, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -31,6 +36,7 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     DealProblemButtonComponent,
     MatTooltipModule,
     PercentPipe,
+    NgClass,
   ],
   selector: "deals-deal-card",
   standalone: true,

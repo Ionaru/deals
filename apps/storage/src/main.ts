@@ -21,5 +21,5 @@ const bootstrap = async () => {
 };
 
 bootstrap().catch((error) => {
-  Logger.error(error);
+  throw error;
 });

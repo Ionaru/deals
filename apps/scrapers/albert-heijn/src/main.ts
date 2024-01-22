@@ -4,16 +4,16 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { MicroserviceOptions } from "@nestjs/microservices";
 
-import { Jumbo } from "./jumbo";
+import { AlbertHeijn } from "./albert-heijn";
 
 const bootstrap = async () => {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    ScraperServiceModule.forRoot(Jumbo),
+    ScraperServiceModule.forRoot(AlbertHeijn),
     natsOptions,
   );
   app.enableShutdownHooks();
   await app.listen();
-  Logger.log(`🚀 Microservice for ${Jumbo.name} is running`);
+  Logger.log(`🚀 Microservice for ${AlbertHeijn.name} is running`);
 };
 
 bootstrap().catch((error) => {

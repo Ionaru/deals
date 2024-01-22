@@ -16,4 +16,6 @@ const bootstrap = async () => {
   Logger.log(`🚀 Microservice for ${Kruidvat.name} is running`);
 };
 
-bootstrap();
+bootstrap().catch((error) => {
+  throw error;
+});

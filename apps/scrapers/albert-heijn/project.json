@@ -1,0 +1,51 @@
+{
+  "name": "scrapers/albert-heijn",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/scrapers/albert-heijn/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/scrapers/albert-heijn",
+        "main": "apps/scrapers/albert-heijn/src/main.ts",
+        "tsConfig": "apps/scrapers/albert-heijn/tsconfig.app.json",
+        "webpackConfig": "apps/scrapers/albert-heijn/webpack.config.cjs",
+        "babelUpwardRootMode": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "scrapers/albert-heijn:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "scrapers/albert-heijn:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/scrapers/albert-heijn/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

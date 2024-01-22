@@ -92,6 +92,20 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  scrapers-albert-heijn:
+    image: ghcr.io/ionaru/deals/scrapers-albert-heijn:${DEALS_BUILD_TAG:-latest}
+    build:
+      context: .
+      dockerfile: deploy/service.Dockerfile
+      args:
+        - SERVICE_NAME=scrapers/albert-heijn
+    environment:
+      - NATS_HOST=nats
+    depends_on:
+      nats:
+        condition: service_healthy
+    restart: unless-stopped
+
   storage:
     image: ghcr.io/ionaru/deals/storage:${DEALS_BUILD_TAG:-latest}
     build:

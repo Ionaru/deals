@@ -19,4 +19,6 @@ const bootstrap = async () => {
   await app.startAllMicroservices();
 };
 
-bootstrap();
+bootstrap().catch((error) => {
+  throw error;
+});

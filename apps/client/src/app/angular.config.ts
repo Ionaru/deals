@@ -1,4 +1,4 @@
-import { provideHttpClient } from "@angular/common/http";
+import { provideHttpClient, withFetch } from "@angular/common/http";
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
@@ -22,7 +22,7 @@ import appRouting from "./app.routing";
 export const angularConfiguration: ApplicationConfig = {
   providers: [
     provideRouter(appRouting),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideAnimations(),
     importProvidersFrom(ApolloModule),
     {
