@@ -5,6 +5,7 @@ export default defineConfig({
   cacheDir: "../../node_modules/.vite/scheduler",
   plugins: [nxViteTsPaths()],
   test: {
+    reporters: ["default"],
     cache: {
       dir: "../../node_modules/.vitest",
     },
