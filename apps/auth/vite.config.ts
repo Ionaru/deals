@@ -5,7 +5,6 @@ export default defineConfig({
   cacheDir: "../../node_modules/.vite/auth",
   plugins: [nxViteTsPaths()],
   test: {
-    reporters: ["default"],
     cache: {
       dir: "../../node_modules/.vitest",
     },
@@ -14,5 +13,6 @@ export default defineConfig({
       reportsDirectory: "../../coverage/apps/auth",
     },
     include: ["src/**/*.spec.ts"],
+    reporters: ["default"],
   },
 });
