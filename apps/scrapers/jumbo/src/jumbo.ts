@@ -197,7 +197,7 @@ export class Jumbo extends ScrapeWebsiteService {
         continue;
       }
 
-      if (promotionText.startsWith('Gratis pita broodjes')) {
+      if (promotionText.startsWith("Gratis pita broodjes")) {
         continue;
       }
 
