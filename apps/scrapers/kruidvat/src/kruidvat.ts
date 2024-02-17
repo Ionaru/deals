@@ -12,6 +12,7 @@ enum KruidvatDealType {
   ONE_PLUS_ONE = 1,
   TWO_PLUS_ONE,
   TWO_PLUS_TWO,
+  TWO_PLUS_THREE,
   THREE_PLUS_TWO,
 
   // 2 for €X
@@ -37,6 +38,7 @@ enum KruidvatDealType {
   TWO_FOR_14,
   TWO_FOR_15,
   TWO_FOR_19_99,
+  TWO_FOR_25,
   // TWO_FOR_59_99,
 
   // 3 for €X
@@ -56,6 +58,7 @@ enum KruidvatDealType {
   // 4 for €X
   FOUR_FOR_10,
   FOUR_FOR_5,
+  FOUR_FOR_6,
   FOUR_FOR_7,
   FOUR_FOR_8,
   FOUR_FOR_9,
@@ -69,6 +72,7 @@ enum KruidvatDealType {
   FIFTEEN_PERCENT_OFF,
   TWENTY_PERCENT_OFF,
   TWENTY_FIVE_PERCENT_OFF,
+  THIRTY_PERCENT_OFF,
   THIRTY_FIVE_PERCENT_OFF,
   FOURTY_PERCENT_OFF,
   FIFTY_PERCENT_OFF,
@@ -85,6 +89,7 @@ enum KruidvatDealType {
   ALL_FOR_3_EACH,
   ALL_FOR_3_99_EACH,
   ALL_FOR_4_EACH,
+  ALL_FOR_4_99_EACH,
   ALL_FOR_5_EACH,
   ALL_FOR_6_EACH,
   ALL_FOR_7_EACH,
@@ -93,6 +98,7 @@ enum KruidvatDealType {
   ALL_FOR_7_99_EACH_DUPLICATE,
   ALL_FOR_9_EACH,
   ALL_FOR_9_99_EACH,
+  ALL_FOR_12_EACH,
   ALL_FOR_12_50_EACH,
   ALL_FOR_13_EACH,
   ALL_FOR_14_99_EACH,
@@ -209,6 +215,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1196",
       purchaseAmount: 2,
     },
+    [KruidvatDealType.TWO_FOR_25]: {
+      calculation: () => 25 / 2,
+      code: "1209",
+      purchaseAmount: 2,
+    },
     // INCORRECT CODE
     // [KruidvatDealType.TWO_FOR_59_99]: {
     //   calculation: () => 59.99 / 2,
@@ -280,6 +291,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1037",
       purchaseAmount: 4,
     },
+    [KruidvatDealType.TWO_PLUS_THREE]: {
+      calculation: (price: number) => (price + price) / 5,
+      code: "1118",
+      purchaseAmount: 5,
+    },
     [KruidvatDealType.THREE_PLUS_TWO]: {
       calculation: (price: number) => (price + price + price) / 5,
       code: "1050",
@@ -323,6 +339,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.TWENTY_FIVE_PERCENT_OFF]: {
       calculation: (price: number) => price - price * 0.25,
       code: "1062",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.THIRTY_PERCENT_OFF]: {
+      calculation: (price: number) => price - price * 0.3,
+      code: "1064",
       purchaseAmount: 1,
     },
     [KruidvatDealType.THIRTY_FIVE_PERCENT_OFF]: {
@@ -379,6 +400,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       calculation: () => 13 / 3,
       code: "4550",
       purchaseAmount: 3,
+    },
+    [KruidvatDealType.FOUR_FOR_6]: {
+      calculation: () => 6 / 4,
+      code: "1189",
+      purchaseAmount: 4,
     },
     [KruidvatDealType.FOUR_FOR_7]: {
       calculation: () => 7 / 4,
@@ -455,6 +481,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1095",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.ALL_FOR_4_99_EACH]: {
+      calculation: () => 4.99,
+      code: "1076",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.ALL_FOR_5_EACH]: {
       calculation: () => 5,
       code: "1097",
@@ -483,6 +514,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.ALL_FOR_9_99_EACH]: {
       calculation: () => 9.99,
       code: "1109",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_12_EACH]: {
+      calculation: () => 12,
+      code: "1180",
       purchaseAmount: 1,
     },
     [KruidvatDealType.ALL_FOR_12_50_EACH]: {
