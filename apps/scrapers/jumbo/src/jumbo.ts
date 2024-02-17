@@ -197,6 +197,10 @@ export class Jumbo extends ScrapeWebsiteService {
         continue;
       }
 
+      if (promotionText.startsWith('Gratis pita broodjes')) {
+        continue;
+      }
+
       const dealType = this.#parseDealText(promotionText);
       if (!dealType) {
         this.reportUnknownDeal({
