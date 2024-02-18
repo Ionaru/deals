@@ -156,6 +156,7 @@ jobs:
 
   push-image:
     name: Push image
+    if: github.event_name == 'push'
     needs: [lint, test, e2e, get_sha, determine_buildable]
     runs-on: ubuntu-latest
     strategy:
@@ -176,7 +177,11 @@ jobs:
 
   deploy:
     needs: [get_sha, push-image]
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    concurrency:
+      group: deploy
+      cancel-in-progress: false
     steps:
       - uses: appleboy/ssh-action@v1.0.3
         with:
