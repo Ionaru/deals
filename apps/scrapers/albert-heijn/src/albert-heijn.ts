@@ -510,11 +510,11 @@ export class AlbertHeijn extends ScrapeWebsiteService {
     token: string,
     discount: DiscountWeight,
   ): Promise<ParsedDiscount | undefined> {
-    if (product.product.priceBeforeBonus) {
+    if (product.product.priceBeforeBonus && product.product.currentPrice) {
       return {
-        dealPrice: discount.price,
+        dealPrice: product.product.currentPrice,
         price: product.product.priceBeforeBonus,
-        purchaseAmount: discount.count,
+        purchaseAmount: discount.unit === "GRAM" ? 1 : discount.count,
       };
     } else {
       const details = await this.getProductDetails(token, product);

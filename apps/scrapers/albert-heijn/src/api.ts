@@ -88,7 +88,7 @@ interface Image {
 
 export interface Product {
   product: {
-    webshopId: string;
+    webshopId: string | number;
     title: string;
     discountLabels: DiscountLabel[];
     hasListPrice: boolean;
@@ -100,7 +100,7 @@ export interface Product {
     priceBeforeBonus?: number;
     salesUnitSize?: string;
     currentPrice?: number; // ? With DiscountXPlusYFree
-    isBonusPrice: boolean;
+    isBonusPrice?: boolean;
     isStapelBonus: boolean;
     isBonus: boolean;
     orderAvailabilityStatus: OrderAvailabilityStatus;

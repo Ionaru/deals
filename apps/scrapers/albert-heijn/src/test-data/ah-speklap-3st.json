@@ -1,0 +1,115 @@
+{
+  "product": {
+    "webshopId": 232421,
+    "hqId": 822306,
+    "title": "AH Speklap 3st",
+    "brand": "AH",
+    "isSample": false,
+    "salesUnitSize": "ca. 375 g",
+    "unitPriceDescription": "normale prijs per kg €10.98",
+    "images": [
+      {
+        "width": 800,
+        "height": 800,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393437393335?revLabel=1&rendition=800x800_JPG_Q90&fileType=binary"
+      },
+      {
+        "width": 400,
+        "height": 400,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393437393335?revLabel=1&rendition=400x400_JPG_Q85&fileType=binary"
+      },
+      {
+        "width": 200,
+        "height": 200,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393437393335?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary"
+      },
+      {
+        "width": 48,
+        "height": 48,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393437393335?revLabel=1&rendition=48x48_GIF&fileType=binary"
+      },
+      {
+        "width": 80,
+        "height": 80,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393437393335?revLabel=1&rendition=80x80_JPG&fileType=binary"
+      }
+    ],
+    "segmentId": "626508",
+    "bonusSegmentId": 626508,
+    "offerId": 21863,
+    "offerStartDate": "2024-02-12",
+    "bonusSegmentDescription": "AH Speklapjes 2 of 3 stuks",
+    "extraDescriptions": [],
+    "discountType": "AH",
+    "promotionType": "NATIONAL",
+    "segmentType": "AH",
+    "isInfiniteBonus": false,
+    "bonusMechanism": "100 GRAM VOOR 0.99",
+    "discountLabels": [
+      {
+        "code": "DISCOUNT_WEIGHT",
+        "defaultDescription": "per 100 gram voor €0.99",
+        "count": 100,
+        "price": 0.99,
+        "unit": "GRAM"
+      }
+    ],
+    "bonusStartDate": "2024-02-12",
+    "bonusEndDate": "2024-02-18",
+    "bonusPeriodDescription": "vandaag",
+    "priceBeforeBonus": 4.39,
+    "hasListPrice": false,
+    "currentPrice": 3.96,
+    "isStapelBonus": false,
+    "isBonus": true,
+    "shopType": "AH",
+    "orderAvailabilityStatus": "IN_ASSORTMENT",
+    "availableOnline": true,
+    "isOrderable": true,
+    "mainCategory": "Vlees, kip, vis, vega",
+    "subCategory": "Speklappen",
+    "subCategoryId": 1575,
+    "propertyIcons": ["goedkoopje", "lokaal"],
+    "properties": {
+      "sp_include_intolerance_geen_melk": ["Geen melk"],
+      "sp_include_intolerance_geen_kreeftachtigen": [
+        "Geen kreeftachtigen (schaaldieren)"
+      ],
+      "sp_include_intolerance_geen_soja": ["Geen soja"],
+      "da_sugar_added_or_no_sugar_added": ["Geen toegevoegde suikers"],
+      "sp_include_intolerance_geen_vis": ["Geen vis"],
+      "sp_include_dieet_laag_suiker": ["Laag suiker"],
+      "sp_include_intolerance_geen_lupine": ["Geen lupine"],
+      "sp_include_intolerance_geen_pindas": ["Geen pinda's"],
+      "da_animal_species": ["Varken"],
+      "np_lokaal": ["nederland"],
+      "da_a_type_of_preparation_cookware": ["Koekenpan"],
+      "sp_exclude_dieet_laag_vet": ["Laag vet"],
+      "sp_include_intolerance_geen_mosterd": ["Geen mosterd"],
+      "da_available_in_store": ["true"],
+      "sp_include_intolerance_geen_lactose": ["Geen lactose"],
+      "nutriscore": ["D"],
+      "sp_include_intolerance_geen_sulfiet": ["Geen sulfiet"],
+      "da_salted_or_not_salted": ["Ongezouten"],
+      "da_excluded_assortment": ["false"],
+      "sp_include_intolerance_geen_sesam": ["Geen sesam"],
+      "sp_include_dieet_laag_zout": ["Laag zout"],
+      "da_free_of_sugar": ["Ja"],
+      "sp_exclude_dieet_veganistisch": ["Veganistisch"],
+      "sp_include_intolerance_geen_schelpdieren": [
+        "Geen schelpdieren (schaaldieren)"
+      ],
+      "np_goedkoopje": ["prijsfavoriet"],
+      "sp_include_intolerance_geen_eieren": ["Geen eieren"],
+      "sp_include_intolerance_geen_noten": ["Geen noten"],
+      "sp_exclude_dieet_vegetarisch": ["Vegetarisch"],
+      "da_accreditation": ["BETER_LEVEN_1_STER", "VARKEN_NATUUR_BOER"],
+      "sp_include_intolerance_geen_selderij": ["Geen selderij"],
+      "sp_include_intolerance_geen_gluten": ["Geen gluten"]
+    },
+    "isPreviouslyBought": false,
+    "nix18": false,
+    "descriptionHighlights": "<p>Speklappen zijn ouderwets lekker, zonder zwoerd dus makkelijk te bakken. Past prima bij de Hollandse pot, maar maak er ook eens spiesjes van met uienchutney, gepofte aardappel en bieslookroom.</p><p><ul><li>Varkensvlees van varkens van Nederlandse boeren</li><li>Bereiding: koekenpan, ongeveer 10 minuten</li><li>Tip: marineer de speklapjes en bereid deze op de bbq</li><li>Weetje: met 1 ster beter leven keurmerk</li><li>Prijsfavorieten: topkwaliteit en altijd laaggeprijsd</li></ul></p>",
+    "descriptionFull": "<p>  Varkensvlees met het 1 ster beter leven keurmerk heeft naast de ah-kwaliteit nog iets extras: het staat borg voor een beter leven voor het dier. De boer moet zijn best doen om deze ster te verdienen: hij geeft de varkens onder andere meer ruimte en beter afleidingsmateriaal tegen verveling en biggen worden niet gecastreerd. Letterlijk dus: een beter leven en minder stress. Het 1 ster beter leven keurmerk wordt toegekend door de dierenbescherming. </p><p>Dit product is een Prijsfavoriet. Dat zijn onze eigen-merkproducten van topkwaliteit en ze zijn altijd voordelig. Je herkent ze aan het blauwe duimpje.</p>"
+  }
+}

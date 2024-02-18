@@ -1,0 +1,117 @@
+{
+  "product": {
+    "webshopId": 137935,
+    "hqId": 590146,
+    "title": "AH Goudsalami",
+    "brand": "AH",
+    "isSample": false,
+    "salesUnitSize": "ca. 98 g",
+    "unitPriceDescription": "normale prijs per kg €23.99",
+    "images": [
+      {
+        "width": 800,
+        "height": 800,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393435343533?revLabel=1&rendition=800x800_JPG_Q90&fileType=binary"
+      },
+      {
+        "width": 400,
+        "height": 400,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393435343533?revLabel=1&rendition=400x400_JPG_Q85&fileType=binary"
+      },
+      {
+        "width": 200,
+        "height": 200,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393435343533?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary"
+      },
+      {
+        "width": 48,
+        "height": 48,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393435343533?revLabel=1&rendition=48x48_GIF&fileType=binary"
+      },
+      {
+        "width": 80,
+        "height": 80,
+        "url": "https://static.ah.nl/dam/product/AHI_43545239393435343533?revLabel=1&rendition=80x80_JPG&fileType=binary"
+      }
+    ],
+    "segmentId": "626506",
+    "bonusSegmentId": 626506,
+    "offerId": 21861,
+    "offerStartDate": "2024-02-12",
+    "bonusSegmentDescription": "AH Goudsalami van de versafdeling",
+    "extraDescriptions": [],
+    "discountType": "AH",
+    "promotionType": "NATIONAL",
+    "segmentType": "AH",
+    "isInfiniteBonus": false,
+    "bonusMechanism": "100 GRAM VOOR 1.79",
+    "discountLabels": [
+      {
+        "code": "DISCOUNT_WEIGHT",
+        "defaultDescription": "per 100 gram voor €1.79",
+        "count": 100,
+        "price": 1.79,
+        "unit": "GRAM"
+      }
+    ],
+    "bonusStartDate": "2024-02-12",
+    "bonusEndDate": "2024-02-18",
+    "bonusPeriodDescription": "vandaag",
+    "priceBeforeBonus": 2.35,
+    "hasListPrice": false,
+    "currentPrice": 1.75,
+    "isStapelBonus": false,
+    "isBonus": true,
+    "shopType": "AH",
+    "orderAvailabilityStatus": "IN_ASSORTMENT",
+    "availableOnline": true,
+    "isOrderable": true,
+    "mainCategory": "Kaas, vleeswaren, tapas",
+    "subCategory": "Salami en cervelaat (versafdeling)",
+    "subCategoryId": 19918,
+    "propertyIcons": [],
+    "properties": {
+      "sp_include_intolerance_geen_melk": ["Geen melk"],
+      "sp_include_intolerance_geen_kreeftachtigen": [
+        "Geen kreeftachtigen (schaaldieren)"
+      ],
+      "sp_include_intolerance_geen_soja": ["Geen soja"],
+      "da_sugar_added_or_no_sugar_added": ["Geen toegevoegde suikers"],
+      "sp_include_intolerance_geen_vis": ["Geen vis"],
+      "sp_include_dieet_laag_suiker": ["Laag suiker"],
+      "sp_include_intolerance_geen_lupine": ["Geen lupine"],
+      "sp_include_intolerance_geen_pindas": ["Geen pinda's"],
+      "da_animal_species": ["Rund", "Varken"],
+      "sp_exclude_dieet_laag_vet": ["Laag vet"],
+      "da_processing_type": ["Gerookt"],
+      "sp_include_intolerance_geen_mosterd": ["Geen mosterd"],
+      "da_available_in_store": ["true"],
+      "sp_include_intolerance_geen_lactose": ["Geen lactose"],
+      "nutriscore": ["E"],
+      "sp_include_intolerance_geen_sulfiet": ["Geen sulfiet"],
+      "da_salted_or_not_salted": ["Gezouten"],
+      "da_excluded_assortment": ["false"],
+      "sp_include_intolerance_geen_sesam": ["Geen sesam"],
+      "sp_exclude_dieet_laag_zout": ["Laag zout"],
+      "da_free_of_sugar": ["Ja"],
+      "da_grape": [],
+      "sp_exclude_dieet_veganistisch": ["Veganistisch"],
+      "sp_include_intolerance_geen_schelpdieren": [
+        "Geen schelpdieren (schaaldieren)"
+      ],
+      "da_type_of_processed_food": ["Gerookt"],
+      "sp_include_intolerance_geen_eieren": ["Geen eieren"],
+      "sp_include_intolerance_geen_noten": ["Geen noten"],
+      "np_vorm": ["plakjes"],
+      "sp_exclude_dieet_vegetarisch": ["Vegetarisch"],
+      "da_accreditation": ["BETER_LEVEN_1_STER"],
+      "sp_include_intolerance_geen_selderij": ["Geen selderij"],
+      "da_regionalism": ["Gouds"],
+      "sp_include_intolerance_geen_gluten": ["Geen gluten"]
+    },
+    "isPreviouslyBought": false,
+    "nix18": false,
+    "descriptionHighlights": "<p>Goudsalami is een gekruide droge worst.</p><p><ul><li>Licht gerookt.</li></ul></p>",
+    "descriptionFull": ""
+  }
+}

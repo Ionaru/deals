@@ -4,13 +4,13 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["apps/scrapers/albert-heijn/tsconfig.*?.json"]
+      },
       "rules": {}
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "parserOptions": {
-        "project": ["apps/scrapers/albert-heijn/tsconfig.*?.json"]
-      },
       "rules": {}
     },
     {
