@@ -1,16 +1,16 @@
 @use "@angular/material" as material;
-@use '@angular/material-experimental' as matx;
+@use "@angular/material-experimental" as matx;
 
 @include material.core();
 
 $angular-default-theme: matx.define-theme(
-    (
-      color: (
-        theme-type: light,
-        primary: matx.$m3-azure-palette,
-        tertiary: matx.$m3-yellow-palette,
-      )
-    )
+  (
+    color: (
+      theme-type: light,
+      primary: matx.$m3-azure-palette,
+      tertiary: matx.$m3-yellow-palette,
+    ),
+  )
 );
 
 body {
@@ -18,13 +18,13 @@ body {
 }
 
 $angular-dark-theme: matx.define-theme(
-    (
-      color: (
-        theme-type: dark,
-        primary: matx.$m3-azure-palette,
-        tertiary: matx.$m3-yellow-palette,
-      ),
-    )
+  (
+    color: (
+      theme-type: dark,
+      primary: matx.$m3-azure-palette,
+      tertiary: matx.$m3-yellow-palette,
+    ),
+  )
 );
 
 body.dark-mode {
