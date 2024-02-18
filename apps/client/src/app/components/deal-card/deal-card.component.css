@@ -6,8 +6,6 @@
     justify-content: space-between;
     row-gap: 1em;
 
-    --mdc-outlined-card-outline-color: transparent;
-
     mat-card-header {
       flex-grow: 1;
       display: flex;
@@ -15,6 +13,10 @@
       align-items: center;
       flex-direction: column;
       row-gap: 1em;
+
+      mat-card-title {
+        padding-bottom: 0.5em;
+      }
     }
 
     mat-card-content {

@@ -3,18 +3,14 @@
 
 html {
   overflow-y: scroll;
-
-  &:has(body.dark-mode) {
-    color-scheme: dark;
-  }
-}
-
-html,
-body {
-  height: 100%;
 }
 
 body {
-  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  mat-card {
+    --mdc-outlined-card-outline-color: transparent;
+    --mdc-outlined-card-container-color: var(--mdc-filled-text-field-container-color);
+    --mat-card-subtitle-text-color: var(--mdc-filled-text-field-label-text-color);
+  }
 }
