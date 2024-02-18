@@ -357,6 +357,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
             `Unknown discount code: ${discount.code}`,
             AlbertHeijn.name,
           );
+          Logger.warn(JSON.stringify(discount, null, 2), AlbertHeijn.name);
           this.reportUnknownDeal({
             productUrl: `https://www.ah.nl/producten/product/${product.product.webshopId}`,
             promotionText: discount.code,
@@ -364,17 +365,22 @@ export class AlbertHeijn extends ScrapeWebsiteService {
         }
       }
     }
-    return parsed
-      .filter(
-        (parsedDiscount): parsedDiscount is ParsedDiscount =>
-          parsedDiscount !== undefined,
-      )
-      .reduce((previous, current) =>
-        previous.dealPrice * previous.purchaseAmount <
-        current.dealPrice * current.purchaseAmount
-          ? previous
-          : current,
-      );
+
+    const discounts = parsed.filter(
+      (parsedDiscount): parsedDiscount is ParsedDiscount =>
+        parsedDiscount !== undefined,
+    );
+
+    if (discounts.length === 0) {
+      return undefined;
+    }
+
+    return discounts.reduce((previous, current) =>
+      previous.dealPrice * previous.purchaseAmount <
+      current.dealPrice * current.purchaseAmount
+        ? previous
+        : current,
+    );
   }
 
   async parseFixedPriceDiscount(
@@ -484,8 +490,9 @@ export class AlbertHeijn extends ScrapeWebsiteService {
     if (product.product.priceBeforeBonus) {
       return {
         dealPrice:
-          product.product.priceBeforeBonus +
-          product.product.priceBeforeBonus / 2,
+          (product.product.priceBeforeBonus +
+            product.product.priceBeforeBonus / 2) /
+          2,
         price: product.product.priceBeforeBonus,
         purchaseAmount: 2,
       };
