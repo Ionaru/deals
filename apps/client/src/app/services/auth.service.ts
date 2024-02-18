@@ -60,7 +60,7 @@ export class AuthService {
       challenge.data.challenge,
       {
         attestation: true,
-        authenticatorType: "roaming",
+        authenticatorType: "both",
         debug: isDevMode(),
         discoverable: "required",
         userVerification: "required",
