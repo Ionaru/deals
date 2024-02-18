@@ -144,7 +144,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
       deals.push({
         dealPrice: parsed.dealPrice,
         imageUrl: image.url,
-        name: product.product.title,
+        name: product.product.title.trim(),
         price: parsed.price,
         productUrl: `https://www.ah.nl/producten/product/${product.product.webshopId}`,
         purchaseAmount: parsed.purchaseAmount,
