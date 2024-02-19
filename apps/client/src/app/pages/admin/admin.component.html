@@ -3,7 +3,7 @@
     <div class="services-container">
       @for (service of health; track service) {
         @if (isCoreService(service)) {
-          <mat-card class="service-card">
+          <mat-card appearance="outlined" class="service-card">
             <mat-card-header>
               <mat-card-title>Core service: {{ service.name }}</mat-card-title>
               <mat-card-subtitle>
@@ -26,7 +26,7 @@
     <div class="services-container">
       @for (service of health; track service) {
         @if (!isCoreService(service)) {
-          <mat-card class="service-card">
+          <mat-card appearance="outlined" class="service-card">
             <mat-card-header>
               <mat-card-title
                 >Scraper service: {{ service.name }}</mat-card-title
