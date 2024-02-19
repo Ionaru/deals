@@ -62,9 +62,11 @@ export class LoginComponent {
         this.form.get("displayName")?.value,
         existingUser,
       );
-      if (credential) {
+      if (credential && !existingUser) {
         this.createdName = credential;
         this.state = LoginState.REGISTERED;
+      } else {
+        this.state = LoginState.INITIAL;
       }
     } catch (error) {
       // eslint-disable-next-line no-console
