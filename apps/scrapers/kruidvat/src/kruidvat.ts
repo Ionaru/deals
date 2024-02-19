@@ -122,6 +122,7 @@ enum KruidvatDealType {
   TWENTY_OFF,
 
   // For X
+  FOR_54_99,
   FOR_69_99,
   FOR_89_99,
   FOR_109,
@@ -604,6 +605,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.TWENTY_OFF]: {
       calculation: (price: number) => price - 20,
       code: "1179",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_54_99]: {
+      calculation: () => 54.99,
+      code: "4432",
       purchaseAmount: 1,
     },
     [KruidvatDealType.FOR_69_99]: {
