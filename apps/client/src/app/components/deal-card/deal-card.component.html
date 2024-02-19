@@ -5,12 +5,9 @@
       {{ savingsPercentage$$() | percent }} off when you buy {{ dealQuantity }},
       save <deals-price [amount]="savings$$()" />!
     </mat-card-subtitle>
-    <img
-      [ngSrc]="productImageUrl"
-      [alt]="'Picture of ' + productName"
-      width="200"
-      height="200"
-      [priority]="true"
+    <deals-deal-image
+      [productImageUrl]="productImageUrl"
+      [productName]="productName"
     />
   </mat-card-header>
   <mat-card-content i18n>

@@ -12,6 +12,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterLink } from "@angular/router";
 
+import { DealImageComponent } from "../deal-image/deal-image.component";
 import { DealProblemButtonComponent } from "../deal-problem-button/deal-problem-button.component";
 import { DialogInformativeComponent } from "../dialog-informative/dialog-informative.component";
 import { PriceComponent } from "../price/price.component";
@@ -37,6 +38,7 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     MatTooltipModule,
     PercentPipe,
     NgClass,
+    DealImageComponent,
   ],
   selector: "deals-deal-card",
   standalone: true,
