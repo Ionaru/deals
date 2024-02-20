@@ -116,7 +116,6 @@
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "polyfills": "src/polyfills.ts",
       "options": {
         "jestConfig": "apps/client/jest.config.ts"
       }
