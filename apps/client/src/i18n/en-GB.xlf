@@ -156,6 +156,10 @@
       <trans-unit id="6784758141439994527" datatype="html">
         <source>Last page</source>
       </trans-unit>
+      <trans-unit id="7256272481938427418" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />login<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" /> Sign up</source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />login<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" /> Sign up</target>
+      </trans-unit>
       <trans-unit id="7351184231172040714" datatype="html">
         <source>Report: Wrong price</source>
         <target>Report: Wrong price</target>

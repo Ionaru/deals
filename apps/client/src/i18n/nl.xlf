@@ -162,6 +162,10 @@
         <source>Last page</source>
         <target>Laatste pagina</target>
       </trans-unit>
+      <trans-unit id="7256272481938427418" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />login<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" /> Sign up</source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />login<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" /> Aanmelden</target>
+      </trans-unit>
       <trans-unit id="7351184231172040714" datatype="html">
         <source>Report: Wrong price</source>
         <target>Rapporteer: Verkeerde prijs</target>
