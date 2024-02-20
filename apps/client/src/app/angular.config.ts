@@ -1,7 +1,7 @@
 import { provideHttpClient, withFetch } from "@angular/common/http";
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { provideRouter } from "@angular/router";
+import { provideRouter, withViewTransitions } from "@angular/router";
 import { ApolloClientOptions, InMemoryCache } from "@apollo/client/core";
 import {
   APOLLO_FLAGS,
@@ -21,7 +21,7 @@ import appRouting from "./app.routing";
 
 export const angularConfiguration: ApplicationConfig = {
   providers: [
-    provideRouter(appRouting),
+    provideRouter(appRouting, withViewTransitions()),
     provideHttpClient(withFetch()),
     provideAnimations(),
     importProvidersFrom(ApolloModule),

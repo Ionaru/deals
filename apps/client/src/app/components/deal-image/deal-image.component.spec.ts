@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { DealImageComponent } from "./deal-image.component";
 
-xdescribe("DealImageComponent", () => {
+describe("DealImageComponent", () => {
   let component: DealImageComponent;
   let fixture: ComponentFixture<DealImageComponent>;
 
@@ -12,6 +12,8 @@ xdescribe("DealImageComponent", () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(DealImageComponent);
+    fixture.componentRef.setInput("productImageUrl", "productImageUrl");
+    fixture.componentRef.setInput("productName", "productName");
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

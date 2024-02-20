@@ -1,11 +1,6 @@
-@if (productImageData(); as data) {
-  <!--suppress AngularNgOptimizedImage -->
-  <img
-    [src]="data"
-    [alt]="'Picture of ' + productName()"
-    width="200"
-    height="200"
-  />
-} @else {
-  <mat-spinner />
-}
+<img
+  [ngSrc]="productImageUrl()"
+  [alt]="'Picture of ' + productName()"
+  width="200"
+  height="200"
+/>

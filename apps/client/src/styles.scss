@@ -8,6 +8,10 @@ html {
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 
+  mat-divider {
+    width: 100%;
+  }
+
   mat-card {
     --mdc-outlined-card-outline-color: transparent;
     --mdc-outlined-card-container-color: var(

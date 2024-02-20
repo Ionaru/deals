@@ -1,2 +1,15 @@
 :host {
+  img {
+    background-color: white;
+    border-radius: 12px;
+    padding: 0.5em;
+  }
+}
+
+body.dark-mode {
+  :host {
+    img {
+      filter: brightness(0.75);
+    }
+  }
 }

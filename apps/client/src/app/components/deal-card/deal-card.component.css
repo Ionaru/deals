@@ -17,6 +17,11 @@
       mat-card-title {
         padding-bottom: 0.5em;
       }
+
+      mat-card-title,
+      mat-card-subtitle {
+        text-align: center;
+      }
     }
 
     mat-card-content {
