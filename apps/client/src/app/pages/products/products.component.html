@@ -1,0 +1,71 @@
+<h1 i18n>Products</h1>
+<div class="deals-toolbar">
+  <mat-form-field>
+    <mat-label i18n>Shop</mat-label>
+    <mat-select [(ngModel)]="shopChoice">
+      <mat-option i18n>All</mat-option>
+      @for (shop of shops(); track $index) {
+        <mat-option [value]="shop.id">{{ shop.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label i18n>Sorting</mat-label>
+    <mat-select [(ngModel)]="sortingChoice">
+      @for (sortOption of sorting; track $index) {
+        <mat-option [value]="sortOption.value">
+          {{ sortOption.label }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label i18n>Ordering</mat-label>
+    <mat-select [(ngModel)]="orderingChoice">
+      @for (order of ordering; track $index) {
+        <mat-option [value]="order.value">{{ order.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <deals-deals-query-input
+    [query]="productQuery() || ''"
+    (queryChange)="productQuery.set($event || '')"
+  />
+  <deals-deals-paginator
+    (page)="page.set($event.pageIndex + 1)"
+    [totalItems]="lastSeenTotalItems()"
+    [itemsPerPage]="lastSeenItemsPerPage()"
+    [currentPage]="page() - 1"
+  />
+</div>
+@if (products$() | async; as response) {
+  @if (response.loading) {
+    <mat-spinner></mat-spinner>
+  }
+  @if (response.data; as data) {
+    @if (data) {
+      <div class="deals-container">
+        @for (product of data.products.items; track product.id) {
+          <deals-product-card
+            [productId]="product.id"
+            [productPrice]="product.price"
+            [productImageUrl]="product.imageUrl"
+            [productName]="product.name"
+            [productUrl]="product.productUrl"
+            [shopName]="product.shop.name"
+          />
+        }
+      </div>
+      @if (data.products.items.length) {
+        <deals-deals-paginator
+          (page)="page.set($event.pageIndex + 1)"
+          [totalItems]="data.products.meta.totalItems || 0"
+          [itemsPerPage]="data.products.meta.itemsPerPage"
+          [currentPage]="data.products.meta.currentPage - 1"
+        />
+      } @else {
+        <p i18n>No matching products found</p>
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+:host {
+  mat-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 1em;
+
+    mat-card-header {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      row-gap: 1em;
+
+      mat-card-title {
+        padding-bottom: 0.5em;
+      }
+
+      mat-card-title,
+      mat-card-subtitle {
+        text-align: center;
+      }
+    }
+
+    mat-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      deals-price-current {
+        font-size: 1.5em;
+      }
+    }
+
+    mat-card-actions {
+      column-gap: 0.25em;
+
+      .shop-logo {
+        margin-inline: 0.25em;
+
+        &.Albert.Heijn {
+          width: 48px;
+        }
+      }
+    }
+  }
+}

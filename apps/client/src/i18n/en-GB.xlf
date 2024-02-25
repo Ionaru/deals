@@ -149,6 +149,10 @@
         <source>Authenticate</source>
         <target>Authenticate</target>
       </trans-unit>
+      <trans-unit id="6707361102856436710" datatype="html">
+        <source>Products</source>
+        <target>Products</target>
+      </trans-unit>
       <trans-unit id="6781087732457115066" datatype="html">
         <source>Report: Not on sale</source>
         <target>Report: Not on sale</target>
@@ -175,6 +179,10 @@
       <trans-unit id="7699926905279065694" datatype="html">
         <source>Go to notifications page</source>
         <target>Go to notifications page</target>
+      </trans-unit>
+      <trans-unit id="7910037015983077918" datatype="html">
+        <source>No matching products found</source>
+        <target>No matching products found</target>
       </trans-unit>
       <trans-unit id="7959813314561481156" datatype="html">
         <source>Open the navigation menu</source>

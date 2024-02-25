@@ -3,6 +3,7 @@ import { NatsOptions } from "@nestjs/microservices/interfaces/microservice-confi
 
 export * from "./lib/api.js";
 export * from "./lib/api/deal-sort-choices.js";
+export * from "./lib/api/product-sort-choices.js";
 export * from "./lib/api/http.js";
 export * from "./lib/api/events.js";
 export * from "./lib/api/messages.js";

@@ -154,6 +154,10 @@
         <source>Authenticate</source>
         <target>Authenticeren</target>
       </trans-unit>
+      <trans-unit id="6707361102856436710" datatype="html">
+        <source>Products</source>
+        <target>Producten</target>
+      </trans-unit>
       <trans-unit id="6781087732457115066" datatype="html">
         <source>Report: Not on sale</source>
         <target>Rapporteer: Geen aanbieding</target>
@@ -181,6 +185,10 @@
       <trans-unit id="7699926905279065694" datatype="html">
         <source>Go to notifications page</source>
         <target>Ga naar notificaties</target>
+      </trans-unit>
+      <trans-unit id="7910037015983077918" datatype="html">
+        <source>No matching products found</source>
+        <target>Geen overeenkomende producten gevonden</target>
       </trans-unit>
       <trans-unit id="7959813314561481156" datatype="html">
         <source>Open the navigation menu</source>

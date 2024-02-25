@@ -1,0 +1,38 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ productName }}</mat-card-title>
+    <deals-deal-image
+      [productImageUrl]="productImageUrl"
+      [productName]="productName"
+    />
+  </mat-card-header>
+  <mat-card-content>
+    <deals-price-current [amount]="productPrice" />
+  </mat-card-content>
+  <mat-card-actions>
+    <img
+      class="shop-logo"
+      [ngClass]="shopName"
+      [ngSrc]="'/assets/images/' + shopName + '.svg'"
+      [alt]="'Logo of ' + shopName"
+      width="125"
+      height="48"
+      [priority]="true"
+    />
+    <deals-spacer />
+    <deals-toolbar-icon-button
+      [icon]="broken$$() ? 'notifications_active' : 'notification_add'"
+      i18n-matTooltip
+      matTooltip="Add to favorites"
+      (click)="openDialog()"
+    />
+    <a
+      [href]="productUrl"
+      target="_blank"
+      i18n-matTooltip
+      matTooltip="Go to product page"
+    >
+      <deals-toolbar-icon-button icon="open_in_new" />
+    </a>
+  </mat-card-actions>
+</mat-card>

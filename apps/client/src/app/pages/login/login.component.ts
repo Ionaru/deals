@@ -30,7 +30,6 @@ enum LoginState {
     MatProgressSpinnerModule,
     AsyncPipe,
   ],
-  selector: "deals-login",
   standalone: true,
   styleUrls: ["./login.component.css"],
   templateUrl: "./login.component.html",

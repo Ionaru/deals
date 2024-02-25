@@ -5,6 +5,7 @@ import { Async } from "../api";
 import { ScraperStatus } from "../common/scraper-status";
 import { ServiceType } from "../common/service-type";
 import { DealDTO } from "../entities/deal";
+import { ProductDTO } from "../entities/product";
 import { ServiceDTO } from "../entities/service";
 import { ShopDTO } from "../entities/shop";
 import { TaskDTO } from "../entities/task";
@@ -13,6 +14,7 @@ import { UserDTO } from "../entities/user";
 import { HealthResponse } from "../routes/get-health";
 
 import { DealSortChoices } from "./deal-sort-choices";
+import { ProductSortChoices } from "./product-sort-choices";
 
 export type Nullable<T> = T | null;
 
@@ -26,6 +28,8 @@ registerEnumType(Order, { name: "Order" });
 export enum MSMessage {
   GET_DEAL = "GET_DEAL",
   GET_DEALS = "GET_DEALS",
+  GET_PRODUCT = "GET_PRODUCT",
+  GET_PRODUCTS = "GET_PRODUCTS",
   GET_UNKNOWN_DEALS = "GET_UNKNOWN_DEALS",
   RESOLVE_UNKNOWN_DEAL = "RESOLVE_UNKNOWN_DEAL",
   REGISTER_SERVICE = "REGISTER_SERVICE",
@@ -77,6 +81,25 @@ export interface IMSMessage {
       shop: string | undefined;
     };
     response: Pagination<DealDTO>;
+  };
+
+  [MSMessage.GET_PRODUCT]: {
+    payload: {
+      id: string;
+    };
+    response: Nullable<ProductDTO>;
+  };
+
+  [MSMessage.GET_PRODUCTS]: {
+    payload: {
+      sort: ProductSortChoices[];
+      order: Order;
+      limit: number;
+      page: number;
+      query: string | undefined;
+      shop: string | undefined;
+    };
+    response: Pagination<ProductDTO>;
   };
 
   [MSMessage.GET_UNKNOWN_DEALS]: {

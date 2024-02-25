@@ -26,7 +26,6 @@ import { HealthService } from "../../services/health.service";
     MatProgressSpinnerModule,
     UnknownDealsComponent,
   ],
-  selector: "deals-admin",
   standalone: true,
   styleUrls: ["./admin.component.css"],
   templateUrl: "./admin.component.html",

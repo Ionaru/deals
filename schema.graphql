@@ -54,10 +54,22 @@ type ProductDTO {
   shop: ShopDTO!
 }
 
+type ProductPaginatedType {
+  items: [ProductDTO!]!
+  meta: PaginationMeta!
+}
+
+enum ProductSortChoices {
+  PRODUCT_NAME
+  PRODUCT_PRICE
+}
+
 type Query {
   challenge: String!
   deal(id: ID!): DealDTO
   deals(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, query: String, shop: String, sort: [DealSortChoices!] = [PRODUCT_NAME]): DealPaginatedType!
+  product(id: ID!): ProductDTO
+  products(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, query: String, shop: String, sort: [ProductSortChoices!] = [PRODUCT_NAME]): ProductPaginatedType!
   service(id: ID!): ServiceHealthDTO
   services: [ServiceHealthDTO!]!
   session: SessionDTO!

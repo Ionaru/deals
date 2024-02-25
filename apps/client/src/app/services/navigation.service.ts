@@ -16,7 +16,8 @@ export class NavigationService {
   readonly #authService = inject(AuthService);
 
   readonly #routes: Route[] = [
-    { name: "Home", path: "/" },
+    { name: "Deals", path: "/" },
+    { name: "Products", path: "/products" },
     { name: "FAQ", path: "/faq" },
     { adminOnly: true, name: "Admin", path: "/admin" },
   ];
@@ -25,6 +26,6 @@ export class NavigationService {
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
   readonly routes$$ = computed(() =>
-    this.#routes.filter((r) => !r.adminOnly || this.#isAdmin$$()),
+    this.#routes.filter((route) => !route.adminOnly || this.#isAdmin$$()),
   );
 }

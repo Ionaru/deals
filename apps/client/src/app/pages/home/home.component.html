@@ -44,7 +44,7 @@
     (page)="handlePageEvent($event)"
     [totalItems]="lastSeenTotalItems()"
     [itemsPerPage]="lastSeenItemsPerPage()"
-    [currentPage]="this.page$.value - 1"
+    [currentPage]="page$.value - 1"
   />
 </div>
 @if (deals$ | async; as response) {

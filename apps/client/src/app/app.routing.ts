@@ -6,6 +6,10 @@ export default [
     path: "",
   },
   {
+    loadChildren: () => import("./pages/products/products.routing"),
+    path: "products",
+  },
+  {
     loadChildren: () => import("./pages/admin/admin.routing"),
     path: "admin",
   },

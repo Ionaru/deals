@@ -15,6 +15,7 @@ import { Shop } from "./models/shop";
 import { UnknownDeal } from "./models/unknown-deal";
 import { DealsService } from "./services/deals.service";
 import { FoundDealsService } from "./services/found-deals.service";
+import { ProductsService } from "./services/products.service";
 import { ServicesService } from "./services/services.service";
 import { ShopsService } from "./services/shops.service";
 import { UnknownDealService } from "./services/unknown-deal.service";
@@ -97,6 +98,7 @@ import { UnknownDealService } from "./services/unknown-deal.service";
     DealsService,
     ServicesService,
     ShopsService,
+    ProductsService,
   ],
 })
 export class AppModule implements OnApplicationShutdown {

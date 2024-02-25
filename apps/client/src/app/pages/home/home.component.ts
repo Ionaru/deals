@@ -56,7 +56,6 @@ import { DealSortChoices, Order } from "../../zeus";
     DealsQueryInputComponent,
     NgTemplateOutlet,
   ],
-  selector: "deals-home",
   standalone: true,
   styleUrls: ["./home.component.css"],
   templateUrl: "./home.component.html",

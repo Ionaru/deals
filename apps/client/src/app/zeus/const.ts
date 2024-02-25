@@ -23,6 +23,7 @@ export const AllTypesProps: Record<string,any> = {
 		}
 	},
 	Order: "enum" as const,
+	ProductSortChoices: "enum" as const,
 	Query:{
 		deal:{
 
@@ -30,6 +31,13 @@ export const AllTypesProps: Record<string,any> = {
 		deals:{
 			order:"Order",
 			sort:"DealSortChoices"
+		},
+		product:{
+
+		},
+		products:{
+			order:"Order",
+			sort:"ProductSortChoices"
 		},
 		service:{
 
@@ -79,10 +87,16 @@ export const ReturnTypes: Record<string,any> = {
 		productUrl:"String",
 		shop:"ShopDTO"
 	},
+	ProductPaginatedType:{
+		items:"ProductDTO",
+		meta:"PaginationMeta"
+	},
 	Query:{
 		challenge:"String",
 		deal:"DealDTO",
 		deals:"DealPaginatedType",
+		product:"ProductDTO",
+		products:"ProductPaginatedType",
 		service:"ServiceHealthDTO",
 		services:"ServiceHealthDTO",
 		session:"SessionDTO",

@@ -20,4 +20,14 @@ export class ShopsService {
       }),
     });
   }
+
+  shops$ = this.#apollo.query({
+    errorPolicy: "all",
+    query: typedGql("query")({
+      shops: {
+        id: true,
+        name: true,
+      },
+    }),
+  });
 }

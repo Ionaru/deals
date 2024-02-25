@@ -887,10 +887,18 @@ startTask?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 	shop?:ValueTypes["ShopDTO"],
 		__typename?: boolean | `@${string}`
 }>;
+	["ProductPaginatedType"]: AliasType<{
+	items?:ValueTypes["ProductDTO"],
+	meta?:ValueTypes["PaginationMeta"],
+		__typename?: boolean | `@${string}`
+}>;
+	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: AliasType<{
 	challenge?:boolean | `@${string}`,
 deal?: [{	id: string | Variable<any, string>},ValueTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	query?: string | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
+product?: [{	id: string | Variable<any, string>},ValueTypes["ProductDTO"]],
+products?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	query?: string | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["ProductSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["ProductPaginatedType"]],
 service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
 	session?:ValueTypes["SessionDTO"],
@@ -988,10 +996,18 @@ startTask?: [{	name: string},boolean | `@${string}`],
 	shop?:ResolverInputTypes["ShopDTO"],
 		__typename?: boolean | `@${string}`
 }>;
+	["ProductPaginatedType"]: AliasType<{
+	items?:ResolverInputTypes["ProductDTO"],
+	meta?:ResolverInputTypes["PaginationMeta"],
+		__typename?: boolean | `@${string}`
+}>;
+	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: AliasType<{
 	challenge?:boolean | `@${string}`,
 deal?: [{	id: string},ResolverInputTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	query?: string | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
+product?: [{	id: string},ResolverInputTypes["ProductDTO"]],
+products?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	query?: string | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["ProductSortChoices"]> | undefined | null},ResolverInputTypes["ProductPaginatedType"]],
 service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
 	session?:ResolverInputTypes["SessionDTO"],
@@ -1089,10 +1105,17 @@ export type ModelTypes = {
 	productUrl: string,
 	shop: ModelTypes["ShopDTO"]
 };
+	["ProductPaginatedType"]: {
+		items: Array<ModelTypes["ProductDTO"]>,
+	meta: ModelTypes["PaginationMeta"]
+};
+	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: {
 		challenge: string,
 	deal?: ModelTypes["DealDTO"] | undefined,
 	deals: ModelTypes["DealPaginatedType"],
+	product?: ModelTypes["ProductDTO"] | undefined,
+	products: ModelTypes["ProductPaginatedType"],
 	service?: ModelTypes["ServiceHealthDTO"] | undefined,
 	services: Array<ModelTypes["ServiceHealthDTO"]>,
 	session: ModelTypes["SessionDTO"],
@@ -1189,11 +1212,19 @@ export type GraphQLTypes = {
 	productUrl: string,
 	shop: GraphQLTypes["ShopDTO"]
 };
+	["ProductPaginatedType"]: {
+	__typename: "ProductPaginatedType",
+	items: Array<GraphQLTypes["ProductDTO"]>,
+	meta: GraphQLTypes["PaginationMeta"]
+};
+	["ProductSortChoices"]: ProductSortChoices;
 	["Query"]: {
 	__typename: "Query",
 	challenge: string,
 	deal?: GraphQLTypes["DealDTO"] | undefined,
 	deals: GraphQLTypes["DealPaginatedType"],
+	product?: GraphQLTypes["ProductDTO"] | undefined,
+	products: GraphQLTypes["ProductPaginatedType"],
 	service?: GraphQLTypes["ServiceHealthDTO"] | undefined,
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>,
 	session: GraphQLTypes["SessionDTO"],
@@ -1258,6 +1289,10 @@ export const enum Order {
 	ASCENDING = "ASCENDING",
 	DESCENDING = "DESCENDING"
 }
+export const enum ProductSortChoices {
+	PRODUCT_NAME = "PRODUCT_NAME",
+	PRODUCT_PRICE = "PRODUCT_PRICE"
+}
 export const enum ServiceType {
 	CORE = "CORE",
 	SCRAPER = "SCRAPER"
@@ -1266,5 +1301,6 @@ export const enum ServiceType {
 type ZEUS_VARIABLES = {
 	["DealSortChoices"]: ValueTypes["DealSortChoices"];
 	["Order"]: ValueTypes["Order"];
+	["ProductSortChoices"]: ValueTypes["ProductSortChoices"];
 	["ServiceType"]: ValueTypes["ServiceType"];
 }

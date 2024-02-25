@@ -11,6 +11,7 @@ import { EventPattern, MessagePattern } from "@nestjs/microservices";
 
 import { DealsService } from "./services/deals.service";
 import { FoundDealsService } from "./services/found-deals.service";
+import { ProductsService } from "./services/products.service";
 import { ServicesService } from "./services/services.service";
 import { ShopsService } from "./services/shops.service";
 import { UnknownDealService } from "./services/unknown-deal.service";
@@ -21,6 +22,7 @@ export class AppController {
 
   constructor(
     private readonly dealsService: DealsService,
+    private readonly productsService: ProductsService,
     private readonly foundDealsService: FoundDealsService,
     private readonly unknownDealService: UnknownDealService,
     private readonly servicesService: ServicesService,
@@ -56,6 +58,20 @@ export class AppController {
     payload: MSMPayload<MSMessage.GET_DEAL>,
   ): AMSMResponse<MSMessage.GET_DEAL> {
     return this.dealsService.getDeal(payload.id);
+  }
+
+  @MessagePattern(MSMessage.GET_PRODUCTS)
+  handleGetProducts(
+    payload: MSMPayload<MSMessage.GET_PRODUCTS>,
+  ): AMSMResponse<MSMessage.GET_PRODUCTS> {
+    return this.productsService.getProducts(payload);
+  }
+
+  @MessagePattern(MSMessage.GET_PRODUCT)
+  handleGetProduct(
+    payload: MSMPayload<MSMessage.GET_PRODUCT>,
+  ): AMSMResponse<MSMessage.GET_PRODUCT> {
+    return this.productsService.getProduct(payload.id);
   }
 
   @MessagePattern(MSMessage.GET_UNKNOWN_DEALS)
