@@ -16,8 +16,8 @@ export class NavigationService {
   readonly #authService = inject(AuthService);
 
   readonly #routes: Route[] = [
-    { name: "Deals", path: "/" },
-    { name: "Products", path: "/products" },
+    { name: $localize`Deals`, path: "/" },
+    { name: $localize`Products`, path: "/products" },
     { name: "FAQ", path: "/faq" },
     { adminOnly: true, name: "Admin", path: "/admin" },
   ];
