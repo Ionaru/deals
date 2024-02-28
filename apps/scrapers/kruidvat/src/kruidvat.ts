@@ -23,6 +23,7 @@ enum KruidvatDealType {
   TWO_FOR_13,
   TWO_FOR_18,
   TWO_FOR_2,
+  TWO_FOR_2_50,
   TWO_FOR_20,
   TWO_FOR_29_99,
   TWO_FOR_3,
@@ -35,6 +36,7 @@ enum KruidvatDealType {
   TWO_FOR_8,
   TWO_FOR_9,
   TWO_FOR_9_95,
+  TWO_FOR_9_99,
   TWO_FOR_14,
   TWO_FOR_15,
   TWO_FOR_19_99,
@@ -52,6 +54,7 @@ enum KruidvatDealType {
   THREE_FOR_6,
   THREE_FOR_6_50,
   THREE_FOR_7,
+  THREE_FOR_7_50,
   THREE_FOR_8,
   THREE_FOR_9,
 
@@ -59,6 +62,7 @@ enum KruidvatDealType {
   FOUR_FOR_10,
   FOUR_FOR_5,
   FOUR_FOR_6,
+  FOUR_FOR_6_99,
   FOUR_FOR_7,
   FOUR_FOR_8,
   FOUR_FOR_9,
@@ -89,6 +93,7 @@ enum KruidvatDealType {
   ALL_FOR_3_EACH,
   ALL_FOR_3_99_EACH,
   ALL_FOR_4_EACH,
+  ALL_FOR_4_50_EACH,
   ALL_FOR_4_99_EACH,
   ALL_FOR_5_EACH,
   ALL_FOR_6_EACH,
@@ -96,6 +101,7 @@ enum KruidvatDealType {
   ALL_FOR_7_50_EACH,
   ALL_FOR_7_99_EACH,
   ALL_FOR_7_99_EACH_DUPLICATE,
+  ALL_FOR_8_99_EACH,
   ALL_FOR_9_EACH,
   ALL_FOR_9_99_EACH,
   ALL_FOR_12_EACH,
@@ -103,6 +109,7 @@ enum KruidvatDealType {
   ALL_FOR_13_EACH,
   ALL_FOR_14_99_EACH,
   ALL_FOR_15_EACH,
+  ALL_FOR_16_99_EACH,
   ALL_FOR_17_99_EACH,
   ALL_FOR_19_99_EACH,
   ALL_FOR_20_EACH,
@@ -118,11 +125,15 @@ enum KruidvatDealType {
   // €X off
   THREE_OFF,
   FIVE_OFF,
+  SIX_OFF,
+  NINE_OFF,
   TEN_OFF,
+  FIFTEEN_OFF,
   TWENTY_OFF,
 
   // For X
   FOR_54_99,
+  FOR_59_99,
   FOR_69_99,
   FOR_89_99,
   FOR_109,
@@ -137,8 +148,13 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       purchaseAmount: 2,
     },
     [KruidvatDealType.TWO_FOR_2]: {
-      calculation: () => 1,
+      calculation: () => 2.5 / 2,
       code: "1007",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.TWO_FOR_2_50]: {
+      calculation: () => 1,
+      code: "1008",
       purchaseAmount: 2,
     },
     [KruidvatDealType.TWO_FOR_3]: {
@@ -397,6 +413,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1191",
       purchaseAmount: 3,
     },
+    [KruidvatDealType.THREE_FOR_7_50]: {
+      calculation: () => 7.5 / 3,
+      code: "1045",
+      purchaseAmount: 3,
+    },
     [KruidvatDealType.THREE_FOR_13]: {
       calculation: () => 13 / 3,
       code: "4550",
@@ -405,6 +426,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.FOUR_FOR_6]: {
       calculation: () => 6 / 4,
       code: "1189",
+      purchaseAmount: 4,
+    },
+    [KruidvatDealType.FOUR_FOR_6_99]: {
+      calculation: () => 6.99 / 4,
+      code: "1262",
       purchaseAmount: 4,
     },
     [KruidvatDealType.FOUR_FOR_7]: {
@@ -425,6 +451,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.TWO_FOR_9_95]: {
       calculation: () => 9.95 / 2,
       code: "1024",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.TWO_FOR_9_99]: {
+      calculation: () => 9.99 / 2,
+      code: "1153",
       purchaseAmount: 2,
     },
     [KruidvatDealType.TWO_FOR_14]: {
@@ -482,9 +513,14 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1095",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.ALL_FOR_4_50_EACH]: {
+      calculation: () => 4.5,
+      code: "1324",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.ALL_FOR_4_99_EACH]: {
       calculation: () => 4.99,
-      code: "1076",
+      code: "1096",
       purchaseAmount: 1,
     },
     [KruidvatDealType.ALL_FOR_5_EACH]: {
@@ -505,6 +541,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.ALL_FOR_7_50_EACH]: {
       calculation: () => 7.5,
       code: "1103",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_8_99_EACH]: {
+      calculation: () => 8.99,
+      code: "1407",
       purchaseAmount: 1,
     },
     [KruidvatDealType.ALL_FOR_9_EACH]: {
@@ -540,6 +581,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.ALL_FOR_15_EACH]: {
       calculation: () => 15,
       code: "1112",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_16_99_EACH]: {
+      calculation: () => 16.99,
+      code: "1431",
       purchaseAmount: 1,
     },
     [KruidvatDealType.ALL_FOR_17_99_EACH]: {
@@ -597,9 +643,24 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1055",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.SIX_OFF]: {
+      calculation: (price: number) => price - 6,
+      code: "1187",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.NINE_OFF]: {
+      calculation: (price: number) => price - 9,
+      code: "1356",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.TEN_OFF]: {
       calculation: (price: number) => price - 10,
       code: "1057",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FIFTEEN_OFF]: {
+      calculation: (price: number) => price - 15,
+      code: "1251",
       purchaseAmount: 1,
     },
     [KruidvatDealType.TWENTY_OFF]: {
@@ -610,6 +671,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.FOR_54_99]: {
       calculation: () => 54.99,
       code: "4432",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_59_99]: {
+      calculation: () => 59.99,
+      code: "4467",
       purchaseAmount: 1,
     },
     [KruidvatDealType.FOR_69_99]: {
