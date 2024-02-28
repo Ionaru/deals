@@ -30,9 +30,12 @@ export class DealsService {
     }
 
     if (payload.query) {
-      queryBuilder.andWhere("LOWER(product.name) LIKE LOWER(:query)", {
-        query: `%${payload.query}%`,
-      });
+      const queryParts = payload.query.split(" ");
+      for (const part of queryParts) {
+        queryBuilder.andWhere("LOWER(product.name) LIKE LOWER(:query)", {
+          query: `%${part}%`,
+        });
+      }
     }
 
     for (const sort of payload.sort) {
