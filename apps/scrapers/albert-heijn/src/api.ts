@@ -8,11 +8,23 @@ export enum DiscountCode {
   DISCOUNT_WEIGHT = "DISCOUNT_WEIGHT",
   DISCOUNT_ONE_HALF_PRICE = "DISCOUNT_ONE_HALF_PRICE",
   DISCOUNT_BONUS = "DISCOUNT_BONUS",
+  DISCOUNT_ONE_FREE = "DISCOUNT_ONE_FREE",
+  DISCOUNT_TIERED_PERCENT = "DISCOUNT_TIERED_PERCENT",
 }
 
 export interface DiscountLabelBase {
   code: string;
   defaultDescription: string;
+}
+
+export interface DiscountOneFree extends DiscountLabelBase {
+  code: DiscountCode.DISCOUNT_ONE_FREE;
+  count: number;
+}
+
+export interface DiscountTieredPercent extends DiscountLabelBase {
+  code: DiscountCode.DISCOUNT_TIERED_PERCENT;
+  price: number;
 }
 
 export interface DiscountFallback extends DiscountLabelBase {
@@ -72,6 +84,8 @@ export type DiscountLabel =
   | DiscountWeight
   | DiscountOneHalfPrice
   | DiscountBonus
+  | DiscountTieredPercent
+  | DiscountOneFree
   | DiscountXPlusYFree;
 
 export enum OrderAvailabilityStatus {

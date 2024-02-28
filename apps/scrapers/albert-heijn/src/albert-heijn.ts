@@ -9,6 +9,7 @@ import {
   DiscountAmount,
   DiscountCode,
   DiscountFixedPrice,
+  DiscountOneFree,
   DiscountOneHalfPrice,
   DiscountPercentage,
   DiscountWeight,
@@ -348,6 +349,11 @@ export class AlbertHeijn extends ScrapeWebsiteService {
           break;
         }
 
+        case DiscountCode.DISCOUNT_ONE_FREE: {
+          parsed.push(this.parseOneFreeDiscount(product, discount));
+          break;
+        }
+
         case DiscountCode.DISCOUNT_BONUS: {
           return undefined;
         }
@@ -425,6 +431,27 @@ export class AlbertHeijn extends ScrapeWebsiteService {
           (discount.count + discount.freeCount),
         price: product.product.priceBeforeBonus,
         purchaseAmount: discount.count + discount.freeCount,
+      };
+    } else {
+      this.reportUnknownDeal({
+        productUrl: `https://www.ah.nl/producten/product/${product.product.webshopId}`,
+        promotionText: discount.code,
+      });
+    }
+    return undefined;
+  }
+
+  parseOneFreeDiscount(
+    product: Product,
+    discount: DiscountOneFree,
+  ): ParsedDiscount | undefined {
+    if (product.product.priceBeforeBonus) {
+      return {
+        dealPrice:
+          product.product.priceBeforeBonus -
+          product.product.priceBeforeBonus / discount.count,
+        price: product.product.priceBeforeBonus,
+        purchaseAmount: discount.count,
       };
     } else {
       this.reportUnknownDeal({
