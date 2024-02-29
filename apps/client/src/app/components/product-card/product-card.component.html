@@ -26,6 +26,9 @@
       matTooltip="Add to favorites"
       (click)="openDialog()"
     />
+    <a [routerLink]="['/products', productId]" matTooltip="Go to product">
+      <deals-toolbar-icon-button icon="info" />
+    </a>
     <a
       [href]="productUrl"
       target="_blank"

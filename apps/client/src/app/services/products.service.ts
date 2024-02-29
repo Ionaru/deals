@@ -1,14 +1,52 @@
 import { inject, Injectable } from "@angular/core";
 import { Apollo } from "apollo-angular";
 
-import { ProductSortChoices, Order } from "../zeus";
+import { ProductSortChoices, Order, $ } from "../zeus";
 import { typedGql } from "../zeus/typedDocumentNode";
+
+export const productQuery = typedGql("query")({
+  product: [
+    {
+      id: $("id", "ID!"),
+    },
+    {
+      dealHistory: {
+        createdOn: true,
+        dealPrice: true,
+        dealQuantity: true,
+        deletedOn: true,
+      },
+      id: true,
+      imageUrl: true,
+      name: true,
+      price: true,
+      priceHistory: {
+        createdOn: true,
+        price: true,
+      },
+      productUrl: true,
+      shop: {
+        name: true,
+      },
+    },
+  ],
+});
 
 @Injectable({
   providedIn: "root",
 })
 export class ProductsService {
   readonly #apollo = inject(Apollo);
+
+  getProduct(id: string) {
+    return this.#apollo.watchQuery({
+      errorPolicy: "all",
+      query: productQuery,
+      variables: {
+        id,
+      },
+    });
+  }
 
   getProducts(
     page = 1,

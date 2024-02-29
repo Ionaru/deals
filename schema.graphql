@@ -22,6 +22,17 @@ enum DealSortChoices {
   SAVINGS_PERCENTAGE
 }
 
+type ExtendedProductDTO {
+  dealHistory: [ProductDealHistoryDTO!]!
+  id: ID!
+  imageUrl: String!
+  name: String!
+  price: Float!
+  priceHistory: [ProductPriceHistoryDTO!]!
+  productUrl: String!
+  shop: ShopDTO!
+}
+
 type Mutation {
   addPasskey(registration: String!): Boolean!
   loginUser(authentication: String!): Boolean!
@@ -54,9 +65,21 @@ type ProductDTO {
   shop: ShopDTO!
 }
 
+type ProductDealHistoryDTO {
+  createdOn: String!
+  dealPrice: Float!
+  dealQuantity: Float!
+  deletedOn: String
+}
+
 type ProductPaginatedType {
   items: [ProductDTO!]!
   meta: PaginationMeta!
+}
+
+type ProductPriceHistoryDTO {
+  createdOn: String!
+  price: Float!
 }
 
 enum ProductSortChoices {
@@ -68,7 +91,7 @@ type Query {
   challenge: String!
   deal(id: ID!): DealDTO
   deals(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, query: String, shop: String, sort: [DealSortChoices!] = [PRODUCT_NAME]): DealPaginatedType!
-  product(id: ID!): ProductDTO
+  product(id: ID!): ExtendedProductDTO
   products(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, query: String, shop: String, sort: [ProductSortChoices!] = [PRODUCT_NAME]): ProductPaginatedType!
   service(id: ID!): ServiceHealthDTO
   services: [ServiceHealthDTO!]!

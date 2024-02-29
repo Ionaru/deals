@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  margin: 1em;
+
+  .product-container {
+    display: grid;
+    grid-template-columns: min-content auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "title title"
+      "image info";
+    gap: 1em;
+
+    @media only screen and (max-width: 500px) {
+      justify-items: center;
+      grid-template-columns: auto;
+      grid-template-rows: min-content auto auto;
+      grid-template-areas:
+        "title"
+        "image"
+        "info";
+    }
+
+    h1 {
+      grid-area: title;
+      text-align: center;
+    }
+
+    .deals-deal-image {
+      grid-area: image;
+    }
+
+    .info-container {
+      grid-area: info;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

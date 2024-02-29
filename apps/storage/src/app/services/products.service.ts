@@ -1,8 +1,13 @@
-import { ProductSortChoices, MSMessage, MSMPayload } from "@deals/api";
+import {
+  ProductSortChoices,
+  MSMessage,
+  MSMPayload,
+  ExtendedProductDTO,
+} from "@deals/api";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { paginate } from "nestjs-typeorm-paginate";
-import { Repository } from "typeorm";
+import { Brackets, Repository } from "typeorm";
 
 import { Product } from "../models/product";
 
@@ -15,9 +20,11 @@ export class ProductsService {
 
   getProduct(id: string) {
     return this.productRepository.findOne({
-      relations: ["shop"],
+      relations: ["shop", "priceHistory", "dealHistory"],
+      select: [],
       where: { id },
-    });
+      withDeleted: true,
+    }) as unknown as ExtendedProductDTO;
   }
 
   getProducts(payload: MSMPayload<MSMessage.GET_PRODUCTS>) {
@@ -30,11 +37,16 @@ export class ProductsService {
 
     if (payload.query) {
       const queryParts = payload.query.split(" ");
-      for (const part of queryParts) {
-        queryBuilder.andWhere("LOWER(product.name) LIKE LOWER(:query)", {
-          query: `%${part}%`,
-        });
-      }
+      queryBuilder.andWhere(
+        new Brackets((qb) => {
+          for (const part of queryParts) {
+            const parameterName = `param${queryParts.indexOf(part)}`;
+            qb.andWhere(`LOWER(product.name) LIKE LOWER(:${parameterName})`, {
+              [parameterName]: `%${part}%`,
+            });
+          }
+        }),
+      );
     }
 
     for (const sort of payload.sort) {

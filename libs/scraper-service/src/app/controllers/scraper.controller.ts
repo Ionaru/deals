@@ -28,8 +28,9 @@ export const createScraperController = (name: string) => {
         const dealChunks = splitArrayIntoChunks(result, 500);
         for (const chunk of dealChunks) {
           await this.storage.store({
-            clear: chunk === dealChunks[0],
             deals: chunk,
+            firstBatch: chunk === dealChunks.at(0),
+            lastBatch: chunk === dealChunks.at(-1),
             shop: this.scraper.shopName,
           });
         }

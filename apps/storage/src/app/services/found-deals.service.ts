@@ -1,4 +1,6 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import { IProductDeal } from "@deals/api";
+import { splitArrayIntoChunks } from "@ionaru/array-utils";
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeepPartial, ObjectLiteral, Repository } from "typeorm";
@@ -29,7 +31,8 @@ export class FoundDealsService {
   async store(
     shop: string,
     deals: IProductDeal[],
-    clear: boolean,
+    firstBatch: boolean,
+    lastBatch: boolean,
   ): Promise<void> {
     const shopEntity = await getOrCreate(this.shopRepository, {
       name: shop,
@@ -38,11 +41,15 @@ export class FoundDealsService {
     await this.#saveProducts(deals, shopEntity);
     await this.#updateHistory(deals);
 
-    if (clear) {
+    if (firstBatch) {
       await this.#deleteExistingDeals(shopEntity.id);
     }
 
     await this.#saveDeals(deals);
+
+    if (lastBatch) {
+      await this.#markEndedDeals(shopEntity.id);
+    }
 
     this.#logger.log("All done");
   }
@@ -63,10 +70,16 @@ export class FoundDealsService {
         });
       }
 
-      productEntity.imageUrl = productDeal.imageUrl;
-      productEntity.name = productDeal.name;
-      productEntity.price = productDeal.price;
-      productsToSave.push(productEntity);
+      if (
+        productEntity.imageUrl !== productDeal.imageUrl ||
+        productEntity.name !== productDeal.name ||
+        productEntity.price !== productDeal.price
+      ) {
+        productEntity.imageUrl = productDeal.imageUrl;
+        productEntity.name = productDeal.name;
+        productEntity.price = productDeal.price;
+        productsToSave.push(productEntity);
+      }
     }
 
     this.#logger.log(`Saving ${productsToSave.length} products`);
@@ -114,6 +127,50 @@ export class FoundDealsService {
     });
 
     this.#logger.log("Saved deals");
+  }
+
+  async #markEndedDeals(shopId: string): Promise<void> {
+    this.#logger.log("Starting to mark ended deals");
+
+    const currentDeals = await this.dealRepository.find({
+      relations: ["product", "product.shop"],
+      where: {
+        product: {
+          shop: {
+            id: shopId,
+          },
+        },
+      },
+    });
+
+    const knownRunningDeals = await this.dealHistoryRepository.find({
+      relations: ["product", "product.shop"],
+      where: {
+        product: {
+          shop: {
+            id: shopId,
+          },
+        },
+      },
+    });
+
+    this.#logger.log(
+      `Found ${currentDeals.length} current deals and ${knownRunningDeals.length} known running deals`,
+    );
+
+    const endedDeals = knownRunningDeals
+      .filter(
+        (deal) =>
+          !currentDeals.some((currentDeal) => currentDeal.id === deal.id),
+      )
+      .map((deal) => deal.id);
+
+    const endedDealChunks = splitArrayIntoChunks(endedDeals, 100);
+    for (const chunk of endedDealChunks) {
+      await this.dealHistoryRepository.softDelete(chunk);
+    }
+
+    this.#logger.log(`Marked ${endedDeals.length} deals as ended`);
   }
 
   async #updateHistory(deals: IProductDeal[]): Promise<void> {

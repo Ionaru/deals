@@ -859,6 +859,17 @@ export type ValueTypes = {
 		__typename?: boolean | `@${string}`
 }>;
 	["DealSortChoices"]:DealSortChoices;
+	["ExtendedProductDTO"]: AliasType<{
+	dealHistory?:ValueTypes["ProductDealHistoryDTO"],
+	id?:boolean | `@${string}`,
+	imageUrl?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	price?:boolean | `@${string}`,
+	priceHistory?:ValueTypes["ProductPriceHistoryDTO"],
+	productUrl?:boolean | `@${string}`,
+	shop?:ValueTypes["ShopDTO"],
+		__typename?: boolean | `@${string}`
+}>;
 	["Mutation"]: AliasType<{
 addPasskey?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
 loginUser?: [{	authentication: string | Variable<any, string>},boolean | `@${string}`],
@@ -887,9 +898,21 @@ startTask?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 	shop?:ValueTypes["ShopDTO"],
 		__typename?: boolean | `@${string}`
 }>;
+	["ProductDealHistoryDTO"]: AliasType<{
+	createdOn?:boolean | `@${string}`,
+	dealPrice?:boolean | `@${string}`,
+	dealQuantity?:boolean | `@${string}`,
+	deletedOn?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["ProductPaginatedType"]: AliasType<{
 	items?:ValueTypes["ProductDTO"],
 	meta?:ValueTypes["PaginationMeta"],
+		__typename?: boolean | `@${string}`
+}>;
+	["ProductPriceHistoryDTO"]: AliasType<{
+	createdOn?:boolean | `@${string}`,
+	price?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["ProductSortChoices"]:ProductSortChoices;
@@ -897,7 +920,7 @@ startTask?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 	challenge?:boolean | `@${string}`,
 deal?: [{	id: string | Variable<any, string>},ValueTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	query?: string | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
-product?: [{	id: string | Variable<any, string>},ValueTypes["ProductDTO"]],
+product?: [{	id: string | Variable<any, string>},ValueTypes["ExtendedProductDTO"]],
 products?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	query?: string | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["ProductSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["ProductPaginatedType"]],
 service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
@@ -968,6 +991,17 @@ export type ResolverInputTypes = {
 		__typename?: boolean | `@${string}`
 }>;
 	["DealSortChoices"]:DealSortChoices;
+	["ExtendedProductDTO"]: AliasType<{
+	dealHistory?:ResolverInputTypes["ProductDealHistoryDTO"],
+	id?:boolean | `@${string}`,
+	imageUrl?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	price?:boolean | `@${string}`,
+	priceHistory?:ResolverInputTypes["ProductPriceHistoryDTO"],
+	productUrl?:boolean | `@${string}`,
+	shop?:ResolverInputTypes["ShopDTO"],
+		__typename?: boolean | `@${string}`
+}>;
 	["Mutation"]: AliasType<{
 addPasskey?: [{	registration: string},boolean | `@${string}`],
 loginUser?: [{	authentication: string},boolean | `@${string}`],
@@ -996,9 +1030,21 @@ startTask?: [{	name: string},boolean | `@${string}`],
 	shop?:ResolverInputTypes["ShopDTO"],
 		__typename?: boolean | `@${string}`
 }>;
+	["ProductDealHistoryDTO"]: AliasType<{
+	createdOn?:boolean | `@${string}`,
+	dealPrice?:boolean | `@${string}`,
+	dealQuantity?:boolean | `@${string}`,
+	deletedOn?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["ProductPaginatedType"]: AliasType<{
 	items?:ResolverInputTypes["ProductDTO"],
 	meta?:ResolverInputTypes["PaginationMeta"],
+		__typename?: boolean | `@${string}`
+}>;
+	["ProductPriceHistoryDTO"]: AliasType<{
+	createdOn?:boolean | `@${string}`,
+	price?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["ProductSortChoices"]:ProductSortChoices;
@@ -1006,7 +1052,7 @@ startTask?: [{	name: string},boolean | `@${string}`],
 	challenge?:boolean | `@${string}`,
 deal?: [{	id: string},ResolverInputTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	query?: string | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
-product?: [{	id: string},ResolverInputTypes["ProductDTO"]],
+product?: [{	id: string},ResolverInputTypes["ExtendedProductDTO"]],
 products?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	query?: string | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["ProductSortChoices"]> | undefined | null},ResolverInputTypes["ProductPaginatedType"]],
 service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
@@ -1080,6 +1126,16 @@ export type ModelTypes = {
 	meta: ModelTypes["PaginationMeta"]
 };
 	["DealSortChoices"]:DealSortChoices;
+	["ExtendedProductDTO"]: {
+		dealHistory: Array<ModelTypes["ProductDealHistoryDTO"]>,
+	id: string,
+	imageUrl: string,
+	name: string,
+	price: number,
+	priceHistory: Array<ModelTypes["ProductPriceHistoryDTO"]>,
+	productUrl: string,
+	shop: ModelTypes["ShopDTO"]
+};
 	["Mutation"]: {
 		addPasskey: boolean,
 	loginUser: boolean,
@@ -1105,16 +1161,26 @@ export type ModelTypes = {
 	productUrl: string,
 	shop: ModelTypes["ShopDTO"]
 };
+	["ProductDealHistoryDTO"]: {
+		createdOn: string,
+	dealPrice: number,
+	dealQuantity: number,
+	deletedOn?: string | undefined
+};
 	["ProductPaginatedType"]: {
 		items: Array<ModelTypes["ProductDTO"]>,
 	meta: ModelTypes["PaginationMeta"]
+};
+	["ProductPriceHistoryDTO"]: {
+		createdOn: string,
+	price: number
 };
 	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: {
 		challenge: string,
 	deal?: ModelTypes["DealDTO"] | undefined,
 	deals: ModelTypes["DealPaginatedType"],
-	product?: ModelTypes["ProductDTO"] | undefined,
+	product?: ModelTypes["ExtendedProductDTO"] | undefined,
 	products: ModelTypes["ProductPaginatedType"],
 	service?: ModelTypes["ServiceHealthDTO"] | undefined,
 	services: Array<ModelTypes["ServiceHealthDTO"]>,
@@ -1184,6 +1250,17 @@ export type GraphQLTypes = {
 	meta: GraphQLTypes["PaginationMeta"]
 };
 	["DealSortChoices"]: DealSortChoices;
+	["ExtendedProductDTO"]: {
+	__typename: "ExtendedProductDTO",
+	dealHistory: Array<GraphQLTypes["ProductDealHistoryDTO"]>,
+	id: string,
+	imageUrl: string,
+	name: string,
+	price: number,
+	priceHistory: Array<GraphQLTypes["ProductPriceHistoryDTO"]>,
+	productUrl: string,
+	shop: GraphQLTypes["ShopDTO"]
+};
 	["Mutation"]: {
 	__typename: "Mutation",
 	addPasskey: boolean,
@@ -1212,10 +1289,22 @@ export type GraphQLTypes = {
 	productUrl: string,
 	shop: GraphQLTypes["ShopDTO"]
 };
+	["ProductDealHistoryDTO"]: {
+	__typename: "ProductDealHistoryDTO",
+	createdOn: string,
+	dealPrice: number,
+	dealQuantity: number,
+	deletedOn?: string | undefined
+};
 	["ProductPaginatedType"]: {
 	__typename: "ProductPaginatedType",
 	items: Array<GraphQLTypes["ProductDTO"]>,
 	meta: GraphQLTypes["PaginationMeta"]
+};
+	["ProductPriceHistoryDTO"]: {
+	__typename: "ProductPriceHistoryDTO",
+	createdOn: string,
+	price: number
 };
 	["ProductSortChoices"]: ProductSortChoices;
 	["Query"]: {
@@ -1223,7 +1312,7 @@ export type GraphQLTypes = {
 	challenge: string,
 	deal?: GraphQLTypes["DealDTO"] | undefined,
 	deals: GraphQLTypes["DealPaginatedType"],
-	product?: GraphQLTypes["ProductDTO"] | undefined,
+	product?: GraphQLTypes["ExtendedProductDTO"] | undefined,
 	products: GraphQLTypes["ProductPaginatedType"],
 	service?: GraphQLTypes["ServiceHealthDTO"] | undefined,
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>,

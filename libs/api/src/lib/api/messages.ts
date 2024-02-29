@@ -5,7 +5,7 @@ import { Async } from "../api";
 import { ScraperStatus } from "../common/scraper-status";
 import { ServiceType } from "../common/service-type";
 import { DealDTO } from "../entities/deal";
-import { ProductDTO } from "../entities/product";
+import { ExtendedProductDTO, ProductDTO } from "../entities/product";
 import { ServiceDTO } from "../entities/service";
 import { ShopDTO } from "../entities/shop";
 import { TaskDTO } from "../entities/task";
@@ -87,7 +87,7 @@ export interface IMSMessage {
     payload: {
       id: string;
     };
-    response: Nullable<ProductDTO>;
+    response: Nullable<ExtendedProductDTO>;
   };
 
   [MSMessage.GET_PRODUCTS]: {

@@ -63,6 +63,16 @@ export const ReturnTypes: Record<string,any> = {
 		items:"DealDTO",
 		meta:"PaginationMeta"
 	},
+	ExtendedProductDTO:{
+		dealHistory:"ProductDealHistoryDTO",
+		id:"ID",
+		imageUrl:"String",
+		name:"String",
+		price:"Float",
+		priceHistory:"ProductPriceHistoryDTO",
+		productUrl:"String",
+		shop:"ShopDTO"
+	},
 	Mutation:{
 		addPasskey:"Boolean",
 		loginUser:"Boolean",
@@ -87,15 +97,25 @@ export const ReturnTypes: Record<string,any> = {
 		productUrl:"String",
 		shop:"ShopDTO"
 	},
+	ProductDealHistoryDTO:{
+		createdOn:"String",
+		dealPrice:"Float",
+		dealQuantity:"Float",
+		deletedOn:"String"
+	},
 	ProductPaginatedType:{
 		items:"ProductDTO",
 		meta:"PaginationMeta"
+	},
+	ProductPriceHistoryDTO:{
+		createdOn:"String",
+		price:"Float"
 	},
 	Query:{
 		challenge:"String",
 		deal:"DealDTO",
 		deals:"DealPaginatedType",
-		product:"ProductDTO",
+		product:"ExtendedProductDTO",
 		products:"ProductPaginatedType",
 		service:"ServiceHealthDTO",
 		services:"ServiceHealthDTO",

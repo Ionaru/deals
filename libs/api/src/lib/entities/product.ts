@@ -12,6 +12,8 @@ import { Order } from "../api/messages";
 import { getPaginationArguments, paginated } from "../api/pagination";
 import { ProductSortChoices } from "../api/product-sort-choices";
 
+import { ProductDealHistoryDTO } from "./deal-history";
+import { ProductPriceHistoryDTO } from "./price-history";
 import { ShopDTO } from "./shop";
 
 registerEnumType(ProductSortChoices, { name: "ProductSortChoices" });
@@ -35,6 +37,33 @@ export class ProductDTO {
 
   @Field(() => ShopDTO)
   shop!: ShopDTO;
+}
+
+@ObjectType()
+export class ExtendedProductDTO {
+  @Field(() => ID)
+  id!: string;
+
+  @Field(() => String)
+  name!: string;
+
+  @Field(() => String)
+  imageUrl!: string;
+
+  @Field(() => Float)
+  price!: number;
+
+  @Field(() => String)
+  productUrl!: string;
+
+  @Field(() => ShopDTO)
+  shop!: ShopDTO;
+
+  @Field(() => [ProductPriceHistoryDTO])
+  priceHistory!: ProductPriceHistoryDTO[];
+
+  @Field(() => [ProductDealHistoryDTO])
+  dealHistory!: ProductDealHistoryDTO[];
 }
 
 @ObjectType()

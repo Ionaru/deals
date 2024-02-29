@@ -1,6 +1,6 @@
 import {
   Nullable,
-  ProductDTO,
+  ExtendedProductDTO,
   ProductPaginatedType,
   ProductsArguments,
 } from "@deals/api";
@@ -27,10 +27,10 @@ export class ProductsResolver {
     );
   }
 
-  @Query(() => ProductDTO, { nullable: true })
+  @Query(() => ExtendedProductDTO, { nullable: true })
   product(
     @Args("id", { type: () => ID }) id: string,
-  ): Observable<Nullable<ProductDTO>> {
+  ): Observable<Nullable<ExtendedProductDTO>> {
     return this.productsService.getProduct(id);
   }
 }

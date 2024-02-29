@@ -35,7 +35,8 @@ export class AppController {
     await this.foundDealsService.store(
       payload.shop,
       payload.deals,
-      payload.clear,
+      payload.firstBatch,
+      payload.lastBatch,
     );
     return true;
   }
