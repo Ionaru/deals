@@ -40,13 +40,18 @@
         "unicorn/prefer-top-level-await": "off",
         "unicorn/no-null": "off",
         "@typescript-eslint/member-ordering": "off",
-        "@typescript-eslint/explicit-member-accessibility": "off"
+        "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
       }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     }
   ]
 }
