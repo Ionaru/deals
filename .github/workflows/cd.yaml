@@ -38,7 +38,7 @@ jobs:
       - uses: actions/setup-node@v4
       - run: npm ci
       - id: determine_buildable
-        run: echo "buildable=$(nx show projects --with-target serve --json)" >> $GITHUB_OUTPUT
+        run: echo "buildable=$(nx show projects --with-target serve --json)" >> "$GITHUB_OUTPUT"
 
   determine_testable:
     name: Determine testable apps
@@ -50,7 +50,7 @@ jobs:
       - uses: actions/setup-node@v4
       - run: npm ci
       - id: determine_testable
-        run: echo "testable=$(nx show projects --with-target test --json)" >> $GITHUB_OUTPUT
+        run: echo "testable=$(nx show projects --with-target test --json)" >> "$GITHUB_OUTPUT"
 
   lint:
     name: Static code analysis
