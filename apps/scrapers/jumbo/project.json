@@ -11,7 +11,7 @@
         "target": "node",
         "compiler": "tsc",
         "outputPath": "dist/apps/scrapers/jumbo",
-        "main": "apps/scrapers/jumbo/src/main.ts",
+        "main": "apps/scrapers/jumbo/src/index.ts",
         "tsConfig": "apps/scrapers/jumbo/tsconfig.app.json",
         "webpackConfig": "apps/scrapers/jumbo/webpack.config.cjs",
         "babelUpwardRootMode": true
@@ -21,17 +21,6 @@
           "optimization": true,
           "extractLicenses": true,
           "inspect": false
-        }
-      }
-    },
-    "serve": {
-      "executor": "@nx/js:node",
-      "options": {
-        "buildTarget": "scrapers/jumbo:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "scrapers/jumbo:build:production"
         }
       }
     },

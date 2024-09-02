@@ -11,7 +11,7 @@
         "target": "node",
         "compiler": "tsc",
         "outputPath": "dist/apps/scrapers/kruidvat",
-        "main": "apps/scrapers/kruidvat/src/main.ts",
+        "main": "apps/scrapers/kruidvat/src/index.ts",
         "tsConfig": "apps/scrapers/kruidvat/tsconfig.app.json",
         "webpackConfig": "apps/scrapers/kruidvat/webpack.config.cjs",
         "babelUpwardRootMode": true
@@ -21,17 +21,6 @@
           "optimization": true,
           "extractLicenses": true,
           "inspect": false
-        }
-      }
-    },
-    "serve": {
-      "executor": "@nx/js:node",
-      "options": {
-        "buildTarget": "scrapers/kruidvat:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "scrapers/kruidvat:build:production"
         }
       }
     },

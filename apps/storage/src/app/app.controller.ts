@@ -1,10 +1,10 @@
 import {
-  AMSMResponse,
-  Async,
-  MSEPayload,
+  type AMSMResponse,
+  type Async,
+  type MSEPayload,
   MSEvent,
   MSMessage,
-  MSMPayload,
+  type MSMPayload,
 } from "@deals/api";
 import { Controller, Logger } from "@nestjs/common";
 import { EventPattern, MessagePattern } from "@nestjs/microservices";
@@ -17,8 +17,8 @@ import { ShopsService } from "./services/shops.service";
 import { UnknownDealService } from "./services/unknown-deal.service";
 
 @Controller()
-export class AppController {
-  private readonly logger = new Logger(AppController.name);
+export class StorageController {
+  private readonly logger = new Logger(StorageController.name);
 
   constructor(
     private readonly dealsService: DealsService,

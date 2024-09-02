@@ -1,11 +1,13 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { natsOptions } from "@deals/api";
+import { ServicesService } from "@deals/storage";
 import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
-import { AppModule } from "./app/app.module";
+import { Gateway } from "./app/app.module";
 
 const bootstrap = async () => {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(Gateway);
 
   app.useGlobalPipes(new ValidationPipe());
 
@@ -17,6 +19,9 @@ const bootstrap = async () => {
 
   app.connectMicroservice(natsOptions);
   await app.startAllMicroservices();
+
+  const servicesService = app.get(ServicesService);
+  await servicesService.init();
 };
 
 bootstrap().catch((error) => {

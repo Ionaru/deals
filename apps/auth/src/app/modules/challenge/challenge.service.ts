@@ -11,7 +11,7 @@ export class ChallengeService {
   readonly #challengeTimeout = 5 * 60_000;
 
   constructor(
-    @InjectRepository(Challenge)
+    @InjectRepository(Challenge, "auth")
     private readonly challengeRepository: MongoRepository<Challenge>,
   ) {}
 

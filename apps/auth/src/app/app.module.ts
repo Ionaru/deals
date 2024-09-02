@@ -2,7 +2,7 @@ import { ServiceType } from "@deals/api";
 import { MicroserviceModule } from "@deals/service-registry";
 import { Logger, Module, OnApplicationShutdown } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { InjectDataSource, TypeOrmModule } from "@nestjs/typeorm";
 import { DataSource } from "typeorm";
 
 import { Challenge } from "./models/challenge.model";
@@ -16,9 +16,10 @@ import { UserModule } from "./modules/user/user.module";
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
+      name: "auth",
       useFactory: (configService: ConfigService) => {
         const database = configService.getOrThrow("AUTH_DB_NAME");
-        Logger.log(`Using database: ${database}`, AppModule.name);
+        Logger.log(`Using database: ${database}`, Auth.name);
         return {
           database,
           entities: [Challenge, User],
@@ -37,8 +38,11 @@ import { UserModule } from "./modules/user/user.module";
     UserModule,
   ],
 })
-export class AppModule implements OnApplicationShutdown {
-  constructor(private dataSource: DataSource) {}
+export class Auth implements OnApplicationShutdown {
+  constructor(
+    @InjectDataSource("auth")
+    private readonly dataSource: DataSource,
+  ) {}
 
   onApplicationShutdown() {
     if (this.dataSource.isInitialized) {

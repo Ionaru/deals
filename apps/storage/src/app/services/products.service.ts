@@ -1,7 +1,7 @@
 import {
   ProductSortChoices,
   MSMessage,
-  MSMPayload,
+  type MSMPayload,
   ExtendedProductDTO,
 } from "@deals/api";
 import { Injectable } from "@nestjs/common";

@@ -11,7 +11,7 @@
         "target": "node",
         "compiler": "tsc",
         "outputPath": "dist/apps/scrapers/albert-heijn",
-        "main": "apps/scrapers/albert-heijn/src/main.ts",
+        "main": "apps/scrapers/albert-heijn/src/index.ts",
         "tsConfig": "apps/scrapers/albert-heijn/tsconfig.app.json",
         "webpackConfig": "apps/scrapers/albert-heijn/webpack.config.cjs",
         "babelUpwardRootMode": true
@@ -21,17 +21,6 @@
           "optimization": true,
           "extractLicenses": true,
           "inspect": false
-        }
-      }
-    },
-    "serve": {
-      "executor": "@nx/js:node",
-      "options": {
-        "buildTarget": "scrapers/albert-heijn:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "scrapers/albert-heijn:build:production"
         }
       }
     },

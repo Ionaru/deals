@@ -1,20 +1,4 @@
 services:
-  auth:
-    image: ghcr.io/ionaru/deals/auth:${DEALS_BUILD_TAG:-latest}
-    build:
-      context: .
-      dockerfile: deploy/service.Dockerfile
-      args:
-        - SERVICE_NAME=auth
-    environment:
-      - AUTH_DB_URL
-      - AUTH_DB_NAME
-      - NATS_HOST=nats
-    depends_on:
-      nats:
-        condition: service_healthy
-    restart: unless-stopped
-
   gateway:
     image: ghcr.io/ionaru/deals/gateway:${DEALS_BUILD_TAG:-latest}
     build:
@@ -26,10 +10,21 @@ services:
       - "3333:3333"
     environment:
       - AUTH_DB_URL
+      - AUTH_DB_NAME
       - SESSION_DB_NAME
       - GATEWAY_SESSION_NAME
       - GATEWAY_SESSION_SECRET
       - NATS_HOST=nats
+      - STORAGE_DB_NAME
+      - STORAGE_DB_CA
+      - STORAGE_DB_CRT
+      - STORAGE_DB_KEY
+      - STORAGE_DB_HOST
+      - STORAGE_DB_PASS
+      - STORAGE_DB_PORT
+      - STORAGE_DB_USER
+      - STORAGE_DB_SSL
+      - STORAGE_DB_SYNCHRONIZE
     depends_on:
       nats:
         condition: service_healthy
@@ -47,86 +42,6 @@ services:
       - "${DEALS_CLIENT_PORT:-80}:80"
     depends_on:
       gateway:
-        condition: service_healthy
-    restart: unless-stopped
-
-  scheduler:
-    image: ghcr.io/ionaru/deals/scheduler:${DEALS_BUILD_TAG:-latest}
-    build:
-      context: .
-      dockerfile: deploy/service.Dockerfile
-      args:
-        - SERVICE_NAME=scheduler
-    environment:
-      - NATS_HOST=nats
-    depends_on:
-      nats:
-        condition: service_healthy
-    restart: unless-stopped
-
-  scrapers-jumbo:
-    image: ghcr.io/ionaru/deals/scrapers-jumbo:${DEALS_BUILD_TAG:-latest}
-    build:
-      context: .
-      dockerfile: deploy/service.Dockerfile
-      args:
-        - SERVICE_NAME=scrapers/jumbo
-    environment:
-      - NATS_HOST=nats
-    depends_on:
-      nats:
-        condition: service_healthy
-    restart: unless-stopped
-
-  scrapers-kruidvat:
-    image: ghcr.io/ionaru/deals/scrapers-kruidvat:${DEALS_BUILD_TAG:-latest}
-    build:
-      context: .
-      dockerfile: deploy/service.Dockerfile
-      args:
-        - SERVICE_NAME=scrapers/kruidvat
-    environment:
-      - NATS_HOST=nats
-    depends_on:
-      nats:
-        condition: service_healthy
-    restart: unless-stopped
-
-  scrapers-albert-heijn:
-    image: ghcr.io/ionaru/deals/scrapers-albert-heijn:${DEALS_BUILD_TAG:-latest}
-    build:
-      context: .
-      dockerfile: deploy/service.Dockerfile
-      args:
-        - SERVICE_NAME=scrapers/albert-heijn
-    environment:
-      - NATS_HOST=nats
-    depends_on:
-      nats:
-        condition: service_healthy
-    restart: unless-stopped
-
-  storage:
-    image: ghcr.io/ionaru/deals/storage:${DEALS_BUILD_TAG:-latest}
-    build:
-      context: .
-      dockerfile: deploy/service.Dockerfile
-      args:
-        - SERVICE_NAME=storage
-    environment:
-      - STORAGE_DB_NAME
-      - STORAGE_DB_CA
-      - STORAGE_DB_CRT
-      - STORAGE_DB_KEY
-      - STORAGE_DB_HOST
-      - STORAGE_DB_PASS
-      - STORAGE_DB_PORT
-      - STORAGE_DB_USER
-      - STORAGE_DB_SSL
-      - STORAGE_DB_SYNCHRONIZE
-      - NATS_HOST=nats
-    depends_on:
-      nats:
         condition: service_healthy
     restart: unless-stopped
 

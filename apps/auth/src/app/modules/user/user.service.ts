@@ -8,7 +8,7 @@ import { User } from "../../models/user.model";
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
+    @InjectRepository(User, "auth")
     private readonly userRepository: MongoRepository<User>,
   ) {}
 

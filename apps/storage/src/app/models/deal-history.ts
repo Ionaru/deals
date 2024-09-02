@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne, Relation } from "typeorm";
 
 import { BaseModel } from "./base.model";
 import { Product } from "./product";
@@ -19,5 +19,5 @@ export class DealHistory extends BaseModel {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  product!: Product;
+  product!: Relation<Product>;
 }

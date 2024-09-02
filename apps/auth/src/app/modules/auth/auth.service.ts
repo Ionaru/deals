@@ -14,7 +14,7 @@ import { User } from "../../models/user.model";
 export class AuthService {
   constructor(
     private readonly gateway: ServiceGatewayService,
-    @InjectRepository(User)
+    @InjectRepository(User, "auth")
     private readonly userRepository: MongoRepository<User>,
   ) {}
 

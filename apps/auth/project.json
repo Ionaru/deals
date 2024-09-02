@@ -12,28 +12,13 @@
         "target": "node",
         "compiler": "tsc",
         "outputPath": "dist/apps/auth",
-        "main": "apps/auth/src/main.ts",
+        "main": "apps/auth/src/index.ts",
         "tsConfig": "apps/auth/tsconfig.app.json",
         "webpackConfig": "apps/auth/webpack.config.cjs"
       },
       "configurations": {
         "development": {},
         "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "auth:build"
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "auth:build:development"
-        },
-        "production": {
-          "buildTarget": "auth:build:production"
-        }
       }
     },
     "lint": {

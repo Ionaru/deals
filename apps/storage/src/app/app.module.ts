@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { DataSource } from "typeorm";
 
-import { AppController } from "./app.controller";
+import { StorageController } from "./app.controller";
 import { Deal } from "./models/deal";
 import { DealHistory } from "./models/deal-history";
 import { PriceHistory } from "./models/price-history";
@@ -21,7 +21,7 @@ import { ShopsService } from "./services/shops.service";
 import { UnknownDealService } from "./services/unknown-deal.service";
 
 @Module({
-  controllers: [AppController],
+  controllers: [StorageController],
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -33,12 +33,12 @@ import { UnknownDealService } from "./services/unknown-deal.service";
         if (sslEnabled) {
           Logger.log(
             "SSL is enabled for the database connection.",
-            AppModule.name,
+            Storage.name,
           );
         } else {
           Logger.warn(
             "SSL is disabled for the database connection!",
-            AppModule.name,
+            Storage.name,
           );
         }
 
@@ -48,7 +48,7 @@ import { UnknownDealService } from "./services/unknown-deal.service";
           )}:${configService.getOrThrow(
             "STORAGE_DB_PORT",
           )}/${configService.getOrThrow("STORAGE_DB_NAME")}`,
-          AppModule.name,
+          Storage.name,
         );
 
         const getSSLConfiguration = () => ({
@@ -101,7 +101,7 @@ import { UnknownDealService } from "./services/unknown-deal.service";
     ProductsService,
   ],
 })
-export class AppModule implements OnApplicationShutdown {
+export class Storage implements OnApplicationShutdown {
   constructor(private dataSource: DataSource) {}
 
   onApplicationShutdown() {

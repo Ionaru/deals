@@ -3,12 +3,12 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { MicroserviceOptions } from "@nestjs/microservices";
 
-import { AppModule } from "./app/app.module";
+import { Storage } from "./app/app.module";
 import { ServicesService } from "./app/services/services.service";
 
 const bootstrap = async () => {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
+    Storage,
     natsOptions,
   );
 

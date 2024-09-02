@@ -1,4 +1,4 @@
-import { DealSortChoices, MSMessage, MSMPayload } from "@deals/api";
+import { DealSortChoices, MSMessage, type MSMPayload } from "@deals/api";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { paginate } from "nestjs-typeorm-paginate";

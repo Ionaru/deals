@@ -11,7 +11,7 @@
         "target": "node",
         "compiler": "tsc",
         "outputPath": "dist/apps/storage",
-        "main": "apps/storage/src/main.ts",
+        "main": "apps/storage/src/index.ts",
         "tsConfig": "apps/storage/tsconfig.app.json",
         "webpackConfig": "apps/storage/webpack.config.cjs",
         "babelUpwardRootMode": true
@@ -21,17 +21,6 @@
           "optimization": true,
           "extractLicenses": true,
           "inspect": false
-        }
-      }
-    },
-    "serve": {
-      "executor": "@nx/js:node",
-      "options": {
-        "buildTarget": "storage:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "storage:build:production"
         }
       }
     },

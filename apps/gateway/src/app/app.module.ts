@@ -1,5 +1,13 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { ServiceType } from "@deals/api";
+import { Auth } from "@deals/auth";
+import { Scheduler } from "@deals/scheduler";
+import { ScraperServiceModule } from "@deals/scraper-service";
+import { AlbertHeijnScraper } from "@deals/scrapers/ah";
+import { JumboScraper } from "@deals/scrapers/jumbo";
+import { KruidvatScraper } from "@deals/scrapers/kruidvat";
 import { MicroserviceModule } from "@deals/service-registry";
+import { Storage } from "@deals/storage";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module, OnApplicationShutdown } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
@@ -51,7 +59,14 @@ let sessionStore: mongo | undefined;
       },
       sortSchema: true,
     }),
+    Storage,
+    Auth,
     ApiModule,
+
+    ScraperServiceModule.forRoot(AlbertHeijnScraper),
+    ScraperServiceModule.forRoot(JumboScraper),
+    ScraperServiceModule.forRoot(KruidvatScraper),
+    Scheduler,
   ],
   providers: [
     {
@@ -60,7 +75,7 @@ let sessionStore: mongo | undefined;
     },
   ],
 })
-export class AppModule implements OnApplicationShutdown {
+export class Gateway implements OnApplicationShutdown {
   onApplicationShutdown() {
     sessionStore?.close();
   }

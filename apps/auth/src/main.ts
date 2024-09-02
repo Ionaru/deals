@@ -3,11 +3,11 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { MicroserviceOptions } from "@nestjs/microservices";
 
-import { AppModule } from "./app/app.module";
+import { Auth } from "./app/app.module";
 
 const bootstrap = async () => {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
+    Auth,
     natsOptions,
   );
 

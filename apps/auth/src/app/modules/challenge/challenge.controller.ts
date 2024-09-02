@@ -1,4 +1,4 @@
-import { AMSMResponse, MSMessage, MSMPayload } from "@deals/api";
+import { type AMSMResponse, MSMessage, type MSMPayload } from "@deals/api";
 import { Controller } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 

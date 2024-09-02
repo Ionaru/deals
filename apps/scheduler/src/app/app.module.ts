@@ -14,4 +14,4 @@ import { RunScrapersTask } from "./tasks/run-scrapers.task";
   ],
   providers: [RunScrapersTask],
 })
-export class AppModule {}
+export class Scheduler {}
