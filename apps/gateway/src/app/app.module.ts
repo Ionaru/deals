@@ -1,4 +1,3 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 import { ServiceType } from "@deals/api";
 import { Auth } from "@deals/auth";
 import { Scheduler } from "@deals/scheduler";

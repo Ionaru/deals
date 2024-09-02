@@ -1,4 +1,3 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 import { natsOptions } from "@deals/api";
 import { ServicesService } from "@deals/storage";
 import { Logger, ValidationPipe } from "@nestjs/common";
