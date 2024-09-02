@@ -37,9 +37,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - run: npm ci
-      - run: echo nx show projects --with-target serve --json
+      - run: npx nx show projects --with-target serve --json
       - id: determine_buildable
-        run: echo "buildable=$(nx show projects --with-target serve --json)" >> "$GITHUB_OUTPUT"
+        run: echo "buildable=$(npx nx show projects --with-target serve --json)" >> "$GITHUB_OUTPUT"
 
   determine_testable:
     name: Determine testable apps
@@ -50,9 +50,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - run: npm ci
-      - run: echo nx show projects --with-target test --json
+      - run: npx nx show projects --with-target test --json
       - id: determine_testable
-        run: echo "testable=$(nx show projects --with-target test --json)" >> "$GITHUB_OUTPUT"
+        run: echo "testable=$(npx nx show projects --with-target test --json)" >> "$GITHUB_OUTPUT"
 
   lint:
     name: Static code analysis
