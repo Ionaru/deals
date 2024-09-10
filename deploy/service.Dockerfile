@@ -13,6 +13,7 @@ RUN npm ci
 COPY tsconfig.base.json ./
 COPY apps/$SERVICE_NAME ./apps/$SERVICE_NAME
 COPY libs ./libs
+COPY modules ./modules
 
 RUN npm run build $SERVICE_NAME
 

@@ -16,8 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
       - run: npm audit --omit=dev
 
   get_sha:
@@ -28,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: get_sha
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
   determine_buildable:
     name: Determine buildable apps
@@ -37,10 +35,11 @@ jobs:
       buildable: ${{ steps.determine_buildable.outputs.buildable }}
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
-      - run: bun install
+      - uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npx nx show projects --with-target serve --json
       - id: determine_buildable
-        run: echo "buildable=$(bun run determine-buildable)" | tr / - >> $GITHUB_OUTPUT
+        run: echo "buildable=$(npx nx show projects --with-target serve --json)" >> "$GITHUB_OUTPUT"
 
   determine_testable:
     name: Determine testable apps
@@ -49,10 +48,11 @@ jobs:
       testable: ${{ steps.determine_testable.outputs.testable }}
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
-      - run: bun install
+      - uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npx nx show projects --with-target test --json
       - id: determine_testable
-        run: echo "testable=$(bun run determine-testable)" >> $GITHUB_OUTPUT
+        run: echo "testable=$(npx nx show projects --with-target test --json)" >> "$GITHUB_OUTPUT"
 
   lint:
     name: Static code analysis
@@ -60,9 +60,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
-      - run: bun install
-      - run: bun run lint
+      - uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npm run lint
 
   test:
     name: Unit tests
@@ -74,9 +74,9 @@ jobs:
         app: ${{fromJson(needs.determine_testable.outputs.testable)}}
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: actions/setup-node@v4
       - run: npm ci
-      - run: bun run test ${{matrix.app}}
+      - run: npm run test ${{matrix.app}}
 
   build-image:
     name: Build image

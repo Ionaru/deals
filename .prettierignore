@@ -8,3 +8,5 @@ schema.graphql
 apps/client/src/app/zeus/*.ts
 
 /.nx/cache
+
+/.nx/workspace-data
