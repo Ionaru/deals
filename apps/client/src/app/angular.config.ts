@@ -1,5 +1,5 @@
 import { provideHttpClient, withFetch } from "@angular/common/http";
-import { ApplicationConfig, inject } from "@angular/core";
+import { ApplicationConfig, inject, provideExperimentalZonelessChangeDetection } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter, withViewTransitions } from "@angular/router";
 import { InMemoryCache } from "@apollo/client/core";
@@ -18,6 +18,7 @@ import appRouting from "./app.routing";
 
 export const angularConfiguration: ApplicationConfig = {
   providers: [
+    provideExperimentalZonelessChangeDetection(),
     provideRouter(appRouting, withViewTransitions()),
     provideHttpClient(withFetch()),
     provideAnimations(),
