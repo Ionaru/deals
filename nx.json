@@ -59,5 +59,6 @@
       "style": "css"
     }
   },
-  "defaultBase": "main"
+  "defaultBase": "main",
+  "useLegacyCache": true
 }
