@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 
@@ -12,5 +12,5 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
   templateUrl: "./deal-problem-button.component.html",
 })
 export class DealProblemButtonComponent {
-  @Input({ required: true }) dealId!: string;
+  readonly dealId = input.required<string>();
 }

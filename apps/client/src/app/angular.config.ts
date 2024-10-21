@@ -1,13 +1,10 @@
 import { provideHttpClient, withFetch } from "@angular/common/http";
-import { ApplicationConfig, importProvidersFrom } from "@angular/core";
+import { ApplicationConfig, inject } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter, withViewTransitions } from "@angular/router";
-import { ApolloClientOptions, InMemoryCache } from "@apollo/client/core";
+import { InMemoryCache } from "@apollo/client/core";
 import {
-  APOLLO_FLAGS,
-  APOLLO_OPTIONS,
-  ApolloModule,
-  Flags,
+  provideApollo,
 } from "apollo-angular";
 import { HttpLink } from "apollo-angular/http";
 
@@ -24,23 +21,16 @@ export const angularConfiguration: ApplicationConfig = {
     provideRouter(appRouting, withViewTransitions()),
     provideHttpClient(withFetch()),
     provideAnimations(),
-    importProvidersFrom(ApolloModule),
-    {
-      provide: APOLLO_FLAGS,
-      useFactory: (): Flags => ({
+    provideApollo(
+      () => ({
+          cache: new InMemoryCache(),
+          link: inject(HttpLink).create({ uri: "/graphql" }),
+        }),
+      {
         useInitialLoading: true,
         useMutationLoading: true,
-      }),
-    },
-    {
-      deps: [HttpLink],
-      provide: APOLLO_OPTIONS,
-      useFactory: (httpLink: HttpLink): ApolloClientOptions<unknown> => ({
-        cache: new InMemoryCache(),
-        connectToDevTools: false,
-        link: httpLink.create({ uri: "/graphql" }),
-      }),
-    },
+      }
+    ),
     { provide: LOCAL_STORAGE, useValue: localStorage },
     { provide: SESSION_STORAGE, useValue: sessionStorage },
     { provide: WINDOW, useValue: window },

@@ -1,20 +1,20 @@
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title>{{ productName }}</mat-card-title>
+    <mat-card-title>{{ productName() }}</mat-card-title>
     <deals-deal-image
-      [productImageUrl]="productImageUrl"
-      [productName]="productName"
+      [productImageUrl]="productImageUrl()"
+      [productName]="productName()"
     />
   </mat-card-header>
   <mat-card-content>
-    <deals-price-current [amount]="productPrice" />
+    <deals-price-current [amount]="productPrice()" />
   </mat-card-content>
   <mat-card-actions>
     <img
       class="shop-logo"
-      [ngClass]="shopName"
-      [ngSrc]="'/assets/images/' + shopName + '.svg'"
-      [alt]="'Logo of ' + shopName"
+      [ngClass]="shopName()"
+      [ngSrc]="'/assets/images/' + shopName() + '.svg'"
+      [alt]="'Logo of ' + shopName()"
       width="125"
       height="48"
       [priority]="true"
@@ -26,11 +26,11 @@
       matTooltip="Add to favorites"
       (click)="openDialog()"
     />
-    <a [routerLink]="['/products', productId]" matTooltip="Go to product">
+    <a [routerLink]="['/products', productId()]" matTooltip="Go to product">
       <deals-toolbar-icon-button icon="info" />
     </a>
     <a
-      [href]="productUrl"
+      [href]="productUrl()"
       target="_blank"
       i18n-matTooltip
       matTooltip="Go to product page"

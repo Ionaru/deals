@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
@@ -18,10 +18,10 @@ import { DealsPaginatorI18nProvider } from "./deals-paginator-i18n.provider";
   templateUrl: "./deals-paginator.component.html",
 })
 export class DealsPaginatorComponent {
-  @Input({ required: true }) totalItems!: number;
-  @Input({ required: true }) itemsPerPage!: number;
-  @Input({ required: true }) currentPage!: number;
-  @Output() page = new EventEmitter<PageEvent>();
+  readonly totalItems = input.required<number>();
+  readonly itemsPerPage = input.required<number>();
+  readonly currentPage = input.required<number>();
+  readonly page = output<PageEvent>()
 
   handlePageEvent($event: PageEvent) {
     this.page.emit($event);

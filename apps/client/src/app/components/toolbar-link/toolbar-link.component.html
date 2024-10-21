@@ -1,8 +1,8 @@
 <a
   mat-button
-  [routerLink]="href"
-  [routerLinkActiveOptions]="{ exact: true }"
+  [routerLink]="href()"
+  [routerLinkActiveOptions]="{paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored'}"
   routerLinkActive="active"
 >
-  {{ name }}
+  {{ name() }}
 </a>

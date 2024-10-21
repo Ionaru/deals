@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { Component, inject, Input } from "@angular/core";
+import { Component, inject, input, Input } from "@angular/core";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
@@ -38,7 +38,7 @@ import { ToolbarSidenavButtonComponent } from "../toolbar-sidenav-button/toolbar
   templateUrl: "./toolbar.component.html",
 })
 export class ToolbarComponent {
-  @Input({ required: true }) title!: string;
+  readonly title = input.required<string>();
 
   readonly #authService = inject(AuthService);
   readonly #darkModeService = inject(DarkModeService);

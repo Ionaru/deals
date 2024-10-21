@@ -1,10 +1,10 @@
 import { AsyncPipe } from "@angular/common";
 import {
   Component,
-  EventEmitter,
+  EventEmitter, input,
   Input,
   OnChanges,
-  OnInit,
+  OnInit, output,
   Output,
   SimpleChanges,
 } from "@angular/core";
@@ -34,12 +34,12 @@ export class DealsQueryInputComponent implements OnInit, OnChanges {
     Validators.maxLength(100),
   ]);
 
-  @Input() query: string | null = null;
-  @Output() queryChange = new EventEmitter<string | null>();
+  readonly query = input<string | null>();
+  readonly queryChange = output<string | null>();
 
   ngOnInit() {
     if (this.query) {
-      this.queryControl.setValue(this.query);
+      this.queryControl.setValue(this.query() ?? null);
       this.queryControl.markAsTouched();
     }
   }

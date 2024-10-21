@@ -4,7 +4,7 @@ import {
   NgOptimizedImage,
   PercentPipe,
 } from "@angular/common";
-import { Component, computed, inject, Input, signal } from "@angular/core";
+import { Component, computed, inject, input, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatDialog } from "@angular/material/dialog";
@@ -46,14 +46,14 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
   templateUrl: "./deal-card.component.html",
 })
 export class DealCardComponent {
-  @Input({ required: true }) dealId!: string;
-  @Input({ required: true }) dealPrice!: number;
-  @Input({ required: true }) dealQuantity!: number;
-  @Input({ required: true }) productName!: string;
-  @Input({ required: true }) productUrl!: string;
-  @Input({ required: true }) productImageUrl!: string;
-  @Input({ required: true }) productPrice!: number;
-  @Input({ required: true }) shopName!: string;
+  readonly dealId = input.required<string>();
+  readonly dealPrice = input.required<number>();
+  readonly dealQuantity = input.required<number>();
+  readonly productName = input.required<string>();
+  readonly productUrl = input.required<string>();
+  readonly productImageUrl = input.required<string>();
+  readonly productPrice = input.required<number>();
+  readonly shopName = input.required<string>();
 
   readonly #dialog = inject(MatDialog);
 
@@ -74,15 +74,15 @@ export class DealCardComponent {
 
   calculateSavings() {
     return (
-      this.productPrice * this.dealQuantity - this.dealPrice * this.dealQuantity
+      this.productPrice() * this.dealQuantity() - this.dealPrice() * this.dealQuantity()
     );
   }
 
   calculateSavingsPercentage() {
     return (
-      ((this.dealPrice * this.dealQuantity -
-        this.productPrice * this.dealQuantity) /
-        (this.productPrice * this.dealQuantity)) *
+      ((this.dealPrice() * this.dealQuantity() -
+        this.productPrice() * this.dealQuantity()) /
+        (this.productPrice() * this.dealQuantity())) *
       -1
     );
   }

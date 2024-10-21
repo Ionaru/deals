@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -10,5 +10,5 @@ import { MatIconModule } from "@angular/material/icon";
   templateUrl: "./toolbar-icon-button.component.html",
 })
 export class ToolbarIconButtonComponent {
-  @Input() icon?: string;
+  readonly icon = input<string>();
 }

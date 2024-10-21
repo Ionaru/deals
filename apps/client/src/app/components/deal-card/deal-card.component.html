@@ -1,31 +1,31 @@
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title>{{ productName }}</mat-card-title>
+    <mat-card-title>{{ productName() }}</mat-card-title>
     <mat-card-subtitle i18n>
-      {{ savingsPercentage$$() | percent }} off when you buy {{ dealQuantity }},
+      {{ savingsPercentage$$() | percent }} off when you buy {{ dealQuantity() }},
       save <deals-price [amount]="savings$$()" />!
     </mat-card-subtitle>
     <deals-deal-image
-      [productImageUrl]="productImageUrl"
-      [productName]="productName"
+      [productImageUrl]="productImageUrl()"
+      [productName]="productName()"
     />
   </mat-card-header>
   <mat-card-content i18n>
-    Buy {{ dealQuantity }} for:
-    <deals-price-current [amount]="dealPrice * dealQuantity" />
-    <deals-price-slashed [amount]="productPrice * dealQuantity" />
+    Buy {{ dealQuantity() }} for:
+    <deals-price-current [amount]="dealPrice() * dealQuantity()" />
+    <deals-price-slashed [amount]="productPrice() * dealQuantity()" />
   </mat-card-content>
   <mat-card-actions>
     <deals-deal-problem-button
-      [dealId]="dealId"
+      [dealId]="dealId()"
       i18n-matTooltip
       matTooltip="Report a problem"
     />
     <img
       class="shop-logo"
-      [ngClass]="shopName"
-      [ngSrc]="'/assets/images/' + shopName + '.svg'"
-      [alt]="'Logo of ' + shopName"
+      [ngClass]="shopName()"
+      [ngSrc]="'/assets/images/' + shopName() + '.svg'"
+      [alt]="'Logo of ' + shopName()"
       width="125"
       height="48"
       [priority]="true"
@@ -38,7 +38,7 @@
       (click)="openDialog()"
     />
     <a
-      [href]="productUrl"
+      [href]="productUrl()"
       target="_blank"
       i18n-matTooltip
       matTooltip="Go to product page"

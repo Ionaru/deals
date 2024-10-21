@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, input } from "@angular/core";
 
 import { PriceComponent } from "../price/price.component";
 
@@ -7,8 +7,8 @@ import { PriceComponent } from "../price/price.component";
   selector: "deals-price-slashed",
   standalone: true,
   styleUrl: "./price-slashed.component.css",
-  template: '<deals-price [amount]="amount" />',
+  template: '<deals-price [amount]="amount()" />',
 })
 export class PriceSlashedComponent {
-  @Input({ required: true }) amount!: number;
+  readonly amount = input.required<number>();
 }

@@ -1,10 +1,10 @@
 <mat-paginator
   (page)="handlePageEvent($event)"
-  [length]="totalItems"
-  [pageSize]="itemsPerPage"
+  [length]="totalItems()"
+  [pageSize]="itemsPerPage()"
   [disabled]="false"
   [showFirstLastButtons]="true"
   [pageSizeOptions]="[]"
   [hidePageSize]="true"
-  [pageIndex]="currentPage"
+  [pageIndex]="currentPage()"
 />

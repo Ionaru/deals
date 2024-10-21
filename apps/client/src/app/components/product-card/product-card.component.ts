@@ -4,7 +4,7 @@ import {
   NgOptimizedImage,
   PercentPipe,
 } from "@angular/common";
-import { Component, inject, Input, signal } from "@angular/core";
+import { Component, inject, input, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatDialog } from "@angular/material/dialog";
@@ -46,12 +46,12 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
   templateUrl: "./product-card.component.html",
 })
 export class ProductCardComponent {
-  @Input({ required: true }) productId!: string;
-  @Input({ required: true }) productName!: string;
-  @Input({ required: true }) productUrl!: string;
-  @Input({ required: true }) productImageUrl!: string;
-  @Input({ required: true }) productPrice!: number;
-  @Input({ required: true }) shopName!: string;
+  readonly productId = input.required<string>();
+  readonly productName = input.required<string>();
+  readonly productUrl = input.required<string>();
+  readonly productImageUrl = input.required<string>();
+  readonly productPrice = input.required<number>();
+  readonly shopName = input.required<string>();
 
   readonly #dialog = inject(MatDialog);
 

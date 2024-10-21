@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
@@ -10,6 +10,6 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
   templateUrl: "./toolbar-link.component.html",
 })
 export class ToolbarLinkComponent {
-  @Input({ required: true }) href!: string;
-  @Input({ required: true }) name!: string;
+  readonly href = input.required<string>();
+  readonly name = input.required<string>();
 }
