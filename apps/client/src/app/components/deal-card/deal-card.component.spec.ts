@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { setComponentInput } from "../../../testing/mocks";
+
 import { DealCardComponent } from "./deal-card.component";
 
 describe("DealCardComponent", () => {
@@ -12,14 +14,19 @@ describe("DealCardComponent", () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(DealCardComponent);
+    setComponentInput(fixture.componentRef, "dealId", "dealId");
+    setComponentInput(fixture.componentRef, "dealPrice", 1);
+    setComponentInput(fixture.componentRef, "dealQuantity", 1);
+    setComponentInput(
+      fixture.componentRef,
+      "productImageUrl",
+      "productImageUrl",
+    );
+    setComponentInput(fixture.componentRef, "productName", "productName");
+    setComponentInput(fixture.componentRef, "productPrice", 1);
+    setComponentInput(fixture.componentRef, "productUrl", "productUrl");
+    setComponentInput(fixture.componentRef, "shopName", "shopName");
     component = fixture.componentInstance;
-    component.shopName = "shopName";
-    component.productName = "productName";
-    component.productImageUrl = "productImageUrl";
-    component.productUrl = "productUrl";
-    component.productPrice = 1;
-    component.dealPrice = 1;
-    component.dealQuantity = 1;
     fixture.detectChanges();
   });
 

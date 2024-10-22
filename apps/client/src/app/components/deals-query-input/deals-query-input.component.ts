@@ -1,11 +1,10 @@
 import { AsyncPipe } from "@angular/common";
 import {
   Component,
-  EventEmitter, input,
-  Input,
+  input,
   OnChanges,
-  OnInit, output,
-  Output,
+  OnInit,
+  output,
   SimpleChanges,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";

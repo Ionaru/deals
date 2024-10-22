@@ -8,7 +8,11 @@
   <deals-spacer />
   <nav class="navbar-links">
     @for (route of routes$$(); track $index) {
-      <deals-toolbar-link [href]="route.path" [name]="route.name" />
+      <deals-toolbar-link
+        [href]="route.path"
+        [name]="route.name"
+        [exact]="route.path === '/'"
+      />
     }
   </nav>
   <deals-spacer />

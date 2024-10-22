@@ -7,9 +7,11 @@ export default [
   {
     component: ProductsComponent,
     path: "",
+    title: $localize`Products`,
   },
   {
     component: ProductComponent,
     path: ":id",
+    title: $localize`Product`,
   },
 ] as Routes;

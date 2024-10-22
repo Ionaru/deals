@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { setComponentInput } from "../../../testing/mocks";
+
 import { DealsPaginatorComponent } from "./deals-paginator.component";
 
 describe("DealsPaginatorComponent", () => {
@@ -10,8 +12,12 @@ describe("DealsPaginatorComponent", () => {
     await TestBed.configureTestingModule({
       imports: [],
     }).compileComponents();
-
     fixture = TestBed.createComponent(DealsPaginatorComponent);
+
+    setComponentInput(fixture.componentRef, "totalItems", 100);
+    setComponentInput(fixture.componentRef, "itemsPerPage", 10);
+    setComponentInput(fixture.componentRef, "currentPage", 1);
+
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

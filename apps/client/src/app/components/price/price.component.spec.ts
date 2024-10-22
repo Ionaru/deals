@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { setComponentInput } from "../../../testing/mocks";
+
 import { PriceComponent } from "./price.component";
 
 describe("PriceComponent", () => {
@@ -12,6 +14,9 @@ describe("PriceComponent", () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PriceComponent);
+
+    setComponentInput(fixture.componentRef, "amount", 100);
+
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

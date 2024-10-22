@@ -1,12 +1,19 @@
 import { provideHttpClient, withFetch } from "@angular/common/http";
-import { ApplicationConfig, inject, provideExperimentalZonelessChangeDetection } from "@angular/core";
-import { provideAnimations } from "@angular/platform-browser/animations";
-import { provideRouter, withViewTransitions } from "@angular/router";
-import { InMemoryCache } from "@apollo/client/core";
 import {
-  provideApollo,
-} from "apollo-angular";
+  ApplicationConfig,
+  inject,
+  provideExperimentalZonelessChangeDetection,
+} from "@angular/core";
+import { provideAnimations } from "@angular/platform-browser/animations";
+import {
+  provideRouter,
+  TitleStrategy,
+  withViewTransitions,
+} from "@angular/router";
+import { InMemoryCache } from "@apollo/client/core";
+import { provideApollo } from "apollo-angular";
 import { HttpLink } from "apollo-angular/http";
+import { provideEcharts } from "ngx-echarts";
 
 import {
   LOCAL_STORAGE,
@@ -15,6 +22,7 @@ import {
 } from "../tokens/injection-tokens";
 
 import appRouting from "./app.routing";
+import { MyTitleStrategy } from "./services/my-title.strategy";
 
 export const angularConfiguration: ApplicationConfig = {
   providers: [
@@ -22,16 +30,18 @@ export const angularConfiguration: ApplicationConfig = {
     provideRouter(appRouting, withViewTransitions()),
     provideHttpClient(withFetch()),
     provideAnimations(),
+    provideEcharts(),
     provideApollo(
       () => ({
-          cache: new InMemoryCache(),
-          link: inject(HttpLink).create({ uri: "/graphql" }),
-        }),
+        cache: new InMemoryCache(),
+        link: inject(HttpLink).create({ uri: "/graphql" }),
+      }),
       {
         useInitialLoading: true,
         useMutationLoading: true,
-      }
+      },
     ),
+    { provide: TitleStrategy, useClass: MyTitleStrategy },
     { provide: LOCAL_STORAGE, useValue: localStorage },
     { provide: SESSION_STORAGE, useValue: sessionStorage },
     { provide: WINDOW, useValue: window },

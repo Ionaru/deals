@@ -47,10 +47,10 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
 })
 export class ProductCardComponent {
   readonly productId = input.required<string>();
-  readonly productName = input.required<string>();
-  readonly productUrl = input.required<string>();
   readonly productImageUrl = input.required<string>();
+  readonly productName = input.required<string>();
   readonly productPrice = input.required<number>();
+  readonly productUrl = input.required<string>();
   readonly shopName = input.required<string>();
 
   readonly #dialog = inject(MatDialog);

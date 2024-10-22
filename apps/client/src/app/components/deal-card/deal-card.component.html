@@ -2,8 +2,8 @@
   <mat-card-header>
     <mat-card-title>{{ productName() }}</mat-card-title>
     <mat-card-subtitle i18n>
-      {{ savingsPercentage$$() | percent }} off when you buy {{ dealQuantity() }},
-      save <deals-price [amount]="savings$$()" />!
+      {{ savingsPercentage$$() | percent }} off when you buy
+      {{ dealQuantity() }}, save <deals-price [amount]="savings$$()" />!
     </mat-card-subtitle>
     <deals-deal-image
       [productImageUrl]="productImageUrl()"

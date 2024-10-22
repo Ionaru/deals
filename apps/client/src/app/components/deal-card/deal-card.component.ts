@@ -49,10 +49,10 @@ export class DealCardComponent {
   readonly dealId = input.required<string>();
   readonly dealPrice = input.required<number>();
   readonly dealQuantity = input.required<number>();
-  readonly productName = input.required<string>();
-  readonly productUrl = input.required<string>();
   readonly productImageUrl = input.required<string>();
+  readonly productName = input.required<string>();
   readonly productPrice = input.required<number>();
+  readonly productUrl = input.required<string>();
   readonly shopName = input.required<string>();
 
   readonly #dialog = inject(MatDialog);
@@ -74,7 +74,8 @@ export class DealCardComponent {
 
   calculateSavings() {
     return (
-      this.productPrice() * this.dealQuantity() - this.dealPrice() * this.dealQuantity()
+      this.productPrice() * this.dealQuantity() -
+      this.dealPrice() * this.dealQuantity()
     );
   }
 

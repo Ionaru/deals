@@ -1,26 +1,28 @@
-@if (product$(); as product$) {
-  @if (product$ | async; as result) {
-    @if (result.loading) {
-      <mat-spinner></mat-spinner>
-    } @else if (!result.data.product) {
-      <p i18n>No matching product found</p>
-    } @else {
-      <div class="product-container">
-        <h1>{{ result.data.product.name }}</h1>
+@if (product(); as product) {
+  @if (product.loading) {
+    <mat-spinner></mat-spinner>
+  } @else if (!product.data.product) {
+    <p i18n>No matching product found</p>
+  } @else {
+    <div class="product-container">
+      <h1>{{ product.data.product.name }}</h1>
 
-        <deals-deal-image
-          [productImageUrl]="result.data.product.imageUrl"
-          [productName]="result.data.product.name"
-        />
+      <deals-deal-image
+        [productImageUrl]="product.data.product.imageUrl"
+        [productName]="product.data.product.name"
+      />
 
-        <div class="info-container">
-          <p>Shop: {{ result.data.product.shop.name }}</p>
-          <p>
-            Price: <deals-price-current [amount]="result.data.product.price" />
-          </p>
-          <p>Last deal: {{ getLastDeal(result.data) }}</p>
-        </div>
+      <div class="info-container">
+        <p>Shop: {{ product.data.product.shop.name }}</p>
+        <p>
+          Price: <deals-price-current [amount]="product.data.product.price" />
+        </p>
+        <p>Last deal: {{ getLastDeal(product.data) }}</p>
+
+        @if (chartOptions(); as chartOptions) {
+          <div echarts [options]="chartOptions"></div>
+        }
       </div>
-    }
+    </div>
   }
 }

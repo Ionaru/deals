@@ -21,7 +21,7 @@ export class DealsPaginatorComponent {
   readonly totalItems = input.required<number>();
   readonly itemsPerPage = input.required<number>();
   readonly currentPage = input.required<number>();
-  readonly page = output<PageEvent>()
+  readonly page = output<PageEvent>();
 
   handlePageEvent($event: PageEvent) {
     this.page.emit($event);

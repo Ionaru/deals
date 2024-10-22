@@ -1,5 +1,6 @@
 import { DOCUMENT } from "@angular/common";
 import { inject, Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
 
 import { SESSION_STORAGE, WINDOW } from "../../tokens/injection-tokens";
 
@@ -15,6 +16,8 @@ export class DarkModeService {
   readonly #document = inject(DOCUMENT);
   readonly #storage = inject(SESSION_STORAGE);
   readonly #window = inject(WINDOW);
+
+  readonly #isDarkModeActive$ = new BehaviorSubject(false);
 
   readonly #storageKey = "mode";
   readonly #darkModeClass = "dark-mode";
@@ -49,7 +52,12 @@ export class DarkModeService {
     return this.#document.body.classList.contains(this.#darkModeClass);
   }
 
+  isDarkModeActive$(): Observable<boolean> {
+    return this.#isDarkModeActive$;
+  }
+
   enableDarkMode(save = false): void {
+    this.#isDarkModeActive$.next(true);
     this.#document.body.classList.add(this.#darkModeClass);
     if (save) {
       this.#save(this.#darkModePreference);
@@ -57,6 +65,7 @@ export class DarkModeService {
   }
 
   disableDarkMode(save = false): void {
+    this.#isDarkModeActive$.next(false);
     this.#document.body.classList.remove(this.#darkModeClass);
     if (save) {
       this.#save(this.#lightModePreference);

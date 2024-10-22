@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { of } from "rxjs";
 
-import { TypedMockProvider } from "../../../testing/mocks";
+import { setComponentInput, TypedMockProvider } from "../../../testing/mocks";
 import { AuthService } from "../../services/auth.service";
 import { DarkModeService } from "../../services/dark-mode.service";
 import { NavigationService } from "../../services/navigation.service";
@@ -23,8 +23,10 @@ describe("toolbarComponent", () => {
         TypedMockProvider(NavigationService, { routes$$: signal([]) }),
       ],
     }).compileComponents();
-
     fixture = TestBed.createComponent(ToolbarComponent);
+
+    setComponentInput(fixture.componentRef, "title", "Test title");
+
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

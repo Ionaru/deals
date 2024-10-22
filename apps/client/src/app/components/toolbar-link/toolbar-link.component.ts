@@ -12,4 +12,5 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 export class ToolbarLinkComponent {
   readonly href = input.required<string>();
   readonly name = input.required<string>();
+  readonly exact = input(false);
 }
