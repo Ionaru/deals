@@ -42,6 +42,12 @@
         "@typescript-eslint/member-ordering": "off",
         "@typescript-eslint/explicit-member-accessibility": "off",
         "@typescript-eslint/no-extra-semi": "error",
+        "unicorn/no-useless-undefined": [
+          "error",
+          {
+            "checkArguments": false
+          }
+        ],
         "no-extra-semi": "off"
       }
     },

@@ -1,21 +1,21 @@
-import { nxE2EPreset } from "@nx/cypress/plugins/cypress-preset";
-import { defineConfig } from "cypress";
-import { MongoClient } from "mongodb";
+const { nxE2EPreset } = require("@nx/cypress/plugins/cypress-preset");
+const { defineConfig } = require("cypress");
+const { MongoClient } = require("mongodb");
 
 const client = new MongoClient(
   "mongodb://e2e:DontTellAnyoneThisPassword@localhost:27017",
 );
 
-export const connectMongo = async () => {
+const connectMongo = async () => {
   await client.connect();
   return client;
 };
 
-export const disconnectMongo = async () => {
+const disconnectMongo = async () => {
   await client.close();
 };
 
-export default defineConfig({
+exports.default = defineConfig({
   e2e: {
     ...nxE2EPreset(__dirname),
     baseUrl: "http://localhost:4200/nl",

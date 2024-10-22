@@ -1,5 +1,6 @@
 import { AsyncPipe } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -35,10 +36,10 @@ enum LoginState {
   templateUrl: "./login.component.html",
 })
 export class LoginComponent {
-  state = LoginState.INITIAL;
+  state = signal(LoginState.INITIAL);
   states = LoginState;
 
-  createdName?: string;
+  createdName = signal<string | undefined>(undefined);
 
   form: FormGroup = new FormGroup({
     displayName: new FormControl(""),
@@ -47,55 +48,55 @@ export class LoginComponent {
   readonly #authService = inject(AuthService);
   readonly #router = inject(Router);
 
-  readonly isLoggedIn$ = this.#authService.isLoggedIn$;
-  readonly user$ = this.#authService.user$;
+  readonly isLoggedIn = toSignal(this.#authService.isLoggedIn$);
+  readonly user = toSignal(this.#authService.user$);
 
   async startRegister() {
-    this.state = LoginState.REGISTER;
+    this.state.set(LoginState.REGISTER);
   }
 
   async register(existingUser = false) {
-    this.state = LoginState.REGISTERING;
+    this.state.set(LoginState.REGISTERING);
     try {
       const credential = await this.#authService.register(
         this.form.get("displayName")?.value,
         existingUser,
       );
       if (credential && !existingUser) {
-        this.createdName = credential;
-        this.state = LoginState.REGISTERED;
+        this.createdName.set(credential);
+        this.state.set(LoginState.REGISTERED);
       } else {
-        this.state = LoginState.INITIAL;
+        this.state.set(LoginState.INITIAL);
       }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
-      this.state = LoginState.LOGIN_ERROR;
+      this.state.set(LoginState.LOGIN_ERROR);
     }
   }
 
   async startLogin() {
-    this.state = LoginState.LOGIN;
+    this.state.set(LoginState.LOGIN);
 
     try {
       const assertion = await this.#authService.login();
       if (assertion) {
-        this.state = LoginState.INITIAL;
+        this.state.set(LoginState.INITIAL);
         await this.#authService.getUser();
-        this.#router.navigate(["/"]);
+        void this.#router.navigate(["/"]);
       } else {
-        this.state = LoginState.LOGIN_ERROR;
+        this.state.set(LoginState.LOGIN_ERROR);
       }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
-      this.state = LoginState.LOGIN_ERROR;
+      this.state.set(LoginState.LOGIN_ERROR);
     }
   }
 
   async logout() {
     await this.#authService.logout();
-    this.state = LoginState.INITIAL;
+    this.state.set(LoginState.INITIAL);
   }
 
   addPasskey() {
@@ -103,6 +104,6 @@ export class LoginComponent {
   }
 
   back() {
-    this.state = LoginState.INITIAL;
+    this.state.set(LoginState.INITIAL);
   }
 }
