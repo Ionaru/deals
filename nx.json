@@ -29,7 +29,11 @@
     },
     "@nx/eslint:lint": {
       "cache": true,
-      "inputs": ["default", "{workspaceRoot}/.eslintignore", "{workspaceRoot}/.eslintrc.json"]
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
     }
   },
   "plugins": [

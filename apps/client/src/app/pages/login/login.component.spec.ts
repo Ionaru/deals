@@ -14,7 +14,12 @@ describe("LoginComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [TypedMockProvider(AuthService, { isLoggedIn$: of(false) })],
+      providers: [
+        TypedMockProvider(AuthService, {
+          isLoggedIn$: of(false),
+          user$: of(null),
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
