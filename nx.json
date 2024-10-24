@@ -28,12 +28,8 @@
       }
     },
     "@nx/eslint:lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/.eslintrc.json"
-      ],
-      "cache": true
+      "cache": true,
+      "inputs": ["default", "{workspaceRoot}/.eslintignore", "{workspaceRoot}/.eslintrc.json"]
     }
   },
   "plugins": [
@@ -45,12 +41,6 @@
         "componentTestingTargetName": "component-test",
         "ciTargetName": "e2e-ci"
       }
-    },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
     }
   ],
   "namedInputs": {
@@ -61,7 +51,9 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/.eslintignore",
       "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/cypress/**/*",
       "!{projectRoot}/cypress.config.c?[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s"

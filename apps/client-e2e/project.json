@@ -3,7 +3,12 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/client-e2e/src",
   "projectType": "application",
-  "targets": {},
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
   "tags": [],
   "implicitDependencies": ["client"]
 }
