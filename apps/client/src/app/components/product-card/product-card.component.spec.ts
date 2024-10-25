@@ -4,6 +4,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { setComponentInput } from "../../../testing/mocks";
 
 import { ProductCardComponent } from "./product-card.component";
+import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 
 describe("DealCardComponent", () => {
   let component: ProductCardComponent;
@@ -12,6 +13,7 @@ describe("DealCardComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
+      providers: [provideExperimentalZonelessChangeDetection()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductCardComponent);

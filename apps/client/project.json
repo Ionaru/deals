@@ -11,6 +11,7 @@
       "nl": "apps/client/src/i18n/nl.xlf"
     }
   },
+  "tags": [],
   "targets": {
     "generate-gql-types": {
       "command": "npm run generate-gql-types"
@@ -113,12 +114,7 @@
       "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/client/jest.config.ts"
-      }
+      "executor": "@analogjs/vitest-angular:test"
     }
-  },
-  "tags": []
+  }
 }

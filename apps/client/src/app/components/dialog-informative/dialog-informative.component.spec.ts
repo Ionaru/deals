@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { TypedMockProvider } from "../../../testing/mocks";
 
 import { DialogInformativeComponent } from "./dialog-informative.component";
+import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 
 describe("DialogInformativeComponent", () => {
   let component: DialogInformativeComponent;
@@ -12,6 +13,7 @@ describe("DialogInformativeComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
+        provideExperimentalZonelessChangeDetection(),
         TypedMockProvider(MAT_DIALOG_DATA, {
           message: "message",
           title: "title",

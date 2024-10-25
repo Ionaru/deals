@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { setComponentInput } from "../../../testing/mocks";
 
 import { DealCardComponent } from "./deal-card.component";
+import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 
 describe("DealCardComponent", () => {
   let component: DealCardComponent;
@@ -11,6 +12,7 @@ describe("DealCardComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [],
+      providers: [provideExperimentalZonelessChangeDetection()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DealCardComponent);

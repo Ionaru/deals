@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { setComponentInput } from "../../../testing/mocks";
 
 import { DealsPaginatorComponent } from "./deals-paginator.component";
+import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 
 describe("DealsPaginatorComponent", () => {
   let component: DealsPaginatorComponent;
@@ -11,6 +12,7 @@ describe("DealsPaginatorComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [],
+      providers: [provideExperimentalZonelessChangeDetection()]
     }).compileComponents();
     fixture = TestBed.createComponent(DealsPaginatorComponent);
 

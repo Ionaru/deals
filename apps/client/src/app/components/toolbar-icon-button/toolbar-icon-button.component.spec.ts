@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ToolbarIconButtonComponent } from "./toolbar-icon-button.component";
+import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 
 describe("ToolbarIconButtonComponent", () => {
   let component: ToolbarIconButtonComponent;
@@ -9,6 +10,7 @@ describe("ToolbarIconButtonComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [],
+      providers: [provideExperimentalZonelessChangeDetection()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarIconButtonComponent);

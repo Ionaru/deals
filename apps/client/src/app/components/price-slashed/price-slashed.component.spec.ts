@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { setComponentInput } from "../../../testing/mocks";
 
 import { PriceSlashedComponent } from "./price-slashed.component";
+import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 
 describe("PriceSlashedComponent", () => {
   let component: PriceSlashedComponent;
@@ -11,6 +12,7 @@ describe("PriceSlashedComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [],
+      providers: [provideExperimentalZonelessChangeDetection()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PriceSlashedComponent);

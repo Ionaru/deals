@@ -14,12 +14,16 @@
   },
   "private": true,
   "devDependencies": {
+    "@analogjs/platform": "^1.9.0",
+    "@analogjs/vite-plugin-angular": "^1.7.0",
+    "@analogjs/vitest-angular": "^1.7.0",
     "@angular-devkit/build-angular": "18.2.5",
     "@angular-devkit/core": "18.2.5",
     "@angular-devkit/schematics": "18.2.5",
     "@angular-eslint/eslint-plugin": "18.3.1",
     "@angular-eslint/eslint-plugin-template": "18.3.1",
     "@angular-eslint/template-parser": "18.3.1",
+    "@angular/build": "^18.2.10",
     "@angular/cli": "~18.2.5",
     "@angular/compiler-cli": "18.2.5",
     "@angular/language-service": "18.2.5",
@@ -76,6 +80,7 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "5.5.4",
     "vite": "5.4.7",
+    "vite-tsconfig-paths": "^4.2.0",
     "vitest": "1.3.1"
   },
   "dependencies": {
@@ -123,5 +128,11 @@
     "rxjs": "^7.8.1",
     "tslib": "^2.7.0",
     "typeorm": "^0.3.20"
+  },
+  "overrides": {
+    "@analogjs/platform": {
+      "@nx/angular": "^20.0.0",
+      "@nx/vite": "^20.0.0"
+    }
   }
 }

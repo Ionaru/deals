@@ -183,7 +183,7 @@ jobs:
       group: deploy
       cancel-in-progress: false
     steps:
-      - uses: appleboy/ssh-action@v1.0.3
+      - uses: appleboy/ssh-action@v1.1.0
         with:
           command_timeout: 30m
           host: ${{ secrets.DEPLOY_HOST }}

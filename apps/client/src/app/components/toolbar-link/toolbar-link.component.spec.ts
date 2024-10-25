@@ -4,6 +4,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { setComponentInput } from "../../../testing/mocks";
 
 import { ToolbarLinkComponent } from "./toolbar-link.component";
+import { provideExperimentalZonelessChangeDetection } from "@angular/core";
 
 describe("ToolbarLinkComponent", () => {
   let component: ToolbarLinkComponent;
@@ -12,6 +13,7 @@ describe("ToolbarLinkComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
+      providers: [provideExperimentalZonelessChangeDetection()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarLinkComponent);
