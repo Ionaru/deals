@@ -24,4 +24,9 @@ body {
       --mdc-filled-text-field-label-text-color
     );
   }
+
+  // To fix https://github.com/angular/components/issues/25566
+  .mat-mdc-tooltip-trigger {
+    touch-action: auto !important;
+  }
 }
