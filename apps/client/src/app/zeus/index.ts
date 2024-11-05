@@ -1191,8 +1191,8 @@ export type ModelTypes = {
 		currentPage: number,
 	itemCount: number,
 	itemsPerPage: number,
-	totalItems?: number | undefined,
-	totalPages?: number | undefined
+	totalItems?: number | undefined | null,
+	totalPages?: number | undefined | null
 };
 	["ProductDTO"]: {
 		id: string,
@@ -1206,7 +1206,7 @@ export type ModelTypes = {
 		createdOn: string,
 	dealPrice: number,
 	dealQuantity: number,
-	deletedOn?: string | undefined
+	deletedOn?: string | undefined | null
 };
 	["ProductPaginatedType"]: {
 		items: Array<ModelTypes["ProductDTO"]>,
@@ -1219,18 +1219,18 @@ export type ModelTypes = {
 	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: {
 		challenge: string,
-	deal?: ModelTypes["DealDTO"] | undefined,
+	deal?: ModelTypes["DealDTO"] | undefined | null,
 	deals: ModelTypes["DealPaginatedType"],
-	product?: ModelTypes["ExtendedProductDTO"] | undefined,
+	product?: ModelTypes["ExtendedProductDTO"] | undefined | null,
 	products: ModelTypes["ProductPaginatedType"],
-	service?: ModelTypes["ServiceHealthDTO"] | undefined,
+	service?: ModelTypes["ServiceHealthDTO"] | undefined | null,
 	services: Array<ModelTypes["ServiceHealthDTO"]>,
 	session: ModelTypes["SessionDTO"],
 	shops: Array<ModelTypes["ShopDTO"]>,
-	task?: ModelTypes["TaskDTO"] | undefined,
+	task?: ModelTypes["TaskDTO"] | undefined | null,
 	tasks: Array<ModelTypes["TaskDTO"]>,
 	unknownDeals: Array<ModelTypes["UnknownDealDTO"]>,
-	user?: ModelTypes["UserDTO"] | undefined,
+	user?: ModelTypes["UserDTO"] | undefined | null,
 	users: Array<ModelTypes["UserDTO"]>
 };
 	["ServiceHealthDTO"]: {
@@ -1242,7 +1242,7 @@ export type ModelTypes = {
 };
 	["ServiceType"]:ServiceType;
 	["SessionDTO"]: {
-		user?: string | undefined
+		user?: string | undefined | null
 };
 	["ShopDTO"]: {
 		id: string,
@@ -1250,10 +1250,10 @@ export type ModelTypes = {
 };
 	["StatusDTO"]: {
 		status: string,
-	uptime?: number | undefined
+	uptime?: number | undefined | null
 };
 	["TaskDTO"]: {
-		lastRun?: string | undefined,
+		lastRun?: string | undefined | null,
 	name: string,
 	nextRun: string
 };
@@ -1269,8 +1269,8 @@ export type ModelTypes = {
 	username: string
 };
 	["schema"]: {
-	query?: ModelTypes["Query"] | undefined,
-	mutation?: ModelTypes["Mutation"] | undefined
+	query?: ModelTypes["Query"] | undefined | null,
+	mutation?: ModelTypes["Mutation"] | undefined | null
 }
     }
 
@@ -1318,8 +1318,8 @@ export type GraphQLTypes = {
 	currentPage: number,
 	itemCount: number,
 	itemsPerPage: number,
-	totalItems?: number | undefined,
-	totalPages?: number | undefined
+	totalItems?: number | undefined | null,
+	totalPages?: number | undefined | null
 };
 	["ProductDTO"]: {
 	__typename: "ProductDTO",
@@ -1335,7 +1335,7 @@ export type GraphQLTypes = {
 	createdOn: string,
 	dealPrice: number,
 	dealQuantity: number,
-	deletedOn?: string | undefined
+	deletedOn?: string | undefined | null
 };
 	["ProductPaginatedType"]: {
 	__typename: "ProductPaginatedType",
@@ -1351,18 +1351,18 @@ export type GraphQLTypes = {
 	["Query"]: {
 	__typename: "Query",
 	challenge: string,
-	deal?: GraphQLTypes["DealDTO"] | undefined,
+	deal?: GraphQLTypes["DealDTO"] | undefined | null,
 	deals: GraphQLTypes["DealPaginatedType"],
-	product?: GraphQLTypes["ExtendedProductDTO"] | undefined,
+	product?: GraphQLTypes["ExtendedProductDTO"] | undefined | null,
 	products: GraphQLTypes["ProductPaginatedType"],
-	service?: GraphQLTypes["ServiceHealthDTO"] | undefined,
+	service?: GraphQLTypes["ServiceHealthDTO"] | undefined | null,
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>,
 	session: GraphQLTypes["SessionDTO"],
 	shops: Array<GraphQLTypes["ShopDTO"]>,
-	task?: GraphQLTypes["TaskDTO"] | undefined,
+	task?: GraphQLTypes["TaskDTO"] | undefined | null,
 	tasks: Array<GraphQLTypes["TaskDTO"]>,
 	unknownDeals: Array<GraphQLTypes["UnknownDealDTO"]>,
-	user?: GraphQLTypes["UserDTO"] | undefined,
+	user?: GraphQLTypes["UserDTO"] | undefined | null,
 	users: Array<GraphQLTypes["UserDTO"]>
 };
 	["ServiceHealthDTO"]: {
@@ -1376,7 +1376,7 @@ export type GraphQLTypes = {
 	["ServiceType"]: ServiceType;
 	["SessionDTO"]: {
 	__typename: "SessionDTO",
-	user?: string | undefined
+	user?: string | undefined | null
 };
 	["ShopDTO"]: {
 	__typename: "ShopDTO",
@@ -1386,11 +1386,11 @@ export type GraphQLTypes = {
 	["StatusDTO"]: {
 	__typename: "StatusDTO",
 	status: string,
-	uptime?: number | undefined
+	uptime?: number | undefined | null
 };
 	["TaskDTO"]: {
 	__typename: "TaskDTO",
-	lastRun?: string | undefined,
+	lastRun?: string | undefined | null,
 	name: string,
 	nextRun: string
 };
@@ -1408,22 +1408,22 @@ export type GraphQLTypes = {
 	username: string
 }
     }
-export const enum DealSortChoices {
+export enum DealSortChoices {
 	DEAL_PRICE = "DEAL_PRICE",
 	PRODUCT_NAME = "PRODUCT_NAME",
 	PRODUCT_PRICE = "PRODUCT_PRICE",
 	SAVINGS = "SAVINGS",
 	SAVINGS_PERCENTAGE = "SAVINGS_PERCENTAGE"
 }
-export const enum Order {
+export enum Order {
 	ASCENDING = "ASCENDING",
 	DESCENDING = "DESCENDING"
 }
-export const enum ProductSortChoices {
+export enum ProductSortChoices {
 	PRODUCT_NAME = "PRODUCT_NAME",
 	PRODUCT_PRICE = "PRODUCT_PRICE"
 }
-export const enum ServiceType {
+export enum ServiceType {
 	CORE = "CORE",
 	SCRAPER = "SCRAPER"
 }
