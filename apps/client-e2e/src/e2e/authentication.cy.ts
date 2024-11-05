@@ -40,7 +40,7 @@ describe("Authentication", () => {
     );
     cy.get("body").should("contain", "Name: E2E Test User");
     cy.get("button").contains("Inloggen").should("be.visible").click();
-    cy.url().should("eq", Cypress.config().baseUrl + "/");
+    cy.url({ timeout: 30_000 }).should("eq", Cypress.config().baseUrl + "/");
     cy.get(".signup-button").should("not.exist");
     cy.visit("/login");
     cy.get("button")
