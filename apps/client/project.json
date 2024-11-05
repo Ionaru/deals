@@ -24,7 +24,14 @@
         "browser": "apps/client/src/main.ts",
         "tsConfig": "apps/client/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/client/public"
+          },
+          "apps/client/src/favicon.ico",
+          "apps/client/src/assets"
+        ],
         "styles": ["apps/client/src/styles.scss"],
         "scripts": [],
         "i18nMissingTranslation": "warning",
@@ -56,7 +63,8 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "serviceWorker": "apps/client/ngsw-config.json"
         },
         "development": {
           "fileReplacements": [
