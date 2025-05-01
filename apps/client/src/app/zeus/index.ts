@@ -280,25 +280,40 @@ export const Gql = Chain(HOST, {
 
 export const ZeusScalars = ZeusSelect<ScalarCoders>();
 
-type ScalarsSelector<T> = {
+type BaseSymbol = number | string | undefined | boolean | null;
+
+type ScalarsSelector<T, V> = {
   [X in Required<{
-    [P in keyof T]: T[P] extends number | string | undefined | boolean ? P : never;
+    [P in keyof T]: P extends keyof V
+      ? V[P] extends Array<any> | undefined
+        ? never
+        : T[P] extends BaseSymbol | Array<BaseSymbol>
+        ? P
+        : never
+      : never;
   }>[keyof T]]: true;
 };
 
 export const fields = <T extends keyof ModelTypes>(k: T) => {
   const t = ReturnTypes[k];
+  const fnType = k in AllTypesProps ? AllTypesProps[k as keyof typeof AllTypesProps] : undefined;
+  const hasFnTypes = typeof fnType === 'object' ? fnType : undefined;
   const o = Object.fromEntries(
     Object.entries(t)
-      .filter(([, value]) => {
+      .filter(([k, value]) => {
+        const isFunctionType = hasFnTypes && k in hasFnTypes && !!hasFnTypes[k as keyof typeof hasFnTypes];
+        if (isFunctionType) return false;
         const isReturnType = ReturnTypes[value as string];
-        if (!isReturnType || (typeof isReturnType === 'string' && isReturnType.startsWith('scalar.'))) {
+        if (!isReturnType) return true;
+        if (typeof isReturnType !== 'string') return false;
+        if (isReturnType.startsWith('scalar.')) {
           return true;
         }
+        return false;
       })
       .map(([key]) => [key, true as const]),
   );
-  return o as ScalarsSelector<ModelTypes[T]>;
+  return o as ScalarsSelector<ModelTypes[T], T extends keyof ValueTypes ? ValueTypes[T] : never>;
 };
 
 export const decodeScalarsInResponse = <O extends Operations>({
@@ -801,7 +816,6 @@ type BuiltInVariableTypes = {
   ['String']: string;
   ['Int']: number;
   ['Float']: number;
-  ['ID']: unknown;
   ['Boolean']: boolean;
 };
 type AllVariableTypes = keyof BuiltInVariableTypes | keyof ZEUS_VARIABLES;
@@ -852,6 +866,8 @@ type OptionalKeys<T> = {
 
 export type WithOptionalNullables<T> = OptionalKeys<WithNullableKeys<T>> & WithNonNullableKeys<T>;
 
+export type ComposableSelector<T extends keyof ValueTypes> = ReturnType<SelectionFunction<ValueTypes[T]>>;
+
 export type Variable<T extends GraphQLVariableType, Name extends string> = {
   ' __zeus_name': Name;
   ' __zeus_type': T;
@@ -883,6 +899,7 @@ export const $ = <Type extends GraphQLVariableType, Name extends string>(name: N
 };
 type ZEUS_INTERFACES = never
 export type ScalarCoders = {
+	ID?: ScalarResolver;
 }
 type ZEUS_UNIONS = never
 
@@ -916,7 +933,7 @@ addPasskey?: [{	registration: string | Variable<any, string>},boolean | `@${stri
 loginUser?: [{	authentication: string | Variable<any, string>},boolean | `@${string}`],
 	logoutUser?:boolean | `@${string}`,
 registerUser?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
-resolveUnknownDeal?: [{	id: string | Variable<any, string>},boolean | `@${string}`],
+resolveUnknownDeal?: [{	id: ValueTypes["ID"] | Variable<any, string>},boolean | `@${string}`],
 startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 startTask?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
@@ -959,11 +976,11 @@ startTask?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: AliasType<{
 	challenge?:boolean | `@${string}`,
-deal?: [{	id: string | Variable<any, string>},ValueTypes["DealDTO"]],
+deal?: [{	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	query?: string | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
-product?: [{	id: string | Variable<any, string>},ValueTypes["ExtendedProductDTO"]],
+product?: [{	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["ExtendedProductDTO"]],
 products?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	query?: string | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["ProductSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["ProductPaginatedType"]],
-service?: [{	id: string | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
+service?: [{	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
 	session?:ValueTypes["SessionDTO"],
 	shops?:ValueTypes["ShopDTO"],
@@ -1004,6 +1021,7 @@ user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["Us
 		__typename?: boolean | `@${string}`
 }>;
 	["UnknownDealDTO"]: AliasType<{
+	createdOn?:boolean | `@${string}`,
 	deal?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	productUrl?:boolean | `@${string}`,
@@ -1015,7 +1033,8 @@ user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["Us
 	isAdmin?:boolean | `@${string}`,
 	username?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
-}>
+}>;
+	["ID"]:unknown
   }
 
 export type ResolverInputTypes = {
@@ -1048,7 +1067,7 @@ addPasskey?: [{	registration: string},boolean | `@${string}`],
 loginUser?: [{	authentication: string},boolean | `@${string}`],
 	logoutUser?:boolean | `@${string}`,
 registerUser?: [{	registration: string},boolean | `@${string}`],
-resolveUnknownDeal?: [{	id: string},boolean | `@${string}`],
+resolveUnknownDeal?: [{	id: ResolverInputTypes["ID"]},boolean | `@${string}`],
 startScraper?: [{	name: string},boolean | `@${string}`],
 startTask?: [{	name: string},boolean | `@${string}`],
 		__typename?: boolean | `@${string}`
@@ -1091,11 +1110,11 @@ startTask?: [{	name: string},boolean | `@${string}`],
 	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: AliasType<{
 	challenge?:boolean | `@${string}`,
-deal?: [{	id: string},ResolverInputTypes["DealDTO"]],
+deal?: [{	id: ResolverInputTypes["ID"]},ResolverInputTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	query?: string | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
-product?: [{	id: string},ResolverInputTypes["ExtendedProductDTO"]],
+product?: [{	id: ResolverInputTypes["ID"]},ResolverInputTypes["ExtendedProductDTO"]],
 products?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	query?: string | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["ProductSortChoices"]> | undefined | null},ResolverInputTypes["ProductPaginatedType"]],
-service?: [{	id: string},ResolverInputTypes["ServiceHealthDTO"]],
+service?: [{	id: ResolverInputTypes["ID"]},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
 	session?:ResolverInputTypes["SessionDTO"],
 	shops?:ResolverInputTypes["ShopDTO"],
@@ -1136,6 +1155,7 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["UnknownDealDTO"]: AliasType<{
+	createdOn?:boolean | `@${string}`,
 	deal?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	productUrl?:boolean | `@${string}`,
@@ -1152,7 +1172,8 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 	query?:ResolverInputTypes["Query"],
 	mutation?:ResolverInputTypes["Mutation"],
 		__typename?: boolean | `@${string}`
-}>
+}>;
+	["ID"]:unknown
   }
 
 export type ModelTypes = {
@@ -1234,7 +1255,7 @@ export type ModelTypes = {
 	users: Array<ModelTypes["UserDTO"]>
 };
 	["ServiceHealthDTO"]: {
-		id: string,
+		id: ModelTypes["ID"],
 	name: string,
 	queue: string,
 	status: ModelTypes["StatusDTO"],
@@ -1245,7 +1266,7 @@ export type ModelTypes = {
 		user?: string | undefined | null
 };
 	["ShopDTO"]: {
-		id: string,
+		id: ModelTypes["ID"],
 	name: string
 };
 	["StatusDTO"]: {
@@ -1258,20 +1279,22 @@ export type ModelTypes = {
 	nextRun: string
 };
 	["UnknownDealDTO"]: {
-		deal: string,
-	id: string,
+		createdOn: string,
+	deal: string,
+	id: ModelTypes["ID"],
 	productUrl: string,
 	shop: ModelTypes["ShopDTO"]
 };
 	["UserDTO"]: {
-		id: string,
+		id: ModelTypes["ID"],
 	isAdmin: boolean,
 	username: string
 };
 	["schema"]: {
 	query?: ModelTypes["Query"] | undefined | null,
 	mutation?: ModelTypes["Mutation"] | undefined | null
-}
+};
+	["ID"]:any
     }
 
 export type GraphQLTypes = {
@@ -1367,7 +1390,7 @@ export type GraphQLTypes = {
 };
 	["ServiceHealthDTO"]: {
 	__typename: "ServiceHealthDTO",
-	id: string,
+	id: GraphQLTypes["ID"],
 	name: string,
 	queue: string,
 	status: GraphQLTypes["StatusDTO"],
@@ -1380,7 +1403,7 @@ export type GraphQLTypes = {
 };
 	["ShopDTO"]: {
 	__typename: "ShopDTO",
-	id: string,
+	id: GraphQLTypes["ID"],
 	name: string
 };
 	["StatusDTO"]: {
@@ -1396,17 +1419,19 @@ export type GraphQLTypes = {
 };
 	["UnknownDealDTO"]: {
 	__typename: "UnknownDealDTO",
+	createdOn: string,
 	deal: string,
-	id: string,
+	id: GraphQLTypes["ID"],
 	productUrl: string,
 	shop: GraphQLTypes["ShopDTO"]
 };
 	["UserDTO"]: {
 	__typename: "UserDTO",
-	id: string,
+	id: GraphQLTypes["ID"],
 	isAdmin: boolean,
 	username: string
-}
+};
+	["ID"]: "scalar" & { name: "ID" }
     }
 export enum DealSortChoices {
 	DEAL_PRICE = "DEAL_PRICE",
@@ -1433,4 +1458,5 @@ type ZEUS_VARIABLES = {
 	["Order"]: ValueTypes["Order"];
 	["ProductSortChoices"]: ValueTypes["ProductSortChoices"];
 	["ServiceType"]: ValueTypes["ServiceType"];
+	["ID"]: ValueTypes["ID"];
 }

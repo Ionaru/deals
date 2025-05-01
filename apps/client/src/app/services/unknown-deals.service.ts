@@ -13,6 +13,7 @@ export class UnknownDealsService {
     return this.#apollo.query({
       query: typedGql("query")({
         unknownDeals: {
+          createdOn: true,
           deal: true,
           id: true,
           productUrl: true,

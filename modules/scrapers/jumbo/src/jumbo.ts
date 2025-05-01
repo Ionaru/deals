@@ -74,7 +74,7 @@ export class Jumbo extends ScrapeWebsiteService {
   protected baseUrl = "https://www.jumbo.com";
   protected paths = ["/producten/alle-aanbiedingen"];
 
-  #query = `
+  readonly #query = `
   query SearchProducts($input: ProductSearchInput!) {
     searchProducts(input: $input) {
       products {

@@ -5,7 +5,7 @@
 type DealDTO {
   dealPrice: Float!
   dealQuantity: Int!
-  id: ID!
+  id: String!
   product: ProductDTO!
 }
 
@@ -24,7 +24,7 @@ enum DealSortChoices {
 
 type ExtendedProductDTO {
   dealHistory: [ProductDealHistoryDTO!]!
-  id: ID!
+  id: String!
   imageUrl: String!
   name: String!
   price: Float!
@@ -57,7 +57,7 @@ type PaginationMeta {
 }
 
 type ProductDTO {
-  id: ID!
+  id: String!
   imageUrl: String!
   name: String!
   price: Float!
@@ -138,6 +138,7 @@ type TaskDTO {
 }
 
 type UnknownDealDTO {
+  createdOn: String!
   deal: String!
   id: ID!
   productUrl: String!

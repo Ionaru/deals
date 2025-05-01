@@ -10,6 +10,7 @@ interface IDealInformation {
 enum KruidvatDealType {
   // X + Y
   ONE_PLUS_ONE = 1,
+  ONE_PLUS_ONE_DUPLICATE,
   TWO_PLUS_ONE,
   TWO_PLUS_TWO,
   TWO_PLUS_THREE,
@@ -119,6 +120,9 @@ enum KruidvatDealType {
   ALL_FOR_34_99_EACH,
   ALL_FOR_39_99_EACH,
 
+  // All for €X per pack
+  ALL_FOR_5_PER_PACK,
+
   // Second for ...
   SECOND_FOR_ONE,
   SECOND_FOR_TWO,
@@ -134,11 +138,14 @@ enum KruidvatDealType {
   TWENTY_OFF,
 
   // For X
+  FOR_3_99,
+  FOR_12_50,
+  FOR_15_99,
   FOR_54_99,
   FOR_59_99,
   FOR_69_99,
   FOR_89_99,
-  FOR_109,
+  // FOR_109,
   FOR_129_99,
   FOR_249_99,
 }
@@ -148,6 +155,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.ONE_PLUS_ONE]: {
       calculation: (price: number) => price / 2,
       code: "1003",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.ONE_PLUS_ONE_DUPLICATE]: {
+      calculation: (price: number) => price / 2,
+      code: "5261",
       purchaseAmount: 2,
     },
     [KruidvatDealType.TWO_FOR_2]: {
@@ -646,6 +658,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1425",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.ALL_FOR_5_PER_PACK]: {
+      calculation: () => 5,
+      code: "1175",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.THREE_OFF]: {
       calculation: (price: number) => price - 3,
       code: "1040",
@@ -681,6 +698,21 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1179",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.FOR_3_99]: {
+      calculation: () => 3.99,
+      code: "4149",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_12_50]: {
+      calculation: () => 12.5,
+      code: "4610",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_15_99]: {
+      calculation: () => 15.99,
+      code: "4525",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.FOR_54_99]: {
       calculation: () => 54.99,
       code: "4432",
@@ -699,11 +731,6 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.FOR_89_99]: {
       calculation: () => 89.99,
       code: "4597",
-      purchaseAmount: 1,
-    },
-    [KruidvatDealType.FOR_109]: {
-      calculation: () => 109,
-      code: "4525",
       purchaseAmount: 1,
     },
     [KruidvatDealType.FOR_129_99]: {

@@ -41,6 +41,9 @@ export class UnknownDealService {
 
   getUnknownDeals() {
     return this.unknownDealRepository.find({
+      order: {
+        createdOn: "DESC",
+      },
       relations: ["shop"],
     });
   }
