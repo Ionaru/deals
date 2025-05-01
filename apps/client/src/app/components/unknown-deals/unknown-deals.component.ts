@@ -1,3 +1,4 @@
+import { DatePipe } from "@angular/common";
 import { Component, computed, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { MatButtonModule } from "@angular/material/button";
@@ -7,7 +8,7 @@ import { map } from "rxjs";
 import { UnknownDealsService } from "../../services/unknown-deals.service";
 
 @Component({
-  imports: [MatTableModule, MatButtonModule],
+  imports: [MatTableModule, MatButtonModule, DatePipe],
   selector: "deals-unknown-deals",
   standalone: true,
   styleUrl: "./unknown-deals.component.css",
@@ -16,8 +17,8 @@ import { UnknownDealsService } from "../../services/unknown-deals.service";
 export class UnknownDealsComponent {
   readonly #unknownDealsService = inject(UnknownDealsService);
 
-  #resolvedUnknownDeals = signal<string[]>([]);
-  #unknownDeal = toSignal(
+  readonly #resolvedUnknownDeals = signal<string[]>([]);
+  readonly #unknownDeal = toSignal(
     this.#unknownDealsService
       .getUnknownDeals$()
       .pipe(map((result) => result.data.unknownDeals)),
@@ -25,11 +26,17 @@ export class UnknownDealsComponent {
   );
   dataSource = computed(() =>
     this.#unknownDeal().filter(
-      (deal) => !this.#resolvedUnknownDeals().includes(deal.id),
+      (deal) => !this.#resolvedUnknownDeals().includes(deal.id as string),
     ),
   );
 
-  displayedColumns: string[] = ["shop", "productUrl", "deal", "actions"];
+  displayedColumns: string[] = [
+    "date",
+    "shop",
+    "productUrl",
+    "deal",
+    "actions",
+  ];
 
   resolveUnknownDeal(id: string) {
     this.#unknownDealsService.resolveUnknownDeals$(id).subscribe(() => {

@@ -1,5 +1,14 @@
 :host {
-  text-decoration-line: line-through;
-  text-decoration-color: var(--mat-form-field-error-text-color);
-  text-decoration-thickness: 0.15rem;
+  position: relative;
+  white-space: nowrap;
+
+  &::after {
+    border-top: 0.15rem solid var(--mat-form-field-error-text-color);
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 45%;
+    left: 0;
+    transform: rotate(-10deg);
+  }
 }

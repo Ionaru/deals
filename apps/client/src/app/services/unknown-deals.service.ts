@@ -19,6 +19,7 @@ export class UnknownDealsService {
           shop: {
             name: true,
           },
+          updatedOn: true,
         },
       }),
     });

@@ -49,14 +49,15 @@ export const AllTypesProps: Record<string,any> = {
 
 		}
 	},
-	ServiceType: "enum" as const
+	ServiceType: "enum" as const,
+	ID: `scalar.ID` as const
 }
 
 export const ReturnTypes: Record<string,any> = {
 	DealDTO:{
 		dealPrice:"Float",
 		dealQuantity:"Int",
-		id:"ID",
+		id:"String",
 		product:"ProductDTO"
 	},
 	DealPaginatedType:{
@@ -65,7 +66,7 @@ export const ReturnTypes: Record<string,any> = {
 	},
 	ExtendedProductDTO:{
 		dealHistory:"ProductDealHistoryDTO",
-		id:"ID",
+		id:"String",
 		imageUrl:"String",
 		name:"String",
 		price:"Float",
@@ -90,7 +91,7 @@ export const ReturnTypes: Record<string,any> = {
 		totalPages:"Int"
 	},
 	ProductDTO:{
-		id:"ID",
+		id:"String",
 		imageUrl:"String",
 		name:"String",
 		price:"Float",
@@ -154,13 +155,15 @@ export const ReturnTypes: Record<string,any> = {
 		deal:"String",
 		id:"ID",
 		productUrl:"String",
-		shop:"ShopDTO"
+		shop:"ShopDTO",
+		updatedOn:"String"
 	},
 	UserDTO:{
 		id:"ID",
 		isAdmin:"Boolean",
 		username:"String"
-	}
+	},
+	ID: `scalar.ID` as const
 }
 
 export const Ops = {

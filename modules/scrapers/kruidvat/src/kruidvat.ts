@@ -10,10 +10,12 @@ interface IDealInformation {
 enum KruidvatDealType {
   // X + Y
   ONE_PLUS_ONE = 1,
+  ONE_PLUS_ONE_DUPLICATE,
   TWO_PLUS_ONE,
   TWO_PLUS_TWO,
   TWO_PLUS_THREE,
   THREE_PLUS_TWO,
+  SIX_PLUS_ONE,
 
   // 2 for €X
   TWO_FOR_10,
@@ -28,7 +30,9 @@ enum KruidvatDealType {
   TWO_FOR_29_99,
   TWO_FOR_3,
   TWO_FOR_4,
+  TWO_FOR_4_49,
   TWO_FOR_4_50,
+  TWO_FOR_4_69,
   TWO_FOR_5,
   TWO_FOR_6,
   TWO_FOR_7,
@@ -39,16 +43,23 @@ enum KruidvatDealType {
   TWO_FOR_9_99,
   TWO_FOR_14,
   TWO_FOR_15,
+  TWO_FOR_16,
   TWO_FOR_19_99,
+  TWO_FOR_22,
+  TWO_FOR_24,
   TWO_FOR_25,
+  TWO_FOR_27,
   // TWO_FOR_59_99,
 
   // 3 for €X
   THREE_FOR_10,
+  THREE_FOR_10_DUPLICATE,
+  THREE_FOR_11,
   THREE_FOR_12,
   THREE_FOR_13,
   THREE_FOR_2,
   THREE_FOR_3,
+  THREE_FOR_35,
   THREE_FOR_3_DUPLICATE,
   THREE_FOR_5,
   THREE_FOR_6,
@@ -66,24 +77,40 @@ enum KruidvatDealType {
   FOUR_FOR_7,
   FOUR_FOR_8,
   FOUR_FOR_9,
+  FOUR_FOR_30,
 
   // 5 for €X
+  FIVE_FOR_3,
   FIVE_FOR_5,
+  FIVE_FOR_6,
   FIVE_FOR_10,
+
+  // 8 for €X
+  EIGHT_FOR_10,
+
+  // 9 for €X
+  NINE_FOR_9_99,
 
   // X% off
   TEN_PERCENT_OFF,
   FIFTEEN_PERCENT_OFF,
   TWENTY_PERCENT_OFF,
   TWENTY_FIVE_PERCENT_OFF,
+  TWENTY_FIVE_PERCENT_EXTRA_OFF,
   THIRTY_PERCENT_OFF,
+  THIRTY_THREE_PERCENT_OFF,
   THIRTY_FIVE_PERCENT_OFF,
   FOURTY_PERCENT_OFF,
   FIFTY_PERCENT_OFF,
   SIXTY_PERCENT_OFF,
   SIXTY_ONE_PERCENT_OFF,
+  SEVENTY_FIVE_PERCENT_EXTRA_OFF,
+
+  // X% off by X amount
+  FIFTY_PERCENT_OFF_BY_5,
 
   // All for €X each
+  ALL_FOR_0_99_EACH,
   ALL_FOR_1_29_EACH,
   ALL_FOR_1_50_EACH,
   ALL_FOR_1_EACH,
@@ -98,6 +125,7 @@ enum KruidvatDealType {
   ALL_FOR_4_99_EACH,
   ALL_FOR_5_EACH,
   ALL_FOR_6_EACH,
+  ALL_FOR_6_50_EACH,
   ALL_FOR_7_EACH,
   ALL_FOR_7_50_EACH,
   ALL_FOR_7_99_EACH,
@@ -117,7 +145,12 @@ enum KruidvatDealType {
   ALL_FOR_20_EACH,
   ALL_FOR_24_99_EACH,
   ALL_FOR_34_99_EACH,
+  ALL_FOR_38_99_EACH,
   ALL_FOR_39_99_EACH,
+  ALL_FOR_49_99_EACH,
+
+  // All for €X per pack
+  ALL_FOR_5_PER_PACK,
 
   // Second for ...
   SECOND_FOR_ONE,
@@ -125,6 +158,7 @@ enum KruidvatDealType {
   SECOND_HALF_PRICE,
 
   // €X off
+  TWO_OFF,
   THREE_OFF,
   FIVE_OFF,
   SIX_OFF,
@@ -134,11 +168,31 @@ enum KruidvatDealType {
   TWENTY_OFF,
 
   // For X
+  FOR_1_49,
+  FOR_3,
+  FOR_3_99,
+  FOR_4_39,
+  FOR_5,
+  FOR_5_99,
+  FOR_6,
+  FOR_7_99,
+  FOR_9_99,
+  FOR_10,
+  FOR_11_99,
+  FOR_12_50,
+  FOR_13_95,
+  FOR_14,
+  FOR_14_99,
+  FOR_15_99,
+  FOR_24_99,
+  FOR_25,
+  FOR_26_50,
+  FOR_35,
   FOR_54_99,
   FOR_59_99,
   FOR_69_99,
   FOR_89_99,
-  FOR_109,
+  // FOR_109,
   FOR_129_99,
   FOR_249_99,
 }
@@ -148,6 +202,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.ONE_PLUS_ONE]: {
       calculation: (price: number) => price / 2,
       code: "1003",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.ONE_PLUS_ONE_DUPLICATE]: {
+      calculation: (price: number) => price / 2,
+      code: "5261",
       purchaseAmount: 2,
     },
     [KruidvatDealType.TWO_FOR_2]: {
@@ -170,9 +229,19 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1013",
       purchaseAmount: 2,
     },
+    [KruidvatDealType.TWO_FOR_4_49]: {
+      calculation: () => 4.49 / 2,
+      code: "1202",
+      purchaseAmount: 2,
+    },
     [KruidvatDealType.TWO_FOR_4_50]: {
       calculation: () => 4.5 / 2,
       code: "4291",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.TWO_FOR_4_69]: {
+      calculation: () => 4.69 / 2,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDI4NXxpbWFnZS9wbmd8YUdNM0wyaGpZeTh4TkRrM016TTRNRFkxTnpFNE1nfDRmNTg5M2U5NGI1NzI1NjA0MmZkMzFmMDA0MDMzOTZiYTk1ZDA2NmRjZDRkOWQwNjhmNDcxNWQyNGM0M2I4MmU",
       purchaseAmount: 2,
     },
     [KruidvatDealType.TWO_FOR_5]: {
@@ -235,9 +304,24 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1196",
       purchaseAmount: 2,
     },
+    [KruidvatDealType.TWO_FOR_22]: {
+      calculation: () => 22 / 2,
+      code: "1235",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.TWO_FOR_24]: {
+      calculation: () => 24 / 2,
+      code: "4626",
+      purchaseAmount: 2,
+    },
     [KruidvatDealType.TWO_FOR_25]: {
       calculation: () => 25 / 2,
       code: "1209",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.TWO_FOR_27]: {
+      calculation: () => 27 / 2,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDU2OXxpbWFnZS9wbmd8YURsbEwyaGlPQzh4TlRZd01UWTJNREl6TVRjeE1BfGNlNmQ4OTc1MmYyYzVlZWM0YTE3YWUyOWI0MTllNjVmMWMyMzg4Y2E1Y2QxOWUzZDlhMGQ0ZmQ3MmQxZjgyZTM",
       purchaseAmount: 2,
     },
     // INCORRECT CODE
@@ -281,6 +365,16 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1048",
       purchaseAmount: 3,
     },
+    [KruidvatDealType.THREE_FOR_10_DUPLICATE]: {
+      calculation: () => 10 / 3,
+      code: "13515",
+      purchaseAmount: 3,
+    },
+    [KruidvatDealType.THREE_FOR_11]: {
+      calculation: () => 11 / 3,
+      code: "4310",
+      purchaseAmount: 3,
+    },
     [KruidvatDealType.THREE_FOR_12]: {
       calculation: () => 12 / 3,
       code: "1226",
@@ -317,9 +411,14 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       purchaseAmount: 5,
     },
     [KruidvatDealType.THREE_PLUS_TWO]: {
-      calculation: (price: number) => (price + price + price) / 5,
+      calculation: (price: number) => (price * 3) / 5,
       code: "1050",
       purchaseAmount: 5,
+    },
+    [KruidvatDealType.SIX_PLUS_ONE]: {
+      calculation: (price: number) => (price * 6) / 7,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDc0OXxpbWFnZS9wbmd8YURObUwyaGtNQzh6TXpZeU56WXlPVFV4T0RnM09BfDU1ZGRlZGQ2ODkyNDIwMmQyNTM4NzdkY2E3OTgwN2UyMzE3YTI1OTU0NDMyZDJjY2Y0MzEyNDA1ZjE0OTNkNzI",
+      purchaseAmount: 7,
     },
     [KruidvatDealType.SECOND_FOR_ONE]: {
       calculation: (price: number) => (price + 1) / 2,
@@ -361,9 +460,19 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1062",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.TWENTY_FIVE_PERCENT_EXTRA_OFF]: {
+      calculation: (price: number) => price - price * 0.25,
+      code: "1557",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.THIRTY_PERCENT_OFF]: {
       calculation: (price: number) => price - price * 0.3,
       code: "1064",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.THIRTY_THREE_PERCENT_OFF]: {
+      calculation: (price: number) => price - price * 0.33,
+      code: "1193",
       purchaseAmount: 1,
     },
     [KruidvatDealType.THIRTY_FIVE_PERCENT_OFF]: {
@@ -391,6 +500,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "4970",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.SEVENTY_FIVE_PERCENT_EXTRA_OFF]: {
+      calculation: (price: number) => price - price * 0.75,
+      code: "1450",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.ALL_FOR_1_EACH]: {
       calculation: () => 1,
       code: "1086",
@@ -401,15 +515,35 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1167",
       purchaseAmount: 3,
     },
+    [KruidvatDealType.FIVE_FOR_3]: {
+      calculation: () => 3 / 5,
+      code: "1159",
+      purchaseAmount: 5,
+    },
     [KruidvatDealType.FIVE_FOR_5]: {
       calculation: () => 1,
       code: "1176",
+      purchaseAmount: 5,
+    },
+    [KruidvatDealType.FIVE_FOR_6]: {
+      calculation: () => 6 / 5,
+      code: "4110",
       purchaseAmount: 5,
     },
     [KruidvatDealType.FIVE_FOR_10]: {
       calculation: () => 2,
       code: "1145",
       purchaseAmount: 5,
+    },
+    [KruidvatDealType.EIGHT_FOR_10]: {
+      calculation: () => 10 / 8,
+      code: "1572",
+      purchaseAmount: 8,
+    },
+    [KruidvatDealType.NINE_FOR_9_99]: {
+      calculation: () => 9.99 / 9,
+      code: "4141",
+      purchaseAmount: 9,
     },
     [KruidvatDealType.FOUR_FOR_10]: {
       calculation: () => 10 / 4,
@@ -429,6 +563,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.THREE_FOR_13]: {
       calculation: () => 13 / 3,
       code: "4550",
+      purchaseAmount: 3,
+    },
+    [KruidvatDealType.THREE_FOR_35]: {
+      calculation: () => 35 / 3,
+      code: "1563",
       purchaseAmount: 3,
     },
     [KruidvatDealType.FOUR_FOR_6]: {
@@ -456,6 +595,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1402",
       purchaseAmount: 4,
     },
+    [KruidvatDealType.FOUR_FOR_30]: {
+      calculation: () => 30 / 4,
+      code: "1578",
+      purchaseAmount: 4,
+    },
     [KruidvatDealType.TWO_FOR_9_95]: {
       calculation: () => 9.95 / 2,
       code: "1024",
@@ -474,6 +618,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.TWO_FOR_15]: {
       calculation: () => 15 / 2,
       code: "1156",
+      purchaseAmount: 2,
+    },
+    [KruidvatDealType.TWO_FOR_16]: {
+      calculation: () => 16 / 2,
+      code: "1031",
       purchaseAmount: 2,
     },
     [KruidvatDealType.ALL_FOR_1_50_EACH]: {
@@ -539,6 +688,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.ALL_FOR_6_EACH]: {
       calculation: () => 6,
       code: "1100",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_6_50_EACH]: {
+      calculation: () => 6.5,
+      code: "1366",
       purchaseAmount: 1,
     },
     [KruidvatDealType.ALL_FOR_7_EACH]: {
@@ -626,6 +780,16 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1328",
       purchaseAmount: 3,
     },
+    [KruidvatDealType.FIFTY_PERCENT_OFF_BY_5]: {
+      calculation: (price: number) => price * 0.5,
+      code: "5489",
+      purchaseAmount: 5,
+    },
+    [KruidvatDealType.ALL_FOR_0_99_EACH]: {
+      calculation: () => 0.99,
+      code: "1085",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.ALL_FOR_1_29_EACH]: {
       calculation: () => 1.29,
       code: "1411",
@@ -641,9 +805,29 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1455",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.ALL_FOR_38_99_EACH]: {
+      calculation: () => 38.99,
+      code: "1507",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.ALL_FOR_39_99_EACH]: {
       calculation: () => 39.99,
       code: "1425",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_49_99_EACH]: {
+      calculation: () => 49.99,
+      code: "1453",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_5_PER_PACK]: {
+      calculation: () => 5,
+      code: "1175",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.TWO_OFF]: {
+      calculation: (price: number) => price - 2,
+      code: "1004",
       purchaseAmount: 1,
     },
     [KruidvatDealType.THREE_OFF]: {
@@ -681,6 +865,106 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1179",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.FOR_1_49]: {
+      calculation: () => 1.49,
+      code: "4169",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_3]: {
+      calculation: () => 3,
+      code: "4227",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_3_99]: {
+      calculation: () => 3.99,
+      code: "4149",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_4_39]: {
+      calculation: () => 4.39,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDMzNHxpbWFnZS9wbmd8YURObEwyZzBZUzh6TXpnMU1EQTJOVFU0TkRFMU9BfDY3OWMzMDE5MWE0OTgyZDM2NTk2MjEzYWVkMjMwMjE3NGVlMzk2YzAxNWEwMWNlNzAzMWZmMmZhZTgzZjBkMWU",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_5]: {
+      calculation: () => 5,
+      code: "4190",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_5_99]: {
+      calculation: () => 5.99,
+      code: "4198",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_6]: {
+      calculation: () => 6,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDE2OHxpbWFnZS9wbmd8YURjd0wyZzBZUzh6TWpFNE16UTRNamswTVRRM01BfGJjN2E4ZjI4OTZkZDQzNGVkZWI3NGUwYzEyMzc1MDViYWQzNGY1MzFmOTFkZjliZDAzNzE1NmZkM2QzZTcxNjc",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_7_99]: {
+      calculation: () => 7.99,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDE2OHxpbWFnZS9wbmd8YURReUwyZ3pOQzh6TWpJME1qazJPVFEzTnpFMU1BfDM5NTRlYmExNTYyN2YwZmE5YjI0NTk0YTA2NDE5YTc0ZjViMDRkZDY5ZTk0MWY4NWFiYTdkMzc5ZmM0Yzc2YzE",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_9_99]: {
+      calculation: () => 9.99,
+      code: "4202",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_10]: {
+      calculation: () => 10,
+      code: "4494",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_11_99]: {
+      calculation: () => 11.99,
+      code: "4347",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_12_50]: {
+      calculation: () => 12.5,
+      code: "4610",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_13_95]: {
+      calculation: () => 13.95,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDYyMXxpbWFnZS9wbmd8YURGbUwyaGxPUzh6TWpRMk16UTFNalkyTnprek5BfDg3NzJjOWJlODUxYWI2ZGJkMWY0YmIwY2Q1NjExZmJhZTBlNjkzZDAzNDgwMmRmNzQzNTk3NDMyN2YyM2UzN2E",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_14]: {
+      calculation: () => 14,
+      code: "4494",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_14_99]: {
+      calculation: () => 14.99,
+      code: "4499",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_15_99]: {
+      calculation: () => 15.99,
+      code: "4525",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_24_99]: {
+      calculation: () => 24.99,
+      code: "4626",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_25]: {
+      calculation: () => 25,
+      code: "4628",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_26_50]: {
+      calculation: () => 26.5,
+      code: "4765",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_35]: {
+      calculation: () => 35,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDY0NHxpbWFnZS9wbmd8YUdSbEwyZzROeTh6TXpBMU56YzNNRGM1T1RFek5BfGI0NzdlNzFlNzNjNjE3MzEzN2E2ZTY2YTcxNzg0ZTU2ZDcxNDc1YzEwZWIyMTM3OTIyYTM3Y2Y5OTVhMjcyOGM",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.FOR_54_99]: {
       calculation: () => 54.99,
       code: "4432",
@@ -701,11 +985,6 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "4597",
       purchaseAmount: 1,
     },
-    [KruidvatDealType.FOR_109]: {
-      calculation: () => 109,
-      code: "4525",
-      purchaseAmount: 1,
-    },
     [KruidvatDealType.FOR_129_99]: {
       calculation: () => 129.99,
       code: "4496",
@@ -718,7 +997,16 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     },
   });
 
-const ignoredDeals = new Set(["1404", "1142", "1447", "4252"]);
+const ignoredDeals = new Set([
+  "1404",
+  "1142",
+  "1447",
+  "4252",
+  "4302",
+  "4108",
+  "4939",
+  "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjIwM3xpbWFnZS9wbmd8YUdFMUwyaGxPQzh6TXpjeE56azBOVEEzTXpZNU5BfDBjZjFiYTBkMWE0Zjk5OGJmMTBlYzJlZTRhNjZiMmVjM2M2OTZkMzA2YWI4NmMzN2UxMWYzOTZkMDNhOGE1MDA",
+]);
 
 const parseProductPrice = (priceText: string | null = ""): number => {
   const priceParts = priceText?.split("\n").map((part) => part.trim()) || [];
@@ -730,6 +1018,8 @@ export class Kruidvat extends ScrapeWebsiteService {
 
   protected baseUrl = "https://www.kruidvat.nl";
   protected paths = [
+    "/baby",
+    "/beauty",
     "/beauty/fohn-haarstyler/c/20014",
     "/beauty/geuren-geschenksets/c/20017",
     "/beauty/geuren-geschenksets/geschenksets/c/30030",
@@ -744,8 +1034,17 @@ export class Kruidvat extends ScrapeWebsiteService {
     "/beauty/skincare-vrouw/c/20019",
     "/beauty/voordeelverpakkingen-beauty/c/MLP10083",
     "/beauty/zonnebrand-aftersun/c/30060",
+    "/elektronica",
+    "/eten-en-drinken",
+    "/fashion",
+    "/gezondheid",
+    "/huishouden",
+    "/speelgoed",
+    "/sport",
+    "/verzorging",
     "/verzorging/duurzamere-keuze/alle-duurzamere-beautyproducten/c/MLP10139",
     "/verzorging/duurzamere-keuze/alle-duurzamere-verzorgingsproducten/c/MLP10138",
+    "/verzorging/intieme-verzorging/inlegkruisjes",
     "/verzorging/lichaamsverzorging/bad-en-douche-producten/c/30057",
     "/verzorging/lichaamsverzorging/c/20021",
     "/verzorging/lichaamsverzorging/deodorant/c/30056",
@@ -755,6 +1054,7 @@ export class Kruidvat extends ScrapeWebsiteService {
     "/verzorging/natuurlijke-producten/c/groen-lichaamsverzorging",
     "/verzorging/scheren-ontharen/c/20022",
     "/verzorging/scheren-ontharen/scheermesjes/c/30070",
+    "/verzorging/zonbescherming/zonnebrand",
     "/voordeelverpakkingen-verzorging/c/MLP10081",
   ];
 
@@ -792,6 +1092,11 @@ export class Kruidvat extends ScrapeWebsiteService {
         continue;
       }
 
+      const partnerSale = product.querySelector(".tile__badge");
+      if (partnerSale?.innerHTML.includes("Verkoop via partner")) {
+        continue;
+      }
+
       // eslint-disable-next-line unicorn/prefer-dom-node-dataset
       const deal = productDealImage.getAttribute("data-src");
       if (!deal) {
@@ -812,14 +1117,22 @@ export class Kruidvat extends ScrapeWebsiteService {
           continue;
         }
 
-        const contextCode = this.#decodeContext(deal);
-        if (contextCode && ignoredDeals.has(contextCode)) {
-          continue;
+        const context = this.#getContext(deal);
+
+        if (context) {
+          if (ignoredDeals.has(context)) {
+            continue;
+          }
+
+          const contextCode = this.#decodeContext(context);
+          if (contextCode && ignoredDeals.has(contextCode)) {
+            continue;
+          }
         }
 
         this.reportUnknownDeal({
           productUrl,
-          promotionText: deal.split("/").at(-1) || "Unknown Deal",
+          promotionText: deal.split("/").at(-1) ?? "Unknown Deal",
         });
         continue;
       }
@@ -835,9 +1148,13 @@ export class Kruidvat extends ScrapeWebsiteService {
 
       const productPrice = product.querySelector(".pricebadge__new-price");
       const priceText = parseProductPrice(productPrice?.textContent);
-      const productImage = product
-        .querySelector("img.tile__product-slide-image")
-        ?.getAttribute("data-src");
+      const productImage =
+        product
+          .querySelector("img.tile__product-slide-image")
+          ?.getAttribute("data-src") ??
+        product
+          .querySelector("img.tile__product-slide-image")
+          ?.getAttribute("src");
 
       deals.push({
         dealPrice:
@@ -846,55 +1163,61 @@ export class Kruidvat extends ScrapeWebsiteService {
             kruidvatDealInformation[dealCode].calculation(priceText) * 100,
           ) / 100,
         imageUrl: this.baseUrl + productImage || "",
-        name: text || "Unknown product",
+        name: text ?? "Unknown product",
         price: priceText,
         productUrl,
         purchaseAmount: kruidvatDealInformation[dealCode].purchaseAmount,
       });
     }
 
-    return deals;
+    return [];
   }
 
   #getPagerNumbers(pagerText: string): number {
     const pagerParts = pagerText.split("\n") || [];
     const pages = pagerParts
       .map((part) => part.trim())
-      .filter((part) => part.match(/^\d+$/));
+      .filter((part) => /^\d+$/.exec(part));
     const lastPage = pages.at(-1);
-    return Number(lastPage || 0);
+    return Number(lastPage ?? 0);
   }
 
   #getDealCodeFromSrc(source: string): KruidvatDealType | void {
-    const dealCode = source.match(/\/(\d*)\.png/);
-    if (dealCode && dealCode[1]) {
+    const dealCode = /\/(\d*)\.png/.exec(source);
+    if (dealCode?.[1]) {
       return this.#getDealTypeFromCode(dealCode[1]);
     }
 
-    const contextCode = this.#decodeContext(source);
-    if (contextCode) {
-      return this.#getDealTypeFromCode(contextCode);
-    }
-  }
+    const context = this.#getContext(source);
+    if (context) {
+      const dealType = this.#getDealTypeFromCode(context);
+      if (dealType) {
+        return dealType;
+      }
 
-  #decodeContext(source: string): string | void {
-    const dealContext = source.match(/context=(.*)/);
-    if (dealContext) {
-      const contextText = dealContext.at(1);
-      if (contextText) {
-        const context = Buffer.from(contextText, "base64").toString("ascii");
-        const contextCodeMatch = context.match(/\|(\d*)\|/);
-        if (contextCodeMatch && contextCodeMatch.at(1)) {
-          return contextCodeMatch.at(1);
-        }
+      const contextCode = this.#decodeContext(context);
+      if (contextCode) {
+        return this.#getDealTypeFromCode(contextCode);
       }
     }
   }
 
+  #getContext(source: string): string | undefined {
+    const dealContext = /context=(.*)/.exec(source);
+    return dealContext?.at(1);
+  }
+
+  #decodeContext(contextText: string): string | void {
+    const context = Buffer.from(contextText, "base64").toString("ascii");
+    const contextCodeMatch = /\|(\d*)\|/.exec(context);
+    if (contextCodeMatch?.at(1)) {
+      return contextCodeMatch.at(1);
+    }
+  }
+
   #getDealTypeFromCode(codeText: string): KruidvatDealType | void {
-    const code = Number(codeText).toString();
     const dealType = Object.entries(kruidvatDealInformation).find(
-      (value) => value[1].code === code,
+      (value) => value[1].code === codeText,
     );
 
     if (dealType) {

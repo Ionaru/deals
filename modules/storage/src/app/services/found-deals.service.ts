@@ -68,12 +68,10 @@ export class FoundDealsService {
       let productEntity = await this.productRepository.findOneBy({
         productUrl: productDeal.productUrl,
       });
-      if (!productEntity) {
-        productEntity = this.productRepository.create({
-          productUrl: productDeal.productUrl,
-          shop,
-        });
-      }
+      productEntity ??= this.productRepository.create({
+        productUrl: productDeal.productUrl,
+        shop,
+      });
 
       if (
         productEntity.imageUrl !== productDeal.imageUrl ||

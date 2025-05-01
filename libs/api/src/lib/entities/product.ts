@@ -2,7 +2,6 @@ import {
   ArgsType,
   Field,
   Float,
-  ID,
   ObjectType,
   registerEnumType,
 } from "@nestjs/graphql";
@@ -20,7 +19,7 @@ registerEnumType(ProductSortChoices, { name: "ProductSortChoices" });
 
 @ObjectType()
 export class ProductDTO {
-  @Field(() => ID)
+  @Field(() => String)
   id!: string;
 
   @Field(() => String)
@@ -41,7 +40,7 @@ export class ProductDTO {
 
 @ObjectType()
 export class ExtendedProductDTO {
-  @Field(() => ID)
+  @Field(() => String)
   id!: string;
 
   @Field(() => String)

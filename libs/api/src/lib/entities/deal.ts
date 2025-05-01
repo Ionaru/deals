@@ -2,7 +2,6 @@ import {
   ArgsType,
   Field,
   Float,
-  ID,
   Int,
   ObjectType,
   registerEnumType,
@@ -19,7 +18,7 @@ registerEnumType(DealSortChoices, { name: "DealSortChoices" });
 
 @ObjectType()
 export class DealDTO {
-  @Field(() => ID)
+  @Field(() => String)
   id!: string;
 
   @Field(() => Float)

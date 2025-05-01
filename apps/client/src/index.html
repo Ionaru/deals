@@ -6,10 +6,10 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap"
       rel="stylesheet"
     />
 
@@ -19,16 +19,21 @@
     />
 
     <!-- Set up connections for faster image loading. -->
-    <link rel="preconnect" href="https://jumbo.com" crossorigin />
+    <link rel="preconnect" href="https://jumbo.com" crossorigin="" />
     <link
       rel="preconnect"
       href="https://retrieval.dam-lite.prod.aws.jumbo.com"
-      crossorigin
+      crossorigin=""
     />
-    <link rel="preconnect" href="https://www.kruidvat.nl" crossorigin />
-    <link rel="preconnect" href="https://static.ah.nl" crossorigin />
+    <link rel="preconnect" href="https://www.kruidvat.nl" crossorigin="" />
+    <link rel="preconnect" href="https://static.ah.nl" crossorigin="" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#e0e2ec" />
   </head>
   <body class="mat-typography mat-app-background">
     <deals-root></deals-root>
+    <noscript>
+      Please enable JavaScript to continue using this application.
+    </noscript>
   </body>
 </html>

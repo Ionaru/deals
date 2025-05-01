@@ -13,11 +13,9 @@ const configFunc = composePlugins(withNx(), (config) => {
   return config;
 });
 
-const configFuncWithOverrides = (config, ctx) => {
-  return configFunc(config, ctx).then((config) => {
-    /*
-    Changes here copied from https://github.com/nrwl/nx/issues/7872#issuecomment-997460397
-    */
+const configFuncWithOverrides = (config, ctx) =>
+  configFunc(config, ctx).then((config) => {
+    // Changes here copied from https://github.com/nrwl/nx/issues/7872#issuecomment-997460397
     config.externalsPresets = {
       node: true,
     };
@@ -48,6 +46,5 @@ const configFuncWithOverrides = (config, ctx) => {
 
     return config;
   });
-};
 
 module.exports = configFuncWithOverrides;

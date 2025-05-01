@@ -11,9 +11,11 @@
     />
   </mat-card-header>
   <mat-card-content i18n>
-    Buy {{ dealQuantity() }} for:
+    <div>
+      Buy {{ dealQuantity() }} for
+      <deals-price-slashed [amount]="productPrice() * dealQuantity()" />
+    </div>
     <deals-price-current [amount]="dealPrice() * dealQuantity()" />
-    <deals-price-slashed [amount]="productPrice() * dealQuantity()" />
   </mat-card-content>
   <mat-card-actions>
     <deals-deal-problem-button
