@@ -46,6 +46,7 @@ enum KruidvatDealType {
 
   // 3 for €X
   THREE_FOR_10,
+  THREE_FOR_10_DUPLICATE,
   THREE_FOR_12,
   THREE_FOR_13,
   THREE_FOR_2,
@@ -77,6 +78,7 @@ enum KruidvatDealType {
   FIFTEEN_PERCENT_OFF,
   TWENTY_PERCENT_OFF,
   TWENTY_FIVE_PERCENT_OFF,
+  TWENTY_FIVE_PERCENT_EXTRA_OFF,
   THIRTY_PERCENT_OFF,
   THIRTY_FIVE_PERCENT_OFF,
   FOURTY_PERCENT_OFF,
@@ -139,6 +141,7 @@ enum KruidvatDealType {
 
   // For X
   FOR_3_99,
+  FOR_11_99,
   FOR_12_50,
   FOR_15_99,
   FOR_54_99,
@@ -293,6 +296,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "1048",
       purchaseAmount: 3,
     },
+    [KruidvatDealType.THREE_FOR_10_DUPLICATE]: {
+      calculation: () => 10 / 3,
+      code: "13515",
+      purchaseAmount: 3,
+    },
     [KruidvatDealType.THREE_FOR_12]: {
       calculation: () => 12 / 3,
       code: "1226",
@@ -371,6 +379,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
     [KruidvatDealType.TWENTY_FIVE_PERCENT_OFF]: {
       calculation: (price: number) => price - price * 0.25,
       code: "1062",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.TWENTY_FIVE_PERCENT_EXTRA_OFF]: {
+      calculation: (price: number) => price - price * 0.25,
+      code: "1557",
       purchaseAmount: 1,
     },
     [KruidvatDealType.THIRTY_PERCENT_OFF]: {
@@ -703,6 +716,11 @@ const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
       code: "4149",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.FOR_11_99]: {
+      calculation: () => 11.99,
+      code: "4347",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.FOR_12_50]: {
       calculation: () => 12.5,
       code: "4610",
@@ -757,32 +775,43 @@ export class Kruidvat extends ScrapeWebsiteService {
 
   protected baseUrl = "https://www.kruidvat.nl";
   protected paths = [
-    "/beauty/fohn-haarstyler/c/20014",
-    "/beauty/geuren-geschenksets/c/20017",
-    "/beauty/geuren-geschenksets/geschenksets/c/30030",
-    "/beauty/haaraccessoires/c/20015",
-    "/beauty/haarverzorging/c/20013",
-    "/beauty/haarverzorging/curly-girl-methode/c/haarverzorging",
-    "/beauty/luxe-beauty/c/luxe-beauty",
-    "/beauty/make-up-accessoires/c/20090",
-    "/beauty/make-up/c/20018",
-    "/beauty/nieuw-in-beauty/c/MLP10066",
-    "/beauty/skincare-man/c/20020",
-    "/beauty/skincare-vrouw/c/20019",
-    "/beauty/voordeelverpakkingen-beauty/c/MLP10083",
-    "/beauty/zonnebrand-aftersun/c/30060",
-    "/verzorging/duurzamere-keuze/alle-duurzamere-beautyproducten/c/MLP10139",
-    "/verzorging/duurzamere-keuze/alle-duurzamere-verzorgingsproducten/c/MLP10138",
-    "/verzorging/lichaamsverzorging/bad-en-douche-producten/c/30057",
-    "/verzorging/lichaamsverzorging/c/20021",
-    "/verzorging/lichaamsverzorging/deodorant/c/30056",
-    "/verzorging/lichaamsverzorging/handzeep-handgel/c/30062",
-    "/verzorging/mannen-verzorging/c/MLP10060",
-    "/verzorging/mondverzorging/c/20012",
-    "/verzorging/natuurlijke-producten/c/groen-lichaamsverzorging",
-    "/verzorging/scheren-ontharen/c/20022",
-    "/verzorging/scheren-ontharen/scheermesjes/c/30070",
-    "/voordeelverpakkingen-verzorging/c/MLP10081",
+    // "/baby",
+    // "/beauty",
+    // "/beauty/fohn-haarstyler/c/20014",
+    // "/beauty/geuren-geschenksets/c/20017",
+    // "/beauty/geuren-geschenksets/geschenksets/c/30030",
+    // "/beauty/haaraccessoires/c/20015",
+    // "/beauty/haarverzorging/c/20013",
+    // "/beauty/haarverzorging/curly-girl-methode/c/haarverzorging",
+    // "/beauty/luxe-beauty/c/luxe-beauty",
+    // "/beauty/make-up-accessoires/c/20090",
+    // "/beauty/make-up/c/20018",
+    // "/beauty/nieuw-in-beauty/c/MLP10066",
+    // "/beauty/skincare-man/c/20020",
+    // "/beauty/skincare-vrouw/c/20019",
+    // "/beauty/voordeelverpakkingen-beauty/c/MLP10083",
+    // "/beauty/zonnebrand-aftersun/c/30060",
+    "/elektronica",
+    // "/eten-en-drinken",
+    // "/fashion",
+    // "/gezondheid",
+    // "/huishouden",
+    "/speelgoed",
+    // "/sport",
+    // "/verzorging",
+    // "/verzorging/duurzamere-keuze/alle-duurzamere-beautyproducten/c/MLP10139",
+    // "/verzorging/duurzamere-keuze/alle-duurzamere-verzorgingsproducten/c/MLP10138",
+    "/verzorging/intieme-verzorging/inlegkruisjes",
+    // "/verzorging/lichaamsverzorging/bad-en-douche-producten/c/30057",
+    // "/verzorging/lichaamsverzorging/c/20021",
+    // "/verzorging/lichaamsverzorging/deodorant/c/30056",
+    // "/verzorging/lichaamsverzorging/handzeep-handgel/c/30062",
+    // "/verzorging/mannen-verzorging/c/MLP10060",
+    // "/verzorging/mondverzorging/c/20012",
+    // "/verzorging/natuurlijke-producten/c/groen-lichaamsverzorging",
+    // "/verzorging/scheren-ontharen/c/20022",
+    // "/verzorging/scheren-ontharen/scheermesjes/c/30070",
+    // "/voordeelverpakkingen-verzorging/c/MLP10081",
   ];
 
   protected setPage(url: URL, page: number): URL {
@@ -819,6 +848,11 @@ export class Kruidvat extends ScrapeWebsiteService {
         continue;
       }
 
+      const partnerSale = product.querySelector(".tile__badge");
+      if (partnerSale?.innerHTML.includes("Verkoop via partner")) {
+        continue;
+      }
+
       // eslint-disable-next-line unicorn/prefer-dom-node-dataset
       const deal = productDealImage.getAttribute("data-src");
       if (!deal) {
@@ -846,7 +880,7 @@ export class Kruidvat extends ScrapeWebsiteService {
 
         this.reportUnknownDeal({
           productUrl,
-          promotionText: deal.split("/").at(-1) || "Unknown Deal",
+          promotionText: deal.split("/").at(-1) ?? "Unknown Deal",
         });
         continue;
       }
@@ -862,9 +896,13 @@ export class Kruidvat extends ScrapeWebsiteService {
 
       const productPrice = product.querySelector(".pricebadge__new-price");
       const priceText = parseProductPrice(productPrice?.textContent);
-      const productImage = product
-        .querySelector("img.tile__product-slide-image")
-        ?.getAttribute("data-src");
+      const productImage =
+        product
+          .querySelector("img.tile__product-slide-image")
+          ?.getAttribute("data-src") ??
+        product
+          .querySelector("img.tile__product-slide-image")
+          ?.getAttribute("src");
 
       deals.push({
         dealPrice:
@@ -873,7 +911,7 @@ export class Kruidvat extends ScrapeWebsiteService {
             kruidvatDealInformation[dealCode].calculation(priceText) * 100,
           ) / 100,
         imageUrl: this.baseUrl + productImage || "",
-        name: text || "Unknown product",
+        name: text ?? "Unknown product",
         price: priceText,
         productUrl,
         purchaseAmount: kruidvatDealInformation[dealCode].purchaseAmount,
@@ -887,14 +925,14 @@ export class Kruidvat extends ScrapeWebsiteService {
     const pagerParts = pagerText.split("\n") || [];
     const pages = pagerParts
       .map((part) => part.trim())
-      .filter((part) => part.match(/^\d+$/));
+      .filter((part) => new RegExp(/^\d+$/).exec(part));
     const lastPage = pages.at(-1);
-    return Number(lastPage || 0);
+    return Number(lastPage ?? 0);
   }
 
   #getDealCodeFromSrc(source: string): KruidvatDealType | void {
-    const dealCode = source.match(/\/(\d*)\.png/);
-    if (dealCode && dealCode[1]) {
+    const dealCode = new RegExp(/\/(\d*)\.png/).exec(source);
+    if (dealCode?.[1]) {
       return this.#getDealTypeFromCode(dealCode[1]);
     }
 
@@ -905,13 +943,13 @@ export class Kruidvat extends ScrapeWebsiteService {
   }
 
   #decodeContext(source: string): string | void {
-    const dealContext = source.match(/context=(.*)/);
+    const dealContext = new RegExp(/context=(.*)/).exec(source);
     if (dealContext) {
       const contextText = dealContext.at(1);
       if (contextText) {
         const context = Buffer.from(contextText, "base64").toString("ascii");
-        const contextCodeMatch = context.match(/\|(\d*)\|/);
-        if (contextCodeMatch && contextCodeMatch.at(1)) {
+        const contextCodeMatch = new RegExp(/\|(\d*)\|/).exec(context);
+        if (contextCodeMatch?.at(1)) {
           return contextCodeMatch.at(1);
         }
       }

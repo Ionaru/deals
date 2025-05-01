@@ -1021,11 +1021,11 @@ user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["Us
 		__typename?: boolean | `@${string}`
 }>;
 	["UnknownDealDTO"]: AliasType<{
-	createdOn?:boolean | `@${string}`,
 	deal?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	productUrl?:boolean | `@${string}`,
 	shop?:ValueTypes["ShopDTO"],
+	updatedOn?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["UserDTO"]: AliasType<{
@@ -1155,11 +1155,11 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["UnknownDealDTO"]: AliasType<{
-	createdOn?:boolean | `@${string}`,
 	deal?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	productUrl?:boolean | `@${string}`,
 	shop?:ResolverInputTypes["ShopDTO"],
+	updatedOn?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["UserDTO"]: AliasType<{
@@ -1279,11 +1279,11 @@ export type ModelTypes = {
 	nextRun: string
 };
 	["UnknownDealDTO"]: {
-		createdOn: string,
-	deal: string,
+		deal: string,
 	id: ModelTypes["ID"],
 	productUrl: string,
-	shop: ModelTypes["ShopDTO"]
+	shop: ModelTypes["ShopDTO"],
+	updatedOn: string
 };
 	["UserDTO"]: {
 		id: ModelTypes["ID"],
@@ -1419,11 +1419,11 @@ export type GraphQLTypes = {
 };
 	["UnknownDealDTO"]: {
 	__typename: "UnknownDealDTO",
-	createdOn: string,
 	deal: string,
 	id: GraphQLTypes["ID"],
 	productUrl: string,
-	shop: GraphQLTypes["ShopDTO"]
+	shop: GraphQLTypes["ShopDTO"],
+	updatedOn: string
 };
 	["UserDTO"]: {
 	__typename: "UserDTO",

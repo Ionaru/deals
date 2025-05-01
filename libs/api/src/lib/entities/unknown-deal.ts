@@ -14,7 +14,7 @@ export class UnknownDealDTO {
   productUrl!: string;
 
   @Field(() => String)
-  createdOn!: Date;
+  updatedOn!: Date;
 
   @Field(() => ShopDTO)
   shop!: ShopDTO;

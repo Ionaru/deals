@@ -152,11 +152,11 @@ export const ReturnTypes: Record<string,any> = {
 		nextRun:"String"
 	},
 	UnknownDealDTO:{
-		createdOn:"String",
 		deal:"String",
 		id:"ID",
 		productUrl:"String",
-		shop:"ShopDTO"
+		shop:"ShopDTO",
+		updatedOn:"String"
 	},
 	UserDTO:{
 		id:"ID",

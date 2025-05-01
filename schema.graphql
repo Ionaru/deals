@@ -138,11 +138,11 @@ type TaskDTO {
 }
 
 type UnknownDealDTO {
-  createdOn: String!
   deal: String!
   id: ID!
   productUrl: String!
   shop: ShopDTO!
+  updatedOn: String!
 }
 
 type UserDTO {

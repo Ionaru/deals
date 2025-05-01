@@ -27,22 +27,25 @@ export class UnknownDealService {
 
     const existingDeal = await this.unknownDealRepository.findOneBy({
       deal: deal.promotionText,
+      productUrl: deal.productUrl,
     });
-    if (!existingDeal) {
-      await this.unknownDealRepository.save(
-        this.unknownDealRepository.create({
-          deal: deal.promotionText,
-          productUrl: deal.productUrl,
-          shop: shopEntity,
-        }),
-      );
-    }
+    await (existingDeal
+      ? this.unknownDealRepository.update(existingDeal.id, {
+          id: existingDeal.id,
+        })
+      : this.unknownDealRepository.save(
+          this.unknownDealRepository.create({
+            deal: deal.promotionText,
+            productUrl: deal.productUrl,
+            shop: shopEntity,
+          }),
+        ));
   }
 
   getUnknownDeals() {
     return this.unknownDealRepository.find({
       order: {
-        createdOn: "DESC",
+        updatedOn: "DESC",
       },
       relations: ["shop"],
     });
