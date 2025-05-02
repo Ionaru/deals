@@ -201,6 +201,10 @@ export class Jumbo extends ScrapeWebsiteService {
         continue;
       }
 
+      if (promotionText.startsWith("Gratis glas")) {
+        continue;
+      }
+
       const dealType = this.#parseDealText(promotionText);
       if (!dealType) {
         this.reportUnknownDeal({

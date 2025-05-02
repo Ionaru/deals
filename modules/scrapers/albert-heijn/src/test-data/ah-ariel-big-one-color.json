@@ -1,0 +1,81 @@
+{
+  "product": {
+    "webshopId": 588174,
+    "hqId": 33143,
+    "title": "Ariel Big one color",
+    "brand": "Ariel",
+    "isSample": false,
+    "salesUnitSize": "18 wasbeurten",
+    "images": [
+      {
+        "width": 800,
+        "height": 800,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313434353134?revLabel=1&rendition=800x800_JPG_Q90&fileType=binary"
+      },
+      {
+        "width": 400,
+        "height": 400,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313434353134?revLabel=1&rendition=400x400_JPG_Q85&fileType=binary"
+      },
+      {
+        "width": 200,
+        "height": 200,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313434353134?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary"
+      },
+      {
+        "width": 48,
+        "height": 48,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313434353134?revLabel=1&rendition=48x48_GIF&fileType=binary"
+      },
+      {
+        "width": 80,
+        "height": 80,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313434353134?revLabel=1&rendition=80x80_JPG&fileType=binary"
+      }
+    ],
+    "segmentId": "-19680",
+    "bonusSegmentId": -19680,
+    "offerStartDate": "2025-04-28",
+    "bonusSegmentDescription": "OP=OP",
+    "extraDescriptions": [],
+    "discountType": "AHOO",
+    "promotionType": "AHONLINE",
+    "segmentType": "AHOO",
+    "isInfiniteBonus": false,
+    "bonusMechanism": "35% Op=Op korting",
+    "labelType": "ONLINE",
+    "discountLabels": [
+      {
+        "code": "DISCOUNT_OP_IS_OP",
+        "defaultDescription": "35% korting",
+        "percentage": 35,
+        "precisePercentage": 35
+      }
+    ],
+    "bonusStartDate": "2025-04-28",
+    "bonusEndDate": "2025-05-04",
+    "bonusPeriodDescription": "",
+    "priceBeforeBonus": 22.99,
+    "hasListPrice": false,
+    "currentPrice": 14.94,
+    "isStapelBonus": false,
+    "isBonus": true,
+    "shopType": "AH",
+    "orderAvailabilityStatus": "IN_ASSORTMENT",
+    "availableOnline": true,
+    "isOrderable": true,
+    "mainCategory": "Huishouden",
+    "subCategory": "Vloeibaar wasmiddel",
+    "subCategoryId": 2012,
+    "propertyIcons": [],
+    "properties": {
+      "da_grape": [],
+      "da_available_in_store": ["true"],
+      "da_excluded_assortment": ["false"]
+    },
+    "isPreviouslyBought": false,
+    "nix18": false,
+    "descriptionHighlights": "<p>Ontdek Ariel the big one pods wasmiddelcapsules stralende Kleuren, met 2x zoveel vlek- & geurverwijdering (de werking van the big one staat gelijk aan 2 Ariel original 3in1 pods).</p><p><ul><li>Ariel the big one pods met 2X zoveel vlek- & geurverwijdering</li><li>Onze maximale reiniging met minimale inspanning</li><li>Lost snel op, zelfs in koud water</li><li>Was kouder en bespaar tot 60% op de electriciteitskosten van uw wasmachine</li></ul></p>",
+    "descriptionFull": ""
+  }
+}

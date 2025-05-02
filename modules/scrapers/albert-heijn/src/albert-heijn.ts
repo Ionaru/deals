@@ -11,6 +11,7 @@ import {
   DiscountFixedPrice,
   DiscountOneFree,
   DiscountOneHalfPrice,
+  DiscountOpIsOp,
   DiscountPercentage,
   DiscountWeight,
   DiscountXForY,
@@ -162,8 +163,8 @@ export class AlbertHeijn extends ScrapeWebsiteService {
     if (!product.product.unitPriceDescription) {
       return undefined;
     }
-    const match = product.product.unitPriceDescription.match(
-      /€(?<price>\d+(?:.\d+)?)/,
+    const match = /€(?<price>\d+(?:.\d+)?)/.exec(
+      product.product.unitPriceDescription,
     )?.groups;
     if (match) {
       const { price } = match;
@@ -213,20 +214,20 @@ export class AlbertHeijn extends ScrapeWebsiteService {
   }
 
   getWeightFromKilo(salesUnitSize: string): number | undefined {
-    const salesUnitKilo = salesUnitSize?.match(
-      /(?<weight>\d+(?:.\d+)?) k(?:ilo)?g?$/,
+    const salesUnitKilo = /(?<weight>\d+(?:.\d+)?) k(?:ilo)?g?$/.exec(
+      salesUnitSize,
     )?.groups;
-    if (salesUnitKilo && salesUnitKilo["weight"]) {
+    if (salesUnitKilo?.["weight"]) {
       return Number(salesUnitKilo["weight"]);
     }
     return undefined;
   }
 
   getWeightFromGrams(salesUnitSize: string): number | undefined {
-    const salesUnitGram = salesUnitSize?.match(
-      /(?<weight>\d+(?:.\d+)?) g(?:ram)?$/,
+    const salesUnitGram = /(?<weight>\d+(?:.\d+)?) g(?:ram)?$/.exec(
+      salesUnitSize,
     )?.groups;
-    if (salesUnitGram && salesUnitGram["weight"]) {
+    if (salesUnitGram?.["weight"]) {
       return Number(salesUnitGram["weight"]) / 1000;
     }
     return undefined;
@@ -318,7 +319,8 @@ export class AlbertHeijn extends ScrapeWebsiteService {
     for (const discount of product.product.discountLabels) {
       switch (discount.code) {
         case DiscountCode.DISCOUNT_AMOUNT:
-        case DiscountCode.DISCOUNT_PERCENTAGE: {
+        case DiscountCode.DISCOUNT_PERCENTAGE:
+        case DiscountCode.DISCOUNT_OP_IS_OP: {
           return this.parseSimpleDiscount(product, discount);
         }
 
@@ -464,7 +466,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
 
   parseSimpleDiscount(
     product: Product,
-    discount: DiscountAmount | DiscountPercentage,
+    discount: DiscountAmount | DiscountPercentage | DiscountOpIsOp,
   ): ParsedDiscount | undefined {
     if (product.product.priceBeforeBonus && product.product.currentPrice) {
       return {

@@ -10,6 +10,7 @@ export enum DiscountCode {
   DISCOUNT_BONUS = "DISCOUNT_BONUS",
   DISCOUNT_ONE_FREE = "DISCOUNT_ONE_FREE",
   DISCOUNT_TIERED_PERCENT = "DISCOUNT_TIERED_PERCENT",
+  DISCOUNT_OP_IS_OP = "DISCOUNT_OP_IS_OP",
 }
 
 export interface DiscountLabelBase {
@@ -75,6 +76,12 @@ export interface DiscountBonus extends DiscountLabelBase {
   code: DiscountCode.DISCOUNT_BONUS;
 }
 
+export interface DiscountOpIsOp extends DiscountLabelBase {
+  code: DiscountCode.DISCOUNT_OP_IS_OP;
+  percentage: number;
+  precisePercentage: number;
+}
+
 export type DiscountLabel =
   | DiscountAmount
   | DiscountFixedPrice
@@ -86,7 +93,8 @@ export type DiscountLabel =
   | DiscountBonus
   | DiscountTieredPercent
   | DiscountOneFree
-  | DiscountXPlusYFree;
+  | DiscountXPlusYFree
+  | DiscountOpIsOp;
 
 export enum OrderAvailabilityStatus {
   IN_ASSORTMENT = "IN_ASSORTMENT",
