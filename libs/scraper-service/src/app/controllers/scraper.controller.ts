@@ -34,6 +34,16 @@ export const createScraperController = (name: string) => {
             shop: this.scraper.shopName,
           });
         }
+
+        if (dealChunks.length === 0) {
+          await this.storage.store({
+            deals: [],
+            firstBatch: true,
+            lastBatch: true,
+            shop: this.scraper.shopName,
+          });
+        }
+
         this.status = ScraperStatus.IDLE;
       } catch (error) {
         this.status = ScraperStatus.ERROR;

@@ -1170,7 +1170,7 @@ export class Kruidvat extends ScrapeWebsiteService {
       });
     }
 
-    return [];
+    return deals;
   }
 
   #getPagerNumbers(pagerText: string): number {
