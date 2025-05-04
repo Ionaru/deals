@@ -27,7 +27,10 @@ export default typescriptEslint.config(
       ecmaVersion: "latest",
       sourceType: "module",
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ["vitest.config.ts"],
+          defaultProject: "tsconfig.base.json",
+        },
         tsconfigRootDir: import.meta.dirname,
       },
     },

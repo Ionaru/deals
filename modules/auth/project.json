@@ -3,21 +3,6 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "modules/auth/src",
   "projectType": "library",
-  "targets": {
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "config": "modules/auth/vite.config.ts",
-        "passWithNoTests": false
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    }
-  },
+  "targets": {},
   "tags": []
 }

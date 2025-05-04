@@ -123,16 +123,13 @@ export class ProductsComponent {
     this.#parseUrl(this.#router.url);
 
     // Resets the page number when the user changes the sorting/filter options
-    effect(
-      () => {
-        this.shopChoice();
-        this.sortingChoice();
-        this.orderingChoice();
-        this.productQuery();
-        this.page.set(1);
-      },
-      { allowSignalWrites: true },
-    );
+    effect(() => {
+      this.shopChoice();
+      this.sortingChoice();
+      this.orderingChoice();
+      this.productQuery();
+      this.page.set(1);
+    });
 
     // Updates the URL when the user changes the sorting/filter options
     effect(() => {
@@ -154,18 +151,15 @@ export class ProductsComponent {
     });
 
     // Resets the sorting/filter options when the user clicks the nav button
-    effect(
-      () => {
-        const url = this.url();
-        if (url) {
-          const queryParameters = this.#router.parseUrl(url).queryParams;
-          if (Object.keys(queryParameters).length === 0) {
-            this.#parseUrl(url);
-          }
+    effect(() => {
+      const url = this.url();
+      if (url) {
+        const queryParameters = this.#router.parseUrl(url).queryParams;
+        if (Object.keys(queryParameters).length === 0) {
+          this.#parseUrl(url);
         }
-      },
-      { allowSignalWrites: true },
-    );
+      }
+    });
   }
 
   #parseUrl(url: string) {

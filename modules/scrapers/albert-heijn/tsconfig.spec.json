@@ -2,8 +2,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "resolveJsonModule": true,
-    "types": ["vitest/importMeta", "vite/client", "node", "vitest"]
+    "types": [
+      "vitest/globals",
+      "vitest/importMeta",
+      "vite/client",
+      "node",
+      "vitest"
+    ]
   },
-  "include": ["vite.config.ts", "src/**/*.spec.ts", "src/**/*.d.ts"]
+  "include": ["vitest.config.ts", "src/**/*.spec.ts", "src/**/*.d.ts"]
 }
