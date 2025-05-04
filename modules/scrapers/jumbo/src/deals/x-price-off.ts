@@ -5,7 +5,7 @@ interface IXPriceOffMatcherGroups {
 }
 
 export class XPriceOff extends JumboDeal {
-  matcher = /€ ?(?<amount>\d\d?[,.]\d\d) korting/;
+  matcher = /€? ?(?<amount>\d\d?[,.]\d\d) korting/;
 
   getDealPrice(productPrice: number, promotionText: string): number {
     const { amount } = this.getMatcherGroups(promotionText);
