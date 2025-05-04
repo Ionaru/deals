@@ -7,7 +7,6 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
 @Component({
   imports: [ToolbarIconButtonComponent, MatIconModule, MatMenuModule],
   selector: "deals-deal-problem-button",
-  standalone: true,
   styleUrl: "./deal-problem-button.component.css",
   templateUrl: "./deal-problem-button.component.html",
 })

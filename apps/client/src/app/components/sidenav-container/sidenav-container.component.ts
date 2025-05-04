@@ -18,7 +18,6 @@ import { ToolbarComponent } from "../toolbar/toolbar.component";
     SidenavContentComponent,
   ],
   selector: "deals-sidenav-container",
-  standalone: true,
   styleUrl: "./sidenav-container.component.css",
   templateUrl: "./sidenav-container.component.html",
 })

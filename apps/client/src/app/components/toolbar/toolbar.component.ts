@@ -33,7 +33,6 @@ import { ToolbarSidenavButtonComponent } from "../toolbar-sidenav-button/toolbar
     SpacerComponent,
   ],
   selector: "deals-toolbar",
-  standalone: true,
   styleUrls: ["./toolbar.component.css"],
   templateUrl: "./toolbar.component.html",
 })

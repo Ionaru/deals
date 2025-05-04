@@ -24,7 +24,6 @@ export interface DialogInformativeData {
     MatDialogClose,
   ],
   selector: "deals-dialog-informative",
-  standalone: true,
   styleUrl: "./dialog-informative.component.css",
   templateUrl: "./dialog-informative.component.html",
 })

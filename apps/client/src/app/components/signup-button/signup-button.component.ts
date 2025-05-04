@@ -10,7 +10,6 @@ import { AuthService } from "../../services/auth.service";
 @Component({
   imports: [MatIconModule, MatButtonModule, RouterLink, AsyncPipe],
   selector: "deals-signup-button",
-  standalone: true,
   styleUrls: ["./signup-button.component.css"],
   templateUrl: "./signup-button.component.html",
 })

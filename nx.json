@@ -29,14 +29,13 @@
     },
     "@nx/eslint:lint": {
       "cache": true,
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/.eslintrc.json"
-      ]
+      "inputs": ["default", "{workspaceRoot}/eslint.config.js"]
     }
   },
   "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin"
+    },
     {
       "plugin": "@nx/cypress/plugin",
       "options": {
@@ -78,6 +77,5 @@
       "style": "css"
     }
   },
-  "defaultBase": "main",
-  "useLegacyCache": true
+  "defaultBase": "main"
 }

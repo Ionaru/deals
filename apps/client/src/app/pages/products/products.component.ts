@@ -38,7 +38,6 @@ import { ProductSortChoices, Order } from "../../zeus";
     DealsPaginatorComponent,
     ProductCardComponent,
   ],
-  standalone: true,
   styleUrls: ["./products.component.css"],
   templateUrl: "./products.component.html",
 })

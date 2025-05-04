@@ -41,7 +41,6 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     DealImageComponent,
   ],
   selector: "deals-product-card",
-  standalone: true,
   styleUrl: "./product-card.component.css",
   templateUrl: "./product-card.component.html",
 })

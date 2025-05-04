@@ -1,6 +1,7 @@
 @use "@angular/material" as material;
 
-@include material.core();
+@include material.elevation-classes();
+@include material.app-background();
 
 $angular-default-theme: material.define-theme(
   (

@@ -16,7 +16,6 @@ import { AuthService } from "./services/auth.service";
     SidenavContainerComponent,
   ],
   selector: "deals-root",
-  standalone: true,
   styleUrls: ["./app.component.css"],
   templateUrl: "./app.component.html",
 })

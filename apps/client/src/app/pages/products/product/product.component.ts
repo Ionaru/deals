@@ -24,7 +24,6 @@ import {
     PriceCurrentComponent,
     NgxEchartsDirective,
   ],
-  standalone: true,
   styleUrl: "./product.component.scss",
   templateUrl: "./product.component.html",
 })

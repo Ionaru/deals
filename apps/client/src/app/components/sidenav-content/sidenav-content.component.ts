@@ -7,7 +7,6 @@ import { NavigationService } from "../../services/navigation.service";
 @Component({
   imports: [MatListModule, RouterLink, RouterLinkActive],
   selector: "deals-sidenav-content",
-  standalone: true,
   styleUrl: "./sidenav-content.component.css",
   templateUrl: "./sidenav-content.component.html",
 })

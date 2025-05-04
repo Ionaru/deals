@@ -31,7 +31,6 @@ enum LoginState {
     MatProgressSpinnerModule,
     AsyncPipe,
   ],
-  standalone: true,
   styleUrls: ["./login.component.css"],
   templateUrl: "./login.component.html",
 })

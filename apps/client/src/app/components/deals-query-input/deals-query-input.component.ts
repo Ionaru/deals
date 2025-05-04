@@ -23,7 +23,6 @@ import { MatInputModule } from "@angular/material/input";
     ReactiveFormsModule,
   ],
   selector: "deals-deals-query-input",
-  standalone: true,
   styleUrl: "./deals-query-input.component.css",
   templateUrl: "./deals-query-input.component.html",
 })
