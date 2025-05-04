@@ -1,4 +1,3 @@
- 
 describe("client", () => {
   beforeEach(() => {
     cy.visit("/");

@@ -1,4 +1,4 @@
-import { DealDTO } from "../entities/deal";
+import { DealDTO } from "../entities/deal.js";
 
 export type IDealsRequest = Record<string, never>;
 

@@ -13,7 +13,7 @@ export class RunScrapersTask {
     name: RunScrapersTask.name,
     timeZone: "Europe/Amsterdam",
   })
-  async tick() {
+  tick() {
     Logger.log(`Starting`, RunScrapersTask.name);
     this.gateway
       .send(MSMessage.GET_SERVICES, {})

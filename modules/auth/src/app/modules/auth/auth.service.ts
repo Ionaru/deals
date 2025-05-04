@@ -26,9 +26,10 @@ export class AuthService {
 
   async findExistingUser(credentialId: string) {
     try {
-      return this.userRepository.findOneBy({
+      const result = await this.userRepository.findOneBy({
         "credentials.id": credentialId,
       });
+      return result;
     } catch (error) {
       Logger.error(error, AuthService.name);
       return;

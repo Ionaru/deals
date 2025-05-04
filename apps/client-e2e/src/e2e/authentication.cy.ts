@@ -1,4 +1,3 @@
- 
 describe("Authentication", () => {
   beforeEach(() => {
     cy.visit("/login");

@@ -42,8 +42,10 @@ export class ChallengeService {
 
   async #deleteOldChallenges() {
     await this.challengeRepository.delete({
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       createdAt: {
         $lte: new Date(Date.now() - this.#challengeTimeout),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
     });
   }

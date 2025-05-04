@@ -11,11 +11,12 @@ export class StorageService {
 
   async store(deals: MSEPayload<MSEvent.DEAL_FOUND>) {
     this.#logger.log(`Storing ${deals.deals.length} items...`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await firstValueFrom(this.gateway.send(MSEvent.DEAL_FOUND as any, deals));
     this.#logger.log("Stored");
   }
 
-  async storeUnknownDeal(deals: MSEPayload<MSEvent.UNKNOWN_DEAL>) {
+  storeUnknownDeal(deals: MSEPayload<MSEvent.UNKNOWN_DEAL>) {
     // this.logger.log('Storing unknown deal...');
     this.gateway.emit(MSEvent.UNKNOWN_DEAL, deals);
     // this.logger.log('Stored unknown deal');

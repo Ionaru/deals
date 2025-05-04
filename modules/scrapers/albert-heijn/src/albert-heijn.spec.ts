@@ -10,7 +10,7 @@ describe("Albert Heijn", () => {
   let scraper: AlbertHeijn;
 
   beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
     scraper = new AlbertHeijn({} as any);
   });
 

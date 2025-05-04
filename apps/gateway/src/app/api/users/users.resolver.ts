@@ -30,7 +30,7 @@ export class UsersResolver {
     @Args() queryArguments: UserArguments,
     @Context() { req: { session } }: { req: Request },
   ) {
-    const userId = queryArguments.id || session.user;
+    const userId = queryArguments.id ?? session.user;
     if (!userId) {
       return;
     }

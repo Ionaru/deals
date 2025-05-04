@@ -1009,7 +1009,7 @@ const ignoredDeals = new Set([
 ]);
 
 const parseProductPrice = (priceText: string | null = ""): number => {
-  const priceParts = priceText?.split("\n").map((part) => part.trim()) || [];
+  const priceParts = priceText?.split("\n").map((part) => part.trim()) ?? [];
   return Number(priceParts.join("") || 0);
 };
 
@@ -1142,7 +1142,6 @@ export class Kruidvat extends ScrapeWebsiteService {
         .querySelector(".tile__product-slide-product-description")
         ?.textContent?.trim();
       if (description) {
-        // TODO: Separate description from title.
         text = `${text} - ${description}`;
       }
 

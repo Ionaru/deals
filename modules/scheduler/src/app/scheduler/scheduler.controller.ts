@@ -12,23 +12,23 @@ export class SchedulerController {
   ) {}
 
   @MessagePattern(MSMessage.GET_TASKS)
-  async getTasks(
+  getTasks(
     _payload: MSMPayload<MSMessage.GET_TASKS>,
-  ): Promise<MSMResponse<MSMessage.GET_TASKS>> {
+  ): MSMResponse<MSMessage.GET_TASKS> {
     return this.schedulerService.getTasks();
   }
 
   @MessagePattern(MSMessage.GET_TASK)
-  async getTask(
+  getTask(
     payload: MSMPayload<MSMessage.GET_TASK>,
-  ): Promise<MSMResponse<MSMessage.GET_TASK>> {
+  ): MSMResponse<MSMessage.GET_TASK> {
     return this.schedulerService.getTask(payload.name);
   }
 
   @MessagePattern(MSMessage.START_TASK)
-  async startTask(
+  startTask(
     payload: MSMPayload<MSMessage.START_TASK>,
-  ): Promise<MSMResponse<MSMessage.START_TASK>> {
+  ): MSMResponse<MSMessage.START_TASK> {
     return this.schedulerService.startTask(payload.name);
   }
 }

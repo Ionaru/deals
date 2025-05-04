@@ -58,6 +58,12 @@ export default typescriptEslint.config(
           "newlines-between": "always",
         },
       ],
+      "@typescript-eslint/dot-notation": [
+        "error",
+        {
+          allowIndexSignaturePropertyAccess: true,
+        },
+      ],
       "@typescript-eslint/no-namespace": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",

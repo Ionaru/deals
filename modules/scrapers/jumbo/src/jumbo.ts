@@ -138,7 +138,7 @@ export class Jumbo extends ScrapeWebsiteService {
         });
 
         response.on("end", () => {
-          resolve(JSON.parse(data));
+          resolve(JSON.parse(data) as JumboGraphQLResponse);
         });
 
         response.on("error", (error) => {

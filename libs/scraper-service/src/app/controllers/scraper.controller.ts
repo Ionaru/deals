@@ -48,7 +48,6 @@ export const createScraperController = (name: string) => {
       } catch (error) {
         this.status = ScraperStatus.ERROR;
         console.error(error);
-        // TODO: send error to storage
       }
     }
   }

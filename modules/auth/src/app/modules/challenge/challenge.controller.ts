@@ -9,11 +9,13 @@ export class ChallengeController {
   constructor(private readonly challengeService: ChallengeService) {}
 
   @MessagePattern(MSMessage.GET_CHALLENGE)
+  // eslint-disable-next-line sonarjs/function-return-type
   getChallenge(): AMSMResponse<MSMessage.GET_CHALLENGE> {
     return this.challengeService.getChallenge();
   }
 
   @MessagePattern(MSMessage.CHECK_CHALLENGE)
+  // eslint-disable-next-line sonarjs/function-return-type
   checkChallenge(
     payload: MSMPayload<MSMessage.CHECK_CHALLENGE>,
   ): AMSMResponse<MSMessage.CHECK_CHALLENGE> {

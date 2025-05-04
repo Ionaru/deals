@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 import { BaseModel } from "./base.model.js";
-import { Deal } from "./deal.js";
 import { DealHistory } from "./deal-history.js";
+import { Deal } from "./deal.js";
 import { PriceHistory } from "./price-history.js";
 import { Shop } from "./shop.js";
 

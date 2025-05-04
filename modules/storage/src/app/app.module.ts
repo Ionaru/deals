@@ -6,8 +6,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { DataSource } from "typeorm";
 
 import { StorageController } from "./app.controller.js";
-import { Deal } from "./models/deal.js";
 import { DealHistory } from "./models/deal-history.js";
+import { Deal } from "./models/deal.js";
 import { PriceHistory } from "./models/price-history.js";
 import { Product } from "./models/product.js";
 import { Service } from "./models/service.js";
@@ -52,9 +52,9 @@ import { UnknownDealService } from "./services/unknown-deal.service.js";
         );
 
         const getSSLConfiguration = () => ({
-          ca: configService.getOrThrow("STORAGE_DB_CA"),
-          cert: configService.getOrThrow("STORAGE_DB_CRT"),
-          key: configService.getOrThrow("STORAGE_DB_KEY"),
+          ca: configService.getOrThrow<string>("STORAGE_DB_CA"),
+          cert: configService.getOrThrow<string>("STORAGE_DB_CRT"),
+          key: configService.getOrThrow<string>("STORAGE_DB_KEY"),
           rejectUnauthorized: false,
         });
 
@@ -102,11 +102,11 @@ import { UnknownDealService } from "./services/unknown-deal.service.js";
   ],
 })
 export class Storage implements OnApplicationShutdown {
-  constructor(private dataSource: DataSource) {}
+  constructor(private readonly dataSource: DataSource) {}
 
   onApplicationShutdown() {
     if (this.dataSource.isInitialized) {
-      this.dataSource.destroy();
+      void this.dataSource.destroy();
     }
   }
 }

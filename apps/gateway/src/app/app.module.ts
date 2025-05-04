@@ -26,14 +26,12 @@ let sessionStore: mongo | undefined;
     SessionModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (
-        config: ConfigService,
-      ): Promise<NestSessionOptions> => {
+      useFactory: (config: ConfigService): Promise<NestSessionOptions> => {
         sessionStore = mongo.create({
           dbName: config.getOrThrow("SESSION_DB_NAME"),
           mongoUrl: config.getOrThrow("AUTH_DB_URL"),
         });
-        return {
+        return Promise.resolve({
           session: {
             name: config.getOrThrow("GATEWAY_SESSION_NAME"),
             resave: false,
@@ -41,13 +39,13 @@ let sessionStore: mongo | undefined;
             secret: config.getOrThrow("GATEWAY_SESSION_SECRET"),
             store: sessionStore,
           },
-        };
+        });
       },
     }),
     MicroserviceModule.forRoot("Gateway", ServiceType.CORE),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: { path: "schema.graphql" },
-      context: ({ res }: any) => ({ res }),
+      context: ({ res }: { res: Response }) => ({ res }),
       driver: ApolloDriver,
       introspection: true,
       playground: {
@@ -76,6 +74,8 @@ let sessionStore: mongo | undefined;
 })
 export class Gateway implements OnApplicationShutdown {
   onApplicationShutdown() {
-    sessionStore?.close();
+    if (sessionStore) {
+      void sessionStore.close();
+    }
   }
 }

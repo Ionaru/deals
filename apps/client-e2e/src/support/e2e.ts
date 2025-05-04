@@ -17,9 +17,11 @@
 // eslint-disable-next-line unicorn/prevent-abbreviations
 import "./commands";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const doRDPCommand = (command: string, parameters?: any) =>
   Cypress.automation("remote:debugger:protocol", {
     command,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     params: parameters,
   });
 

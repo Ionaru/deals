@@ -25,7 +25,7 @@ import {
     PriceCurrentComponent,
     NgxEchartsDirective,
   ],
-  styleUrl: "./product.component.scss",
+  styleUrl: "./product.component.css",
   templateUrl: "./product.component.html",
 })
 export class ProductComponent {
@@ -67,7 +67,7 @@ export class ProductComponent {
     }
 
     if (!data) {
-      return;
+      return null;
     }
 
     return {

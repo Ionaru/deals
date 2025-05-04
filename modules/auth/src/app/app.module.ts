@@ -18,7 +18,7 @@ import { UserModule } from "./modules/user/user.module.js";
       inject: [ConfigService],
       name: "auth",
       useFactory: (configService: ConfigService) => {
-        const database = configService.getOrThrow("AUTH_DB_NAME");
+        const database = configService.getOrThrow<string>("AUTH_DB_NAME");
         Logger.log(`Using database: ${database}`, Auth.name);
         return {
           database,
@@ -46,7 +46,7 @@ export class Auth implements OnApplicationShutdown {
 
   onApplicationShutdown() {
     if (this.dataSource.isInitialized) {
-      this.dataSource.destroy();
+      void this.dataSource.destroy();
     }
   }
 }

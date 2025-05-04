@@ -36,7 +36,7 @@ describe("UserController", () => {
           useValue: {
             find: () => testingUsers,
             findOneBy: ({ _id }: { _id: string }) =>
-              testingUsers.find((user) => user.id.equals(_id)) || null,
+              testingUsers.find((user) => user.id.equals(_id)) ?? null,
           },
         },
       ],

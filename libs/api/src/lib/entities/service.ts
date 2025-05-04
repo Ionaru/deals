@@ -1,4 +1,4 @@
-import { ServiceType } from "../common/service-type";
+import { ServiceType } from "../common/service-type.js";
 
 export class ServiceDTO {
   id!: string;
