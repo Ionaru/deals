@@ -4,8 +4,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
-import { SidenavService } from "../../services/sidenav.service";
-import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-button.component";
+import { SidenavService } from "../../services/sidenav.service.js";
+import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-button.component.js";
 
 @Component({
   imports: [

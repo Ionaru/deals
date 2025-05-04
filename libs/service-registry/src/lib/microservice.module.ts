@@ -1,8 +1,8 @@
 import { ServiceType } from "@deals/api";
 import { DynamicModule, Module } from "@nestjs/common";
 
-import { ServiceGatewayModule } from "./service-gateway/service-gateway.module";
-import { ServiceRegistryModule } from "./service-registry/service-registry.module";
+import { ServiceGatewayModule } from "./service-gateway/service-gateway.module.js";
+import { ServiceRegistryModule } from "./service-registry/service-registry.module.js";
 
 @Module({
   controllers: [],

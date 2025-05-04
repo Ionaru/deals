@@ -1,10 +1,10 @@
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
-import { BaseModel } from "./base.model";
-import { Deal } from "./deal";
-import { DealHistory } from "./deal-history";
-import { PriceHistory } from "./price-history";
-import { Shop } from "./shop";
+import { BaseModel } from "./base.model.js";
+import { Deal } from "./deal.js";
+import { DealHistory } from "./deal-history.js";
+import { PriceHistory } from "./price-history.js";
+import { Shop } from "./shop.js";
 
 @Entity()
 export class Product extends BaseModel {

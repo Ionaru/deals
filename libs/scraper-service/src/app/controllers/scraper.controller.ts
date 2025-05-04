@@ -3,8 +3,8 @@ import { splitArrayIntoChunks } from "@ionaru/array-utils";
 import { Controller, Inject } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 
-import { ScrapeWebsiteService } from "../services/scrape-website.service";
-import { StorageService } from "../services/storage.service";
+import { ScrapeWebsiteService } from "../services/scrape-website.service.js";
+import { StorageService } from "../services/storage.service.js";
 
 export const createScraperController = (name: string) => {
   @Controller()
@@ -47,7 +47,6 @@ export const createScraperController = (name: string) => {
         this.status = ScraperStatus.IDLE;
       } catch (error) {
         this.status = ScraperStatus.ERROR;
-        // eslint-disable-next-line no-console
         console.error(error);
         // TODO: send error to storage
       }

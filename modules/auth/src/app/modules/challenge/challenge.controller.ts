@@ -2,7 +2,7 @@ import { type AMSMResponse, MSMessage, type MSMPayload } from "@deals/api";
 import { Controller } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 
-import { ChallengeService } from "./challenge.service";
+import { ChallengeService } from "./challenge.service.js";
 
 @Controller()
 export class ChallengeController {

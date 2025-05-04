@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ApolloTestingModule } from "apollo-angular/testing";
 
-import { UnknownDealsComponent } from "./unknown-deals.component";
+import { UnknownDealsComponent } from "./unknown-deals.component.js";
 
 describe("UnknownDealsComponent", () => {
   let component: UnknownDealsComponent;

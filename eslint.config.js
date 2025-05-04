@@ -74,6 +74,8 @@ export default typescriptEslint.config(
           checksVoidReturn: false,
         },
       ],
+      "unicorn/consistent-function-scoping": "off",
+      "sonarjs/deprecation": "off",
     },
   },
   {

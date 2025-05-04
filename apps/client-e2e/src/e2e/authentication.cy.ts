@@ -1,4 +1,4 @@
-/* eslint-disable sonarjs/no-duplicate-string */
+ 
 describe("Authentication", () => {
   beforeEach(() => {
     cy.visit("/login");

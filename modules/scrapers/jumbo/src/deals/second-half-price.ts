@@ -1,4 +1,4 @@
-import { JumboDeal } from "../jumbo-deal";
+import { JumboDeal } from "../jumbo-deal.js";
 
 export class SecondHalfPrice extends JumboDeal {
   matcher = /2e halve prijs/;

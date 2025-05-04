@@ -1,8 +1,8 @@
 import { MicroserviceModule } from "@deals/service-registry";
 import { Module } from "@nestjs/common";
 
-import { TasksResolver } from "./tasks.resolver";
-import { TasksService } from "./tasks.service";
+import { TasksResolver } from "./tasks.resolver.js";
+import { TasksService } from "./tasks.service.js";
 
 @Module({
   controllers: [],

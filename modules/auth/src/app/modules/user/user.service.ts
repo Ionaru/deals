@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { ObjectId } from "mongodb";
 import { MongoRepository } from "typeorm";
 
-import { User } from "../../models/user.model";
+import { User } from "../../models/user.model.js";
 
 @Injectable()
 export class UserService {

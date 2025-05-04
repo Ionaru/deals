@@ -117,13 +117,6 @@
         "targetFiles": ["en-GB.xlf", "nl.xlf"],
         "trim": true
       }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/client/jest.config.ts"
-      }
     }
   }
 }

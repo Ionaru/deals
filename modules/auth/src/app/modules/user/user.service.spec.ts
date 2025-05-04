@@ -3,9 +3,9 @@ import { getRepositoryToken } from "@nestjs/typeorm";
 import { ObjectId } from "mongodb";
 import { describe, beforeEach, it, expect } from "vitest";
 
-import { User } from "../../models/user.model";
+import { User } from "../../models/user.model.js";
 
-import { UserService } from "./user.service";
+import { UserService } from "./user.service.js";
 
 describe("UserController", () => {
   let userService: UserService;

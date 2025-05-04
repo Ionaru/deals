@@ -1,11 +1,32 @@
-import "jest-preset-angular/setup-jest";
+import "@analogjs/vitest-angular/setup-zone";
+
+import { getTestBed } from "@angular/core/testing";
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting,
+} from "@angular/platform-browser-dynamic/testing";
 import "@angular/localize/init";
 
 // Fix for "ReferenceError: TextEncoder is not defined"
 // https://github.com/angular/angular/issues/48748
-// eslint-disable-next-line @typescript-eslint/no-shadow
+// eslint-disable-next-line import/order
 import { TextEncoder } from "node:util";
-Object.defineProperty(global, "TextEncoder", {
+Object.defineProperty(globalThis, "TextEncoder", {
   value: TextEncoder,
   writable: true,
+});
+
+getTestBed().initTestEnvironment(
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting(),
+);
+
+const ignoredMessages = ["Could not find Angular Material core theme."];
+vitest.spyOn(console, "warn").mockImplementation((message: string) => {
+  if (
+    ignoredMessages.some((ignoredMessage) => message.includes(ignoredMessage))
+  ) {
+    return;
+  }
+  console.warn(message);
 });

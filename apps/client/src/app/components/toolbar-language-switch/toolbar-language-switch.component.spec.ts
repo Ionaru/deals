@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ToolbarLanguageSwitchComponent } from "./toolbar-language-switch.component";
+import { ToolbarLanguageSwitchComponent } from "./toolbar-language-switch.component.js";
 
 describe("ToolbarLanguageSwitchComponent", () => {
   let component: ToolbarLanguageSwitchComponent;

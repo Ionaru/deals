@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Apollo } from "apollo-angular";
 
-import { typedGql } from "../zeus/typedDocumentNode";
+import { typedGql } from "../zeus/typedDocumentNode.js";
 
 @Injectable({
   providedIn: "root",

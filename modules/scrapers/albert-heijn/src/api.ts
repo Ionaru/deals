@@ -138,13 +138,13 @@ export interface BonusGroup {
 }
 
 export interface BonusSegment {
-  products: Array<Product["product"]>;
+  products: Product["product"][];
 }
 
 export interface BonusSection {
   sectionType: string;
   sectionDescription: string;
-  bonusGroupOrProducts?: Array<BonusGroup | Product>;
+  bonusGroupOrProducts?: (BonusGroup | Product)[];
   sectionImage: unknown[];
 }
 

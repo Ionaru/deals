@@ -5,7 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { catchError, firstValueFrom, map, of, zip } from "rxjs";
 import { Repository } from "typeorm";
 
-import { Service } from "../models/service";
+import { Service } from "../models/service.js";
 
 @Injectable()
 export class ServicesService {

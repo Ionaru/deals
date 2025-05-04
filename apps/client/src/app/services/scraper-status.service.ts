@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 
-import { GatewayService } from "./gateway.service";
+import { GatewayService } from "./gateway.service.js";
 
 @Injectable({
   providedIn: "root",

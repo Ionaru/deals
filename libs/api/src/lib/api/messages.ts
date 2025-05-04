@@ -1,20 +1,20 @@
 import { registerEnumType } from "@nestjs/graphql";
 import { Pagination } from "nestjs-typeorm-paginate";
 
-import { Async } from "../api";
-import { ScraperStatus } from "../common/scraper-status";
-import { ServiceType } from "../common/service-type";
-import { DealDTO } from "../entities/deal";
-import { ExtendedProductDTO, ProductDTO } from "../entities/product";
-import { ServiceDTO } from "../entities/service";
-import { ShopDTO } from "../entities/shop";
-import { TaskDTO } from "../entities/task";
-import { UnknownDealDTO } from "../entities/unknown-deal";
-import { UserDTO } from "../entities/user";
-import { HealthResponse } from "../routes/get-health";
+import { Async } from "../api.js";
+import { ScraperStatus } from "../common/scraper-status.js";
+import { ServiceType } from "../common/service-type.js";
+import { DealDTO } from "../entities/deal.js";
+import { ExtendedProductDTO, ProductDTO } from "../entities/product.js";
+import { ServiceDTO } from "../entities/service.js";
+import { ShopDTO } from "../entities/shop.js";
+import { TaskDTO } from "../entities/task.js";
+import { UnknownDealDTO } from "../entities/unknown-deal.js";
+import { UserDTO } from "../entities/user.js";
+import { HealthResponse } from "../routes/get-health.js";
 
-import { DealSortChoices } from "./deal-sort-choices";
-import { ProductSortChoices } from "./product-sort-choices";
+import { DealSortChoices } from "./deal-sort-choices.js";
+import { ProductSortChoices } from "./product-sort-choices.js";
 
 export type Nullable<T> = T | null;
 

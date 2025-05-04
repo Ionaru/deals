@@ -9,7 +9,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { paginate } from "nestjs-typeorm-paginate";
 import { Brackets, Repository } from "typeorm";
 
-import { Product } from "../models/product";
+import { Product } from "../models/product.js";
 
 @Injectable()
 export class ProductsService {

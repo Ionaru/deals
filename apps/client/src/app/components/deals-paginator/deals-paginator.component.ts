@@ -5,7 +5,7 @@ import {
   PageEvent,
 } from "@angular/material/paginator";
 
-import { DealsPaginatorI18nProvider } from "./deals-paginator-i18n.provider";
+import { DealsPaginatorI18nProvider } from "./deals-paginator-i18n.provider.js";
 
 @Component({
   imports: [MatPaginatorModule],

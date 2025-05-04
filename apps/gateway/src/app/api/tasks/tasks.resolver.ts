@@ -3,9 +3,9 @@ import { UseGuards } from "@nestjs/common";
 import { Resolver, Query, Args, Mutation } from "@nestjs/graphql";
 import { Observable } from "rxjs";
 
-import { IsAdminGuard } from "../../guards/is-admin.guard";
+import { IsAdminGuard } from "../../guards/is-admin.guard.js";
 
-import { TasksService } from "./tasks.service";
+import { TasksService } from "./tasks.service.js";
 
 @Resolver()
 @UseGuards(IsAdminGuard)

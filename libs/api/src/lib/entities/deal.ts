@@ -8,11 +8,11 @@ import {
 } from "@nestjs/graphql";
 import { IsOptional, MaxLength, MinLength } from "class-validator";
 
-import { DealSortChoices } from "../api/deal-sort-choices";
-import { Order } from "../api/messages";
-import { getPaginationArguments, paginated } from "../api/pagination";
+import { DealSortChoices } from "../api/deal-sort-choices.js";
+import { Order } from "../api/messages.js";
+import { getPaginationArguments, paginated } from "../api/pagination.js";
 
-import { ProductDTO } from "./product";
+import { ProductDTO } from "./product.js";
 
 registerEnumType(DealSortChoices, { name: "DealSortChoices" });
 

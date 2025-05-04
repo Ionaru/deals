@@ -9,12 +9,12 @@ import {
 import { Controller, Logger } from "@nestjs/common";
 import { EventPattern, MessagePattern } from "@nestjs/microservices";
 
-import { DealsService } from "./services/deals.service";
-import { FoundDealsService } from "./services/found-deals.service";
-import { ProductsService } from "./services/products.service";
-import { ServicesService } from "./services/services.service";
-import { ShopsService } from "./services/shops.service";
-import { UnknownDealService } from "./services/unknown-deal.service";
+import { DealsService } from "./services/deals.service.js";
+import { FoundDealsService } from "./services/found-deals.service.js";
+import { ProductsService } from "./services/products.service.js";
+import { ServicesService } from "./services/services.service.js";
+import { ShopsService } from "./services/shops.service.js";
+import { UnknownDealService } from "./services/unknown-deal.service.js";
 
 @Controller()
 export class StorageController {

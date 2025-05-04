@@ -1,4 +1,4 @@
-import { IProductDeal, IUnknownDeal } from "../api";
+import { IProductDeal, IUnknownDeal } from "../api.js";
 
 export enum MSEvent {
   REPORT_SERVICE = "REPORT_SERVICE",

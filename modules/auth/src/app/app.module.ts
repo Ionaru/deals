@@ -5,11 +5,11 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { InjectDataSource, TypeOrmModule } from "@nestjs/typeorm";
 import { DataSource } from "typeorm";
 
-import { Challenge } from "./models/challenge.model";
-import { User } from "./models/user.model";
-import { AuthModule } from "./modules/auth/auth.module";
-import { ChallengeModule } from "./modules/challenge/challenge.module";
-import { UserModule } from "./modules/user/user.module";
+import { Challenge } from "./models/challenge.model.js";
+import { User } from "./models/user.model.js";
+import { AuthModule } from "./modules/auth/auth.module.js";
+import { ChallengeModule } from "./modules/challenge/challenge.module.js";
+import { UserModule } from "./modules/user/user.module.js";
 
 @Module({
   imports: [

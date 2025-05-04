@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import { SessionDTO } from "@deals/api";
 import { UseGuards } from "@nestjs/common";
 import {
@@ -13,9 +12,9 @@ import {
 import { Request } from "express";
 import { bindCallback, map, tap } from "rxjs";
 
-import { LoggedInGuard } from "../../guards/logged-in.guard";
+import { LoggedInGuard } from "../../guards/logged-in.guard.js";
 
-import { AuthService } from "./auth.service";
+import { AuthService } from "./auth.service.js";
 
 @ArgsType()
 export class LoginArguments {

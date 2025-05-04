@@ -6,7 +6,7 @@ import baseConfig from "../../eslint.config.js";
 export default typescriptEslint.config(
   ...baseConfig,
   {
-    ignores: ["apps/client/src/app/zeus/*"],
+    ignores: ["./src/app/zeus/*"],
   },
   {
     files: ["**/*.ts"],

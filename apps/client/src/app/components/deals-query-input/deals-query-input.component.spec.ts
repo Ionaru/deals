@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
-import { DealsQueryInputComponent } from "./deals-query-input.component";
+import { DealsQueryInputComponent } from "./deals-query-input.component.js";
 
 describe("DealsQueryInputComponent", () => {
   let component: DealsQueryInputComponent;

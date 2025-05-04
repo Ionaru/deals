@@ -10,9 +10,9 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { share } from "rxjs";
 
-import { UnknownDealsComponent } from "../../components/unknown-deals/unknown-deals.component";
-import { TimePipe } from "../../pipes/time.pipe";
-import { HealthService } from "../../services/health.service";
+import { UnknownDealsComponent } from "../../components/unknown-deals/unknown-deals.component.js";
+import { TimePipe } from "../../pipes/time.pipe.js";
+import { HealthService } from "../../services/health.service.js";
 
 @Component({
   imports: [

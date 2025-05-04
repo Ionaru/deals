@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
 
-import { ShopDTO } from "./shop";
+import { ShopDTO } from "./shop.js";
 
 @ObjectType()
 export class UnknownDealDTO {

@@ -2,7 +2,7 @@ import { ShopDTO } from "@deals/api";
 import { Resolver, Query } from "@nestjs/graphql";
 import { Observable } from "rxjs";
 
-import { ShopsService } from "./shops.service";
+import { ShopsService } from "./shops.service.js";
 
 @Resolver()
 export class ShopsResolver {

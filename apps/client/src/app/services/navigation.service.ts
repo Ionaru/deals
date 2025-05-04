@@ -1,7 +1,7 @@
 import { computed, inject, Injectable } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 
-import { AuthService } from "./auth.service";
+import { AuthService } from "./auth.service.js";
 
 interface Route {
   path: string;
@@ -24,7 +24,6 @@ export class NavigationService {
 
   #isAdmin$$ = toSignal(this.#authService.isAdmin$);
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   readonly routes$$ = computed(() =>
     this.#routes.filter((route) => !route.adminOnly || this.#isAdmin$$()),
   );

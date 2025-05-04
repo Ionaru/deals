@@ -1,16 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "useDefineForClassFields": false,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitOverride": false,
-    "noPropertyAccessFromIndexSignature": false,
-    "noImplicitReturns": false,
-    "exactOptionalPropertyTypes": false,
-    "noFallthroughCasesInSwitch": true,
     "lib": ["es2022", "dom"],
     "types": ["@angular/localize"],
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
   "files": [],

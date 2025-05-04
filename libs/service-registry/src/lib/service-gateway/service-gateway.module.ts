@@ -2,7 +2,7 @@ import { natsOptions, network } from "@deals/api";
 import { Module } from "@nestjs/common";
 import { ClientsModule } from "@nestjs/microservices";
 
-import { ServiceGatewayService } from "./service-gateway.service";
+import { ServiceGatewayService } from "./service-gateway.service.js";
 
 @Module({
   controllers: [],

@@ -11,21 +11,8 @@
       "cache": true
     },
     "@nx/vite:test": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.cjs"],
+      "inputs": ["default", "^production"],
       "cache": true
-    },
-    "@nx/jest:jest": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.cjs"],
-      "cache": true,
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     },
     "@nx/eslint:lint": {
       "cache": true,
@@ -37,13 +24,10 @@
       "plugin": "@nx/eslint/plugin"
     },
     {
-      "plugin": "@nx/cypress/plugin",
-      "options": {
-        "targetName": "e2e",
-        "openTargetName": "open-cypress",
-        "componentTestingTargetName": "component-test",
-        "ciTargetName": "e2e-ci"
-      }
+      "plugin": "@nx/vite/plugin"
+    },
+    {
+      "plugin": "@nx/cypress/plugin"
     }
   ],
   "namedInputs": {

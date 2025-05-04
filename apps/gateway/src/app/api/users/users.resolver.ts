@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import { UserDTO } from "@deals/api";
 import { HttpStatus, UseGuards } from "@nestjs/common";
 import {
@@ -12,9 +11,9 @@ import {
 import { Request } from "express";
 import { GraphQLError } from "graphql";
 
-import { IsAdminGuard } from "../../guards/is-admin.guard";
+import { IsAdminGuard } from "../../guards/is-admin.guard.js";
 
-import { UsersService } from "./users.service";
+import { UsersService } from "./users.service.js";
 
 @ArgsType()
 export class UserArguments {

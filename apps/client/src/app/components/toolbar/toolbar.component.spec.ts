@@ -3,12 +3,15 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { of } from "rxjs";
 
-import { setComponentInput, TypedMockProvider } from "../../../testing/mocks";
-import { AuthService } from "../../services/auth.service";
-import { DarkModeService } from "../../services/dark-mode.service";
-import { NavigationService } from "../../services/navigation.service";
+import {
+  setComponentInput,
+  TypedMockProvider,
+} from "../../../testing/mocks.js";
+import { AuthService } from "../../services/auth.service.js";
+import { DarkModeService } from "../../services/dark-mode.service.js";
+import { NavigationService } from "../../services/navigation.service.js";
 
-import { ToolbarComponent } from "./toolbar.component";
+import { ToolbarComponent } from "./toolbar.component.js";
 
 describe("toolbarComponent", () => {
   let component: ToolbarComponent;

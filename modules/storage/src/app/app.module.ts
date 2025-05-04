@@ -5,20 +5,20 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { DataSource } from "typeorm";
 
-import { StorageController } from "./app.controller";
-import { Deal } from "./models/deal";
-import { DealHistory } from "./models/deal-history";
-import { PriceHistory } from "./models/price-history";
-import { Product } from "./models/product";
-import { Service } from "./models/service";
-import { Shop } from "./models/shop";
-import { UnknownDeal } from "./models/unknown-deal";
-import { DealsService } from "./services/deals.service";
-import { FoundDealsService } from "./services/found-deals.service";
-import { ProductsService } from "./services/products.service";
-import { ServicesService } from "./services/services.service";
-import { ShopsService } from "./services/shops.service";
-import { UnknownDealService } from "./services/unknown-deal.service";
+import { StorageController } from "./app.controller.js";
+import { Deal } from "./models/deal.js";
+import { DealHistory } from "./models/deal-history.js";
+import { PriceHistory } from "./models/price-history.js";
+import { Product } from "./models/product.js";
+import { Service } from "./models/service.js";
+import { Shop } from "./models/shop.js";
+import { UnknownDeal } from "./models/unknown-deal.js";
+import { DealsService } from "./services/deals.service.js";
+import { FoundDealsService } from "./services/found-deals.service.js";
+import { ProductsService } from "./services/products.service.js";
+import { ServicesService } from "./services/services.service.js";
+import { ShopsService } from "./services/shops.service.js";
+import { UnknownDealService } from "./services/unknown-deal.service.js";
 
 @Module({
   controllers: [StorageController],

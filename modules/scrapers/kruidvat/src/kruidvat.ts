@@ -197,7 +197,7 @@ enum KruidvatDealType {
   FOR_249_99,
 }
 
-const kruidvatDealInformation: { [key in KruidvatDealType]: IDealInformation } =
+const kruidvatDealInformation: Record<KruidvatDealType, IDealInformation> =
   Object.freeze({
     [KruidvatDealType.ONE_PLUS_ONE]: {
       calculation: (price: number) => price / 2,

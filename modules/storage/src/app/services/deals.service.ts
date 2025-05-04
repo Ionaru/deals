@@ -4,7 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { paginate } from "nestjs-typeorm-paginate";
 import { Repository } from "typeorm";
 
-import { Deal } from "../models/deal";
+import { Deal } from "../models/deal.js";
 
 @Injectable()
 export class DealsService {

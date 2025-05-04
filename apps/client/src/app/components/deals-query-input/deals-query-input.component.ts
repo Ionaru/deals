@@ -47,6 +47,7 @@ export class DealsQueryInputComponent implements OnInit, OnChanges {
       "query" in changes &&
       this.queryControl.value !== changes.query.currentValue
     ) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.queryControl.setValue(changes.query.currentValue);
     }
   }

@@ -15,16 +15,16 @@ import { provideServiceWorker } from "@angular/service-worker";
 import { InMemoryCache } from "@apollo/client/core";
 import { provideApollo } from "apollo-angular";
 import { HttpLink } from "apollo-angular/http";
-import { provideEcharts } from "ngx-echarts";
+import { provideEchartsCore } from "ngx-echarts";
 
 import {
   LOCAL_STORAGE,
   SESSION_STORAGE,
   WINDOW,
-} from "../tokens/injection-tokens";
+} from "../tokens/injection-tokens.js";
 
-import appRouting from "./app.routing";
-import { MyTitleStrategy } from "./services/my-title.strategy";
+import appRouting from "./app.routing.js";
+import { MyTitleStrategy } from "./services/my-title.strategy.js";
 
 export const angularConfiguration: ApplicationConfig = {
   providers: [
@@ -32,7 +32,9 @@ export const angularConfiguration: ApplicationConfig = {
     provideRouter(appRouting, withViewTransitions()),
     provideHttpClient(withFetch()),
     provideAnimations(),
-    provideEcharts(),
+    provideEchartsCore({
+      echarts: () => import("echarts"),
+    }),
     provideApollo(
       () => ({
         cache: new InMemoryCache(),
@@ -50,6 +52,6 @@ export const angularConfiguration: ApplicationConfig = {
     { provide: TitleStrategy, useClass: MyTitleStrategy },
     { provide: LOCAL_STORAGE, useValue: localStorage },
     { provide: SESSION_STORAGE, useValue: sessionStorage },
-    { provide: WINDOW, useValue: window },
+    { provide: WINDOW, useValue: globalThis },
   ],
 };

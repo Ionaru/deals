@@ -11,11 +11,11 @@ import {
 } from "@nestjs/common";
 import { catchError } from "rxjs";
 
-import { ServiceGatewayModule } from "../service-gateway/service-gateway.module";
+import { ServiceGatewayModule } from "../service-gateway/service-gateway.module.js";
 
-import { createServiceIdController } from "./service-id.controller";
-import { ServiceRegistryController } from "./service-registry.controller";
-import { ServiceRegistryService } from "./service-registry.service";
+import { createServiceIdController } from "./service-id.controller.js";
+import { ServiceRegistryController } from "./service-registry.controller.js";
+import { ServiceRegistryService } from "./service-registry.service.js";
 
 @Module({
   controllers: [ServiceRegistryController],
@@ -55,7 +55,7 @@ export class ServiceRegistryModule
     if (!this.delay) {
       this.serviceRegistryService
         .storeService()
-        .pipe(catchError(this.#registryErrorHandler))
+        .pipe(catchError((error) => this.#registryErrorHandler(error)))
         .subscribe();
     }
   }
@@ -63,7 +63,7 @@ export class ServiceRegistryModule
   beforeApplicationShutdown() {
     return this.serviceRegistryService
       .removeService()
-      .pipe(catchError(this.#registryErrorHandler));
+      .pipe(catchError((error) => this.#registryErrorHandler(error)));
   }
 
   #registryErrorHandler(error: unknown) {

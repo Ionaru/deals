@@ -5,7 +5,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { NavigationEnd, Router, RouterLink } from "@angular/router";
 import { combineLatest, filter, map } from "rxjs";
 
-import { AuthService } from "../../services/auth.service";
+import { AuthService } from "../../services/auth.service.js";
 
 @Component({
   imports: [MatIconModule, MatButtonModule, RouterLink, AsyncPipe],

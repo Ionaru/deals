@@ -3,8 +3,8 @@ import { MicroserviceModule } from "@deals/service-registry";
 import { Module } from "@nestjs/common";
 import { ScheduleModule } from "@nestjs/schedule";
 
-import { SchedulerModule } from "./scheduler/scheduler.module";
-import { RunScrapersTask } from "./tasks/run-scrapers.task";
+import { SchedulerModule } from "./scheduler/scheduler.module.js";
+import { RunScrapersTask } from "./tasks/run-scrapers.task.js";
 
 @Module({
   imports: [

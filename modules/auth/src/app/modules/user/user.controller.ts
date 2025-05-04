@@ -2,9 +2,9 @@ import { MSMessage, type MSMPayload, type MSMResponse } from "@deals/api";
 import { Controller, Inject } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 
-import { User } from "../../models/user.model";
+import { User } from "../../models/user.model.js";
 
-import { UserService } from "./user.service";
+import { UserService } from "./user.service.js";
 
 const userToMessage = (user: User) => ({
   id: user.id.toHexString(),

@@ -3,7 +3,7 @@ import { uniquifyObjectsArray } from "@ionaru/array-utils";
 import { Injectable, Logger } from "@nestjs/common";
 import { JSDOM } from "jsdom";
 
-import { StorageService } from "./storage.service";
+import { StorageService } from "./storage.service.js";
 
 @Injectable()
 export abstract class ScrapeWebsiteService {

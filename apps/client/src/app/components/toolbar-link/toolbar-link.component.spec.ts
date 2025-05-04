@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 
-import { setComponentInput } from "../../../testing/mocks";
+import { setComponentInput } from "../../../testing/mocks.js";
 
-import { ToolbarLinkComponent } from "./toolbar-link.component";
+import { ToolbarLinkComponent } from "./toolbar-link.component.js";
 
 describe("ToolbarLinkComponent", () => {
   let component: ToolbarLinkComponent;

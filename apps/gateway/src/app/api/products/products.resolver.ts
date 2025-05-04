@@ -7,7 +7,7 @@ import {
 import { Resolver, Query, Args, ID } from "@nestjs/graphql";
 import { Observable } from "rxjs";
 
-import { ProductsService } from "./products.service";
+import { ProductsService } from "./products.service.js";
 
 @Resolver()
 export class ProductsResolver {

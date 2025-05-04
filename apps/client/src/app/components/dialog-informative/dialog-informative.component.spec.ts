@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
-import { TypedMockProvider } from "../../../testing/mocks";
+import { TypedMockProvider } from "../../../testing/mocks.js";
 
-import { DialogInformativeComponent } from "./dialog-informative.component";
+import { DialogInformativeComponent } from "./dialog-informative.component.js";
 
 describe("DialogInformativeComponent", () => {
   let component: DialogInformativeComponent;

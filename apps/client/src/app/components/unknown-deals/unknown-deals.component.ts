@@ -5,7 +5,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
 import { map } from "rxjs";
 
-import { UnknownDealsService } from "../../services/unknown-deals.service";
+import { UnknownDealsService } from "../../services/unknown-deals.service.js";
 
 @Component({
   imports: [MatTableModule, MatButtonModule, DatePipe],

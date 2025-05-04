@@ -19,7 +19,7 @@ import {
   OrderAvailabilityStatus,
   Product,
   ProductCard,
-} from "./api";
+} from "./api.js";
 
 interface AnonymousToken {
   access_token: string;
@@ -314,7 +314,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
     product: Product,
     token: string,
   ): Promise<ParsedDiscount | undefined> {
-    const parsed: Array<ParsedDiscount | undefined> = [];
+    const parsed: (ParsedDiscount | undefined)[] = [];
 
     for (const discount of product.product.discountLabels) {
       switch (discount.code) {

@@ -1,9 +1,9 @@
 import { UseGuards } from "@nestjs/common";
 import { Resolver, Args, Mutation } from "@nestjs/graphql";
 
-import { IsAdminGuard } from "../../guards/is-admin.guard";
+import { IsAdminGuard } from "../../guards/is-admin.guard.js";
 
-import { ScrapersService } from "./scrapers.service";
+import { ScrapersService } from "./scrapers.service.js";
 
 @Resolver()
 @UseGuards(IsAdminGuard)

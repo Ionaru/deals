@@ -2,10 +2,10 @@ import { Component, inject, OnInit, ViewChild } from "@angular/core";
 import { MatDrawer, MatSidenavModule } from "@angular/material/sidenav";
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
-import { SidenavService } from "../../services/sidenav.service";
-import { SidenavContentComponent } from "../sidenav-content/sidenav-content.component";
-import { SignupButtonComponent } from "../signup-button/signup-button.component";
-import { ToolbarComponent } from "../toolbar/toolbar.component";
+import { SidenavService } from "../../services/sidenav.service.js";
+import { SidenavContentComponent } from "../sidenav-content/sidenav-content.component.js";
+import { SignupButtonComponent } from "../signup-button/signup-button.component.js";
+import { ToolbarComponent } from "../toolbar/toolbar.component.js";
 
 @Component({
   imports: [
@@ -28,11 +28,15 @@ export class SidenavContainerComponent implements OnInit {
 
   ngOnInit() {
     this.#sidenavService.opened$.subscribe(() => {
-      this.matDrawer?.toggle();
+      if (this.matDrawer) {
+        void this.matDrawer.toggle();
+      }
     });
   }
 
   close() {
-    this.matDrawer?.close();
+    if (this.matDrawer) {
+      void this.matDrawer.close();
+    }
   }
 }

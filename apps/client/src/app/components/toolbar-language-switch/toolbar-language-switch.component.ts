@@ -3,7 +3,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatTooltipModule } from "@angular/material/tooltip";
 
-import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-button.component";
+import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-button.component.js";
 
 @Component({
   imports: [

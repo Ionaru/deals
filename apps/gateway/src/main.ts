@@ -3,7 +3,7 @@ import { ServicesService } from "@deals/storage";
 import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
-import { Gateway } from "./app/app.module";
+import { Gateway } from "./app/app.module.js";
 
 const bootstrap = async () => {
   const app = await NestFactory.create(Gateway);

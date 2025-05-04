@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { setComponentInput } from "../../../testing/mocks";
+import { setComponentInput } from "../../../testing/mocks.js";
 
-import { PriceCurrentComponent } from "./price-current.component";
+import { PriceCurrentComponent } from "./price-current.component.js";
 
 describe("PriceCurrentComponent", () => {
   let component: PriceCurrentComponent;

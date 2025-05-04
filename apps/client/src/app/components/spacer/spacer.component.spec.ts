@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SpacerComponent } from "./spacer.component";
+import { SpacerComponent } from "./spacer.component.js";
 
 describe("SpacerComponent", () => {
   let component: SpacerComponent;

@@ -2,7 +2,7 @@ import { MSMessage, type MSMPayload, type MSMResponse } from "@deals/api";
 import { Controller, Inject } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 
-import { SchedulerService } from "./scheduler.service";
+import { SchedulerService } from "./scheduler.service.js";
 
 @Controller()
 export class SchedulerController {

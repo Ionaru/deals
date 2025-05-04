@@ -15,8 +15,8 @@ import { GraphQLModule } from "@nestjs/graphql";
 import mongo from "connect-mongo";
 import { NestSessionOptions, SessionModule } from "nestjs-session";
 
-import { ApiModule } from "./api/api.module";
-import { ServiceUnavailableFilter } from "./exception-filters/service-unavailable.filter";
+import { ApiModule } from "./api/api.module.js";
+import { ServiceUnavailableFilter } from "./exception-filters/service-unavailable.filter.js";
 
 let sessionStore: mongo | undefined;
 

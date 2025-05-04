@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DealImageComponent } from "./deal-image.component";
+import { DealImageComponent } from "./deal-image.component.js";
 
 describe("DealImageComponent", () => {
   let component: DealImageComponent;
