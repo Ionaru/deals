@@ -19,17 +19,7 @@
       "inputs": ["default", "{workspaceRoot}/eslint.config.js"]
     }
   },
-  "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin"
-    },
-    {
-      "plugin": "@nx/vite/plugin"
-    },
-    {
-      "plugin": "@nx/cypress/plugin"
-    }
-  ],
+  "plugins": ["@nx/eslint/plugin", "@nx/vite/plugin", "@nx/cypress/plugin"],
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
@@ -37,9 +27,6 @@
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/.eslintignore",
-      "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/cypress/**/*",
       "!{projectRoot}/cypress.config.c?[jt]s",

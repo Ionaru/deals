@@ -1,4 +1,4 @@
-import { CredentialKey } from "@passwordless-id/webauthn/dist/esm/types";
+import { CredentialKey } from "@passwordless-id/webauthn/dist/esm/types.js";
 import { Column } from "typeorm";
 
 export class Credential implements CredentialKey {

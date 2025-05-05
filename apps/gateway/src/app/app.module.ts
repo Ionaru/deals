@@ -20,6 +20,9 @@ import { ServiceUnavailableFilter } from "./exception-filters/service-unavailabl
 
 let sessionStore: mongo | undefined;
 
+// @ts-expect-error Fix for connect-mongo old-style exports
+const connectMongo = mongo.default as typeof mongo;
+
 @Module({
   imports: [
     ConfigModule,
@@ -27,7 +30,7 @@ let sessionStore: mongo | undefined;
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService): Promise<NestSessionOptions> => {
-        sessionStore = mongo.create({
+        sessionStore = connectMongo.create({
           dbName: config.getOrThrow("SESSION_DB_NAME"),
           mongoUrl: config.getOrThrow("AUTH_DB_URL"),
         });
