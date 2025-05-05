@@ -1,5 +1,6 @@
-import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
 import path from "node:path";
+
+import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
 import { defineConfig, Plugin } from "vitest/config";
 
 const projectPath = path.relative(import.meta.dirname, process.cwd());

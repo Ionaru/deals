@@ -28,7 +28,7 @@ export default typescriptEslint.config(
       sourceType: "module",
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["vitest.config.ts"],
+          allowDefaultProject: ["vitest.root.ts"],
           defaultProject: "tsconfig.base.json",
         },
         tsconfigRootDir: import.meta.dirname,

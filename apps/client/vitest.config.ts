@@ -3,7 +3,7 @@ import { nxCopyAssetsPlugin } from "@nx/vite/plugins/nx-copy-assets.plugin";
 import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
 import { mergeConfig, defineProject, Plugin } from "vitest/config";
 
-import rootConfig from "../../vitest.config.js";
+import rootConfig from "../../vitest.root.js";
 
 export default mergeConfig(
   rootConfig,
