@@ -25,7 +25,10 @@ export interface DiscountOneFree extends DiscountLabelBase {
 
 export interface DiscountTieredPercent extends DiscountLabelBase {
   code: DiscountCode.DISCOUNT_TIERED_PERCENT;
-  price: number;
+  count: number;
+  percentage: number;
+  precisePercentage: number;
+  unit: "PIECE";
 }
 
 export interface DiscountFallback extends DiscountLabelBase {
