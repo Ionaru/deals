@@ -19,7 +19,12 @@
       "inputs": ["default", "{workspaceRoot}/eslint.config.js"]
     }
   },
-  "plugins": ["@nx/eslint/plugin", "@nx/vite/plugin", "@nx/playwright/plugin"],
+  "plugins": [
+    "@nx/eslint/plugin",
+    "nx-stylelint/plugin",
+    "@nx/vite/plugin",
+    "@nx/playwright/plugin"
+  ],
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],

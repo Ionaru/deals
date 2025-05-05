@@ -16,7 +16,6 @@ import { AuthService } from "./services/auth.service.js";
     SidenavContainerComponent,
   ],
   selector: "deals-root",
-  styleUrls: ["./app.component.css"],
   templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {

@@ -1,4 +1,4 @@
-:host(deals-toolbar) {
+:host {
   mat-toolbar {
     background: transparent;
     user-select: none;
@@ -8,13 +8,14 @@
       letter-spacing: 0;
 
       #app-title {
-        @media only screen and (max-width: 500px) {
+        @media only screen and (width <= 500px) {
           display: none;
         }
       }
 
-      @media only screen and (max-width: 500px) {
+      @media only screen and (width <= 500px) {
         background-color: #85d8ff14;
+
         @media (prefers-color-scheme: light) {
           background-color: #1c8fdb14;
         }
@@ -30,7 +31,7 @@
       left: 50%;
       transform: translateX(-50%);
 
-      @media only screen and (max-width: 900px) {
+      @media only screen and (width <= 900px) {
         display: none;
       }
     }
@@ -39,8 +40,16 @@
     #account-page-button {
       display: block;
 
-      @media only screen and (max-width: 900px) {
+      @media only screen and (width <= 900px) {
         display: none;
+      }
+    }
+
+    deals-toolbar-sidenav-button {
+      display: none;
+
+      @media only screen and (width <= 900px) {
+        display: block;
       }
     }
 
@@ -56,14 +65,6 @@
 
       &:last-child {
         margin-inline-end: 0;
-      }
-    }
-
-    deals-toolbar-sidenav-button {
-      display: none;
-
-      @media only screen and (max-width: 900px) {
-        display: block;
       }
     }
   }

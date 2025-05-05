@@ -56,7 +56,7 @@ import { DealSortChoices, Order } from "../../zeus/index.js";
     DealsQueryInputComponent,
     NgTemplateOutlet,
   ],
-  styleUrls: ["./home.component.css"],
+  styleUrl: "./home.component.css",
   templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit, OnDestroy {

@@ -4,21 +4,12 @@
 
   .product-container {
     display: grid;
-    grid-template-columns: min-content auto;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      "title title"
-      "image info";
+    grid-template: "title title" auto "image info" auto / min-content auto;
     gap: 1em;
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (width <= 500px) {
       justify-items: center;
-      grid-template-columns: auto;
-      grid-template-rows: min-content auto auto;
-      grid-template-areas:
-        "title"
-        "image"
-        "info";
+      grid-template: "title" min-content "image" auto "info" auto / auto;
     }
 
     h1 {

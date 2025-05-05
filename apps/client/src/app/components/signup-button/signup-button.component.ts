@@ -10,7 +10,7 @@ import { AuthService } from "../../services/auth.service.js";
 @Component({
   imports: [MatIconModule, MatButtonModule, RouterLink, AsyncPipe],
   selector: "deals-signup-button",
-  styleUrls: ["./signup-button.component.css"],
+  styleUrl: "./signup-button.component.css",
   templateUrl: "./signup-button.component.html",
 })
 export class SignupButtonComponent {

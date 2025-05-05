@@ -13,7 +13,6 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     MatTooltipModule,
   ],
   selector: "deals-toolbar-language-switch",
-  styleUrl: "./toolbar-language-switch.component.css",
   templateUrl: "./toolbar-language-switch.component.html",
 })
 export class ToolbarLanguageSwitchComponent {}

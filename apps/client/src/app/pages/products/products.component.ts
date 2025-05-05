@@ -38,7 +38,7 @@ import { ProductSortChoices, Order } from "../../zeus/index.js";
     DealsPaginatorComponent,
     ProductCardComponent,
   ],
-  styleUrls: ["./products.component.css"],
+  styleUrl: "./products.component.css",
   templateUrl: "./products.component.html",
 })
 export class ProductsComponent {

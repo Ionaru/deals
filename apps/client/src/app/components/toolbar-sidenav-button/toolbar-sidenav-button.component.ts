@@ -17,7 +17,6 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     ToolbarIconButtonComponent,
   ],
   selector: "deals-toolbar-sidenav-button",
-  styleUrl: "./toolbar-sidenav-button.component.css",
   templateUrl: "./toolbar-sidenav-button.component.html",
 })
 export class ToolbarSidenavButtonComponent {

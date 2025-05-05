@@ -10,7 +10,6 @@ import { UnknownDealsService } from "../../services/unknown-deals.service.js";
 @Component({
   imports: [MatTableModule, MatButtonModule, DatePipe],
   selector: "deals-unknown-deals",
-  styleUrl: "./unknown-deals.component.css",
   templateUrl: "./unknown-deals.component.html",
 })
 export class UnknownDealsComponent {

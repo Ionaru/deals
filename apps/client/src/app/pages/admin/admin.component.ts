@@ -26,7 +26,7 @@ import { HealthService } from "../../services/health.service.js";
     MatProgressSpinnerModule,
     UnknownDealsComponent,
   ],
-  styleUrls: ["./admin.component.css"],
+  styleUrl: "./admin.component.css",
   templateUrl: "./admin.component.html",
 })
 export class AdminComponent implements OnDestroy {
