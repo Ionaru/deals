@@ -68,6 +68,7 @@ enum KruidvatDealType {
   THREE_FOR_7_50,
   THREE_FOR_8,
   THREE_FOR_9,
+  THREE_FOR_99_99,
 
   // 4 for €X
   FOUR_FOR_10,
@@ -172,7 +173,9 @@ enum KruidvatDealType {
   FOR_3,
   FOR_3_99,
   FOR_4_39,
+  FOR_4_99,
   FOR_5,
+  FOR_5_75,
   FOR_5_99,
   FOR_6,
   FOR_7_99,
@@ -184,6 +187,7 @@ enum KruidvatDealType {
   FOR_14,
   FOR_14_99,
   FOR_15_99,
+  FOR_17_49,
   FOR_24_99,
   FOR_25,
   FOR_26_50,
@@ -358,6 +362,11 @@ const kruidvatDealInformation: Record<KruidvatDealType, IDealInformation> =
     [KruidvatDealType.THREE_FOR_9]: {
       calculation: () => 9 / 3,
       code: "1047",
+      purchaseAmount: 3,
+    },
+    [KruidvatDealType.THREE_FOR_99_99]: {
+      calculation: () => 99.99 / 3,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDU5OXxpbWFnZS9wbmd8YUdGakwyZzFOeTh6TVRBeE1EWXlNekF5T1RJM09BfDBkNjA3MjdhMmVlYzE3MzQ4OTM1NjIxM2JiMTFhNTBlNmM2NTI5NmEzNzE5YjBlODE0OTRhNWY0MTQ4ZDcwYzI",
       purchaseAmount: 3,
     },
     [KruidvatDealType.THREE_FOR_10]: {
@@ -885,9 +894,19 @@ const kruidvatDealInformation: Record<KruidvatDealType, IDealInformation> =
       code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDMzNHxpbWFnZS9wbmd8YURObEwyZzBZUzh6TXpnMU1EQTJOVFU0TkRFMU9BfDY3OWMzMDE5MWE0OTgyZDM2NTk2MjEzYWVkMjMwMjE3NGVlMzk2YzAxNWEwMWNlNzAzMWZmMmZhZTgzZjBkMWU",
       purchaseAmount: 1,
     },
+    [KruidvatDealType.FOR_4_99]: {
+      calculation: () => 4.99,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDE3N3xpbWFnZS9wbmd8YUdGbEwyZzJZaTh6TWpNM05qRXpNVGM0TURZek9BfDU0ODQxNDlhOWZhNjJmNjQyZmZjYTMyYmJlN2M4N2MzNGVhNTgwMDk3MmUxYTk3OWQwM2Q4ZGEyMzVhZTBiOTg",
+      purchaseAmount: 1,
+    },
     [KruidvatDealType.FOR_5]: {
       calculation: () => 5,
       code: "4190",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_5_75]: {
+      calculation: () => 5.75,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDE1OXxpbWFnZS9wbmd8YURRekwyaGpPQzh6TkRFeU1qYzVNalUyTmpneE5BfDRhY2E1Mzg1MzJlNWQ5NDQ3MjIzNTI3OWU3NDQ5NjVmMTk0NDIzYjQyYjBmZjUwMmQ5MmYwNmIyNWZjM2EwYzE",
       purchaseAmount: 1,
     },
     [KruidvatDealType.FOR_5_99]: {
@@ -943,6 +962,11 @@ const kruidvatDealInformation: Record<KruidvatDealType, IDealInformation> =
     [KruidvatDealType.FOR_15_99]: {
       calculation: () => 15.99,
       code: "4525",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FOR_17_49]: {
+      calculation: () => 17.49,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDQyOXxpbWFnZS9wbmd8YURReUwyZzVaUzh5TnpJME9UQXhORGd6TXpFNE1nfDA0MDhhZDc1YjAzOTgzMDQ2ZTkzMjVmNWQ1YWMxNGY0NWQyY2E1YTRlMmUyYjllYTgwN2M4MDI1NjQxMDkwNGI",
       purchaseAmount: 1,
     },
     [KruidvatDealType.FOR_24_99]: {
