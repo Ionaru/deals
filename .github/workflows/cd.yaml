@@ -127,23 +127,13 @@ jobs:
           AUTH_DB_NAME: E2E-Deals-Auth
           SESSION_DB_NAME: E2E-Deals-Session
       - run: npm ci
-      - uses: nick-fields/retry@v3
-        with:
-          timeout_minutes: 30
-          max_attempts: 3
-          command: npx nx run client-e2e:e2e
+      - run: npx playwright install --with-deps
+      - run: npx nx e2e client-e2e
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cypress-screenshots
-          path: dist/cypress/apps/client-e2e/screenshots
-          retention-days: 1
-          if-no-files-found: ignore
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cypress-videos
-          path: dist/cypress/apps/client-e2e/videos
+          name: playwright-output
+          path: dist/.playwright/apps/client-e2e
           retention-days: 1
           if-no-files-found: ignore
       - run: docker compose logs --no-color >& e2e.log

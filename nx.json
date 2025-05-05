@@ -19,7 +19,7 @@
       "inputs": ["default", "{workspaceRoot}/eslint.config.js"]
     }
   },
-  "plugins": ["@nx/eslint/plugin", "@nx/vite/plugin", "@nx/cypress/plugin"],
+  "plugins": ["@nx/eslint/plugin", "@nx/vite/plugin", "@nx/playwright/plugin"],
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
@@ -28,8 +28,6 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/eslint.config.js",
-      "!{projectRoot}/cypress/**/*",
-      "!{projectRoot}/cypress.config.c?[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s"
     ]
   },
@@ -37,12 +35,12 @@
     "@nx/angular:application": {
       "style": "css",
       "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "unitTestRunner": "vite",
+      "e2eTestRunner": "playwright"
     },
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "vite"
     },
     "@nx/angular:component": {
       "style": "css"
