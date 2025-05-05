@@ -2,10 +2,10 @@ import { Test } from "@nestjs/testing";
 import { ObjectId } from "mongodb";
 import { describe, beforeEach, it, expect } from "vitest";
 
-import { User } from "../../models/user.model";
+import { User } from "../../models/user.model.js";
 
-import { UserController } from "./user.controller";
-import { UserService } from "./user.service";
+import { UserController } from "./user.controller.js";
+import { UserService } from "./user.service.js";
 
 describe("UserController", () => {
   let userController: UserController;

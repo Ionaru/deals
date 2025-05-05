@@ -2,9 +2,9 @@ import { inject, Injectable, isDevMode } from "@angular/core";
 import { Apollo } from "apollo-angular";
 import { BehaviorSubject, firstValueFrom, map, tap } from "rxjs";
 
-import { appName } from "../app.config";
-import { ModelTypes } from "../zeus";
-import { typedGql } from "../zeus/typedDocumentNode";
+import { appName } from "../app.config.js";
+import { ModelTypes } from "../zeus/index.js";
+import { typedGql } from "../zeus/typedDocumentNode.js";
 
 @Injectable({
   providedIn: "root",
@@ -41,18 +41,19 @@ export class AuthService {
   async register(username?: string, existingUser = false) {
     const { client } = await import("@passwordless-id/webauthn");
     const challenge = await firstValueFrom(this.#getChallenge());
-    const nameToRegister = username || this.#getDefaultAccountName();
+    const nameToRegister = username ?? this.#getDefaultAccountName();
 
     const originalFunction: CredentialsContainer["create"] =
-      window.navigator.credentials.create;
-    window.navigator.credentials.create = (
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      globalThis.navigator.credentials.create;
+    globalThis.navigator.credentials.create = (
       options: CredentialCreationOptions,
     ) => {
       if (options.publicKey) {
         options.publicKey.user.displayName = `${appName} Account`;
         options.publicKey.rp.name = appName;
       }
-      return originalFunction.call(window.navigator.credentials, options);
+      return originalFunction.call(globalThis.navigator.credentials, options);
     };
 
     const registration = await client.register(
@@ -67,7 +68,7 @@ export class AuthService {
       },
     );
 
-    window.navigator.credentials.create = originalFunction;
+    globalThis.navigator.credentials.create = originalFunction;
 
     if (existingUser) {
       const addResult = await firstValueFrom(

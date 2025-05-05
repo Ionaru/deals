@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 
-import { AdminComponent } from "./admin.component";
+import { AdminComponent } from "./admin.component.js";
 
 export default [
   {

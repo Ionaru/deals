@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ToolbarIconButtonComponent } from "./toolbar-icon-button.component";
+import { ToolbarIconButtonComponent } from "./toolbar-icon-button.component.js";
 
 describe("ToolbarIconButtonComponent", () => {
   let component: ToolbarIconButtonComponent;

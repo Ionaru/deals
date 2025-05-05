@@ -9,9 +9,9 @@ import { UseGuards } from "@nestjs/common";
 import { Resolver, Query, Args, ID, Mutation } from "@nestjs/graphql";
 import { Observable } from "rxjs";
 
-import { IsAdminGuard } from "../../guards/is-admin.guard";
+import { IsAdminGuard } from "../../guards/is-admin.guard.js";
 
-import { DealsService } from "./deals.service";
+import { DealsService } from "./deals.service.js";
 
 @Resolver()
 export class DealsResolver {

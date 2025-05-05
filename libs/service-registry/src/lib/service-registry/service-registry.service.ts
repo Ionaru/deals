@@ -2,7 +2,7 @@ import { MSMessage, ServiceType } from "@deals/api";
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import { tap } from "rxjs";
 
-import { ServiceGatewayService } from "../service-gateway/service-gateway.service";
+import { ServiceGatewayService } from "../service-gateway/service-gateway.service.js";
 
 @Injectable()
 export class ServiceRegistryService {

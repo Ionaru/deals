@@ -1,8 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { Apollo } from "apollo-angular";
 
-import { ProductSortChoices, Order, $ } from "../zeus";
-import { typedGql } from "../zeus/typedDocumentNode";
+import { ProductSortChoices, Order, $ } from "../zeus/index.js";
+import { typedGql } from "../zeus/typedDocumentNode.js";
 
 export const productQuery = typedGql("query")({
   product: [

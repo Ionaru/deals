@@ -11,41 +11,19 @@
       "cache": true
     },
     "@nx/vite:test": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.cjs"],
+      "inputs": ["default", "^production"],
       "cache": true
-    },
-    "@nx/jest:jest": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.cjs"],
-      "cache": true,
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     },
     "@nx/eslint:lint": {
       "cache": true,
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/.eslintrc.json"
-      ]
+      "inputs": ["default", "{workspaceRoot}/eslint.config.js"]
     }
   },
   "plugins": [
-    {
-      "plugin": "@nx/cypress/plugin",
-      "options": {
-        "targetName": "e2e",
-        "openTargetName": "open-cypress",
-        "componentTestingTargetName": "component-test",
-        "ciTargetName": "e2e-ci"
-      }
-    }
+    "@nx/eslint/plugin",
+    "nx-stylelint/plugin",
+    "@nx/vite/plugin",
+    "@nx/playwright/plugin"
   ],
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
@@ -54,12 +32,7 @@
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/.eslintignore",
-      "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.js",
-      "!{projectRoot}/cypress/**/*",
-      "!{projectRoot}/cypress.config.c?[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s"
     ]
   },
@@ -67,17 +40,16 @@
     "@nx/angular:application": {
       "style": "css",
       "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "unitTestRunner": "vite",
+      "e2eTestRunner": "playwright"
     },
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "vite"
     },
     "@nx/angular:component": {
       "style": "css"
     }
   },
-  "defaultBase": "main",
-  "useLegacyCache": true
+  "defaultBase": "main"
 }

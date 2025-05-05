@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 
-import { ToolbarSidenavButtonComponent } from "./toolbar-sidenav-button.component";
+import { ToolbarSidenavButtonComponent } from "./toolbar-sidenav-button.component.js";
 
 describe("ToolbarSidenavButtonComponent", () => {
   let component: ToolbarSidenavButtonComponent;

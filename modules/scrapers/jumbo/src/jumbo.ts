@@ -4,12 +4,12 @@ import { IProductDeal } from "@deals/api";
 import { ScrapeWebsiteService } from "@deals/scraper-service";
 import { Logger } from "@nestjs/common";
 
-import { SecondHalfPrice } from "./deals/second-half-price";
-import { XForXPrice } from "./deals/x-for-x-price";
-import { XPercentOff } from "./deals/x-percent-off";
-import { XPlusXDeal } from "./deals/x-plus-x";
-import { XPriceOff } from "./deals/x-price-off";
-import { JumboDeal } from "./jumbo-deal";
+import { SecondHalfPrice } from "./deals/second-half-price.js";
+import { XForXPrice } from "./deals/x-for-x-price.js";
+import { XPercentOff } from "./deals/x-percent-off.js";
+import { XPlusXDeal } from "./deals/x-plus-x.js";
+import { XPriceOff } from "./deals/x-price-off.js";
+import { JumboDeal } from "./jumbo-deal.js";
 
 enum Availability {
   AVAILABLE = "AVAILABLE",
@@ -21,15 +21,15 @@ type PromotionGroup = "GeenBestelkosten" | "seizoen";
 interface Promotion {
   group: PromotionGroup;
   isKiesAndMix: boolean;
-  tags: Array<{
+  tags: {
     text: string;
-  }>;
+  }[];
 }
 
 interface JumboGraphQLResponse {
   data: {
     searchProducts: {
-      products: Array<{
+      products: {
         availability: {
           availability: Availability;
           isAvailable: boolean;
@@ -46,7 +46,7 @@ interface JumboGraphQLResponse {
           promoPrice: number;
         };
         promotions: Promotion[];
-      }>;
+      }[];
     };
   };
 }
@@ -59,14 +59,13 @@ enum JumboDealType {
   X_PLUS_X = "X_PLUS_X",
 }
 
-const jumboDealInformation: { [key in JumboDealType]: JumboDeal } =
-  Object.freeze({
-    [JumboDealType.X_PLUS_X]: new XPlusXDeal(),
-    [JumboDealType.SECOND_HALF_PRICE]: new SecondHalfPrice(),
-    [JumboDealType.X_PERCENT_OFF]: new XPercentOff(),
-    [JumboDealType.X_PRICE_OFF]: new XPriceOff(),
-    [JumboDealType.X_FOR_X_PRICE]: new XForXPrice(),
-  });
+const jumboDealInformation: Record<JumboDealType, JumboDeal> = Object.freeze({
+  [JumboDealType.X_PLUS_X]: new XPlusXDeal(),
+  [JumboDealType.SECOND_HALF_PRICE]: new SecondHalfPrice(),
+  [JumboDealType.X_PERCENT_OFF]: new XPercentOff(),
+  [JumboDealType.X_PRICE_OFF]: new XPriceOff(),
+  [JumboDealType.X_FOR_X_PRICE]: new XForXPrice(),
+});
 
 export class Jumbo extends ScrapeWebsiteService {
   shopName = "Jumbo";
@@ -139,7 +138,7 @@ export class Jumbo extends ScrapeWebsiteService {
         });
 
         response.on("end", () => {
-          resolve(JSON.parse(data));
+          resolve(JSON.parse(data) as JumboGraphQLResponse);
         });
 
         response.on("error", (error) => {

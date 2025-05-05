@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import { UserDTO } from "@deals/api";
 import { HttpStatus, UseGuards } from "@nestjs/common";
 import {
@@ -12,9 +11,9 @@ import {
 import { Request } from "express";
 import { GraphQLError } from "graphql";
 
-import { IsAdminGuard } from "../../guards/is-admin.guard";
+import { IsAdminGuard } from "../../guards/is-admin.guard.js";
 
-import { UsersService } from "./users.service";
+import { UsersService } from "./users.service.js";
 
 @ArgsType()
 export class UserArguments {
@@ -31,7 +30,7 @@ export class UsersResolver {
     @Args() queryArguments: UserArguments,
     @Context() { req: { session } }: { req: Request },
   ) {
-    const userId = queryArguments.id || session.user;
+    const userId = queryArguments.id ?? session.user;
     if (!userId) {
       return;
     }

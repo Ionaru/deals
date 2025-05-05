@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
 
-import { ProductComponent } from "./product/product.component";
-import { ProductsComponent } from "./products.component";
+import { ProductComponent } from "./product/product.component.js";
+import { ProductsComponent } from "./products.component.js";
 
 export default [
   {

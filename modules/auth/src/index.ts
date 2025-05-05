@@ -1,1 +1,1 @@
-export { Auth } from "./app/app.module";
+export { Auth } from "./app/app.module.js";

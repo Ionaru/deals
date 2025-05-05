@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { Challenge } from "../../models/challenge.model";
+import { Challenge } from "../../models/challenge.model.js";
 
-import { ChallengeController } from "./challenge.controller";
-import { ChallengeService } from "./challenge.service";
+import { ChallengeController } from "./challenge.controller.js";
+import { ChallengeService } from "./challenge.service.js";
 
 @Module({
   controllers: [ChallengeController],

@@ -6,7 +6,7 @@ import {
   ObjectIdColumn,
 } from "typeorm";
 
-import { Credential } from "./auth.model";
+import { Credential } from "./auth.model.js";
 
 @Entity()
 export class User {

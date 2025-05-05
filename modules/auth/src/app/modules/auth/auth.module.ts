@@ -2,10 +2,10 @@ import { MicroserviceModule } from "@deals/service-registry";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { User } from "../../models/user.model";
+import { User } from "../../models/user.model.js";
 
-import { AuthController } from "./auth.controller";
-import { AuthService } from "./auth.service";
+import { AuthController } from "./auth.controller.js";
+import { AuthService } from "./auth.service.js";
 
 @Module({
   controllers: [AuthController],

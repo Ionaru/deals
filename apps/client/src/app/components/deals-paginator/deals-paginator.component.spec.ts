@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { setComponentInput } from "../../../testing/mocks";
+import { setComponentInput } from "../../../testing/mocks.js";
 
-import { DealsPaginatorComponent } from "./deals-paginator.component";
+import { DealsPaginatorComponent } from "./deals-paginator.component.js";
 
 describe("DealsPaginatorComponent", () => {
   let component: DealsPaginatorComponent;

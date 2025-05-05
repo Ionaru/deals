@@ -1,1 +1,1 @@
-export { Kruidvat as KruidvatScraper } from "./kruidvat";
+export { Kruidvat as KruidvatScraper } from "./kruidvat.js";

@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* eslint-disable */
 
-import { AllTypesProps, ReturnTypes, Ops } from './const';
+import { AllTypesProps, ReturnTypes, Ops } from './const.js';
 
 
 export const HOST="Specify host"

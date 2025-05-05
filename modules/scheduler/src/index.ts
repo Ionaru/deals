@@ -1,1 +1,1 @@
-export { Scheduler } from "./app/app.module";
+export { Scheduler } from "./app/app.module.js";

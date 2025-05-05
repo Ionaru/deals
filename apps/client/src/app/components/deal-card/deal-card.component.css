@@ -40,6 +40,7 @@
       .shop-logo {
         margin-inline: 0.25em;
 
+        /* stylelint-disable-next-line selector-class-pattern */
         &.Albert.Heijn {
           width: 48px;
         }

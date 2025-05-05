@@ -2,7 +2,7 @@ import { DOCUMENT } from "@angular/common";
 import { inject, Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
-import { SESSION_STORAGE, WINDOW } from "../../tokens/injection-tokens";
+import { SESSION_STORAGE, WINDOW } from "../../tokens/injection-tokens.js";
 
 /**
  * Service to toggle dark mode.

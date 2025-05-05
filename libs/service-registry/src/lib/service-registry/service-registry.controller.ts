@@ -2,7 +2,7 @@ import { MSEvent } from "@deals/api";
 import { Controller } from "@nestjs/common";
 import { EventPattern } from "@nestjs/microservices";
 
-import { ServiceRegistryService } from "./service-registry.service";
+import { ServiceRegistryService } from "./service-registry.service.js";
 
 @Controller()
 export class ServiceRegistryController {

@@ -1,4 +1,4 @@
-import { JumboDeal } from "../jumbo-deal";
+import { JumboDeal } from "../jumbo-deal.js";
 
 interface IXForXPriceDealMatcherGroups {
   amount: number;

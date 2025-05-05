@@ -2,13 +2,13 @@ import { MSMessage } from "@deals/api";
 import { ServiceGatewayService } from "@deals/service-registry";
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { RegistrationParsed } from "@passwordless-id/webauthn/dist/esm/types";
+import { RegistrationParsed } from "@passwordless-id/webauthn/dist/esm/types.js";
 import { ObjectId } from "mongodb";
 import { firstValueFrom } from "rxjs";
 import { MongoRepository } from "typeorm";
 
-import { Credential } from "../../models/auth.model";
-import { User } from "../../models/user.model";
+import { Credential } from "../../models/auth.model.js";
+import { User } from "../../models/user.model.js";
 
 @Injectable()
 export class AuthService {
@@ -26,9 +26,10 @@ export class AuthService {
 
   async findExistingUser(credentialId: string) {
     try {
-      return this.userRepository.findOneBy({
+      const result = await this.userRepository.findOneBy({
         "credentials.id": credentialId,
       });
+      return result;
     } catch (error) {
       Logger.error(error, AuthService.name);
       return;

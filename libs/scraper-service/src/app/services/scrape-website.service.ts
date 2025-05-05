@@ -3,7 +3,7 @@ import { uniquifyObjectsArray } from "@ionaru/array-utils";
 import { Injectable, Logger } from "@nestjs/common";
 import { JSDOM } from "jsdom";
 
-import { StorageService } from "./storage.service";
+import { StorageService } from "./storage.service.js";
 
 @Injectable()
 export abstract class ScrapeWebsiteService {
@@ -33,14 +33,14 @@ export abstract class ScrapeWebsiteService {
 
   protected reportUnknownDeal(unknownDeal: IUnknownDeal) {
     // this.#logger.log(`Storing unknown deal for ${this.shopName}...`);
-    this.storage
-      .storeUnknownDeal({
+    try {
+      this.storage.storeUnknownDeal({
         deal: unknownDeal,
         shop: this.shopName,
-      })
-      .catch((error) => {
-        this.#logger.error("Failed to store unknown deal.", error);
       });
+    } catch (error) {
+      this.#logger.error("Failed to store unknown deal.", error);
+    }
   }
 
   async scrapePath(path: string): Promise<IProductDeal[]> {

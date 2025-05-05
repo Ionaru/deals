@@ -1,4 +1,4 @@
-import { ServiceDTO } from "../entities/service";
+import { ServiceDTO } from "../entities/service.js";
 
 export type IHealthRequest = Record<string, never>;
 

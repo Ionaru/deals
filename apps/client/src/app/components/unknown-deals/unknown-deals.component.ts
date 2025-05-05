@@ -5,13 +5,11 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
 import { map } from "rxjs";
 
-import { UnknownDealsService } from "../../services/unknown-deals.service";
+import { UnknownDealsService } from "../../services/unknown-deals.service.js";
 
 @Component({
   imports: [MatTableModule, MatButtonModule, DatePipe],
   selector: "deals-unknown-deals",
-  standalone: true,
-  styleUrl: "./unknown-deals.component.css",
   templateUrl: "./unknown-deals.component.html",
 })
 export class UnknownDealsComponent {

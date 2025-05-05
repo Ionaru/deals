@@ -4,7 +4,7 @@ import { CronJob } from "cron";
 
 @Injectable()
 export class SchedulerService {
-  constructor(private schedulerRegistry: SchedulerRegistry) {}
+  constructor(private readonly schedulerRegistry: SchedulerRegistry) {}
 
   getTasks() {
     const tasks = this.schedulerRegistry.getCronJobs();
@@ -23,7 +23,7 @@ export class SchedulerService {
   startTask(name: string) {
     try {
       const tasks = this.schedulerRegistry.getCronJob(name);
-      tasks.fireOnTick();
+      void tasks.fireOnTick();
       return true;
     } catch {
       return false;

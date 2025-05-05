@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne } from "typeorm";
 
-import { BaseModel } from "./base.model";
-import { Shop } from "./shop";
+import { BaseModel } from "./base.model.js";
+import { Shop } from "./shop.js";
 
 @Entity()
 export class UnknownDeal extends BaseModel {

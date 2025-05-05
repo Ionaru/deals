@@ -1,24 +1,25 @@
-FROM node:20-alpine as build
+FROM node:22-alpine AS build
 
 LABEL org.opencontainers.image.source=https://github.com/ionaru/deals
 
 ARG SERVICE_NAME
 
 WORKDIR /app
-RUN mkdir -p /app/apps/$SERVICE_NAME
+RUN mkdir -p /app/apps/"$SERVICE_NAME"
 
-COPY package.json package-lock.json nx.json ./
+COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY tsconfig.base.json ./
+RUN echo "{}" > nx.json
 COPY apps/$SERVICE_NAME ./apps/$SERVICE_NAME
 COPY libs ./libs
 COPY modules ./modules
 
-RUN npm run build $SERVICE_NAME
+RUN npm run build "$SERVICE_NAME"
 
 
-FROM node:20-alpine as serve
+FROM node:22-alpine AS serve
 
 ARG SERVICE_NAME
 

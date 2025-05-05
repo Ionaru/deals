@@ -1,1 +1,1 @@
-export { Jumbo as JumboScraper } from "./jumbo";
+export { Jumbo as JumboScraper } from "./jumbo.js";

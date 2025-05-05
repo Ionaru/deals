@@ -1,10 +1,10 @@
-import { DealDTO } from "../entities/deal";
-import { IDealsRequest } from "../routes/get-deals";
-import { HealthResponse, IHealthRequest } from "../routes/get-health";
+import { DealDTO } from "../entities/deal.js";
+import { IDealsRequest } from "../routes/get-deals.js";
+import { HealthResponse, IHealthRequest } from "../routes/get-health.js";
 import {
   IScraperStatusRequest,
   IScraperStatusResponse,
-} from "../routes/get-scraper-status";
+} from "../routes/get-scraper-status.js";
 
 export interface IRequest {
   "v1/health": {

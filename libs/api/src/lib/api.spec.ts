@@ -1,4 +1,4 @@
-import { ScraperStatus } from "./api";
+import { ScraperStatus } from "./api.js";
 
 describe("api", () => {
   it("should work", () => {

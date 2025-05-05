@@ -26,13 +26,13 @@ import {
   tap,
 } from "rxjs";
 
-import { DealCardComponent } from "../../components/deal-card/deal-card.component";
-import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component";
-import { DealsQueryInputComponent } from "../../components/deals-query-input/deals-query-input.component";
-import { SpacerComponent } from "../../components/spacer/spacer.component";
-import { DealsService } from "../../services/deals.service";
-import { ShopsService } from "../../services/shops.service";
-import { DealSortChoices, Order } from "../../zeus";
+import { DealCardComponent } from "../../components/deal-card/deal-card.component.js";
+import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component.js";
+import { DealsQueryInputComponent } from "../../components/deals-query-input/deals-query-input.component.js";
+import { SpacerComponent } from "../../components/spacer/spacer.component.js";
+import { DealsService } from "../../services/deals.service.js";
+import { ShopsService } from "../../services/shops.service.js";
+import { DealSortChoices, Order } from "../../zeus/index.js";
 
 @Component({
   imports: [
@@ -56,8 +56,7 @@ import { DealSortChoices, Order } from "../../zeus";
     DealsQueryInputComponent,
     NgTemplateOutlet,
   ],
-  standalone: true,
-  styleUrls: ["./home.component.css"],
+  styleUrl: "./home.component.css",
   templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -146,7 +145,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   #parsePageFromUrl(url: string) {
-    const page = this.#router.parseUrl(url).queryParams.page ?? "1";
+    const page = this.#router.parseUrl(url).queryParamMap.get("page") ?? "1";
     if (page && typeof page === "string") {
       const pageAsNumber = Number.parseInt(page, 10);
       if (
@@ -160,7 +159,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   #parseShopFromUrl(url: string) {
-    const shop = this.#router.parseUrl(url).queryParams.shop;
+    const shop = this.#router.parseUrl(url).queryParamMap.get("shop");
     if (
       shop &&
       typeof shop === "string" &&
@@ -173,7 +172,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   #parseSortFromUrl(url: string) {
-    const sort = this.#router.parseUrl(url).queryParams.sort;
+    const sort = this.#router
+      .parseUrl(url)
+      .queryParamMap.get("sort") as DealSortChoices | null;
     const options = this.sorting.map((option) => option.value);
     if (sort && options.includes(sort) && this.dealsSort$.value !== sort) {
       this.dealsSort$.next(sort as unknown as DealSortChoices);
@@ -183,7 +184,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   #parseOrderFromUrl(url: string) {
-    const order = this.#router.parseUrl(url).queryParams.order;
+    const order = this.#router
+      .parseUrl(url)
+      .queryParamMap.get("order") as Order | null;
     const options = this.ordering.map((option) => option.value);
     if (order && options.includes(order) && this.dealsOrder$.value !== order) {
       this.dealsOrder$.next(order as unknown as Order);
@@ -193,7 +196,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   #parseQueryFromUrl(url: string) {
-    const query = this.#router.parseUrl(url).queryParams.query;
+    const query = this.#router.parseUrl(url).queryParamMap.get("query");
     if (query && typeof query === "string") {
       if (this.dealsQuery$.value !== query) {
         this.dealsQuery$.next(query);
@@ -256,18 +259,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onShopSelectionChange(change: MatSelectChange) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     this.dealsShopFilter$.next(change.value);
     this.page$.next(1);
     this.#updateUrl();
   }
 
   onSortingSelectionChange(change: MatSelectChange) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     this.dealsSort$.next(change.value);
     this.page$.next(1);
     this.#updateUrl();
   }
 
   onOrderSelectionChange(change: MatSelectChange) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     this.dealsOrder$.next(change.value);
     this.page$.next(1);
     this.#updateUrl();
@@ -280,7 +286,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   #updateUrl() {
-    this.#router.navigate([], {
+    void this.#router.navigate([], {
       queryParams: {
         order: this.dealsOrder$.value,
         page: this.page$.value,

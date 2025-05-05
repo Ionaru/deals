@@ -15,10 +15,13 @@ import { GraphQLModule } from "@nestjs/graphql";
 import mongo from "connect-mongo";
 import { NestSessionOptions, SessionModule } from "nestjs-session";
 
-import { ApiModule } from "./api/api.module";
-import { ServiceUnavailableFilter } from "./exception-filters/service-unavailable.filter";
+import { ApiModule } from "./api/api.module.js";
+import { ServiceUnavailableFilter } from "./exception-filters/service-unavailable.filter.js";
 
 let sessionStore: mongo | undefined;
+
+// @ts-expect-error Fix for connect-mongo old-style exports
+const connectMongo = mongo.default as typeof mongo;
 
 @Module({
   imports: [
@@ -26,14 +29,12 @@ let sessionStore: mongo | undefined;
     SessionModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (
-        config: ConfigService,
-      ): Promise<NestSessionOptions> => {
-        sessionStore = mongo.create({
+      useFactory: (config: ConfigService): Promise<NestSessionOptions> => {
+        sessionStore = connectMongo.create({
           dbName: config.getOrThrow("SESSION_DB_NAME"),
           mongoUrl: config.getOrThrow("AUTH_DB_URL"),
         });
-        return {
+        return Promise.resolve({
           session: {
             name: config.getOrThrow("GATEWAY_SESSION_NAME"),
             resave: false,
@@ -41,13 +42,13 @@ let sessionStore: mongo | undefined;
             secret: config.getOrThrow("GATEWAY_SESSION_SECRET"),
             store: sessionStore,
           },
-        };
+        });
       },
     }),
     MicroserviceModule.forRoot("Gateway", ServiceType.CORE),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: { path: "schema.graphql" },
-      context: ({ res }: any) => ({ res }),
+      context: ({ res }: { res: Response }) => ({ res }),
       driver: ApolloDriver,
       introspection: true,
       playground: {
@@ -76,6 +77,8 @@ let sessionStore: mongo | undefined;
 })
 export class Gateway implements OnApplicationShutdown {
   onApplicationShutdown() {
-    sessionStore?.close();
+    if (sessionStore) {
+      void sessionStore.close();
+    }
   }
 }

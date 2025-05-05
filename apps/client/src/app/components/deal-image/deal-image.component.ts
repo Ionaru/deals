@@ -5,7 +5,6 @@ import { MatProgressSpinner } from "@angular/material/progress-spinner";
 @Component({
   imports: [NgOptimizedImage, MatProgressSpinner],
   selector: "deals-deal-image",
-  standalone: true,
   styleUrl: "./deal-image.component.css",
   templateUrl: "./deal-image.component.html",
 })

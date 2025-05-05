@@ -4,7 +4,7 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { MicroserviceOptions } from "@nestjs/microservices";
 
-import { Kruidvat } from "./kruidvat";
+import { Kruidvat } from "./kruidvat.js";
 
 const bootstrap = async () => {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(

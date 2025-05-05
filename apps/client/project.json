@@ -11,6 +11,7 @@
       "nl": "apps/client/src/i18n/nl.xlf"
     }
   },
+  "tags": [],
   "targets": {
     "generate-gql-types": {
       "command": "npm run generate-gql-types"
@@ -35,7 +36,8 @@
         "styles": ["apps/client/src/styles.scss"],
         "scripts": [],
         "i18nMissingTranslation": "warning",
-        "localize": ["en-US"]
+        "localize": ["en-US"],
+        "polyfills": ["@angular/localize/init"]
       },
       "configurations": {
         "en-GB": {
@@ -115,18 +117,6 @@
         "targetFiles": ["en-GB.xlf", "nl.xlf"],
         "trim": true
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/client/jest.config.ts"
-      }
     }
-  },
-  "tags": []
+  }
 }

@@ -3,7 +3,7 @@ import { ServicesService } from "@deals/storage";
 import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
-import { Gateway } from "./app/app.module";
+import { Gateway } from "./app/app.module.js";
 
 const bootstrap = async () => {
   const app = await NestFactory.create(Gateway);
@@ -12,7 +12,7 @@ const bootstrap = async () => {
 
   app.enableShutdownHooks();
 
-  const port = process.env["PORT"] || 3333;
+  const port = process.env["PORT"] ?? 3333;
   await app.listen(port);
   Logger.log(`🚀 Gateway is running on: http://localhost:${port}/graphql`);
 

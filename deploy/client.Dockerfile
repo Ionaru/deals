@@ -1,4 +1,4 @@
-FROM node:20-alpine as build
+FROM node:22-alpine AS build
 
 LABEL org.opencontainers.image.source=https://github.com/ionaru/deals
 
@@ -7,14 +7,15 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-COPY tsconfig.base.json nx.json ./
+COPY tsconfig.base.json ./
+RUN echo "{}" > nx.json
 COPY apps/client ./apps/client
 COPY libs ./libs
 
 RUN npm run build client -- -- --localize
 
 
-FROM nginx:mainline-alpine as serve
+FROM nginx:mainline-alpine AS serve
 
 COPY deploy/nginx.conf /etc/nginx/conf.d
 RUN mkdir /etc/nginx/conf.d/proxy

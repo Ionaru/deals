@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import { IProductDeal } from "@deals/api";
 import { splitArrayIntoChunks } from "@ionaru/array-utils";
 import { Injectable, Logger } from "@nestjs/common";
@@ -10,11 +9,11 @@ import {
   Repository,
 } from "typeorm";
 
-import { Deal } from "../models/deal";
-import { DealHistory } from "../models/deal-history";
-import { PriceHistory } from "../models/price-history";
-import { Product } from "../models/product";
-import { Shop } from "../models/shop";
+import { DealHistory } from "../models/deal-history.js";
+import { Deal } from "../models/deal.js";
+import { PriceHistory } from "../models/price-history.js";
+import { Product } from "../models/product.js";
+import { Shop } from "../models/shop.js";
 
 @Injectable()
 export class FoundDealsService {

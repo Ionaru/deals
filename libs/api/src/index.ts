@@ -1,5 +1,5 @@
 import { Transport } from "@nestjs/microservices";
-import { NatsOptions } from "@nestjs/microservices/interfaces/microservice-configuration.interface";
+import { NatsOptions } from "@nestjs/microservices/interfaces/microservice-configuration.interface.js";
 
 export * from "./lib/api.js";
 export * from "./lib/api/deal-sort-choices.js";
@@ -20,7 +20,7 @@ export * from "./lib/entities/user.js";
 
 export const natsOptions: NatsOptions = {
   options: {
-    servers: [`nats://${process.env?.["NATS_HOST"] || "localhost"}:4222`],
+    servers: [`nats://${process.env?.["NATS_HOST"] ?? "localhost"}:4222`],
   },
   transport: Transport.NATS,
 };

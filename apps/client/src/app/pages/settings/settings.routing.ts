@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 
-import { SettingsComponent } from "./settings.component";
+import { SettingsComponent } from "./settings.component.js";
 
 export default [
   {

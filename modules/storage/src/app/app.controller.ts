@@ -9,12 +9,12 @@ import {
 import { Controller, Logger } from "@nestjs/common";
 import { EventPattern, MessagePattern } from "@nestjs/microservices";
 
-import { DealsService } from "./services/deals.service";
-import { FoundDealsService } from "./services/found-deals.service";
-import { ProductsService } from "./services/products.service";
-import { ServicesService } from "./services/services.service";
-import { ShopsService } from "./services/shops.service";
-import { UnknownDealService } from "./services/unknown-deal.service";
+import { DealsService } from "./services/deals.service.js";
+import { FoundDealsService } from "./services/found-deals.service.js";
+import { ProductsService } from "./services/products.service.js";
+import { ServicesService } from "./services/services.service.js";
+import { ShopsService } from "./services/shops.service.js";
+import { UnknownDealService } from "./services/unknown-deal.service.js";
 
 @Controller()
 export class StorageController {
@@ -76,11 +76,13 @@ export class StorageController {
   }
 
   @MessagePattern(MSMessage.GET_UNKNOWN_DEALS)
+  // eslint-disable-next-line sonarjs/function-return-type
   handleGetUnknownDeals(): AMSMResponse<MSMessage.GET_UNKNOWN_DEALS> {
     return this.unknownDealService.getUnknownDeals();
   }
 
   @MessagePattern(MSMessage.RESOLVE_UNKNOWN_DEAL)
+  // eslint-disable-next-line sonarjs/function-return-type
   handleResolveUnknownDeal(
     payload: MSMPayload<MSMessage.RESOLVE_UNKNOWN_DEAL>,
   ): AMSMResponse<MSMessage.RESOLVE_UNKNOWN_DEAL> {
@@ -108,6 +110,7 @@ export class StorageController {
   }
 
   @MessagePattern(MSMessage.GET_SERVICES)
+  // eslint-disable-next-line sonarjs/function-return-type
   handleGetServices(
     _payload: MSMPayload<MSMessage.GET_SERVICES>,
   ): AMSMResponse<MSMessage.GET_SERVICES> {
@@ -122,6 +125,7 @@ export class StorageController {
   }
 
   @MessagePattern(MSMessage.GET_SHOPS)
+  // eslint-disable-next-line sonarjs/function-return-type
   handleGetShops(): AMSMResponse<MSMessage.GET_SHOPS> {
     return this.shopsService.getShops();
   }

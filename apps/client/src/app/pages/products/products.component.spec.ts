@@ -4,17 +4,17 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { ApolloTestingModule } from "apollo-angular/testing";
 import { of } from "rxjs";
 
-import { TypedMockProvider } from "../../../testing/mocks";
-import { ProductsService } from "../../services/products.service";
+import { TypedMockProvider } from "../../../testing/mocks.js";
+import { ProductsService } from "../../services/products.service.js";
 
-import { ProductsComponent } from "./products.component";
+import { ProductsComponent } from "./products.component.js";
 
-fdescribe("productsComponent", () => {
+describe("productsComponent", () => {
   let component: ProductsComponent;
   let fixture: ComponentFixture<ProductsComponent>;
 
   beforeEach(async () => {
-    const getProductsMock = jest.fn();
+    const getProductsMock = vi.fn();
     getProductsMock.mockReturnValue({ valueChanges: of() });
 
     await TestBed.configureTestingModule({

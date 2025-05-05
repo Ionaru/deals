@@ -3,24 +3,24 @@ import { MatIconRegistry } from "@angular/material/icon";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 
-import { overrideComponents, TypedMockProvider } from "../testing/mocks";
+import { overrideComponents, TypedMockProvider } from "../testing/mocks.js";
 
-import { AppComponent } from "./app.component";
-import { SidenavContainerComponent } from "./components/sidenav-container/sidenav-container.component";
-import { SidenavContentComponent } from "./components/sidenav-content/sidenav-content.component";
-import { SignupButtonComponent } from "./components/signup-button/signup-button.component";
-import { ToolbarComponent } from "./components/toolbar/toolbar.component";
-import { AuthService } from "./services/auth.service";
+import { AppComponent } from "./app.component.js";
+import { SidenavContainerComponent } from "./components/sidenav-container/sidenav-container.component.js";
+import { SidenavContentComponent } from "./components/sidenav-content/sidenav-content.component.js";
+import { SignupButtonComponent } from "./components/signup-button/signup-button.component.js";
+import { ToolbarComponent } from "./components/toolbar/toolbar.component.js";
+import { AuthService } from "./services/auth.service.js";
 
 describe("appComponent", () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
-  const mockGetUser = jest.fn();
-  const mockSetDefaultFontSetClass = jest.fn();
+  const mockGetUser = vi.fn();
+  const mockSetDefaultFontSetClass = vi.fn();
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [RouterTestingModule, NoopAnimationsModule],
       providers: [
         TypedMockProvider(AuthService, { getUser: mockGetUser }),

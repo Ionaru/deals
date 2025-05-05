@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DealProblemButtonComponent } from "./deal-problem-button.component";
+import { DealProblemButtonComponent } from "./deal-problem-button.component.js";
 
 describe("DealProblemButtonComponent", () => {
   let component: DealProblemButtonComponent;

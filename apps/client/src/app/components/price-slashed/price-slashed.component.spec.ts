@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { setComponentInput } from "../../../testing/mocks";
+import { setComponentInput } from "../../../testing/mocks.js";
 
-import { PriceSlashedComponent } from "./price-slashed.component";
+import { PriceSlashedComponent } from "./price-slashed.component.js";
 
 describe("PriceSlashedComponent", () => {
   let component: PriceSlashedComponent;

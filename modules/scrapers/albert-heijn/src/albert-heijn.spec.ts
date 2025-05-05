@@ -1,15 +1,16 @@
 import { describe, beforeEach, it, expect } from "vitest";
 
-import { AlbertHeijn } from "./albert-heijn";
-import { Product } from "./api";
-import arielBigOneColor from "./test-data/ah-ariel-big-one-color.json";
-import goudsalami from "./test-data/ah-goudsalami.json";
-import speklap from "./test-data/ah-speklap-3st.json";
+import { AlbertHeijn } from "./albert-heijn.js";
+import { Product } from "./api.js";
+import arielBigOneColor from "./test-data/ah-ariel-big-one-color.json" with { type: "json" };
+import goudsalami from "./test-data/ah-goudsalami.json" with { type: "json" };
+import speklap from "./test-data/ah-speklap-3st.json" with { type: "json" };
 
 describe("Albert Heijn", () => {
   let scraper: AlbertHeijn;
 
   beforeEach(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
     scraper = new AlbertHeijn({} as any);
   });
 

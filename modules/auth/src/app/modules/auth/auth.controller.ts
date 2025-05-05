@@ -8,9 +8,9 @@ import {
 import {
   AuthenticationEncoded,
   RegistrationEncoded,
-} from "@passwordless-id/webauthn/dist/esm/types";
+} from "@passwordless-id/webauthn/dist/esm/types.js";
 
-import { AuthService } from "./auth.service";
+import { AuthService } from "./auth.service.js";
 
 @Controller()
 export class AuthController {

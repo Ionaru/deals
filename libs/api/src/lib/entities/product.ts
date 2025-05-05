@@ -7,13 +7,13 @@ import {
 } from "@nestjs/graphql";
 import { IsOptional, MaxLength, MinLength } from "class-validator";
 
-import { Order } from "../api/messages";
-import { getPaginationArguments, paginated } from "../api/pagination";
-import { ProductSortChoices } from "../api/product-sort-choices";
+import { Order } from "../api/messages.js";
+import { getPaginationArguments, paginated } from "../api/pagination.js";
+import { ProductSortChoices } from "../api/product-sort-choices.js";
 
-import { ProductDealHistoryDTO } from "./deal-history";
-import { ProductPriceHistoryDTO } from "./price-history";
-import { ShopDTO } from "./shop";
+import { ProductDealHistoryDTO } from "./deal-history.js";
+import { ProductPriceHistoryDTO } from "./price-history.js";
+import { ShopDTO } from "./shop.js";
 
 registerEnumType(ProductSortChoices, { name: "ProductSortChoices" });
 

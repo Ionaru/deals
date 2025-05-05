@@ -19,7 +19,7 @@ import {
   OrderAvailabilityStatus,
   Product,
   ProductCard,
-} from "./api";
+} from "./api.js";
 
 interface AnonymousToken {
   access_token: string;
@@ -214,6 +214,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
   }
 
   getWeightFromKilo(salesUnitSize: string): number | undefined {
+    // eslint-disable-next-line sonarjs/slow-regex
     const salesUnitKilo = /(?<weight>\d+(?:.\d+)?) k(?:ilo)?g?$/.exec(
       salesUnitSize,
     )?.groups;
@@ -224,6 +225,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
   }
 
   getWeightFromGrams(salesUnitSize: string): number | undefined {
+    // eslint-disable-next-line sonarjs/slow-regex
     const salesUnitGram = /(?<weight>\d+(?:.\d+)?) g(?:ram)?$/.exec(
       salesUnitSize,
     )?.groups;
@@ -314,7 +316,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
     product: Product,
     token: string,
   ): Promise<ParsedDiscount | undefined> {
-    const parsed: Array<ParsedDiscount | undefined> = [];
+    const parsed: (ParsedDiscount | undefined)[] = [];
 
     for (const discount of product.product.discountLabels) {
       switch (discount.code) {
@@ -383,12 +385,25 @@ export class AlbertHeijn extends ScrapeWebsiteService {
       return undefined;
     }
 
-    return discounts.reduce((previous, current) =>
-      previous.dealPrice * previous.purchaseAmount <
-      current.dealPrice * current.purchaseAmount
-        ? previous
-        : current,
-    );
+    return this.getBestDiscount(discounts);
+  }
+
+  getBestDiscount(discounts: ParsedDiscount[]): ParsedDiscount | undefined {
+    let bestDiscount = discounts[0];
+    if (!bestDiscount) {
+      return undefined;
+    }
+
+    for (const discount of discounts) {
+      if (
+        discount.dealPrice * discount.purchaseAmount <
+        bestDiscount.dealPrice * bestDiscount.purchaseAmount
+      ) {
+        bestDiscount = discount;
+      }
+    }
+
+    return bestDiscount;
   }
 
   async parseFixedPriceDiscount(

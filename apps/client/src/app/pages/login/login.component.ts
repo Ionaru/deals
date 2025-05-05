@@ -9,7 +9,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Router } from "@angular/router";
 
-import { AuthService } from "../../services/auth.service";
+import { AuthService } from "../../services/auth.service.js";
 
 enum LoginState {
   INITIAL,
@@ -31,15 +31,14 @@ enum LoginState {
     MatProgressSpinnerModule,
     AsyncPipe,
   ],
-  standalone: true,
-  styleUrls: ["./login.component.css"],
+  styleUrl: "./login.component.css",
   templateUrl: "./login.component.html",
 })
 export class LoginComponent {
   state = signal(LoginState.INITIAL);
   states = LoginState;
 
-  createdName = signal<string | undefined>(undefined);
+  createdName = signal<string | null>(null);
 
   form: FormGroup = new FormGroup({
     displayName: new FormControl(""),
@@ -51,7 +50,7 @@ export class LoginComponent {
   readonly isLoggedIn = toSignal(this.#authService.isLoggedIn$);
   readonly user = toSignal(this.#authService.user$);
 
-  async startRegister() {
+  startRegister() {
     this.state.set(LoginState.REGISTER);
   }
 
@@ -59,6 +58,7 @@ export class LoginComponent {
     this.state.set(LoginState.REGISTERING);
     try {
       const credential = await this.#authService.register(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         this.form.get("displayName")?.value,
         existingUser,
       );
@@ -69,7 +69,6 @@ export class LoginComponent {
         this.state.set(LoginState.INITIAL);
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error(error);
       this.state.set(LoginState.LOGIN_ERROR);
     }
@@ -88,7 +87,6 @@ export class LoginComponent {
         this.state.set(LoginState.LOGIN_ERROR);
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error(error);
       this.state.set(LoginState.LOGIN_ERROR);
     }

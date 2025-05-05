@@ -8,7 +8,7 @@ import {
 } from "@nestjs/common";
 import { GqlExecutionContext } from "@nestjs/graphql";
 import { Request, Response } from "express";
-import { GraphQLResolveInfo } from "graphql/type/definition";
+import { GraphQLResolveInfo } from "graphql/type/definition.js";
 import { firstValueFrom } from "rxjs";
 
 interface Context {
@@ -49,14 +49,16 @@ export class LoggedInGuard implements CanActivate {
     reason: string,
   ) {
     const ip = this.#getIp(request);
+
     const op = info.fieldName;
     Logger.warn(
-      `${ip} tried to access resource "${op}", but was unauthenticated: ${reason}`,
+      `${ip?.toString()} tried to access resource "${op}", but was unauthenticated: ${reason}`,
       LoggedInGuard.name,
     );
   }
 
+  // eslint-disable-next-line sonarjs/function-return-type
   #getIp(request: Request) {
-    return request.headers["x-forwarded-for"] || request.socket.remoteAddress;
+    return request.headers["x-forwarded-for"] ?? request.socket.remoteAddress;
   }
 }

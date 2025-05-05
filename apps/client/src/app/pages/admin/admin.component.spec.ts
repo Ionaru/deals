@@ -2,10 +2,10 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ApolloTestingModule } from "apollo-angular/testing";
 import { of } from "rxjs";
 
-import { TypedMockProvider } from "../../../testing/mocks";
-import { HealthService } from "../../services/health.service";
+import { TypedMockProvider } from "../../../testing/mocks.js";
+import { HealthService } from "../../services/health.service.js";
 
-import { AdminComponent } from "./admin.component";
+import { AdminComponent } from "./admin.component.js";
 
 describe("adminComponent", () => {
   let component: AdminComponent;

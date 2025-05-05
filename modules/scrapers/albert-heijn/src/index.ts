@@ -1,1 +1,1 @@
-export { AlbertHeijn as AlbertHeijnScraper } from "./albert-heijn";
+export { AlbertHeijn as AlbertHeijnScraper } from "./albert-heijn.js";

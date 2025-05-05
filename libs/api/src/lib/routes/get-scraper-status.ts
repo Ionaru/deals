@@ -1,4 +1,4 @@
-import { ScraperStatus } from "../common/scraper-status";
+import { ScraperStatus } from "../common/scraper-status.js";
 
 export type IScraperStatusRequest = Record<string, never>;
 

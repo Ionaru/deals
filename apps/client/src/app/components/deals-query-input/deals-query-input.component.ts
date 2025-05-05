@@ -23,7 +23,6 @@ import { MatInputModule } from "@angular/material/input";
     ReactiveFormsModule,
   ],
   selector: "deals-deals-query-input",
-  standalone: true,
   styleUrl: "./deals-query-input.component.css",
   templateUrl: "./deals-query-input.component.html",
 })
@@ -46,9 +45,10 @@ export class DealsQueryInputComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (
       "query" in changes &&
-      this.queryControl.value !== changes.query.currentValue
+      this.queryControl.value !== changes["query"].currentValue
     ) {
-      this.queryControl.setValue(changes.query.currentValue);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      this.queryControl.setValue(changes["query"].currentValue);
     }
   }
 

@@ -8,8 +8,8 @@ import {
   Repository,
 } from "typeorm";
 
-import { Shop } from "../models/shop";
-import { UnknownDeal } from "../models/unknown-deal";
+import { Shop } from "../models/shop.js";
+import { UnknownDeal } from "../models/unknown-deal.js";
 
 @Injectable()
 export class UnknownDealService {

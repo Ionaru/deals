@@ -16,13 +16,13 @@ import { MatSelect } from "@angular/material/select";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter, map, tap } from "rxjs";
 
-import { DealCardComponent } from "../../components/deal-card/deal-card.component";
-import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component";
-import { DealsQueryInputComponent } from "../../components/deals-query-input/deals-query-input.component";
-import { ProductCardComponent } from "../../components/product-card/product-card.component";
-import { ProductsService } from "../../services/products.service";
-import { ShopsService } from "../../services/shops.service";
-import { ProductSortChoices, Order } from "../../zeus";
+import { DealCardComponent } from "../../components/deal-card/deal-card.component.js";
+import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component.js";
+import { DealsQueryInputComponent } from "../../components/deals-query-input/deals-query-input.component.js";
+import { ProductCardComponent } from "../../components/product-card/product-card.component.js";
+import { ProductsService } from "../../services/products.service.js";
+import { ShopsService } from "../../services/shops.service.js";
+import { ProductSortChoices, Order } from "../../zeus/index.js";
 
 @Component({
   imports: [
@@ -38,8 +38,7 @@ import { ProductSortChoices, Order } from "../../zeus";
     DealsPaginatorComponent,
     ProductCardComponent,
   ],
-  standalone: true,
-  styleUrls: ["./products.component.css"],
+  styleUrl: "./products.component.css",
   templateUrl: "./products.component.html",
 })
 export class ProductsComponent {
@@ -102,7 +101,7 @@ export class ProductsComponent {
     const shop = this.shopChoice();
     const sort = this.sortingChoice();
     const order = this.orderingChoice();
-    const query = this.productQuery() || undefined;
+    const query = this.productQuery() ?? undefined;
 
     return this.#productsService
       .getProducts(page, shop, sort, order, query)
@@ -124,16 +123,13 @@ export class ProductsComponent {
     this.#parseUrl(this.#router.url);
 
     // Resets the page number when the user changes the sorting/filter options
-    effect(
-      () => {
-        this.shopChoice();
-        this.sortingChoice();
-        this.orderingChoice();
-        this.productQuery();
-        this.page.set(1);
-      },
-      { allowSignalWrites: true },
-    );
+    effect(() => {
+      this.shopChoice();
+      this.sortingChoice();
+      this.orderingChoice();
+      this.productQuery();
+      this.page.set(1);
+    });
 
     // Updates the URL when the user changes the sorting/filter options
     effect(() => {
@@ -143,7 +139,7 @@ export class ProductsComponent {
       const order = this.orderingChoice();
       const query = this.productQuery();
 
-      this.#router.navigate([], {
+      void this.#router.navigate([], {
         queryParams: {
           order,
           page,
@@ -155,18 +151,15 @@ export class ProductsComponent {
     });
 
     // Resets the sorting/filter options when the user clicks the nav button
-    effect(
-      () => {
-        const url = this.url();
-        if (url) {
-          const queryParameters = this.#router.parseUrl(url).queryParams;
-          if (Object.keys(queryParameters).length === 0) {
-            this.#parseUrl(url);
-          }
+    effect(() => {
+      const url = this.url();
+      if (url) {
+        const queryParameters = this.#router.parseUrl(url).queryParams;
+        if (Object.keys(queryParameters).length === 0) {
+          this.#parseUrl(url);
         }
-      },
-      { allowSignalWrites: true },
-    );
+      }
+    });
   }
 
   #parseUrl(url: string) {
@@ -178,7 +171,7 @@ export class ProductsComponent {
   }
 
   #parsePageFromUrl(url: string) {
-    const page = this.#router.parseUrl(url).queryParams.page ?? "1";
+    const page = this.#router.parseUrl(url).queryParamMap.get("page") ?? "1";
     if (page && typeof page === "string") {
       const pageAsNumber = Number.parseInt(page, 10);
       if (pageAsNumber && pageAsNumber > 0 && this.page() !== pageAsNumber) {
@@ -188,16 +181,18 @@ export class ProductsComponent {
   }
 
   #parseShopFromUrl(url: string) {
-    const shop = this.#router.parseUrl(url).queryParams.shop;
+    const shop = this.#router.parseUrl(url).queryParamMap.get("shop");
     if (shop && typeof shop === "string" && this.shopChoice() !== shop) {
       this.shopChoice.set(shop);
-    } else if (!shop && this.shopChoice() !== null) {
+    } else if (!shop && this.shopChoice() !== undefined) {
       this.shopChoice.set(undefined);
     }
   }
 
   #parseSortFromUrl(url: string) {
-    const sort = this.#router.parseUrl(url).queryParams.sort;
+    const sort = this.#router
+      .parseUrl(url)
+      .queryParamMap.get("sort") as ProductSortChoices | null;
     const options = this.sorting.map((option) => option.value);
     if (sort && options.includes(sort) && this.sortingChoice() !== sort) {
       this.sortingChoice.set(sort as unknown as ProductSortChoices);
@@ -207,7 +202,9 @@ export class ProductsComponent {
   }
 
   #parseOrderFromUrl(url: string) {
-    const order = this.#router.parseUrl(url).queryParams.order;
+    const order = this.#router
+      .parseUrl(url)
+      .queryParamMap.get("order") as Order | null;
     const options = this.ordering.map((option) => option.value);
     if (order && options.includes(order) && this.orderingChoice() !== order) {
       this.orderingChoice.set(order as unknown as Order);
@@ -217,12 +214,12 @@ export class ProductsComponent {
   }
 
   #parseQueryFromUrl(url: string) {
-    const query = this.#router.parseUrl(url).queryParams.query;
+    const query = this.#router.parseUrl(url).queryParamMap.get("query");
     if (query && typeof query === "string") {
       if (this.productQuery() !== query) {
         this.productQuery.set(query);
       }
-    } else if (!query && this.productQuery() !== null) {
+    } else if (!query && this.productQuery() !== undefined) {
       this.productQuery.set(undefined);
     }
   }

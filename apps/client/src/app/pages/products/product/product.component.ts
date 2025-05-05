@@ -1,20 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { AsyncPipe, formatDate, formatNumber } from "@angular/common";
 import { Component, computed, inject, LOCALE_ID } from "@angular/core";
 import { toObservable, toSignal } from "@angular/core/rxjs-interop";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { ActivatedRoute } from "@angular/router";
 import { ResultOf } from "@graphql-typed-document-node/core";
-import type { EChartsOption } from "echarts";
 import { NgxEchartsDirective } from "ngx-echarts";
 import { filter, switchMap } from "rxjs";
 
-import { DealImageComponent } from "../../../components/deal-image/deal-image.component";
-import { PriceCurrentComponent } from "../../../components/price-current/price-current.component";
-import { DarkModeService } from "../../../services/dark-mode.service";
+import { DealImageComponent } from "../../../components/deal-image/deal-image.component.js";
+import { PriceCurrentComponent } from "../../../components/price-current/price-current.component.js";
+import { DarkModeService } from "../../../services/dark-mode.service.js";
 import {
   productQuery,
   ProductsService,
-} from "../../../services/products.service";
+} from "../../../services/products.service.js";
 
 @Component({
   imports: [
@@ -24,8 +25,7 @@ import {
     PriceCurrentComponent,
     NgxEchartsDirective,
   ],
-  standalone: true,
-  styleUrl: "./product.component.scss",
+  styleUrl: "./product.component.css",
   templateUrl: "./product.component.html",
 })
 export class ProductComponent {
@@ -50,23 +50,24 @@ export class ProductComponent {
     this.#darkModeService.isDarkModeActive$(),
   );
 
-  readonly chartOptions = computed<EChartsOption | undefined>(() => {
+  readonly chartOptions = computed<NgxEchartsDirective["options"]>(() => {
     interface Data {
       x: string[];
       y: number[];
     }
 
-    const data = this.product()?.data.product?.priceHistory.reduce<Data>(
-      (accumulator, current) => {
-        accumulator.y.push(current.price);
-        accumulator.x.push(current.createdOn);
-        return accumulator;
-      },
-      { x: [], y: [] },
-    );
+    const data: Data = { x: [], y: [] };
+    const priceHistory = this.product()?.data.product?.priceHistory;
+
+    if (priceHistory) {
+      for (const item of priceHistory) {
+        data.y.push(item.price);
+        data.x.push(item.createdOn);
+      }
+    }
 
     if (!data) {
-      return;
+      return null;
     }
 
     return {
@@ -88,6 +89,7 @@ export class ProductComponent {
         x: "center",
       },
       tooltip: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         formatter: (parameters: any) => `
       ${formatDate(parameters.name, "longDate", this.#locale)}:
       <strong>€ ${formatNumber(parameters.data, this.#locale, "1.2-2")}</strong>
