@@ -9,7 +9,7 @@ import "@angular/localize/init";
 
 // Fix for "ReferenceError: TextEncoder is not defined"
 // https://github.com/angular/angular/issues/48748
- 
+
 // import { TextEncoder } from "node:util";
 // Object.defineProperty(globalThis, "TextEncoder", {
 //   value: TextEncoder,

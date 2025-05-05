@@ -11,7 +11,7 @@ export default mergeConfig(
     plugins: [
       angular({ include: ["src/styles.scss"] }),
       nxViteTsPaths() as Plugin,
-      nxCopyAssetsPlugin(["*.md"]),
+      nxCopyAssetsPlugin(["*.md"]) as Plugin,
     ],
     test: {
       setupFiles: "./src/test-setup.ts",
