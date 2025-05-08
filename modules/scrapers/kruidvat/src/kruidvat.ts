@@ -103,6 +103,7 @@ enum KruidvatDealType {
   THIRTY_FIVE_PERCENT_OFF,
   FOURTY_PERCENT_OFF,
   FIFTY_PERCENT_OFF,
+  FIFTY_FIVE_PERCENT_OFF,
   SIXTY_PERCENT_OFF,
   SIXTY_ONE_PERCENT_OFF,
   SEVENTY_FIVE_PERCENT_EXTRA_OFF,
@@ -128,6 +129,7 @@ enum KruidvatDealType {
   ALL_FOR_6_EACH,
   ALL_FOR_6_50_EACH,
   ALL_FOR_7_EACH,
+  ALL_FOR_7_49_EACH,
   ALL_FOR_7_50_EACH,
   ALL_FOR_7_99_EACH,
   ALL_FOR_7_99_EACH_DUPLICATE,
@@ -157,6 +159,7 @@ enum KruidvatDealType {
   SECOND_FOR_ONE,
   SECOND_FOR_TWO,
   SECOND_HALF_PRICE,
+  SECOND_HALF_PRICE_DUPLICATE,
 
   // €X off
   TWO_OFF,
@@ -444,6 +447,11 @@ const kruidvatDealInformation: Record<KruidvatDealType, IDealInformation> =
       code: "1039",
       purchaseAmount: 2,
     },
+    [KruidvatDealType.SECOND_HALF_PRICE_DUPLICATE]: {
+      calculation: (price: number) => price * 0.75,
+      code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDYzNHxpbWFnZS9wbmd8YURVeEwyZzRNUzh4TkRrME56UTNNalUzTWpRME5nfDBjOGI1YjYxMDBkMWE1YzIzMGFkMGY3OTQyODNiYjQ0N2YxYzJhMDI4ZWJmZGI2OWI1MzBhOWU1YTY3MjkyZGY",
+      purchaseAmount: 2,
+    },
     [KruidvatDealType.FOUR_FOR_5]: {
       calculation: () => 5 / 4,
       code: "1054",
@@ -497,6 +505,11 @@ const kruidvatDealInformation: Record<KruidvatDealType, IDealInformation> =
     [KruidvatDealType.FIFTY_PERCENT_OFF]: {
       calculation: (price: number) => price * 0.5,
       code: "1068",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.FIFTY_FIVE_PERCENT_OFF]: {
+      calculation: (price: number) => price * 0.55,
+      code: "1131",
       purchaseAmount: 1,
     },
     [KruidvatDealType.SIXTY_PERCENT_OFF]: {
@@ -707,6 +720,11 @@ const kruidvatDealInformation: Record<KruidvatDealType, IDealInformation> =
     [KruidvatDealType.ALL_FOR_7_EACH]: {
       calculation: () => 7,
       code: "1101",
+      purchaseAmount: 1,
+    },
+    [KruidvatDealType.ALL_FOR_7_49_EACH]: {
+      calculation: () => 7.49,
+      code: "1102",
       purchaseAmount: 1,
     },
     [KruidvatDealType.ALL_FOR_7_50_EACH]: {
