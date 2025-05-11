@@ -225,7 +225,7 @@ export class Jumbo extends ScrapeWebsiteService {
       deals.push({
         dealPrice,
         imageUrl: product.image,
-        name: product.title,
+        name: product.title.trim(),
         price: productPrice,
         productUrl: this.baseUrl + product.link,
         purchaseAmount,

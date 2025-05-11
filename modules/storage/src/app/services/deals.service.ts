@@ -31,10 +31,14 @@ export class DealsService {
 
     if (payload.query) {
       const queryParts = payload.query.split(" ");
-      for (const part of queryParts) {
-        queryBuilder.andWhere("LOWER(product.name) LIKE LOWER(:query)", {
-          query: `%${part}%`,
-        });
+      for (const [index, part] of queryParts.entries()) {
+        const parameterName = `query_${index}`;
+        queryBuilder.andWhere(
+          `LOWER(product.name) LIKE LOWER(:${parameterName})`,
+          {
+            [parameterName]: `%${part}%`,
+          },
+        );
       }
     }
 

@@ -1204,7 +1204,7 @@ export class Kruidvat extends ScrapeWebsiteService {
             kruidvatDealInformation[dealCode].calculation(priceText) * 100,
           ) / 100,
         imageUrl: this.baseUrl + productImage || "",
-        name: text ?? "Unknown product",
+        name: text?.trim() ?? "Unknown product",
         price: priceText,
         productUrl,
         purchaseAmount: kruidvatDealInformation[dealCode].purchaseAmount,
