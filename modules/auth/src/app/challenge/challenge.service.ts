@@ -1,10 +1,8 @@
-import { randomBytes } from "node:crypto";
-
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { MongoRepository } from "typeorm";
 
-import { Challenge } from "../../models/challenge.model.js";
+import { Challenge } from "../models/challenge.js";
 
 @Injectable()
 export class ChallengeService {
@@ -15,9 +13,11 @@ export class ChallengeService {
     private readonly challengeRepository: MongoRepository<Challenge>,
   ) {}
 
-  async getChallenge() {
-    await this.#deleteOldChallenges();
-    const challenge = randomBytes(64).toString("base64url");
+  async create(): Promise<string> {
+    void this.#deleteOldChallenges();
+    const bytes = new Uint8Array(64);
+    crypto.getRandomValues(bytes);
+    const challenge = btoa(String.fromCodePoint(...bytes));
 
     const newChallenge = this.challengeRepository.create({ challenge });
     await this.challengeRepository.save(newChallenge);
@@ -25,10 +25,14 @@ export class ChallengeService {
     return newChallenge.challenge;
   }
 
-  async checkChallenge(challenge: string): Promise<boolean> {
-    await this.#deleteOldChallenges();
+  async check(challenge: string): Promise<boolean> {
+    void this.#deleteOldChallenges();
     const existingChallenge = await this.challengeRepository.findOneBy({
       challenge,
+      createdAt: {
+        $gt: new Date(Date.now() - this.#challengeTimeout),
+        $lte: new Date(),
+      } as unknown as string,
     });
 
     if (!existingChallenge || challenge !== existingChallenge.challenge) {
@@ -42,11 +46,9 @@ export class ChallengeService {
 
   async #deleteOldChallenges() {
     await this.challengeRepository.delete({
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       createdAt: {
         $lte: new Date(Date.now() - this.#challengeTimeout),
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any,
+      } as unknown as string,
     });
   }
 }

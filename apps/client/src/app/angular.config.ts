@@ -19,6 +19,7 @@ import { provideEchartsCore } from "ngx-echarts";
 
 import {
   LOCAL_STORAGE,
+  NAVIGATOR,
   SESSION_STORAGE,
   WINDOW,
 } from "../tokens/injection-tokens.js";
@@ -53,5 +54,6 @@ export const angularConfiguration: ApplicationConfig = {
     { provide: LOCAL_STORAGE, useValue: localStorage },
     { provide: SESSION_STORAGE, useValue: sessionStorage },
     { provide: WINDOW, useValue: globalThis },
+    { provide: NAVIGATOR, useValue: navigator },
   ],
 };

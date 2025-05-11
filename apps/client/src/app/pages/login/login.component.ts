@@ -7,8 +7,10 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Router } from "@angular/router";
+import { lastValueFrom, map } from "rxjs";
 
 import { AuthService } from "../../services/auth.service.js";
+import { WebauthnService } from "../../services/webauthn.service.js";
 
 enum LoginState {
   INITIAL,
@@ -38,34 +40,29 @@ export class LoginComponent {
 
   createdName = signal<string | null>(null);
 
-  form: FormGroup = new FormGroup({
+  form = new FormGroup({
     displayName: new FormControl(""),
   });
 
   readonly #authService = inject(AuthService);
+  readonly #webauthnService = inject(WebauthnService);
   readonly #router = inject(Router);
 
-  readonly isLoggedIn = toSignal(this.#authService.isLoggedIn$);
+  readonly isLoggedIn = toSignal(this.#authService.user$.pipe(map(Boolean)));
   readonly user = toSignal(this.#authService.user$);
 
   startRegister() {
     this.state.set(LoginState.REGISTER);
   }
 
-  async register(existingUser = false) {
+  async register() {
     this.state.set(LoginState.REGISTERING);
     try {
-      const credential = await this.#authService.register(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        this.form.get("displayName")?.value,
-        existingUser,
+      const username = await this.#webauthnService.register(
+        this.form.value.displayName ?? undefined,
       );
-      if (credential && !existingUser) {
-        this.createdName.set(credential);
-        this.state.set(LoginState.REGISTERED);
-      } else {
-        this.state.set(LoginState.INITIAL);
-      }
+      this.state.set(LoginState.REGISTERED);
+      this.createdName.set(username);
     } catch (error) {
       console.error(error);
       this.state.set(LoginState.LOGIN_ERROR);
@@ -76,14 +73,8 @@ export class LoginComponent {
     this.state.set(LoginState.LOGIN);
 
     try {
-      const assertion = await this.#authService.login();
-      if (assertion) {
-        this.state.set(LoginState.INITIAL);
-        await this.#authService.getUser();
-        void this.#router.navigate(["/"]);
-      } else {
-        this.state.set(LoginState.LOGIN_ERROR);
-      }
+      await this.#webauthnService.login();
+      void this.#router.navigate(["/"]);
     } catch (error) {
       console.error(error);
       this.state.set(LoginState.LOGIN_ERROR);
@@ -91,12 +82,22 @@ export class LoginComponent {
   }
 
   async logout() {
-    await this.#authService.logout();
+    console.log("logout");
+    await lastValueFrom(this.#authService.logout$);
     this.state.set(LoginState.INITIAL);
   }
 
-  addPasskey() {
-    return this.register(true);
+  async addPasskey() {
+    this.state.set(LoginState.REGISTERING);
+    try {
+      await this.#webauthnService.addPasskey(
+        this.form.value.displayName ?? undefined,
+      );
+      this.state.set(LoginState.REGISTERED);
+    } catch (error) {
+      console.error(error);
+      this.state.set(LoginState.LOGIN_ERROR);
+    }
   }
 
   back() {

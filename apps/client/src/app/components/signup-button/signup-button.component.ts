@@ -17,7 +17,7 @@ export class SignupButtonComponent {
   readonly #authService = inject(AuthService);
   readonly #router = inject(Router);
 
-  readonly #isLoggedIn$ = this.#authService.isLoggedIn$;
+  readonly #isLoggedIn$ = this.#authService.user$.pipe(map(Boolean));
   readonly #isNotOnLoginRoute$ = this.#router.events.pipe(
     filter(
       (routerEvent): routerEvent is NavigationEnd =>

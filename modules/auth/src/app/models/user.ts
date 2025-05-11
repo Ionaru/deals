@@ -6,7 +6,9 @@ import {
   ObjectIdColumn,
 } from "typeorm";
 
-import { Credential } from "./auth.model.js";
+import { Role } from "../jwt.type.js";
+
+import { Credential } from "./credential.js";
 
 @Entity()
 export class User {
@@ -16,8 +18,8 @@ export class User {
   @Column({ type: "string" })
   username!: string;
 
-  @Column({ type: "boolean" })
-  isAdmin!: boolean;
+  @Column({ type: "string", array: true })
+  roles!: Role[];
 
   @Column(() => Credential, { array: true })
   credentials!: Credential[];

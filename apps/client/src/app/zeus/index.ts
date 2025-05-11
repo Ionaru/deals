@@ -904,7 +904,25 @@ export type ScalarCoders = {
 type ZEUS_UNIONS = never
 
 export type ValueTypes = {
-    ["DealDTO"]: AliasType<{
+    ["AuthenticatorAssertionResponseDTO"]: {
+	/** base64 encoded AuthenticatorAttestationResponse.authenticatorData */
+	authenticatorData: string | Variable<any, string>,
+	/** base64 encoded AuthenticatorAttestationResponse.clientDataJSON */
+	clientDataJSON: string | Variable<any, string>,
+	/** base64 encoded AuthenticatorAttestationResponse.signature */
+	signature: string | Variable<any, string>
+};
+	["AuthenticatorAttestationResponseDTO"]: {
+	/** base64 encoded AuthenticatorAttestationResponse.authenticatorData */
+	authenticatorData: string | Variable<any, string>,
+	/** base64 encoded AuthenticatorAttestationResponse.clientDataJSON */
+	clientDataJSON: string | Variable<any, string>,
+	/** base64 encoded AuthenticatorAttestationResponse.getPublicKey */
+	publicKey: string | Variable<any, string>,
+	/** The public key algorithm of the credential in COSEAlgorithmIdentifier format, usually a negative number. This server only supports -7 (ES256) and -257 (RS256). */
+	publicKeyAlgorithm: number | Variable<any, string>
+};
+	["DealDTO"]: AliasType<{
 	dealPrice?:boolean | `@${string}`,
 	dealQuantity?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
@@ -928,11 +946,30 @@ export type ValueTypes = {
 	shop?:ValueTypes["ShopDTO"],
 		__typename?: boolean | `@${string}`
 }>;
+	["JwtPayload"]: AliasType<{
+	exp?:boolean | `@${string}`,
+	iat?:boolean | `@${string}`,
+	roles?:boolean | `@${string}`,
+	sub?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["MeDTO"]: AliasType<{
+	roles?:boolean | `@${string}`,
+	sub?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["Mutation"]: AliasType<{
-addPasskey?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
-loginUser?: [{	authentication: string | Variable<any, string>},boolean | `@${string}`],
+addUserCredential?: [{	/** ID of the credential, this should be created by the authenticator */
+	id: string | Variable<any, string>,	response: ValueTypes["AuthenticatorAttestationResponseDTO"] | Variable<any, string>,	user: ValueTypes["UserDTO"] | Variable<any, string>},boolean | `@${string}`],
+	/** base64 encoded random string */
+	createChallenge?:boolean | `@${string}`,
+loginUser?: [{	/** ID of the credential, this should be created by the authenticator */
+	id: string | Variable<any, string>,	response: ValueTypes["AuthenticatorAssertionResponseDTO"] | Variable<any, string>},boolean | `@${string}`],
 	logoutUser?:boolean | `@${string}`,
-registerUser?: [{	registration: string | Variable<any, string>},boolean | `@${string}`],
+registerUser?: [{	/** ID of the credential, this should be created by the authenticator */
+	id: string | Variable<any, string>,	response: ValueTypes["AuthenticatorAttestationResponseDTO"] | Variable<any, string>,	user: ValueTypes["UserDTO"] | Variable<any, string>},boolean | `@${string}`],
 resolveUnknownDeal?: [{	id: ValueTypes["ID"] | Variable<any, string>},boolean | `@${string}`],
 startScraper?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 startTask?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
@@ -975,22 +1012,22 @@ startTask?: [{	name: string | Variable<any, string>},boolean | `@${string}`],
 }>;
 	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: AliasType<{
-	challenge?:boolean | `@${string}`,
+check?: [{	challenge: string | Variable<any, string>},boolean | `@${string}`],
 deal?: [{	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	query?: string | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["DealSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["DealPaginatedType"]],
+	me?:ValueTypes["MeDTO"],
 product?: [{	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["ExtendedProductDTO"]],
 products?: [{	limit?: number | undefined | null | Variable<any, string>,	order?: ValueTypes["Order"] | undefined | null | Variable<any, string>,	page?: number | undefined | null | Variable<any, string>,	query?: string | undefined | null | Variable<any, string>,	shop?: string | undefined | null | Variable<any, string>,	sort?: Array<ValueTypes["ProductSortChoices"]> | undefined | null | Variable<any, string>},ValueTypes["ProductPaginatedType"]],
 service?: [{	id: ValueTypes["ID"] | Variable<any, string>},ValueTypes["ServiceHealthDTO"]],
 	services?:ValueTypes["ServiceHealthDTO"],
-	session?:ValueTypes["SessionDTO"],
 	shops?:ValueTypes["ShopDTO"],
 task?: [{	name: string | Variable<any, string>},ValueTypes["TaskDTO"]],
 	tasks?:ValueTypes["TaskDTO"],
 	unknownDeals?:ValueTypes["UnknownDealDTO"],
-user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["UserDTO"]],
-	users?:ValueTypes["UserDTO"],
+verify?: [{	token: string | Variable<any, string>},ValueTypes["JwtPayload"]],
 		__typename?: boolean | `@${string}`
 }>;
+	["Roles"]:Roles;
 	["ServiceHealthDTO"]: AliasType<{
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
@@ -1000,10 +1037,6 @@ user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["Us
 		__typename?: boolean | `@${string}`
 }>;
 	["ServiceType"]:ServiceType;
-	["SessionDTO"]: AliasType<{
-	user?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
 	["ShopDTO"]: AliasType<{
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
@@ -1028,17 +1061,33 @@ user?: [{	id?: string | undefined | null | Variable<any, string>},ValueTypes["Us
 	updatedOn?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["UserDTO"]: AliasType<{
-	id?:boolean | `@${string}`,
-	isAdmin?:boolean | `@${string}`,
-	username?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
+	["UserDTO"]: {
+	/** Name of the user */
+	name: string | Variable<any, string>
+};
 	["ID"]:unknown
   }
 
 export type ResolverInputTypes = {
-    ["DealDTO"]: AliasType<{
+    ["AuthenticatorAssertionResponseDTO"]: {
+	/** base64 encoded AuthenticatorAttestationResponse.authenticatorData */
+	authenticatorData: string,
+	/** base64 encoded AuthenticatorAttestationResponse.clientDataJSON */
+	clientDataJSON: string,
+	/** base64 encoded AuthenticatorAttestationResponse.signature */
+	signature: string
+};
+	["AuthenticatorAttestationResponseDTO"]: {
+	/** base64 encoded AuthenticatorAttestationResponse.authenticatorData */
+	authenticatorData: string,
+	/** base64 encoded AuthenticatorAttestationResponse.clientDataJSON */
+	clientDataJSON: string,
+	/** base64 encoded AuthenticatorAttestationResponse.getPublicKey */
+	publicKey: string,
+	/** The public key algorithm of the credential in COSEAlgorithmIdentifier format, usually a negative number. This server only supports -7 (ES256) and -257 (RS256). */
+	publicKeyAlgorithm: number
+};
+	["DealDTO"]: AliasType<{
 	dealPrice?:boolean | `@${string}`,
 	dealQuantity?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
@@ -1062,11 +1111,30 @@ export type ResolverInputTypes = {
 	shop?:ResolverInputTypes["ShopDTO"],
 		__typename?: boolean | `@${string}`
 }>;
+	["JwtPayload"]: AliasType<{
+	exp?:boolean | `@${string}`,
+	iat?:boolean | `@${string}`,
+	roles?:boolean | `@${string}`,
+	sub?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	["MeDTO"]: AliasType<{
+	roles?:boolean | `@${string}`,
+	sub?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	["Mutation"]: AliasType<{
-addPasskey?: [{	registration: string},boolean | `@${string}`],
-loginUser?: [{	authentication: string},boolean | `@${string}`],
+addUserCredential?: [{	/** ID of the credential, this should be created by the authenticator */
+	id: string,	response: ResolverInputTypes["AuthenticatorAttestationResponseDTO"],	user: ResolverInputTypes["UserDTO"]},boolean | `@${string}`],
+	/** base64 encoded random string */
+	createChallenge?:boolean | `@${string}`,
+loginUser?: [{	/** ID of the credential, this should be created by the authenticator */
+	id: string,	response: ResolverInputTypes["AuthenticatorAssertionResponseDTO"]},boolean | `@${string}`],
 	logoutUser?:boolean | `@${string}`,
-registerUser?: [{	registration: string},boolean | `@${string}`],
+registerUser?: [{	/** ID of the credential, this should be created by the authenticator */
+	id: string,	response: ResolverInputTypes["AuthenticatorAttestationResponseDTO"],	user: ResolverInputTypes["UserDTO"]},boolean | `@${string}`],
 resolveUnknownDeal?: [{	id: ResolverInputTypes["ID"]},boolean | `@${string}`],
 startScraper?: [{	name: string},boolean | `@${string}`],
 startTask?: [{	name: string},boolean | `@${string}`],
@@ -1109,22 +1177,22 @@ startTask?: [{	name: string},boolean | `@${string}`],
 }>;
 	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: AliasType<{
-	challenge?:boolean | `@${string}`,
+check?: [{	challenge: string},boolean | `@${string}`],
 deal?: [{	id: ResolverInputTypes["ID"]},ResolverInputTypes["DealDTO"]],
 deals?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	query?: string | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["DealSortChoices"]> | undefined | null},ResolverInputTypes["DealPaginatedType"]],
+	me?:ResolverInputTypes["MeDTO"],
 product?: [{	id: ResolverInputTypes["ID"]},ResolverInputTypes["ExtendedProductDTO"]],
 products?: [{	limit?: number | undefined | null,	order?: ResolverInputTypes["Order"] | undefined | null,	page?: number | undefined | null,	query?: string | undefined | null,	shop?: string | undefined | null,	sort?: Array<ResolverInputTypes["ProductSortChoices"]> | undefined | null},ResolverInputTypes["ProductPaginatedType"]],
 service?: [{	id: ResolverInputTypes["ID"]},ResolverInputTypes["ServiceHealthDTO"]],
 	services?:ResolverInputTypes["ServiceHealthDTO"],
-	session?:ResolverInputTypes["SessionDTO"],
 	shops?:ResolverInputTypes["ShopDTO"],
 task?: [{	name: string},ResolverInputTypes["TaskDTO"]],
 	tasks?:ResolverInputTypes["TaskDTO"],
 	unknownDeals?:ResolverInputTypes["UnknownDealDTO"],
-user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
-	users?:ResolverInputTypes["UserDTO"],
+verify?: [{	token: string},ResolverInputTypes["JwtPayload"]],
 		__typename?: boolean | `@${string}`
 }>;
+	["Roles"]:Roles;
 	["ServiceHealthDTO"]: AliasType<{
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
@@ -1134,10 +1202,6 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["ServiceType"]:ServiceType;
-	["SessionDTO"]: AliasType<{
-	user?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
 	["ShopDTO"]: AliasType<{
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
@@ -1162,12 +1226,10 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
 	updatedOn?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["UserDTO"]: AliasType<{
-	id?:boolean | `@${string}`,
-	isAdmin?:boolean | `@${string}`,
-	username?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
+	["UserDTO"]: {
+	/** Name of the user */
+	name: string
+};
 	["schema"]: AliasType<{
 	query?:ResolverInputTypes["Query"],
 	mutation?:ResolverInputTypes["Mutation"],
@@ -1177,7 +1239,25 @@ user?: [{	id?: string | undefined | null},ResolverInputTypes["UserDTO"]],
   }
 
 export type ModelTypes = {
-    ["DealDTO"]: {
+    ["AuthenticatorAssertionResponseDTO"]: {
+	/** base64 encoded AuthenticatorAttestationResponse.authenticatorData */
+	authenticatorData: string,
+	/** base64 encoded AuthenticatorAttestationResponse.clientDataJSON */
+	clientDataJSON: string,
+	/** base64 encoded AuthenticatorAttestationResponse.signature */
+	signature: string
+};
+	["AuthenticatorAttestationResponseDTO"]: {
+	/** base64 encoded AuthenticatorAttestationResponse.authenticatorData */
+	authenticatorData: string,
+	/** base64 encoded AuthenticatorAttestationResponse.clientDataJSON */
+	clientDataJSON: string,
+	/** base64 encoded AuthenticatorAttestationResponse.getPublicKey */
+	publicKey: string,
+	/** The public key algorithm of the credential in COSEAlgorithmIdentifier format, usually a negative number. This server only supports -7 (ES256) and -257 (RS256). */
+	publicKeyAlgorithm: number
+};
+	["DealDTO"]: {
 		dealPrice: number,
 	dealQuantity: number,
 	id: string,
@@ -1198,8 +1278,22 @@ export type ModelTypes = {
 	productUrl: string,
 	shop: ModelTypes["ShopDTO"]
 };
+	["JwtPayload"]: {
+		exp: number,
+	iat: number,
+	roles: Array<ModelTypes["Roles"]>,
+	sub: string,
+	username: string
+};
+	["MeDTO"]: {
+		roles: Array<ModelTypes["Roles"]>,
+	sub: string,
+	username: string
+};
 	["Mutation"]: {
-		addPasskey: boolean,
+		addUserCredential: boolean,
+	/** base64 encoded random string */
+	createChallenge: string,
 	loginUser: boolean,
 	logoutUser: boolean,
 	registerUser: boolean,
@@ -1239,21 +1333,21 @@ export type ModelTypes = {
 };
 	["ProductSortChoices"]:ProductSortChoices;
 	["Query"]: {
-		challenge: string,
+		check: boolean,
 	deal?: ModelTypes["DealDTO"] | undefined | null,
 	deals: ModelTypes["DealPaginatedType"],
+	me?: ModelTypes["MeDTO"] | undefined | null,
 	product?: ModelTypes["ExtendedProductDTO"] | undefined | null,
 	products: ModelTypes["ProductPaginatedType"],
 	service?: ModelTypes["ServiceHealthDTO"] | undefined | null,
 	services: Array<ModelTypes["ServiceHealthDTO"]>,
-	session: ModelTypes["SessionDTO"],
 	shops: Array<ModelTypes["ShopDTO"]>,
 	task?: ModelTypes["TaskDTO"] | undefined | null,
 	tasks: Array<ModelTypes["TaskDTO"]>,
 	unknownDeals: Array<ModelTypes["UnknownDealDTO"]>,
-	user?: ModelTypes["UserDTO"] | undefined | null,
-	users: Array<ModelTypes["UserDTO"]>
+	verify: ModelTypes["JwtPayload"]
 };
+	["Roles"]:Roles;
 	["ServiceHealthDTO"]: {
 		id: ModelTypes["ID"],
 	name: string,
@@ -1262,9 +1356,6 @@ export type ModelTypes = {
 	type: ModelTypes["ServiceType"]
 };
 	["ServiceType"]:ServiceType;
-	["SessionDTO"]: {
-		user?: string | undefined | null
-};
 	["ShopDTO"]: {
 		id: ModelTypes["ID"],
 	name: string
@@ -1286,9 +1377,8 @@ export type ModelTypes = {
 	updatedOn: string
 };
 	["UserDTO"]: {
-		id: ModelTypes["ID"],
-	isAdmin: boolean,
-	username: string
+	/** Name of the user */
+	name: string
 };
 	["schema"]: {
 	query?: ModelTypes["Query"] | undefined | null,
@@ -1301,6 +1391,24 @@ export type GraphQLTypes = {
     // ------------------------------------------------------;
 	// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY);
 	// ------------------------------------------------------;
+	["AuthenticatorAssertionResponseDTO"]: {
+		/** base64 encoded AuthenticatorAttestationResponse.authenticatorData */
+	authenticatorData: string,
+	/** base64 encoded AuthenticatorAttestationResponse.clientDataJSON */
+	clientDataJSON: string,
+	/** base64 encoded AuthenticatorAttestationResponse.signature */
+	signature: string
+};
+	["AuthenticatorAttestationResponseDTO"]: {
+		/** base64 encoded AuthenticatorAttestationResponse.authenticatorData */
+	authenticatorData: string,
+	/** base64 encoded AuthenticatorAttestationResponse.clientDataJSON */
+	clientDataJSON: string,
+	/** base64 encoded AuthenticatorAttestationResponse.getPublicKey */
+	publicKey: string,
+	/** The public key algorithm of the credential in COSEAlgorithmIdentifier format, usually a negative number. This server only supports -7 (ES256) and -257 (RS256). */
+	publicKeyAlgorithm: number
+};
 	["DealDTO"]: {
 	__typename: "DealDTO",
 	dealPrice: number,
@@ -1325,9 +1433,25 @@ export type GraphQLTypes = {
 	productUrl: string,
 	shop: GraphQLTypes["ShopDTO"]
 };
+	["JwtPayload"]: {
+	__typename: "JwtPayload",
+	exp: number,
+	iat: number,
+	roles: Array<GraphQLTypes["Roles"]>,
+	sub: string,
+	username: string
+};
+	["MeDTO"]: {
+	__typename: "MeDTO",
+	roles: Array<GraphQLTypes["Roles"]>,
+	sub: string,
+	username: string
+};
 	["Mutation"]: {
 	__typename: "Mutation",
-	addPasskey: boolean,
+	addUserCredential: boolean,
+	/** base64 encoded random string */
+	createChallenge: string,
 	loginUser: boolean,
 	logoutUser: boolean,
 	registerUser: boolean,
@@ -1373,21 +1497,21 @@ export type GraphQLTypes = {
 	["ProductSortChoices"]: ProductSortChoices;
 	["Query"]: {
 	__typename: "Query",
-	challenge: string,
+	check: boolean,
 	deal?: GraphQLTypes["DealDTO"] | undefined | null,
 	deals: GraphQLTypes["DealPaginatedType"],
+	me?: GraphQLTypes["MeDTO"] | undefined | null,
 	product?: GraphQLTypes["ExtendedProductDTO"] | undefined | null,
 	products: GraphQLTypes["ProductPaginatedType"],
 	service?: GraphQLTypes["ServiceHealthDTO"] | undefined | null,
 	services: Array<GraphQLTypes["ServiceHealthDTO"]>,
-	session: GraphQLTypes["SessionDTO"],
 	shops: Array<GraphQLTypes["ShopDTO"]>,
 	task?: GraphQLTypes["TaskDTO"] | undefined | null,
 	tasks: Array<GraphQLTypes["TaskDTO"]>,
 	unknownDeals: Array<GraphQLTypes["UnknownDealDTO"]>,
-	user?: GraphQLTypes["UserDTO"] | undefined | null,
-	users: Array<GraphQLTypes["UserDTO"]>
+	verify: GraphQLTypes["JwtPayload"]
 };
+	["Roles"]: Roles;
 	["ServiceHealthDTO"]: {
 	__typename: "ServiceHealthDTO",
 	id: GraphQLTypes["ID"],
@@ -1397,10 +1521,6 @@ export type GraphQLTypes = {
 	type: GraphQLTypes["ServiceType"]
 };
 	["ServiceType"]: ServiceType;
-	["SessionDTO"]: {
-	__typename: "SessionDTO",
-	user?: string | undefined | null
-};
 	["ShopDTO"]: {
 	__typename: "ShopDTO",
 	id: GraphQLTypes["ID"],
@@ -1426,10 +1546,8 @@ export type GraphQLTypes = {
 	updatedOn: string
 };
 	["UserDTO"]: {
-	__typename: "UserDTO",
-	id: GraphQLTypes["ID"],
-	isAdmin: boolean,
-	username: string
+		/** Name of the user */
+	name: string
 };
 	["ID"]: "scalar" & { name: "ID" }
     }
@@ -1448,15 +1566,22 @@ export enum ProductSortChoices {
 	PRODUCT_NAME = "PRODUCT_NAME",
 	PRODUCT_PRICE = "PRODUCT_PRICE"
 }
+export enum Roles {
+	ADMIN = "ADMIN"
+}
 export enum ServiceType {
 	CORE = "CORE",
 	SCRAPER = "SCRAPER"
 }
 
 type ZEUS_VARIABLES = {
+	["AuthenticatorAssertionResponseDTO"]: ValueTypes["AuthenticatorAssertionResponseDTO"];
+	["AuthenticatorAttestationResponseDTO"]: ValueTypes["AuthenticatorAttestationResponseDTO"];
 	["DealSortChoices"]: ValueTypes["DealSortChoices"];
 	["Order"]: ValueTypes["Order"];
 	["ProductSortChoices"]: ValueTypes["ProductSortChoices"];
+	["Roles"]: ValueTypes["Roles"];
 	["ServiceType"]: ValueTypes["ServiceType"];
+	["UserDTO"]: ValueTypes["UserDTO"];
 	["ID"]: ValueTypes["ID"];
 }

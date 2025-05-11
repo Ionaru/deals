@@ -1,19 +1,35 @@
-import { inject, Injectable, isDevMode } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
+import type {
+  AuthenticationJSON,
+  RegistrationJSON,
+} from "@passwordless-id/webauthn/dist/esm/types.js";
 import { Apollo } from "apollo-angular";
-import { BehaviorSubject, firstValueFrom, map, tap } from "rxjs";
+import { BehaviorSubject, map, switchMap, tap } from "rxjs";
 
-import { appName } from "../app.config.js";
-import { ModelTypes, $ } from "../zeus/index.js";
+import { ModelTypes, $, Roles } from "../zeus/index.js";
 import { typedGql } from "../zeus/typedDocumentNode.js";
 
-export const challengeQuery = typedGql("query")({
-  challenge: true,
+export const meQuery = typedGql("query")({
+  me: {
+    username: true,
+    roles: true,
+    sub: true,
+  },
 });
 
-export const addPasskeyMutation = typedGql("mutation")({
-  addPasskey: [
+export const createChallengeMutation = typedGql("mutation")({
+  createChallenge: true,
+});
+
+export const loginMutation = typedGql("mutation")({
+  loginUser: [
     {
-      registration: $("registration", "String!"),
+      id: $("id", "String!"),
+      response: {
+        authenticatorData: $("authenticatorData", "String!"),
+        clientDataJSON: $("clientDataJSON", "String!"),
+        signature: $("signature", "String!"),
+      },
     },
     true,
   ],
@@ -22,16 +38,34 @@ export const addPasskeyMutation = typedGql("mutation")({
 export const registerMutation = typedGql("mutation")({
   registerUser: [
     {
-      registration: $("registration", "String!"),
+      id: $("id", "String!"),
+      response: {
+        authenticatorData: $("authenticatorData", "String!"),
+        clientDataJSON: $("clientDataJSON", "String!"),
+        publicKey: $("publicKey", "String!"),
+        publicKeyAlgorithm: $("publicKeyAlgorithm", "Float!"),
+      },
+      user: {
+        name: $("userName", "String!"),
+      },
     },
     true,
   ],
 });
 
-export const loginMutation = typedGql("mutation")({
-  loginUser: [
+export const addPasskeyMutation = typedGql("mutation")({
+  addUserCredential: [
     {
-      authentication: $("authentication", "String!"),
+      id: $("id", "String!"),
+      response: {
+        authenticatorData: $("authenticatorData", "String!"),
+        clientDataJSON: $("clientDataJSON", "String!"),
+        publicKey: $("publicKey", "String!"),
+        publicKeyAlgorithm: $("publicKeyAlgorithm", "Float!"),
+      },
+      user: {
+        name: $("userName", "String!"),
+      },
     },
     true,
   ],
@@ -41,162 +75,96 @@ export const logoutMutation = typedGql("mutation")({
   logoutUser: true,
 });
 
-export const userQuery = typedGql("query")({
-  user: [
-    {
-      id: $("id", "String"),
-    },
-    {
-      id: true,
-      isAdmin: true,
-      username: true,
-    },
-  ],
-});
-
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
   readonly #apollo = inject(Apollo);
 
-  readonly #user$ = new BehaviorSubject<ModelTypes["Query"]["user"] | null>(
-    null,
+  readonly #userSubject = new BehaviorSubject<ModelTypes["MeDTO"] | null>(null);
+  user$ = this.#userSubject.asObservable();
+
+  readonly isAdmin$ = this.user$.pipe(
+    map((user) => user?.roles.includes(Roles.ADMIN)),
   );
 
-  readonly user$ = this.#user$.asObservable();
-  readonly isAdmin$ = this.user$.pipe(map((user) => user?.isAdmin));
-  readonly isLoggedIn$ = this.user$.pipe(map(Boolean));
-
-  async login() {
-    const { client } = await import("@passwordless-id/webauthn");
-    const challenge = await firstValueFrom(this.#getChallenge());
-    const authentication = await client.authenticate(
-      [],
-      challenge.data.challenge,
-      {
-        debug: isDevMode(),
-      },
+  readonly init$ = this.#apollo
+    .query({
+      fetchPolicy: "no-cache",
+      query: meQuery,
+    })
+    .pipe(
+      tap((result) => {
+        this.#userSubject.next(result.data.me ?? null);
+      }),
     );
 
-    const authenticationResult = await firstValueFrom(
-      this.#sendLogin(JSON.stringify(authentication)),
-    );
+  readonly getChallenge$ = this.#apollo
+    .mutate({
+      useMutationLoading: false,
+      mutation: createChallengeMutation,
+    })
+    .pipe(map((result) => result.data?.createChallenge));
 
-    return authenticationResult.data?.loginUser;
-  }
-
-  async register(username?: string, existingUser = false) {
-    const { client } = await import("@passwordless-id/webauthn");
-    const challenge = await firstValueFrom(this.#getChallenge());
-    const nameToRegister = username ?? this.#getDefaultAccountName();
-
-    const originalFunction: CredentialsContainer["create"] =
-      // eslint-disable-next-line @typescript-eslint/unbound-method
-      globalThis.navigator.credentials.create;
-    globalThis.navigator.credentials.create = (
-      options: CredentialCreationOptions,
-    ) => {
-      if (options.publicKey) {
-        options.publicKey.user.displayName = `${appName} Account`;
-        options.publicKey.rp.name = appName;
-      }
-      return originalFunction.call(globalThis.navigator.credentials, options);
-    };
-
-    const registration = await client.register(
-      nameToRegister,
-      challenge.data.challenge,
-      {
-        attestation: true,
-        authenticatorType: "both",
-        debug: isDevMode(),
-        discoverable: "required",
-        userVerification: "required",
-      },
-    );
-
-    globalThis.navigator.credentials.create = originalFunction;
-
-    if (existingUser) {
-      const addResult = await firstValueFrom(
-        this.#sendAddPasskey(JSON.stringify(registration)),
+  login$(credential: AuthenticationJSON) {
+    return this.#apollo
+      .mutate({
+        useMutationLoading: false,
+        mutation: loginMutation,
+        variables: {
+          id: credential.id,
+          authenticatorData: credential.response.authenticatorData,
+          clientDataJSON: credential.response.clientDataJSON,
+          signature: credential.response.signature,
+        },
+      })
+      .pipe(
+        map((result) => result.data?.loginUser),
+        switchMap((result) => this.init$.pipe(map(() => result))),
       );
-      return addResult.data?.addPasskey ? nameToRegister : undefined;
-    } else {
-      const registerResult = await firstValueFrom(
-        this.#sendRegister(JSON.stringify(registration)),
-      );
-      return registerResult.data?.registerUser ? nameToRegister : undefined;
-    }
   }
 
-  async logout() {
-    const logoutResult = await firstValueFrom(this.#sendLogout());
-    this.#user$.next(null);
-    return logoutResult.data?.logoutUser;
+  register$(credential: RegistrationJSON) {
+    return this.#apollo
+      .mutate({
+        useMutationLoading: false,
+        mutation: registerMutation,
+        variables: {
+          id: credential.id,
+          authenticatorData: credential.response.authenticatorData,
+          clientDataJSON: credential.response.clientDataJSON,
+          publicKey: credential.response.publicKey,
+          publicKeyAlgorithm: credential.response.publicKeyAlgorithm,
+          userName: credential.user.name,
+        },
+      })
+      .pipe(map((result) => result.data?.registerUser));
   }
 
-  getUser(id?: string) {
-    return firstValueFrom(
-      this.#apollo
-        .query({
-          fetchPolicy: "no-cache",
-          query: userQuery,
-          variables: {
-            id,
-          },
-        })
-        .pipe(
-          tap(({ data }) => {
-            this.#user$.next(data.user);
-          }),
-        ),
-    );
+  addPasskey$(credential: RegistrationJSON) {
+    return this.#apollo
+      .mutate({
+        useMutationLoading: false,
+        mutation: addPasskeyMutation,
+        variables: {
+          id: credential.id,
+          authenticatorData: credential.response.authenticatorData,
+          clientDataJSON: credential.response.clientDataJSON,
+          publicKey: credential.response.publicKey,
+          publicKeyAlgorithm: credential.response.publicKeyAlgorithm,
+          userName: credential.user.name,
+        },
+      })
+      .pipe(map((result) => result.data?.addUserCredential));
   }
 
-  #getDefaultAccountName() {
-    const dateInIsoFormat = new Date().toISOString().slice(0, 10);
-    return `${appName}-${dateInIsoFormat}`;
-  }
-
-  #sendLogout() {
-    return this.#apollo.mutate({
+  readonly logout$ = this.#apollo
+    .mutate({
+      fetchPolicy: "no-cache",
       mutation: logoutMutation,
-    });
-  }
-
-  #sendLogin(authentication: string) {
-    return this.#apollo.mutate({
-      mutation: loginMutation,
-      variables: {
-        authentication,
-      },
-    });
-  }
-
-  #sendRegister(registration: string) {
-    return this.#apollo.mutate({
-      mutation: registerMutation,
-      variables: {
-        registration,
-      },
-    });
-  }
-
-  #sendAddPasskey(registration: string) {
-    return this.#apollo.mutate({
-      mutation: addPasskeyMutation,
-      variables: {
-        registration,
-      },
-    });
-  }
-
-  #getChallenge() {
-    return this.#apollo.query({
-      fetchPolicy: "network-only",
-      query: challengeQuery,
-    });
-  }
+    })
+    .pipe(
+      tap(() => this.#userSubject.next(null)),
+      // switchMap(() => this.#router.navigate(["/"])),
+    );
 }

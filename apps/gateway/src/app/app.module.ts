@@ -1,5 +1,5 @@
 import { ServiceType } from "@deals/api";
-import { Auth } from "@deals/auth";
+import { AuthModule } from "@deals/auth";
 import { Scheduler } from "@deals/scheduler";
 import { ScraperServiceModule } from "@deals/scraper-service";
 import { AlbertHeijnScraper } from "@deals/scrapers/ah";
@@ -8,43 +8,19 @@ import { KruidvatScraper } from "@deals/scrapers/kruidvat";
 import { MicroserviceModule } from "@deals/service-registry";
 import { Storage } from "@deals/storage";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { Module, OnApplicationShutdown } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { Module } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { APP_FILTER } from "@nestjs/core";
 import { GraphQLModule } from "@nestjs/graphql";
-import mongo from "connect-mongo";
-import { NestSessionOptions, SessionModule } from "nestjs-session";
+
+import { ConfigurationModule } from "../common/configuration/configuration.module.js";
 
 import { ApiModule } from "./api/api.module.js";
 import { ServiceUnavailableFilter } from "./exception-filters/service-unavailable.filter.js";
 
-let sessionStore: mongo | undefined;
-
-// @ts-expect-error Fix for connect-mongo old-style exports
-const connectMongo = mongo.default as typeof mongo;
-
 @Module({
   imports: [
-    ConfigModule,
-    SessionModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService): Promise<NestSessionOptions> => {
-        sessionStore = connectMongo.create({
-          dbName: config.getOrThrow("SESSION_DB_NAME"),
-          mongoUrl: config.getOrThrow("AUTH_DB_URL"),
-        });
-        return Promise.resolve({
-          session: {
-            name: config.getOrThrow("GATEWAY_SESSION_NAME"),
-            resave: false,
-            saveUninitialized: false,
-            secret: config.getOrThrow("GATEWAY_SESSION_SECRET"),
-            store: sessionStore,
-          },
-        });
-      },
-    }),
+    ConfigurationModule,
     MicroserviceModule.forRoot("Gateway", ServiceType.CORE),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: { path: "schema.graphql" },
@@ -60,7 +36,18 @@ const connectMongo = mongo.default as typeof mongo;
       sortSchema: true,
     }),
     Storage,
-    Auth,
+    AuthModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.getOrThrow<string>("AUTH_JWT_SECRET"),
+        databaseName: configService.getOrThrow<string>("AUTH_DB_NAME"),
+        databaseUrl: configService.getOrThrow<string>("AUTH_DB_URL"),
+        cookieName: configService.getOrThrow<string>("AUTH_COOKIE_NAME"),
+        cookieExpiry: configService.getOrThrow<number>("AUTH_COOKIE_EXPIRY"),
+        isProduction:
+          configService.getOrThrow<string>("NODE_ENV") === "production",
+      }),
+    }),
     ApiModule,
 
     ScraperServiceModule.forRoot(AlbertHeijnScraper),
@@ -75,10 +62,4 @@ const connectMongo = mongo.default as typeof mongo;
     },
   ],
 })
-export class Gateway implements OnApplicationShutdown {
-  onApplicationShutdown() {
-    if (sessionStore) {
-      void sessionStore.close();
-    }
-  }
-}
+export class Gateway {}

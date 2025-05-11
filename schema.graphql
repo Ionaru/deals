@@ -2,6 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AuthenticatorAssertionResponseDTO {
+  """base64 encoded AuthenticatorAttestationResponse.authenticatorData"""
+  authenticatorData: String!
+
+  """base64 encoded AuthenticatorAttestationResponse.clientDataJSON"""
+  clientDataJSON: String!
+
+  """base64 encoded AuthenticatorAttestationResponse.signature"""
+  signature: String!
+}
+
+input AuthenticatorAttestationResponseDTO {
+  """base64 encoded AuthenticatorAttestationResponse.authenticatorData"""
+  authenticatorData: String!
+
+  """base64 encoded AuthenticatorAttestationResponse.clientDataJSON"""
+  clientDataJSON: String!
+
+  """base64 encoded AuthenticatorAttestationResponse.getPublicKey"""
+  publicKey: String!
+
+  """
+  The public key algorithm of the credential in COSEAlgorithmIdentifier format, usually a negative number. This server only supports -7 (ES256) and -257 (RS256).
+  """
+  publicKeyAlgorithm: Float!
+}
+
 type DealDTO {
   dealPrice: Float!
   dealQuantity: Int!
@@ -33,11 +60,42 @@ type ExtendedProductDTO {
   shop: ShopDTO!
 }
 
+type JwtPayload {
+  exp: Int!
+  iat: Int!
+  roles: [Roles!]!
+  sub: String!
+  username: String!
+}
+
+type MeDTO {
+  roles: [Roles!]!
+  sub: String!
+  username: String!
+}
+
 type Mutation {
-  addPasskey(registration: String!): Boolean!
-  loginUser(authentication: String!): Boolean!
+  addUserCredential(
+    """ID of the credential, this should be created by the authenticator"""
+    id: String!
+    response: AuthenticatorAttestationResponseDTO!
+    user: UserDTO!
+  ): Boolean!
+
+  """base64 encoded random string"""
+  createChallenge: String!
+  loginUser(
+    """ID of the credential, this should be created by the authenticator"""
+    id: String!
+    response: AuthenticatorAssertionResponseDTO!
+  ): Boolean!
   logoutUser: Boolean!
-  registerUser(registration: String!): Boolean!
+  registerUser(
+    """ID of the credential, this should be created by the authenticator"""
+    id: String!
+    response: AuthenticatorAttestationResponseDTO!
+    user: UserDTO!
+  ): Boolean!
   resolveUnknownDeal(id: ID!): Boolean!
   startScraper(name: String!): Boolean!
   startTask(name: String!): Boolean!
@@ -88,20 +146,23 @@ enum ProductSortChoices {
 }
 
 type Query {
-  challenge: String!
+  check(challenge: String!): Boolean!
   deal(id: ID!): DealDTO
   deals(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, query: String, shop: String, sort: [DealSortChoices!] = [PRODUCT_NAME]): DealPaginatedType!
+  me: MeDTO
   product(id: ID!): ExtendedProductDTO
   products(limit: Int = 10, order: Order = ASCENDING, page: Int = 1, query: String, shop: String, sort: [ProductSortChoices!] = [PRODUCT_NAME]): ProductPaginatedType!
   service(id: ID!): ServiceHealthDTO
   services: [ServiceHealthDTO!]!
-  session: SessionDTO!
   shops: [ShopDTO!]!
   task(name: String!): TaskDTO
   tasks: [TaskDTO!]!
   unknownDeals: [UnknownDealDTO!]!
-  user(id: String): UserDTO
-  users: [UserDTO!]!
+  verify(token: String!): JwtPayload!
+}
+
+enum Roles {
+  ADMIN
 }
 
 type ServiceHealthDTO {
@@ -115,10 +176,6 @@ type ServiceHealthDTO {
 enum ServiceType {
   CORE
   SCRAPER
-}
-
-type SessionDTO {
-  user: String
 }
 
 type ShopDTO {
@@ -145,8 +202,7 @@ type UnknownDealDTO {
   updatedOn: String!
 }
 
-type UserDTO {
-  id: ID!
-  isAdmin: Boolean!
-  username: String!
+input UserDTO {
+  """Name of the user"""
+  name: String!
 }

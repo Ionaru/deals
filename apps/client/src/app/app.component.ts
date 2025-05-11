@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     this.#iconRegistry.setDefaultFontSetClass("material-symbols-outlined");
   }
 
-  async ngOnInit() {
-    await this.#authService.getUser();
+  ngOnInit() {
+    this.#authService.init$.subscribe();
   }
 }

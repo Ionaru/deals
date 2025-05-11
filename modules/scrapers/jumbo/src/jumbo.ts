@@ -1,4 +1,4 @@
-import https from "node:https";
+import { request as https } from "node:https";
 
 import { IProductDeal } from "@deals/api";
 import { ScrapeWebsiteService } from "@deals/scraper-service";
@@ -130,7 +130,7 @@ export class Jumbo extends ScrapeWebsiteService {
     });
 
     return new Promise<JumboGraphQLResponse>((resolve, reject) => {
-      const request = https.request(options, (response) => {
+      const request = https(options, (response) => {
         let data = "";
 
         response.on("data", (chunk) => {
