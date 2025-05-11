@@ -21,7 +21,7 @@ describe("toolbarComponent", () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       providers: [
-        TypedMockProvider(AuthService, { isLoggedIn$: of(false) }),
+        TypedMockProvider(AuthService, { user$: of(null) }),
         TypedMockProvider(DarkModeService, { isDarkModeActive: () => false }),
         TypedMockProvider(NavigationService, { routes$$: signal([]) }),
       ],

@@ -14,7 +14,7 @@ describe("SignupButtonComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [TypedMockProvider(AuthService, { isLoggedIn$: of(false) })],
+      providers: [TypedMockProvider(AuthService, { user$: of(null) })],
     });
     fixture = TestBed.createComponent(SignupButtonComponent);
     component = fixture.componentInstance;

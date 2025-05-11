@@ -6,6 +6,7 @@ import { TypedMockProvider } from "../../../testing/mocks.js";
 import { AuthService } from "../../services/auth.service.js";
 
 import { LoginComponent } from "./login.component.js";
+import { WebauthnService } from "../../services/webauthn.service.js";
 
 describe("LoginComponent", () => {
   let component: LoginComponent;
@@ -16,9 +17,9 @@ describe("LoginComponent", () => {
       imports: [RouterTestingModule],
       providers: [
         TypedMockProvider(AuthService, {
-          isLoggedIn$: of(false),
           user$: of(null),
         }),
+        TypedMockProvider(WebauthnService),
       ],
     }).compileComponents();
 
