@@ -9,22 +9,23 @@ services:
     ports:
       - "3333:3333"
     environment:
+      - AUTH_COOKIE_EXPIRY=30
+      - AUTH_COOKIE_NAME
       - AUTH_DB_URL
       - AUTH_DB_NAME
-      - SESSION_DB_NAME
-      - GATEWAY_SESSION_NAME
-      - GATEWAY_SESSION_SECRET
+      - AUTH_JWT_SECRET
+      - COOKIE_SECRET
       - NATS_HOST=nats
-      - STORAGE_DB_NAME
       - STORAGE_DB_CA
       - STORAGE_DB_CRT
-      - STORAGE_DB_KEY
       - STORAGE_DB_HOST
+      - STORAGE_DB_KEY
+      - STORAGE_DB_NAME
       - STORAGE_DB_PASS
       - STORAGE_DB_PORT
-      - STORAGE_DB_USER
       - STORAGE_DB_SSL
       - STORAGE_DB_SYNCHRONIZE
+      - STORAGE_DB_USER
     depends_on:
       nats:
         condition: service_healthy
