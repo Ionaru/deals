@@ -16,7 +16,6 @@ import { MatSelect } from "@angular/material/select";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter, map, tap } from "rxjs";
 
-import { DealCardComponent } from "../../components/deal-card/deal-card.component.js";
 import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component.js";
 import { DealsQueryInputComponent } from "../../components/deals-query-input/deals-query-input.component.js";
 import { ProductCardComponent } from "../../components/product-card/product-card.component.js";
@@ -34,7 +33,6 @@ import { ProductSortChoices, Order } from "../../zeus/index.js";
     FormsModule,
     DealsQueryInputComponent,
     MatProgressSpinner,
-    DealCardComponent,
     DealsPaginatorComponent,
     ProductCardComponent,
   ],

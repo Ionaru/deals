@@ -1,9 +1,4 @@
-import {
-  AsyncPipe,
-  DatePipe,
-  JsonPipe,
-  NgOptimizedImage,
-} from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { Component, inject, OnDestroy } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -17,11 +12,8 @@ import { HealthService } from "../../services/health.service.js";
 @Component({
   imports: [
     MatButtonModule,
-    JsonPipe,
     AsyncPipe,
     MatCardModule,
-    NgOptimizedImage,
-    DatePipe,
     TimePipe,
     MatProgressSpinnerModule,
     UnknownDealsComponent,

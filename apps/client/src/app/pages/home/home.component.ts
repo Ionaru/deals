@@ -1,10 +1,4 @@
-import {
-  AsyncPipe,
-  DecimalPipe,
-  JsonPipe,
-  NgOptimizedImage,
-  NgTemplateOutlet,
-} from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -29,7 +23,6 @@ import {
 import { DealCardComponent } from "../../components/deal-card/deal-card.component.js";
 import { DealsPaginatorComponent } from "../../components/deals-paginator/deals-paginator.component.js";
 import { DealsQueryInputComponent } from "../../components/deals-query-input/deals-query-input.component.js";
-import { SpacerComponent } from "../../components/spacer/spacer.component.js";
 import { DealsService } from "../../services/deals.service.js";
 import { ShopsService } from "../../services/shops.service.js";
 import { DealSortChoices, Order } from "../../zeus/index.js";
@@ -39,10 +32,7 @@ import { DealSortChoices, Order } from "../../zeus/index.js";
     MatCardModule,
     MatButtonModule,
     MatSnackBarModule,
-    NgOptimizedImage,
     AsyncPipe,
-    DecimalPipe,
-    JsonPipe,
     MatProgressSpinnerModule,
     MatPaginatorModule,
     DealsPaginatorComponent,
@@ -51,10 +41,8 @@ import { DealSortChoices, Order } from "../../zeus/index.js";
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
-    SpacerComponent,
     MatIconModule,
     DealsQueryInputComponent,
-    NgTemplateOutlet,
   ],
   styleUrl: "./home.component.css",
   templateUrl: "./home.component.html",

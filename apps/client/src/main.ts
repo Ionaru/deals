@@ -5,8 +5,6 @@ import { angularConfiguration } from "./app/angular.config.js";
 import { AppComponent } from "./app/app.component.js";
 import { environment } from "./environments/environment.js";
 
-import "@angular/localize/init";
-
 if (environment.production) {
   enableProdMode();
 }

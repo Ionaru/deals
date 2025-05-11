@@ -1,4 +1,3 @@
-import { AsyncPipe } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
@@ -29,7 +28,6 @@ enum LoginState {
     MatInputModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    AsyncPipe,
   ],
   styleUrl: "./login.component.css",
   templateUrl: "./login.component.html",

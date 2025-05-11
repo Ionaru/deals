@@ -1,9 +1,4 @@
-import {
-  DecimalPipe,
-  NgClass,
-  NgOptimizedImage,
-  PercentPipe,
-} from "@angular/common";
+import { NgClass, NgOptimizedImage } from "@angular/common";
 import { Component, inject, input, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -13,17 +8,13 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterLink } from "@angular/router";
 
 import { DealImageComponent } from "../deal-image/deal-image.component.js";
-import { DealProblemButtonComponent } from "../deal-problem-button/deal-problem-button.component.js";
 import { DialogInformativeComponent } from "../dialog-informative/dialog-informative.component.js";
-import { PriceComponent } from "../price/price.component.js";
 import { PriceCurrentComponent } from "../price-current/price-current.component.js";
-import { PriceSlashedComponent } from "../price-slashed/price-slashed.component.js";
 import { SpacerComponent } from "../spacer/spacer.component.js";
 import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-button.component.js";
 
 @Component({
   imports: [
-    DecimalPipe,
     MatButtonModule,
     MatCardModule,
     NgOptimizedImage,
@@ -31,12 +22,8 @@ import { ToolbarIconButtonComponent } from "../toolbar-icon-button/toolbar-icon-
     MatDividerModule,
     RouterLink,
     SpacerComponent,
-    PriceSlashedComponent,
     PriceCurrentComponent,
-    PriceComponent,
-    DealProblemButtonComponent,
     MatTooltipModule,
-    PercentPipe,
     NgClass,
     DealImageComponent,
   ],

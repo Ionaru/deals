@@ -1,4 +1,3 @@
-import { AsyncPipe } from "@angular/common";
 import {
   Component,
   input,
@@ -15,7 +14,6 @@ import { MatInputModule } from "@angular/material/input";
 
 @Component({
   imports: [
-    AsyncPipe,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
