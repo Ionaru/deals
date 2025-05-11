@@ -32,6 +32,38 @@ export const productQuery = typedGql("query")({
   ],
 });
 
+export const productsQuery = typedGql("query")({
+  products: [
+    {
+      limit: 24,
+      order: $("order", "Order!"),
+      page: $("page", "Int!"),
+      query: $("query", "String"),
+      shop: $("shop", "String"),
+      sort: $("sort", "[ProductSortChoices!]"),
+    },
+    {
+      items: {
+        id: true,
+        imageUrl: true,
+        name: true,
+        price: true,
+        productUrl: true,
+        shop: {
+          name: true,
+        },
+      },
+      meta: {
+        currentPage: true,
+        itemCount: true,
+        itemsPerPage: true,
+        totalItems: true,
+        totalPages: true,
+      },
+    },
+  ],
+});
+
 @Injectable({
   providedIn: "root",
 })
@@ -57,37 +89,15 @@ export class ProductsService {
   ) {
     return this.#apollo.watchQuery({
       errorPolicy: "all",
-      query: typedGql("query")({
-        products: [
-          {
-            limit: 24,
-            order,
-            page,
-            query,
-            shop,
-            sort: [sort],
-          },
-          {
-            items: {
-              id: true,
-              imageUrl: true,
-              name: true,
-              price: true,
-              productUrl: true,
-              shop: {
-                name: true,
-              },
-            },
-            meta: {
-              currentPage: true,
-              itemCount: true,
-              itemsPerPage: true,
-              totalItems: true,
-              totalPages: true,
-            },
-          },
-        ],
-      }),
+      query: productsQuery,
+      variables: {
+        limit: 24,
+        order,
+        page,
+        query,
+        shop,
+        sort: [sort],
+      },
     });
   }
 }

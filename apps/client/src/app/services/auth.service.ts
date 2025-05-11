@@ -3,8 +3,56 @@ import { Apollo } from "apollo-angular";
 import { BehaviorSubject, firstValueFrom, map, tap } from "rxjs";
 
 import { appName } from "../app.config.js";
-import { ModelTypes } from "../zeus/index.js";
+import { ModelTypes, $ } from "../zeus/index.js";
 import { typedGql } from "../zeus/typedDocumentNode.js";
+
+export const challengeQuery = typedGql("query")({
+  challenge: true,
+});
+
+export const addPasskeyMutation = typedGql("mutation")({
+  addPasskey: [
+    {
+      registration: $("registration", "String!"),
+    },
+    true,
+  ],
+});
+
+export const registerMutation = typedGql("mutation")({
+  registerUser: [
+    {
+      registration: $("registration", "String!"),
+    },
+    true,
+  ],
+});
+
+export const loginMutation = typedGql("mutation")({
+  loginUser: [
+    {
+      authentication: $("authentication", "String!"),
+    },
+    true,
+  ],
+});
+
+export const logoutMutation = typedGql("mutation")({
+  logoutUser: true,
+});
+
+export const userQuery = typedGql("query")({
+  user: [
+    {
+      id: $("id", "String"),
+    },
+    {
+      id: true,
+      isAdmin: true,
+      username: true,
+    },
+  ],
+});
 
 @Injectable({
   providedIn: "root",
@@ -35,7 +83,7 @@ export class AuthService {
       this.#sendLogin(JSON.stringify(authentication)),
     );
 
-    return authenticationResult.data.loginUser;
+    return authenticationResult.data?.loginUser;
   }
 
   async register(username?: string, existingUser = false) {
@@ -74,19 +122,19 @@ export class AuthService {
       const addResult = await firstValueFrom(
         this.#sendAddPasskey(JSON.stringify(registration)),
       );
-      return addResult.data.addPasskey ? nameToRegister : undefined;
+      return addResult.data?.addPasskey ? nameToRegister : undefined;
     } else {
       const registerResult = await firstValueFrom(
         this.#sendRegister(JSON.stringify(registration)),
       );
-      return registerResult.data.registerUser ? nameToRegister : undefined;
+      return registerResult.data?.registerUser ? nameToRegister : undefined;
     }
   }
 
   async logout() {
     const logoutResult = await firstValueFrom(this.#sendLogout());
     this.#user$.next(null);
-    return logoutResult.data.logoutUser;
+    return logoutResult.data?.logoutUser;
   }
 
   getUser(id?: string) {
@@ -94,18 +142,10 @@ export class AuthService {
       this.#apollo
         .query({
           fetchPolicy: "no-cache",
-          query: typedGql("query")({
-            user: [
-              {
-                id,
-              },
-              {
-                id: true,
-                isAdmin: true,
-                username: true,
-              },
-            ],
-          }),
+          query: userQuery,
+          variables: {
+            id,
+          },
         })
         .pipe(
           tap(({ data }) => {
@@ -121,62 +161,42 @@ export class AuthService {
   }
 
   #sendLogout() {
-    return this.#apollo.query({
-      fetchPolicy: "no-cache",
-      query: typedGql("mutation")({
-        logoutUser: true,
-      }),
+    return this.#apollo.mutate({
+      mutation: logoutMutation,
     });
   }
 
   #sendLogin(authentication: string) {
-    return this.#apollo.query({
-      fetchPolicy: "no-cache",
-      query: typedGql("mutation")({
-        loginUser: [
-          {
-            authentication,
-          },
-          true,
-        ],
-      }),
+    return this.#apollo.mutate({
+      mutation: loginMutation,
+      variables: {
+        authentication,
+      },
     });
   }
 
   #sendRegister(registration: string) {
-    return this.#apollo.query({
-      fetchPolicy: "no-cache",
-      query: typedGql("mutation")({
-        registerUser: [
-          {
-            registration,
-          },
-          true,
-        ],
-      }),
+    return this.#apollo.mutate({
+      mutation: registerMutation,
+      variables: {
+        registration,
+      },
     });
   }
 
   #sendAddPasskey(registration: string) {
-    return this.#apollo.query({
-      fetchPolicy: "no-cache",
-      query: typedGql("mutation")({
-        addPasskey: [
-          {
-            registration,
-          },
-          true,
-        ],
-      }),
+    return this.#apollo.mutate({
+      mutation: addPasskeyMutation,
+      variables: {
+        registration,
+      },
     });
   }
 
   #getChallenge() {
     return this.#apollo.query({
-      fetchPolicy: "no-cache",
-      query: typedGql("query")({
-        challenge: true,
-      }),
+      fetchPolicy: "network-only",
+      query: challengeQuery,
     });
   }
 }

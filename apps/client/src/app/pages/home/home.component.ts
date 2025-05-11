@@ -89,9 +89,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   lastSeenTotalItems = signal(0);
   lastSeenItemsPerPage = signal(0);
 
-  shops$ = this.#shopsService
-    .getShops()
-    .pipe(map((data) => data.data?.shops ?? []));
+  shops$ = this.#shopsService.shops$.pipe(
+    map((data) => data.data?.shops ?? []),
+  );
 
   sorting = [
     this.initialSort,

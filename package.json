@@ -99,7 +99,7 @@
     "@angular/service-worker": "19.2.9",
     "@apollo/client": "^3.13.8",
     "@apollo/server": "^4.12.0",
-    "@ionaru/array-utils": "^11.0.1",
+    "@ionaru/array-utils": "npm:@jsr/ionaru__array-utils@^11.0.1",
     "@nestjs/apollo": "^13.1.0",
     "@nestjs/common": "^11.1.0",
     "@nestjs/config": "^4.0.2",

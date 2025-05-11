@@ -3,31 +3,21 @@ import { Apollo } from "apollo-angular";
 
 import { typedGql } from "../zeus/typedDocumentNode.js";
 
+export const shopsQuery = typedGql("query")({
+  shops: {
+    id: true,
+    name: true,
+  },
+});
+
 @Injectable({
   providedIn: "root",
 })
 export class ShopsService {
   readonly #apollo = inject(Apollo);
 
-  getShops() {
-    return this.#apollo.query({
-      errorPolicy: "all",
-      query: typedGql("query")({
-        shops: {
-          id: true,
-          name: true,
-        },
-      }),
-    });
-  }
-
   shops$ = this.#apollo.query({
     errorPolicy: "all",
-    query: typedGql("query")({
-      shops: {
-        id: true,
-        name: true,
-      },
-    }),
+    query: shopsQuery,
   });
 }

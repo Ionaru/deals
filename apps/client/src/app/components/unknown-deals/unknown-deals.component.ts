@@ -17,9 +17,9 @@ export class UnknownDealsComponent {
 
   readonly #resolvedUnknownDeals = signal<string[]>([]);
   readonly #unknownDeal = toSignal(
-    this.#unknownDealsService
-      .getUnknownDeals$()
-      .pipe(map((result) => result.data.unknownDeals)),
+    this.#unknownDealsService.unknownDeals$.pipe(
+      map((result) => result.data.unknownDeals),
+    ),
     { initialValue: [] },
   );
   dataSource = computed(() =>
