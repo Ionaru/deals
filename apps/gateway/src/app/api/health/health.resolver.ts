@@ -1,14 +1,10 @@
 import { Nullable, ServiceHealthDTO } from "@deals/api";
-import { UseGuards } from "@nestjs/common";
 import { Args, ID, Query, Resolver } from "@nestjs/graphql";
 import { Observable } from "rxjs";
-
-import { LoggedInGuard } from "../../guards/logged-in.guard.js";
 
 import { HealthService } from "./health.service.js";
 
 @Resolver()
-@UseGuards(LoggedInGuard)
 export class HealthResolver {
   constructor(private readonly scrapersService: HealthService) {}
 

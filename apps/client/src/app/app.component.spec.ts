@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatIconRegistry } from "@angular/material/icon";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
+import { of } from "rxjs";
 
 import { overrideComponents, TypedMockProvider } from "../testing/mocks.js";
 
@@ -16,14 +17,13 @@ describe("appComponent", () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
-  const mockGetUser = vi.fn();
   const mockSetDefaultFontSetClass = vi.fn();
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, NoopAnimationsModule],
       providers: [
-        TypedMockProvider(AuthService, { getUser: mockGetUser }),
+        TypedMockProvider(AuthService, { init$: of() }),
         TypedMockProvider(MatIconRegistry, {
           setDefaultFontSetClass: mockSetDefaultFontSetClass,
         }),
@@ -56,11 +56,6 @@ describe("appComponent", () => {
   it(`should have as title 'client'`, () => {
     expect.assertions(1);
     expect(component.title).toBe("BargainBee");
-  });
-
-  it("should get the user on init", () => {
-    expect.assertions(1);
-    expect(mockGetUser).toHaveBeenCalled();
   });
 
   it("should correctly change the default iconset", () => {

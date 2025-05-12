@@ -113,19 +113,19 @@ jobs:
       - run: docker compose pull nats
       - run: docker compose up --pull=never --no-build --wait -d
         env:
-          STORAGE_DB_HOST: mysql
-          STORAGE_DB_PORT: 3306
-          STORAGE_DB_USER: e2e
-          STORAGE_DB_PASS: DontTellAnyoneThisPassword
-          STORAGE_DB_SSL: false
-          STORAGE_DB_NAME: deals_e2e
-          STORAGE_DB_SYNCHRONIZE: true
-          GATEWAY_SESSION_NAME: DealE2ESession
-          GATEWAY_SESSION_SECRET: DontTellAnyoneThisSecret
-          DEALS_CLIENT_PORT: 4200
-          AUTH_DB_URL: "mongodb://e2e:DontTellAnyoneThisPassword@mongo"
+          AUTH_COOKIE_NAME: e2e-deals-session
           AUTH_DB_NAME: E2E-Deals-Auth
-          SESSION_DB_NAME: E2E-Deals-Session
+          AUTH_DB_URL: "mongodb://e2e:DontTellAnyoneThisPassword@mongo"
+          AUTH_JWT_SECRET: e2e-deals-jwt-secret
+          COOKIE_SECRET: e2e-deals-cookie-secret
+          DEALS_CLIENT_PORT: 4200
+          STORAGE_DB_HOST: mysql
+          STORAGE_DB_NAME: deals_e2e
+          STORAGE_DB_PASS: DontTellAnyoneThisPassword
+          STORAGE_DB_PORT: 3306
+          STORAGE_DB_SSL: false
+          STORAGE_DB_SYNCHRONIZE: true
+          STORAGE_DB_USER: e2e
       - run: npm ci
       - run: npx playwright install --with-deps
       - run: npx nx e2e client-e2e

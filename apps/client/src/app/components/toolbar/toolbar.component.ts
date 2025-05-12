@@ -6,6 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { map } from "rxjs";
 
 import { AuthService } from "../../services/auth.service.js";
 import { DarkModeService } from "../../services/dark-mode.service.js";
@@ -43,7 +44,7 @@ export class ToolbarComponent {
   readonly #darkModeService = inject(DarkModeService);
   readonly #navigationService = inject(NavigationService);
 
-  isLoggedIn$ = this.#authService.isLoggedIn$;
+  isLoggedIn$ = this.#authService.user$.pipe(map(Boolean));
   routes$$ = this.#navigationService.routes$$;
 
   notifications = [];

@@ -1,16 +1,24 @@
 /* eslint-disable */
 
 export const AllTypesProps: Record<string,any> = {
+	AuthenticatorAssertionResponseDTO:{
+
+	},
+	AuthenticatorAttestationResponseDTO:{
+
+	},
 	DealSortChoices: "enum" as const,
 	Mutation:{
-		addPasskey:{
-
+		addUserCredential:{
+			response:"AuthenticatorAttestationResponseDTO",
+			user:"UserDTO"
 		},
 		loginUser:{
-
+			response:"AuthenticatorAssertionResponseDTO"
 		},
 		registerUser:{
-
+			response:"AuthenticatorAttestationResponseDTO",
+			user:"UserDTO"
 		},
 		resolveUnknownDeal:{
 
@@ -25,6 +33,9 @@ export const AllTypesProps: Record<string,any> = {
 	Order: "enum" as const,
 	ProductSortChoices: "enum" as const,
 	Query:{
+		check:{
+
+		},
 		deal:{
 
 		},
@@ -45,11 +56,15 @@ export const AllTypesProps: Record<string,any> = {
 		task:{
 
 		},
-		user:{
+		verify:{
 
 		}
 	},
+	Roles: "enum" as const,
 	ServiceType: "enum" as const,
+	UserDTO:{
+
+	},
 	ID: `scalar.ID` as const
 }
 
@@ -74,8 +89,21 @@ export const ReturnTypes: Record<string,any> = {
 		productUrl:"String",
 		shop:"ShopDTO"
 	},
+	JwtPayload:{
+		exp:"Int",
+		iat:"Int",
+		roles:"Roles",
+		sub:"String",
+		username:"String"
+	},
+	MeDTO:{
+		roles:"Roles",
+		sub:"String",
+		username:"String"
+	},
 	Mutation:{
-		addPasskey:"Boolean",
+		addUserCredential:"Boolean",
+		createChallenge:"String",
 		loginUser:"Boolean",
 		logoutUser:"Boolean",
 		registerUser:"Boolean",
@@ -113,20 +141,19 @@ export const ReturnTypes: Record<string,any> = {
 		price:"Float"
 	},
 	Query:{
-		challenge:"String",
+		check:"Boolean",
 		deal:"DealDTO",
 		deals:"DealPaginatedType",
+		me:"MeDTO",
 		product:"ExtendedProductDTO",
 		products:"ProductPaginatedType",
 		service:"ServiceHealthDTO",
 		services:"ServiceHealthDTO",
-		session:"SessionDTO",
 		shops:"ShopDTO",
 		task:"TaskDTO",
 		tasks:"TaskDTO",
 		unknownDeals:"UnknownDealDTO",
-		user:"UserDTO",
-		users:"UserDTO"
+		verify:"JwtPayload"
 	},
 	ServiceHealthDTO:{
 		id:"ID",
@@ -134,9 +161,6 @@ export const ReturnTypes: Record<string,any> = {
 		queue:"String",
 		status:"StatusDTO",
 		type:"ServiceType"
-	},
-	SessionDTO:{
-		user:"String"
 	},
 	ShopDTO:{
 		id:"ID",
@@ -157,11 +181,6 @@ export const ReturnTypes: Record<string,any> = {
 		productUrl:"String",
 		shop:"ShopDTO",
 		updatedOn:"String"
-	},
-	UserDTO:{
-		id:"ID",
-		isAdmin:"Boolean",
-		username:"String"
 	},
 	ID: `scalar.ID` as const
 }

@@ -14,8 +14,7 @@
         "outputFileName": "main.mjs",
         "main": "apps/gateway/src/main.ts",
         "tsConfig": "apps/gateway/tsconfig.app.json",
-        "webpackConfig": "apps/gateway/webpack.config.cjs",
-        "babelUpwardRootMode": true
+        "webpackConfig": "apps/gateway/webpack.config.cjs"
       },
       "configurations": {
         "production": {

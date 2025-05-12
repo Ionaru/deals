@@ -42,7 +42,7 @@ test("should be able to register a new account", async ({ page }) => {
   await page.getByRole("button", { name: "Registreren" }).click();
   await expect(page.getByText("Account aangemaakt!")).toBeVisible();
   await page.getByRole("button", { name: "Inloggen" }).click();
-  await expect(page).toHaveURL("/nl/");
+  await expect(page).toHaveURL("/nl/?page=1&sort=PRODUCT_NAME");
   await expect(page.getByRole("button", { name: "Aanmelden" })).toBeHidden();
   await page.goto("/login");
   await expect(page.getByRole("button", { name: "Uitloggen" })).toBeVisible();
