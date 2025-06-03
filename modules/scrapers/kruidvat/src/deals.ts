@@ -16,6 +16,7 @@ export enum KruidvatDealType {
   THREE_PLUS_TWO,
   FOUR_PLUS_ONE,
   SIX_PLUS_ONE,
+  SIX_PLUS_FOUR,
 
   // 2 for €X
   TWO_FOR_10,
@@ -85,6 +86,7 @@ export enum KruidvatDealType {
   THREE_FOR_30,
   THREE_FOR_42,
   THREE_FOR_53,
+  THREE_FOR_64_99,
   THREE_FOR_99_99,
 
   // 4 for €X
@@ -107,6 +109,7 @@ export enum KruidvatDealType {
   FIVE_FOR_10,
 
   // 6 for €X
+  SIX_FOR_6,
   SIX_FOR_7,
 
   // 8 for €X
@@ -480,6 +483,11 @@ export const kruidvatDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDcyOHxpbWFnZS9wbmd8YURSa0wyaGlaUzh6TXpFek5EUXlOekEzT0RZNE5nfGJlZmU3NzRjNjBkMTBkZDBlY2Y2ZGIwMjMzYTRkOTMyZmI3ZTJjN2VjN2UxNDQ3MjBlZGUyOTIxYjgyNzZlMDY",
     purchaseAmount: 3,
   },
+  [KruidvatDealType.THREE_FOR_64_99]: {
+    calculation: () => 64.99 / 3,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDgxNXxpbWFnZS9wbmd8YURrM0wyZzVPQzh6TkRJNE16VTJPREV6TmpJeU1nfDc1NjkxOTFkZTEyYWRiYTc5YzY2NGE5Y2E4YjFiOGE0NGQyM2NhM2VjNWJiZjkyMjVlMDIyMGFjYzFlYmVmYjg",
+    purchaseAmount: 3,
+  },
   [KruidvatDealType.THREE_FOR_99_99]: {
     calculation: () => 99.99 / 3,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDU5OXxpbWFnZS9wbmd8YUdGakwyZzFOeTh6TVRBeE1EWXlNekF5T1RJM09BfDBkNjA3MjdhMmVlYzE3MzQ4OTM1NjIxM2JiMTFhNTBlNmM2NTI5NmEzNzE5YjBlODE0OTRhNWY0MTQ4ZDcwYzI",
@@ -554,6 +562,11 @@ export const kruidvatDealInformation: Record<
     calculation: (price: number) => (price * 6) / 7,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDc0OXxpbWFnZS9wbmd8YURObUwyaGtNQzh6TXpZeU56WXlPVFV4T0RnM09BfDU1ZGRlZGQ2ODkyNDIwMmQyNTM4NzdkY2E3OTgwN2UyMzE3YTI1OTU0NDMyZDJjY2Y0MzEyNDA1ZjE0OTNkNzI",
     purchaseAmount: 7,
+  },
+  [KruidvatDealType.SIX_PLUS_FOUR]: {
+    calculation: (price: number) => (price * 6) / 10,
+    code: "1621",
+    purchaseAmount: 10,
   },
   [KruidvatDealType.SECOND_FOR_ONE]: {
     calculation: (price: number) => (price + 1) / 2,
@@ -679,6 +692,11 @@ export const kruidvatDealInformation: Record<
     calculation: () => 2,
     code: "1145",
     purchaseAmount: 5,
+  },
+  [KruidvatDealType.SIX_FOR_6]: {
+    calculation: () => 1,
+    code: "1566",
+    purchaseAmount: 6,
   },
   [KruidvatDealType.SIX_FOR_7]: {
     calculation: () => 7 / 6,
