@@ -19,7 +19,7 @@ export const unknownDealsQuery = typedGql("query")({
 export const resolveUnknownDealMutation = typedGql("mutation")({
   resolveUnknownDeal: [
     {
-      id: $("id", "String!"),
+      id: $("id", "ID!"),
     },
     true,
   ],
