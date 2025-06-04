@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { AsyncPipe, formatDate, formatNumber } from "@angular/common";
+import { formatDate, formatNumber } from "@angular/common";
 import { Component, computed, inject, LOCALE_ID } from "@angular/core";
 import { toObservable, toSignal } from "@angular/core/rxjs-interop";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
@@ -21,7 +21,6 @@ import {
   imports: [
     DealImageComponent,
     MatProgressSpinner,
-    AsyncPipe,
     PriceCurrentComponent,
     NgxEchartsDirective,
   ],
