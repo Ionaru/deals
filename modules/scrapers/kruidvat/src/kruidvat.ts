@@ -190,6 +190,7 @@ export class Kruidvat extends ScrapeWebsiteService {
         price: priceText,
         productUrl,
         purchaseAmount: kruidvatDealInformation[dealCode].purchaseAmount,
+        requiresCard: kruidvatDealInformation[dealCode].requiresCard ?? false,
       });
     }
 

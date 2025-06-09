@@ -22,6 +22,7 @@ describe("DealCardComponent", () => {
       "productImageUrl",
       "productImageUrl",
     );
+    setComponentInput(fixture.componentRef, "requiresCard", false);
     setComponentInput(fixture.componentRef, "productName", "productName");
     setComponentInput(fixture.componentRef, "productPrice", 1);
     setComponentInput(fixture.componentRef, "productUrl", "productUrl");

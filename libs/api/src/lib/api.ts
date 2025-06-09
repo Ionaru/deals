@@ -9,6 +9,7 @@ export interface IProductDeal {
   productUrl: string;
   dealPrice: number;
   purchaseAmount: number;
+  requiresCard: boolean;
 }
 
 export interface IUnknownDeal {

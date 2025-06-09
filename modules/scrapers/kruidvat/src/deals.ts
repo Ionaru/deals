@@ -2,6 +2,7 @@ interface IDealInformation {
   calculation: (price: number) => number;
   code: string;
   purchaseAmount: number;
+  requiresCard?: boolean;
 }
 
 export enum KruidvatDealType {

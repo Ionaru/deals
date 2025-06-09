@@ -233,6 +233,7 @@ export class Jumbo extends ScrapeWebsiteService {
         price: productPrice,
         productUrl: this.baseUrl + product.link,
         purchaseAmount,
+        requiresCard: false,
       });
     }
 

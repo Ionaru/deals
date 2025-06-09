@@ -40,6 +40,7 @@ export class DealCardComponent {
   readonly dealId = input.required<string>();
   readonly dealPrice = input.required<number>();
   readonly dealQuantity = input.required<number>();
+  readonly requiresCard = input.required<boolean>();
   readonly productImageUrl = input.required<string>();
   readonly productName = input.required<string>();
   readonly productPrice = input.required<number>();
@@ -59,6 +60,24 @@ export class DealCardComponent {
       data: {
         message: $localize`This feature is not implemented yet.`,
         title: $localize`Not implemented`,
+      },
+    });
+  }
+
+  openLoyaltyCardDialog() {
+    const shop = this.shopName();
+
+    let message = $localize`${shop} requires a loyalty card to use this deal.`;
+    if (shop === "Albert Heijn") {
+      message = $localize`Albert Heijn requires a loyalty card make use of their discounts, you can get one at the checkout. Learn more here: https://www.ah.nl/mijn-ah/bonuskaart`;
+    } else if (shop === "Kruidvat") {
+      message = $localize`Kruidvat requires a Kruidvat Club account to make use of this discount, you can register online. Learn more here: https://www.kruidvat.nl/kruidvatclub`;
+    }
+
+    DialogInformativeComponent.open(this.#dialog, {
+      data: {
+        message,
+        title: $localize`Loyalty card required`,
       },
     });
   }

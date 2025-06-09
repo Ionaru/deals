@@ -27,6 +27,9 @@ export class DealDTO {
   @Field(() => Int)
   dealQuantity!: number;
 
+  @Field(() => Boolean)
+  requiresCard!: boolean;
+
   @Field(() => ProductDTO)
   product!: ProductDTO;
 }

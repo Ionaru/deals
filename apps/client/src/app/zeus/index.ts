@@ -927,6 +927,7 @@ export type ValueTypes = {
 	dealQuantity?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	product?:ValueTypes["ProductDTO"],
+	requiresCard?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["DealPaginatedType"]: AliasType<{
@@ -1092,6 +1093,7 @@ export type ResolverInputTypes = {
 	dealQuantity?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	product?:ResolverInputTypes["ProductDTO"],
+	requiresCard?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["DealPaginatedType"]: AliasType<{
@@ -1261,7 +1263,8 @@ export type ModelTypes = {
 		dealPrice: number,
 	dealQuantity: number,
 	id: string,
-	product: ModelTypes["ProductDTO"]
+	product: ModelTypes["ProductDTO"],
+	requiresCard: boolean
 };
 	["DealPaginatedType"]: {
 		items: Array<ModelTypes["DealDTO"]>,
@@ -1414,7 +1417,8 @@ export type GraphQLTypes = {
 	dealPrice: number,
 	dealQuantity: number,
 	id: string,
-	product: GraphQLTypes["ProductDTO"]
+	product: GraphQLTypes["ProductDTO"],
+	requiresCard: boolean
 };
 	["DealPaginatedType"]: {
 	__typename: "DealPaginatedType",

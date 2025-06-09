@@ -151,6 +151,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
         price: parsed.price,
         productUrl: `https://www.ah.nl/producten/product/${product.product.webshopId}`,
         purchaseAmount: parsed.purchaseAmount,
+        requiresCard: true,
       });
     }
 

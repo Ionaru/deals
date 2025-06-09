@@ -5,6 +5,9 @@
       {{ savingsPercentage$$() | percent }} off when you buy
       {{ dealQuantity() }}, save <deals-price [amount]="savings$$()" />!
     </mat-card-subtitle>
+    @if (requiresCard()) {
+      <mat-card-subtitle i18n>Only with loyalty card</mat-card-subtitle>
+    }
     <deals-deal-image
       [productImageUrl]="productImageUrl()"
       [productName]="productName()"
@@ -32,6 +35,14 @@
       height="48"
       [priority]="true"
     />
+    @if (requiresCard()) {
+      <deals-toolbar-icon-button
+        icon="credit_card"
+        i18n-matTooltip
+        matTooltip="Loyalty card required"
+        (click)="openLoyaltyCardDialog()"
+      />
+    }
     <deals-spacer />
     <deals-toolbar-icon-button
       [icon]="broken$$() ? 'notifications_active' : 'notification_add'"

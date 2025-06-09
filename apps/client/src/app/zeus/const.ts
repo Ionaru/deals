@@ -73,7 +73,8 @@ export const ReturnTypes: Record<string,any> = {
 		dealPrice:"Float",
 		dealQuantity:"Int",
 		id:"String",
-		product:"ProductDTO"
+		product:"ProductDTO",
+		requiresCard:"Boolean"
 	},
 	DealPaginatedType:{
 		items:"DealDTO",

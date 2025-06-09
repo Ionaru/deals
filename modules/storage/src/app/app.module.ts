@@ -70,7 +70,7 @@ import { UnknownDealService } from "./services/unknown-deal.service.js";
             DealHistory,
           ],
           host: configService.getOrThrow("STORAGE_DB_HOST"),
-          // logging: true,
+          logging: ["error", "info", "log", "migration", "schema", "warn"],
           password: configService.getOrThrow("STORAGE_DB_PASS"),
           port: configService.getOrThrow("STORAGE_DB_PORT"),
           ssl: sslEnabled ? getSSLConfiguration() : false,

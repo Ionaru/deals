@@ -15,6 +15,12 @@ export class Deal extends BaseModel {
   })
   dealQuantity!: number;
 
+  @Column({
+    type: "boolean",
+    default: false,
+  })
+  requiresCard!: boolean;
+
   @ManyToOne(() => Product, (product) => product.deals, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",

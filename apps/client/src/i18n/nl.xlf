@@ -74,6 +74,10 @@
         <source>Next page</source>
         <target>Volgende pagina</target>
       </trans-unit>
+      <trans-unit id="3413741326200885705" datatype="html">
+        <source>Albert Heijn requires a loyalty card make use of their discounts, you can get one at the checkout. Learn more here: https://www.ah.nl/mijn-ah/bonuskaart</source>
+        <target>Albert Heijn vereist een bonuskaart om van kortingen gebruik te kunnen maken, je kan je bonuskaart krijgen bij de kassa. Meer informatie hier: https://www.ah.nl/mijn-ah/bonuskaart</target>
+      </trans-unit>
       <trans-unit id="3504688087357758415" datatype="html">
         <source>Current deals</source>
         <target>Huidige aanbiedingen</target>
@@ -154,6 +158,10 @@
         <source>Something went wrong...</source>
         <target>Er ging iets mis...</target>
       </trans-unit>
+      <trans-unit id="6639908450214995348" datatype="html">
+        <source><x id="PH" equiv-text="shop" /> requires a loyalty card to use this deal.</source>
+        <target><x id="PH" equiv-text="shop" /> vereist een klantenkaart om deze aanbieding te kunnen gebruiken.</target>
+      </trans-unit>
       <trans-unit id="6659583824626034043" datatype="html">
         <source>Authenticate</source>
         <target>Authenticeren</target>
@@ -177,6 +185,14 @@
       <trans-unit id="7009030514113245795" datatype="html">
         <source>Deals</source>
         <target>Aanbiedingen</target>
+      </trans-unit>
+      <trans-unit id="7035323181468887438" datatype="html">
+        <source>Loyalty card required</source>
+        <target>Klantenkaart vereist</target>
+      </trans-unit>
+      <trans-unit id="7073145449892189241" datatype="html">
+        <source>Only with loyalty card</source>
+        <target>Alleen met klantenkaart</target>
       </trans-unit>
       <trans-unit id="7256272481938427418" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />login<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" /> Sign up</source>
@@ -233,6 +249,10 @@
       <trans-unit id="8952554382316647903" datatype="html">
         <source>Switch language</source>
         <target>Verander taal</target>
+      </trans-unit>
+      <trans-unit id="9055313054507659288" datatype="html">
+        <source>Kruidvat requires a Kruidvat Club account to make use of this discount, you can register online. Learn more here: https://www.kruidvat.nl/kruidvatclub</source>
+        <target>Kruidvat vereist een Kruidvat Club account om deze korting te kunnen gebruiken, je kan je online registreren. Meer informatie hier: https://www.kruidvat.nl/kruidvatclub</target>
       </trans-unit>
     </body>
   </file>

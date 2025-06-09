@@ -18,6 +18,7 @@ export const dealsQuery = typedGql("query")({
       items: {
         dealPrice: true,
         dealQuantity: true,
+        requiresCard: true,
         id: true,
         product: {
           imageUrl: true,
