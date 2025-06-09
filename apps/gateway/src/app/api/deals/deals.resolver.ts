@@ -5,6 +5,8 @@ import {
   Nullable,
   UnknownDealDTO,
 } from "@deals/api";
+import { AuthGuard, Role, Roles } from "@deals/auth";
+import { UseGuards } from "@nestjs/common";
 import { Resolver, Query, Args, ID, Mutation } from "@nestjs/graphql";
 import { Observable } from "rxjs";
 
@@ -34,11 +36,15 @@ export class DealsResolver {
   }
 
   @Query(() => [UnknownDealDTO])
+  @UseGuards(AuthGuard)
+  @Roles([Role.ADMIN])
   unknownDeals(): Observable<UnknownDealDTO[]> {
     return this.dealsService.getUnknownDeals();
   }
 
   @Mutation(() => Boolean)
+  @UseGuards(AuthGuard)
+  @Roles([Role.ADMIN])
   resolveUnknownDeal(
     @Args("id", { type: () => ID }) id: string,
   ): Observable<boolean> {
