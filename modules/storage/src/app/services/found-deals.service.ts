@@ -112,6 +112,7 @@ export class FoundDealsService {
         this.dealRepository.create({
           dealPrice: deal.dealPrice,
           dealQuantity: deal.purchaseAmount,
+          requiresCard: deal.requiresCard,
           product: productEntity,
         }),
       );
