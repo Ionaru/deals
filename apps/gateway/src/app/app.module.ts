@@ -5,6 +5,7 @@ import { ScraperServiceModule } from "@deals/scraper-service";
 import { AlbertHeijnScraper } from "@deals/scrapers/ah";
 import { JumboScraper } from "@deals/scrapers/jumbo";
 import { KruidvatScraper } from "@deals/scrapers/kruidvat";
+import { TrekpleisterScraper } from "@deals/scrapers/trekpleister";
 import { MicroserviceModule } from "@deals/service-registry";
 import { Storage } from "@deals/storage";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
@@ -53,6 +54,7 @@ import { ServiceUnavailableFilter } from "./exception-filters/service-unavailabl
     ScraperServiceModule.forRoot(AlbertHeijnScraper),
     ScraperServiceModule.forRoot(JumboScraper),
     ScraperServiceModule.forRoot(KruidvatScraper),
+    ScraperServiceModule.forRoot(TrekpleisterScraper),
     Scheduler,
   ],
   providers: [

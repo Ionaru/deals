@@ -12,6 +12,10 @@ export class ShopsService {
   ) {}
 
   getShops() {
-    return this.shopRepository.find();
+    return this.shopRepository.find({
+      order: {
+        name: "ASC",
+      },
+    });
   }
 }

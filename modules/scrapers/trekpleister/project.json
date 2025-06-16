@@ -1,0 +1,8 @@
+{
+  "name": "scrapers/trekpleister",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "modules/scrapers/trekpleister/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}

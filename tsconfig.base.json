@@ -34,6 +34,9 @@
       "@deals/scrapers/ah": ["modules/scrapers/albert-heijn/src/index.ts"],
       "@deals/scrapers/jumbo": ["modules/scrapers/jumbo/src/index.ts"],
       "@deals/scrapers/kruidvat": ["modules/scrapers/kruidvat/src/index.ts"],
+      "@deals/scrapers/trekpleister": [
+        "modules/scrapers/trekpleister/src/index.ts"
+      ],
       "@deals/service-registry": ["libs/service-registry/src/index.ts"],
       "@deals/storage": ["modules/storage/src/index.ts"]
     }

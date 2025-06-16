@@ -41,7 +41,9 @@
         margin-inline: 0.25em;
 
         /* stylelint-disable-next-line selector-class-pattern */
-        &.Albert.Heijn {
+        &.Albert.Heijn,
+        /* stylelint-disable-next-line selector-class-pattern */
+        &.Trekpleister {
           width: 48px;
         }
       }
