@@ -29,11 +29,11 @@ export class UnknownDealsComponent {
   );
 
   displayedColumns: string[] = [
+    "actions",
     "date",
     "shop",
     "productUrl",
     "deal",
-    "actions",
   ];
 
   resolveUnknownDeal(id: string) {
