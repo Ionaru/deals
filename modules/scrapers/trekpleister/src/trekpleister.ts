@@ -21,14 +21,14 @@ export class Trekpleister extends ScrapeWebsiteService {
 
   protected baseUrl = "https://www.trekpleister.nl";
   protected paths = [
-    // "/baby",
-    // "/beauty",
-    // "/fashion",
-    // "/elektronica",
-    // "/speelgoed",
-    // "/verzorging",
-    // "/gezondheid",
-    // "/huishouden",
+    "/baby",
+    "/beauty",
+    "/fashion",
+    "/elektronica",
+    "/speelgoed",
+    "/verzorging",
+    "/gezondheid",
+    "/huishouden",
     "/search?q=",
   ];
 
@@ -145,7 +145,7 @@ export class Trekpleister extends ScrapeWebsiteService {
       });
     }
 
-    return [];
+    return deals;
   }
 
   #getPagerNumbers(pagerText: string): number {
