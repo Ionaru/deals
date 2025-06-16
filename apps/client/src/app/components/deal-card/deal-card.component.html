@@ -21,16 +21,12 @@
     <deals-price-current [amount]="dealPrice() * dealQuantity()" />
   </mat-card-content>
   <mat-card-actions>
-    <deals-deal-problem-button
-      [dealId]="dealId()"
-      i18n-matTooltip
-      matTooltip="Report a problem"
-    />
     <img
       class="shop-logo"
       [ngClass]="shopName()"
       [ngSrc]="'/assets/images/' + shopName() + '.svg'"
-      [alt]="'Logo of ' + shopName()"
+      [alt]="shopName()"
+      [matTooltip]="shopName()"
       width="125"
       height="48"
       [priority]="true"
@@ -44,6 +40,11 @@
       />
     }
     <deals-spacer />
+    <deals-deal-problem-button
+      [dealId]="dealId()"
+      i18n-matTooltip
+      matTooltip="Report a problem"
+    />
     <deals-toolbar-icon-button
       [icon]="broken$$() ? 'notifications_active' : 'notification_add'"
       i18n-matTooltip
