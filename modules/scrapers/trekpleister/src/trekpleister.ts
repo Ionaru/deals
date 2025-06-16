@@ -6,6 +6,9 @@ import { trekpleisterDealInformation, TrekpleisterDealType } from "./deals.js";
 const ignoredDeals = new Set([
   // Gratis verzending
   "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8MTQxMTN8aW1hZ2UvcG5nfGFEVTJMMmhqT0M4eU9UazVPRFV5TXpJeE9UazVPQXxiYzUxOTdiMzI5MzNhYTBjYmM1N2EyNzBlYWU3NjFlZjcyMzZkZGQ0NDY3NzdlNjI5YmQ3ODA2ZGMwNWI5Njdl",
+
+  // Met gratis artikel
+  "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8MTUzNjl8aW1hZ2UvcG5nfGFHWmpMMmcwTUM4eU9UazBPRGt5T0RneE9USXpNQXw5Y2I1ZjdlODI4ZDhmN2JkNjZmZmZiMzA1OGEwODI1NWNkMjhiYTAzOWI4OTUxZWJlMzMwOTM4MmVkM2NlOGNk",
 ]);
 
 const parseProductPrice = (priceText: string | null = ""): number => {
@@ -19,13 +22,14 @@ export class Trekpleister extends ScrapeWebsiteService {
   protected baseUrl = "https://www.trekpleister.nl";
   protected paths = [
     // "/baby",
-    "/beauty",
+    // "/beauty",
     // "/fashion",
     // "/elektronica",
     // "/speelgoed",
     // "/verzorging",
     // "/gezondheid",
     // "/huishouden",
+    "/search?q=",
   ];
 
   protected setPage(url: URL, page: number): URL {
@@ -141,7 +145,7 @@ export class Trekpleister extends ScrapeWebsiteService {
       });
     }
 
-    return deals;
+    return [];
   }
 
   #getPagerNumbers(pagerText: string): number {

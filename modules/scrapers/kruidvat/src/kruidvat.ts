@@ -71,6 +71,7 @@ export class Kruidvat extends ScrapeWebsiteService {
     "/verzorging/scheren-ontharen/scheermesjes/c/30070",
     "/verzorging/zonbescherming/zonnebrand",
     "/voordeelverpakkingen-verzorging/c/MLP10081",
+    "/search?q=",
   ];
 
   protected setPage(url: URL, page: number): URL {

@@ -43,7 +43,7 @@ export class StorageController {
 
   @EventPattern(MSEvent.UNKNOWN_DEAL)
   handleUnknownDeal(payload: MSEPayload<MSEvent.UNKNOWN_DEAL>): Async<void> {
-    this.logger.log("Saving unknown deal...", payload.shop);
+    this.logger.log(`Saving unknown deal for ${payload.shop}...`);
     return this.unknownDealService.store(payload.shop, payload.deal);
   }
 
