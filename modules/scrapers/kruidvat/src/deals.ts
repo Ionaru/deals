@@ -9,6 +9,7 @@ export enum KruidvatDealType {
   // X + Y
   ONE_PLUS_ONE = 1,
   ONE_PLUS_ONE_DUPLICATE,
+  ONE_PLUS_ONE_WITH_CARD,
   ONE_PLUS_TWO,
   TWO_PLUS_ONE,
   TWO_PLUS_TWO,
@@ -261,8 +262,10 @@ export enum KruidvatDealType {
   FOR_19_99,
   FOR_24_50,
   FOR_24_99,
+  FOR_24_99_WITH_CARD,
   FOR_25,
   FOR_26_50,
+  FOR_29_99,
   FOR_33_99,
   FOR_35,
   FPR_44_99,
@@ -295,6 +298,12 @@ export const kruidvatDealInformation: Record<
     calculation: (price: number) => price / 2,
     code: "5261",
     purchaseAmount: 2,
+  },
+  [KruidvatDealType.ONE_PLUS_ONE_WITH_CARD]: {
+    calculation: (price: number) => price / 2,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Mzk1MHxpbWFnZS9wbmd8YUdOaUwyaG1NUzh6TXpneE1qTTFOREF6T1Rnek9BfDc4ZjQ4MGIxNmViN2Q5NWRjMWZmZTcyZDYzZmUwOGFlOWY3NzgzZDk1MDIxN2U5NzZjMGYwMmE3ZmUwYTExYWI",
+    purchaseAmount: 2,
+    requiresCard: true,
   },
   [KruidvatDealType.ONE_PLUS_TWO]: {
     calculation: (price: number) => price / 3,
@@ -1406,6 +1415,12 @@ export const kruidvatDealInformation: Record<
     code: "4626",
     purchaseAmount: 1,
   },
+  [KruidvatDealType.FOR_24_99_WITH_CARD]: {
+    calculation: () => 24.99,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDAxNXxpbWFnZS9wbmd8YUdZeEwyaGlZaTh6TkRVd05UUXlNalUyT1RVd01nfDBlOWM2OTY1NmMxZTc1OGMxODRjMjkwZjc4MGY5M2IyMGY4OWI1Zjk3YWE2M2IyZjljMTIwZWM3ZjFiODI0ZTk",
+    purchaseAmount: 1,
+    requiresCard: true,
+  },
   [KruidvatDealType.FOR_25]: {
     calculation: () => 25,
     code: "4628",
@@ -1414,6 +1429,11 @@ export const kruidvatDealInformation: Record<
   [KruidvatDealType.FOR_26_50]: {
     calculation: () => 26.5,
     code: "4765",
+    purchaseAmount: 1,
+  },
+  [KruidvatDealType.FOR_29_99]: {
+    calculation: () => 29.99,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8MHxhcHBsaWNhdGlvbi9vY3RldC1zdHJlYW18YUdJeEwyaG1NaTh6TkRReU5URXpOelkxT1Rrek5BfDkyZDczOTI4Zjk2YjdiNzY1NTE0ZjBjNThhZDRhM2JhMDA3MWVhMzVlNzBhM2FiYWU0MmQxODFiNmM5YWU3ODk",
     purchaseAmount: 1,
   },
   [KruidvatDealType.FOR_33_99]: {
