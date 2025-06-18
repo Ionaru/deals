@@ -72,6 +72,7 @@ export enum TrekpleisterDealType {
   FOR_12,
   FOR_12_50,
   FOR_13,
+  FOR_19_99,
   FOR_27_99,
   FOR_33_99,
   FOR_35,
@@ -344,6 +345,11 @@ export const trekpleisterDealInformation: Record<
   [TrekpleisterDealType.FOR_13]: {
     calculation: () => 13,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8ODI1N3xpbWFnZS9wbmd8YUdSbUwyZzROUzh6TVRFeE5UTTBPREE0TWpjeE9BfDQ2MWQzODZlNTYwZmRmMWFiMjRlOTdkYTRkYTBkM2EwNTdiMzlkZGQ1ZjU4ZmI5ZmFiMTllZGM1OGE4YTg5NDU",
+    purchaseAmount: 1,
+  },
+  [TrekpleisterDealType.FOR_19_99]: {
+    calculation: () => 19.99,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8ODA4OXxpbWFnZS9wbmd8YURreUwyaGxZeTh6TWpRMk16ZzBOekkyTURFNU1BfDhlN2JmMWFmNDU0YzExNmJlMjkwZGI5OWI0ZTcxN2VhN2Q4NDE1MzEwNWMzYmFkZmQ1ZWJjMWI4N2QxMDE4YWU",
     purchaseAmount: 1,
   },
   [TrekpleisterDealType.FOR_27_99]: {

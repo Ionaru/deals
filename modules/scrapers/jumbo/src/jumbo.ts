@@ -4,6 +4,7 @@ import { IProductDeal } from "@deals/api";
 import { ScrapeWebsiteService } from "@deals/scraper-service";
 import { Logger } from "@nestjs/common";
 
+import { ForXPrice } from "./deals/for-x-price.js";
 import { SecondHalfPrice } from "./deals/second-half-price.js";
 import { XForXPrice } from "./deals/x-for-x-price.js";
 import { XPercentOff } from "./deals/x-percent-off.js";
@@ -57,6 +58,7 @@ enum JumboDealType {
   X_PERCENT_OFF = "X_PERCENT_OFF",
   X_PRICE_OFF = "X_PRICE_OFF",
   X_PLUS_X = "X_PLUS_X",
+  FOR_X_PRICE = "FOR_X_PRICE",
 }
 
 const jumboDealInformation: Record<JumboDealType, JumboDeal> = Object.freeze({
@@ -65,6 +67,7 @@ const jumboDealInformation: Record<JumboDealType, JumboDeal> = Object.freeze({
   [JumboDealType.X_PERCENT_OFF]: new XPercentOff(),
   [JumboDealType.X_PRICE_OFF]: new XPriceOff(),
   [JumboDealType.X_FOR_X_PRICE]: new XForXPrice(),
+  [JumboDealType.FOR_X_PRICE]: new ForXPrice(),
 });
 
 export class Jumbo extends ScrapeWebsiteService {
