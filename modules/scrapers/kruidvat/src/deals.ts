@@ -266,6 +266,7 @@ export enum KruidvatDealType {
   FOR_25,
   FOR_26_50,
   FOR_29_99,
+  FOR_32_99,
   FOR_33_99,
   FOR_35,
   FPR_44_99,
@@ -1434,6 +1435,11 @@ export const kruidvatDealInformation: Record<
   [KruidvatDealType.FOR_29_99]: {
     calculation: () => 29.99,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8MHxhcHBsaWNhdGlvbi9vY3RldC1zdHJlYW18YUdJeEwyaG1NaTh6TkRReU5URXpOelkxT1Rrek5BfDkyZDczOTI4Zjk2YjdiNzY1NTE0ZjBjNThhZDRhM2JhMDA3MWVhMzVlNzBhM2FiYWU0MmQxODFiNmM5YWU3ODk",
+    purchaseAmount: 1,
+  },
+  [KruidvatDealType.FOR_32_99]: {
+    calculation: () => 32.99,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDY0NXxpbWFnZS9wbmd8YURBekwyZzVaaTh6TWpRNU9USTJORGc0TURZM01BfDUxNmFiNTY5MDkxOWY2MWQ1OTRkYmE0NThmNDdjZDA0MmM2ZTIxM2YzYzNkNjVlMWM3NjI0MzEzYjhiNDlmNjY",
     purchaseAmount: 1,
   },
   [KruidvatDealType.FOR_33_99]: {
