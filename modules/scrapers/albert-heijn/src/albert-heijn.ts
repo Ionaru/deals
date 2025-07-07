@@ -14,6 +14,7 @@ import {
   DiscountOpIsOp,
   DiscountPercentage,
   DiscountTieredPercent,
+  DiscountTieredPrice,
   DiscountWeight,
   DiscountXForY,
   DiscountXPlusYFree,
@@ -325,7 +326,8 @@ export class AlbertHeijn extends ScrapeWebsiteService {
         case DiscountCode.DISCOUNT_AMOUNT:
         case DiscountCode.DISCOUNT_PERCENTAGE:
         case DiscountCode.DISCOUNT_OP_IS_OP: {
-          return this.parseSimpleDiscount(product, discount);
+          parsed.push(this.parseSimpleDiscount(product, discount));
+          break;
         }
 
         case DiscountCode.DISCOUNT_FIXED_PRICE: {
@@ -340,6 +342,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
           break;
         }
 
+        case DiscountCode.DISCOUNT_TIERED_PRICE:
         case DiscountCode.DISCOUNT_X_FOR_Y: {
           parsed.push(await this.parseXForYDiscount(product, token, discount));
           break;
@@ -402,10 +405,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
     }
 
     for (const discount of discounts) {
-      if (
-        discount.dealPrice * discount.purchaseAmount <
-        bestDiscount.dealPrice * bestDiscount.purchaseAmount
-      ) {
+      if (discount.dealPrice < bestDiscount.dealPrice) {
         bestDiscount = discount;
       }
     }
@@ -533,7 +533,7 @@ export class AlbertHeijn extends ScrapeWebsiteService {
   async parseXForYDiscount(
     product: Product,
     token: string,
-    discount: DiscountXForY,
+    discount: DiscountXForY | DiscountTieredPrice,
   ): Promise<ParsedDiscount | undefined> {
     if (product.product.priceBeforeBonus) {
       return {

@@ -1,0 +1,89 @@
+{
+  "product": {
+    "webshopId": 588188,
+    "hqId": 33672,
+    "title": "Pampers Premium protection luiers 5 XXL pack",
+    "brand": "Pampers",
+    "isSample": false,
+    "salesUnitSize": "92 stuks",
+    "images": [
+      {
+        "width": 800,
+        "height": 800,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313936353735?revLabel=1&rendition=800x800_JPG_Q90&fileType=binary"
+      },
+      {
+        "width": 400,
+        "height": 400,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313936353735?revLabel=1&rendition=400x400_JPG_Q85&fileType=binary"
+      },
+      {
+        "width": 200,
+        "height": 200,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313936353735?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary"
+      },
+      {
+        "width": 48,
+        "height": 48,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313936353735?revLabel=1&rendition=48x48_GIF&fileType=binary"
+      },
+      {
+        "width": 80,
+        "height": 80,
+        "url": "https://static.ah.nl/dam/product/AHI_4354523130313936353735?revLabel=1&rendition=80x80_JPG&fileType=binary"
+      }
+    ],
+    "segmentId": "716614",
+    "bonusSegmentId": 716614,
+    "offerId": 108693,
+    "offerStartDate": "2025-07-07",
+    "bonusSegmentDescription": "Online only: Pampers grootverpakkingen",
+    "extraDescriptions": ["1 stuk voor 40.00", "2 stuks voor 75.00"],
+    "discountType": "AH",
+    "promotionType": "NATIONAL",
+    "segmentType": "AH",
+    "isInfiniteBonus": false,
+    "bonusMechanism": "2 STAPELEN VOOR 75.00",
+    "discountLabels": [
+      {
+        "code": "DISCOUNT_TIERED_PRICE",
+        "defaultDescription": "2 stuks 75.00",
+        "count": 2,
+        "price": 75.0,
+        "unit": "PIECE"
+      },
+      {
+        "code": "DISCOUNT_TIERED_PRICE",
+        "defaultDescription": "1 stuk 40.00",
+        "count": 1,
+        "price": 40.0,
+        "unit": "PIECE"
+      }
+    ],
+    "bonusStartDate": "2025-07-07",
+    "bonusEndDate": "2025-07-13",
+    "bonusPeriodDescription": "",
+    "priceBeforeBonus": 59.99,
+    "hasListPrice": false,
+    "isStapelBonus": false,
+    "isBonus": true,
+    "shopType": "AH",
+    "orderAvailabilityStatus": "IN_ASSORTMENT",
+    "availableOnline": true,
+    "isOrderable": true,
+    "mainCategory": "Baby en kind",
+    "subCategory": "Luiers maat 5",
+    "subCategoryId": 4821,
+    "propertyIcons": [],
+    "properties": {
+      "da_store_department": ["Non Food"],
+      "da_grape": [],
+      "da_available_in_store": ["true"],
+      "da_excluded_assortment": ["false"]
+    },
+    "isPreviouslyBought": false,
+    "nix18": false,
+    "descriptionHighlights": "<p>Dubbele bescherming: voor de huid en tegen lekken.</p><p><ul><li>Dubbele bescherming: dankzij de onmiddellijke absorptie</li><li>Beschermde huid</li><li>De n graden1 luier van Pampers voor de gevoelige huid van babys</li><li>De stop en protect pocket van Pampers helpt lekken aan de achterkant</li></ul></p>",
+    "descriptionFull": "Pampers beste comfort en bescherming van de gevoelige huid - getest en goedgekeurd door babys. De n graden1 luier van Pampers is speciaal gemaakt voor de gevoelige huid van pasgeboren babys. En het is ook onze n graden1 in bescherming tegen lekken. Pampers Premium protection luiers bieden de beste bescherming van pampers, dankzij 1) onmiddellijke absorptie - met meer dan 1000 absorberende microporien die urine en ontlasting onmiddellijk weghouden van de huid en in de kern van de luier vasthouden waardoor de huid droog en beschermd blijft. 2) unieke stop en protect pocket om lekken aan de achterkant van de luier te voorkomen. 3) ultrazachte materialen die de huid van je baby in een wolk hullen van comfort en bescherming. En 4) onze unieke comfort fit technologie met een systeem van overlappende plakstrips en navelvriendelijke uitsparing. Pampers Premium protection, de n graden1 keuze van de kraamafdelingen in Nederland*, zijn 100% veilig voor de huid van je baby. Ze zijn dermatologisch getest en bevatten geen eu-parfumallergenen (zoals gereglementeerd in de eu-regelgeving voor cosmetica, nr. 1223/2009). Geen wonder dat babys ze goedkeuren!"
+  }
+}
