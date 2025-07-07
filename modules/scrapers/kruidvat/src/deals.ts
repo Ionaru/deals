@@ -23,6 +23,7 @@ export enum KruidvatDealType {
   SIX_PLUS_ONE,
   SIX_PLUS_FOUR,
   EIGHT_PLUS_TWO,
+  EIGHT_PLUS_THREE,
 
   // 2 for €X
   TWO_FOR_1_50,
@@ -99,6 +100,7 @@ export enum KruidvatDealType {
   THREE_FOR_30,
   THREE_FOR_35,
   THREE_FOR_38,
+  THREE_FOR_39,
   THREE_FOR_42,
   THREE_FOR_53,
   THREE_FOR_64_99,
@@ -394,6 +396,11 @@ export const kruidvatDealInformation: Record<
     calculation: (price: number) => (price * 8) / 10,
     code: "1056",
     purchaseAmount: 10,
+  },
+  [KruidvatDealType.EIGHT_PLUS_THREE]: {
+    calculation: (price: number) => (price * 8) / 11,
+    code: "1642",
+    purchaseAmount: 11,
   },
   [KruidvatDealType.TWO_FOR_1_50]: {
     calculation: () => 1.5 / 2,
@@ -754,6 +761,11 @@ export const kruidvatDealInformation: Record<
   [KruidvatDealType.THREE_FOR_38]: {
     calculation: () => 38 / 3,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDcyN3xpbWFnZS9wbmd8YURSakwyaGlPUzh4TlRZd01UWTJNREk1TnpJME5nfDcxNjhiOGMyNDY5ZjJkMWNlOGVhMGRiZjYzYTNhZmY5YTgxNTMxZmE1YzhiYTE4ZDFiYmViOGVkYTc2MjE2MzE",
+    purchaseAmount: 3,
+  },
+  [KruidvatDealType.THREE_FOR_39]: {
+    calculation: () => 39 / 3,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDY4MHxpbWFnZS9wbmd8YURSbUwyZ3dNaTh4TmprMk16WXpNalk1TXpJM09BfDE5MWI3YTg1NDJmY2VkYTg5ZmVhYjRmOWNhNTMyZmJkMGU3NTVmMjM0YTk5ODM5NDMyODMxZTJmMmRlOTM0NDI",
     purchaseAmount: 3,
   },
   [KruidvatDealType.THREE_FOR_42]: {
