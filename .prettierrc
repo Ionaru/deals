@@ -4,6 +4,12 @@
     {
       "files": "*.xlf",
       "options": { "parser": "xml", "printWidth": 1000 }
+    },
+    {
+      "files": ["**/*.ts"],
+      "options": {
+        "parser": "typescript"
+      }
     }
   ]
 }
