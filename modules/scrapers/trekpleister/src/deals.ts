@@ -49,6 +49,7 @@ export enum TrekpleisterDealType {
   THREE_FOR_5,
   THREE_FOR_5_99,
   THREE_FOR_6,
+  THREE_FOR_7,
   THREE_FOR_9,
   THREE_FOR_10,
   THREE_FOR_11,
@@ -105,6 +106,7 @@ export enum TrekpleisterDealType {
   FOR_9_99,
   FOR_9_99_DUPLICATE,
   FOR_10_99,
+  FOR_11_99,
   FOR_12,
   FOR_12_50,
   FOR_13,
@@ -311,7 +313,7 @@ export const trekpleisterDealInformation: Record<
     purchaseAmount: 3,
   },
   [TrekpleisterDealType.THREE_FOR_5]: {
-    calculation: () => 5,
+    calculation: () => 5 / 3,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njg2NHxpbWFnZS9wbmd8YURKaEwyaGpNaTh5T1RrME9Ea3lNalkxT0RnME5nfGMyNTU3NGY3OTVmNzRmZWRmYTY0MDZhYmYzMGM3NTkyZTM3NDI0MjJhM2E4Yjg2ZGQ5NWY3NGVlMzEwNGI0YmY",
     purchaseAmount: 3,
   },
@@ -321,8 +323,13 @@ export const trekpleisterDealInformation: Record<
     purchaseAmount: 3,
   },
   [TrekpleisterDealType.THREE_FOR_6]: {
-    calculation: () => 6,
+    calculation: () => 6 / 3,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njk3MnxpbWFnZS9wbmd8YURFNUwyaGlaaTh5T1RrME9Ea3lNamN5TkRNNE1nfGY4MzVmM2FlZGY4YzZjZDYwMTAzZWEwY2FjNzQ0NGFlZTkxOTgzMWYxY2ZlZWM1ZTliMDQxY2U0YzhlMGQ5NmI",
+    purchaseAmount: 3,
+  },
+  [TrekpleisterDealType.THREE_FOR_7]: {
+    calculation: () => 7 / 3,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjY2NnxpbWFnZS9wbmd8YURaNEwyZ3lPUzh5T1RrME9Ea3lPVGcwTURjME1BfDg2YjA2YjQwYjQwYjQ2YjA2YjQwYjQ2YjA2YjQwYjQ2YjA2YjQwYjQ2YjA2YjQwYjQ2YjA2YjQwYjQ2YjA2YjQw",
     purchaseAmount: 3,
   },
   [TrekpleisterDealType.THREE_FOR_9]: {
@@ -543,6 +550,11 @@ export const trekpleisterDealInformation: Record<
   [TrekpleisterDealType.FOR_10_99]: {
     calculation: () => 10.99,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzM5NHxpbWFnZS9wbmd8YUdNeEwyaGpOUzh5T1RrME9Ea3lOekEwT1RjMU9BfDc3YmY1Y2MzMGFlNjhjMmViZTUxNjZjNGUyMDllM2U0YzExN2YyZTU2ODZhODNkODdlOGZmYmE0ODVjNmIzZjU",
+    purchaseAmount: 1,
+  },
+  [TrekpleisterDealType.FOR_11_99]: {
+    calculation: () => 11.99,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzE0MnxpbWFnZS9wbmd8YUdVd0wyaG1aUzh6TWpVMk1UTTNNRGd5TkRjek5BfDkyYTcxZDA5NDEwZDkxMWFmMzBiNzRmMDMyYWFkMDQ0NTI4ZDJhMmRkZTNhY2MwYWMxZmIyZDVlZWFjN2EwN2Y",
     purchaseAmount: 1,
   },
   [TrekpleisterDealType.FOR_12]: {
