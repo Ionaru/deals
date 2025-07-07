@@ -2,7 +2,7 @@ import { provideHttpClient, withFetch } from "@angular/common/http";
 import {
   ApplicationConfig,
   inject,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   isDevMode,
 } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
@@ -29,7 +29,7 @@ import { MyTitleStrategy } from "./services/my-title.strategy.js";
 
 export const angularConfiguration: ApplicationConfig = {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideRouter(appRouting, withViewTransitions()),
     provideHttpClient(withFetch()),
     provideAnimations(),

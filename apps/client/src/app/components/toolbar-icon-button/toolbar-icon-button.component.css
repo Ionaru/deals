@@ -1,6 +1,6 @@
 :host {
   &.active button {
-    background: var(--mdc-filled-text-field-container-color);
+    background: var(--mat-form-field-filled-container-color);
 
     mat-icon {
       font-variation-settings:

@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { formatDate, formatNumber } from "@angular/common";
-import { Component, computed, inject, LOCALE_ID } from "@angular/core";
+import {
+  Component,
+  computed,
+  inject,
+  InputSignal,
+  LOCALE_ID,
+} from "@angular/core";
 import { toObservable, toSignal } from "@angular/core/rxjs-interop";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { ActivatedRoute } from "@angular/router";
@@ -16,6 +22,8 @@ import {
   productQuery,
   ProductsService,
 } from "../../../services/products.service.js";
+
+type ExtractGeneric<Type> = Type extends InputSignal<infer X> ? X : never;
 
 @Component({
   imports: [
@@ -49,7 +57,9 @@ export class ProductComponent {
     this.#darkModeService.isDarkModeActive$(),
   );
 
-  readonly chartOptions = computed<NgxEchartsDirective["options"]>(() => {
+  readonly chartOptions = computed<
+    ExtractGeneric<NgxEchartsDirective["options"]>
+  >(() => {
     interface Data {
       x: string[];
       y: number[];
@@ -66,7 +76,7 @@ export class ProductComponent {
     }
 
     if (!data) {
-      return null;
+      throw new Error("No data");
     }
 
     return {

@@ -2,7 +2,7 @@
   display: block;
 
   mat-paginator {
-    border-radius: var(--mdc-outlined-card-container-shape);
+    border-radius: var(--mat-card-outlined-container-shape);
 
     @media (width <= 700px) {
       ::ng-deep .mat-mdc-paginator-page-size {

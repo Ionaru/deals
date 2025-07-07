@@ -13,15 +13,15 @@ body {
   }
 
   mat-card {
-    --mdc-outlined-card-outline-color: transparent;
-    --mdc-outlined-card-container-color: var(
-      --mdc-filled-text-field-container-color
+    --mat-card-outlined-outline-color: transparent;
+    --mat-card-outlined-container-color: var(
+      --mat-form-field-filled-container-color
     );
-    --mdc-elevated-card-container-color: var(
-      --mdc-filled-text-field-container-color
+    --mat-card-elevated-container-color: var(
+      --mat-form-field-filled-container-color
     );
     --mat-card-subtitle-text-color: var(
-      --mdc-filled-text-field-label-text-color
+      --mat-form-field-filled-label-text-color
     );
   }
 

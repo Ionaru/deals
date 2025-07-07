@@ -41,6 +41,7 @@ export default typescriptEslint.config(
 
     // Override specific rules for TypeScript files (these will take priority over the extended configs above)
     rules: {
+      "@angular-eslint/prefer-inject": "off",
       "unicorn/no-null": "off",
       "import/no-unresolved": "off",
       "unicorn/prefer-top-level-await": "off",
