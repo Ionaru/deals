@@ -7,7 +7,8 @@ ARG SERVICE_NAME
 WORKDIR /app
 RUN mkdir -p /app/apps/"$SERVICE_NAME"
 
-COPY package.json package-lock.json  tools/patch-apollo.js ./
+COPY package.json package-lock.json ./
+COPY tools/patch-apollo.js ./tools/
 RUN npm ci
 
 COPY tsconfig.base.json ./
@@ -28,6 +29,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY --from=build /app/package.json /app/package-lock.json ./
+COPY tools/patch-apollo.js ./tools/
 RUN npm ci --omit=dev
 
 COPY --from=build /app/dist/apps/$SERVICE_NAME /app

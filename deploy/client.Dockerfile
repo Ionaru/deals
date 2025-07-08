@@ -4,7 +4,8 @@ LABEL org.opencontainers.image.source=https://github.com/ionaru/deals
 
 WORKDIR /app
 
-COPY package.json package-lock.json tools/patch-apollo.js ./
+COPY package.json package-lock.json ./
+COPY tools/patch-apollo.js ./tools/
 RUN npm ci
 
 COPY tsconfig.base.json ./
