@@ -1,10 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterTestingModule } from "@angular/router/testing";
+import { provideRouter } from "@angular/router";
 import { ApolloTestingModule } from "apollo-angular/testing";
-
-import { TypedMockProvider } from "../../../testing/mocks.js";
-import { DealsService } from "../../services/deals.service.js";
 
 import { HomeComponent } from "./home.component.js";
 
@@ -14,8 +11,8 @@ describe("homeComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, ApolloTestingModule, NoopAnimationsModule],
-      providers: [TypedMockProvider(DealsService, { getDeals: vi.fn() })],
+      imports: [ApolloTestingModule, NoopAnimationsModule],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
