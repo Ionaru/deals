@@ -329,7 +329,7 @@ export const trekpleisterDealInformation: Record<
   },
   [TrekpleisterDealType.THREE_FOR_7]: {
     calculation: () => 7 / 3,
-    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjY2NnxpbWFnZS9wbmd8YURaNEwyZ3lPUzh5T1RrME9Ea3lPVGcwTURjME1BfDg2YjA2YjQwYjQwYjQ2YjA2YjQwYjQ2YjA2YjQwYjQ2YjA2YjQwYjQ2YjA2YjQwYjQ2YjA2YjQwYjQ2YjA2YjQw",
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjcwNHxpbWFnZS9wbmd8YUdSbUwyZzFNUzh5T1RrME9Ea3pNVGsyTkRrMU9BfDRlY2UwODEzNTFjN2JkY2MyZWNiZWRkNjVmYjk3MmQ0MGQyNDg5NWY1Y2ViZjUwMzQ0YTMyODVlZDIwM2RlMWM",
     purchaseAmount: 3,
   },
   [TrekpleisterDealType.THREE_FOR_9]: {
