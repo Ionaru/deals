@@ -103,6 +103,7 @@ export enum KruidvatDealType {
   THREE_FOR_35,
   THREE_FOR_38,
   THREE_FOR_39,
+  THREE_FOR_40,
   THREE_FOR_42,
   THREE_FOR_53,
   THREE_FOR_64_99,
@@ -273,6 +274,7 @@ export enum KruidvatDealType {
   FOR_9_99_WITH_CARD,
   FOR_10,
   FOR_10_WITH_CARD,
+  FOR_10_49,
   FOR_11_99,
   FOR_12,
   FOR_12_50,
@@ -782,6 +784,11 @@ export const kruidvatDealInformation: Record<
   [KruidvatDealType.THREE_FOR_39]: {
     calculation: () => 39 / 3,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDY4MHxpbWFnZS9wbmd8YURSbUwyZ3dNaTh4TmprMk16WXpNalk1TXpJM09BfDE5MWI3YTg1NDJmY2VkYTg5ZmVhYjRmOWNhNTMyZmJkMGU3NTVmMjM0YTk5ODM5NDMyODMxZTJmMmRlOTM0NDI",
+    purchaseAmount: 3,
+  },
+  [KruidvatDealType.THREE_FOR_40]: {
+    calculation: () => 40 / 3,
+    code: "4625",
     purchaseAmount: 3,
   },
   [KruidvatDealType.THREE_FOR_42]: {
@@ -1506,6 +1513,11 @@ export const kruidvatDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDI3MHxpbWFnZS9wbmd8YUdRMEwyZzNOaTh6TXpneE1qTTFOVFUwTnpFMk5nfGM0NWI3N2MyZDE1NTU2ZWE0YWRjMDBhODE2YzFkZDE5Mzk2NzExMDEyNDc1YTQwYTdjNDQ0ZjVjZmFkNDY1YzU",
     purchaseAmount: 1,
     requiresCard: true,
+  },
+  [KruidvatDealType.FOR_10_49]: {
+    calculation: () => 10.49,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDY2NHxpbWFnZS9wbmd8YUdaakwyaGlOeTh6TkRjek56a3pNalF6TlRRNE5nfDY1ZDAzNWJhNjk0ZGI1NTA0YWUwYWU4YzJkMTdlYTBhMzZiYjQyNjgzNTdiODQ4NjgwYjdhNWEwNTNmM2VlNWY",
+    purchaseAmount: 1,
   },
   [KruidvatDealType.FOR_11_99]: {
     calculation: () => 11.99,
