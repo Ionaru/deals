@@ -37,7 +37,12 @@
         "scripts": [],
         "i18nMissingTranslation": "warning",
         "localize": ["en-US"],
-        "polyfills": ["@angular/localize/init"]
+        "polyfills": ["@angular/localize/init"],
+        "stylePreprocessorOptions": {
+          "sass": {
+            "silenceDeprecations": ["import"]
+          }
+        }
       },
       "configurations": {
         "en-GB": {
@@ -104,7 +109,8 @@
           "buildTarget": "client:build:development,nl"
         }
       },
-      "defaultConfiguration": "nl"
+      "defaultConfiguration": "nl",
+      "continuous": true
     },
     "extract-i18n": {
       "executor": "ng-extract-i18n-merge:ng-extract-i18n-merge",

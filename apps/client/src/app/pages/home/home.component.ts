@@ -195,7 +195,7 @@ export class HomeComponent implements OnInit {
   }
 
   deals = rxResource({
-    request: () => {
+    params: () => {
       return {
         page: this.page$(),
         shop: this.dealsShopFilter(),
@@ -204,13 +204,13 @@ export class HomeComponent implements OnInit {
         query: this.dealsQuery$(),
       };
     },
-    loader: ({ request }) =>
+    stream: ({ params }) =>
       this.#dealsService.getDeals(
-        request.page,
-        request.shop ?? null,
-        request.sort ?? this.initialSort.value,
-        request.order ?? this.initialOrder.value,
-        request.query,
+        params.page,
+        params.shop ?? null,
+        params.sort ?? this.initialSort.value,
+        params.order ?? this.initialOrder.value,
+        params.query,
       ).valueChanges,
   });
 
