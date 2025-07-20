@@ -101,6 +101,7 @@ export enum KruidvatDealType {
   THREE_FOR_25,
   THREE_FOR_30,
   THREE_FOR_35,
+  THREE_FOR_37,
   THREE_FOR_38,
   THREE_FOR_39,
   THREE_FOR_40,
@@ -251,6 +252,7 @@ export enum KruidvatDealType {
   // For X
   FOR_0_89_WITH_CARD,
   FOR_1_49,
+  FOR_1_99_WITH_CARD,
   FOR_2_75,
   FOR_2_99,
   FOR_3,
@@ -298,6 +300,7 @@ export enum KruidvatDealType {
   FOR_33_99,
   FOR_35,
   FPR_44_99,
+  FPR_45,
   FPR_45_99,
   FOR_47_99,
   FOR_54_99,
@@ -774,6 +777,11 @@ export const kruidvatDealInformation: Record<
   [KruidvatDealType.THREE_FOR_35]: {
     calculation: () => 35 / 3,
     code: "1563",
+    purchaseAmount: 3,
+  },
+  [KruidvatDealType.THREE_FOR_37]: {
+    calculation: () => 37 / 3,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDQ5MXxpbWFnZS9wbmd8YURRNUwyaGtZUzh4TXpVMU1EVXdOVEF3TURrNU1BfGU1ZGI4Y2Y3NzUwMDI1ZDFkZDE0N2Y5MTJjNTMxMDAyM2U2NWQ0MGFmOTIzNDAwNDkzODIxOGE1ZTVlODUxNmY",
     purchaseAmount: 3,
   },
   [KruidvatDealType.THREE_FOR_38]: {
@@ -1395,6 +1403,12 @@ export const kruidvatDealInformation: Record<
     code: "4169",
     purchaseAmount: 1,
   },
+  [KruidvatDealType.FOR_1_99_WITH_CARD]: {
+    calculation: () => 1.99,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDEyN3xpbWFnZS9wbmd8YURKaEwyZ3daQzh6TXpneE1qTTFOalV6TURJd05nfDRiNDYwMjQyZWEzZGI4M2RhMjE5ZThmNzE2NGFjZmIwODM0YTE0N2FhZGRlMDhiY2IwNGFhZjczNWE5ZmQxNzQ",
+    purchaseAmount: 1,
+    requiresCard: true,
+  },
   [KruidvatDealType.FOR_2_75]: {
     calculation: () => 2.75,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDA4MXxpbWFnZS9wbmd8YURreUwyZzVNUzh6TURnM09EYzJNalEyTnpNMU9BfDM2MGRhNDYyMWMyZTg4M2RmMGQ5NmY5NmViYWQyZWU2NTZkMzMzNjU0MjExZmMxMTEwZWMyMTQ2YzQzMWFhZmY",
@@ -1635,6 +1649,11 @@ export const kruidvatDealInformation: Record<
   [KruidvatDealType.FPR_44_99]: {
     calculation: () => 44.99,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDM2MXxpbWFnZS9wbmd8YUdGa0wyZzJaUzh6TWpNM05qRXpNVGcwTmpFM05BfDlmZjg2ZTk2OWM4YjE3Mjk0MWUxMmQwMTU5Yzg0OTAzMDg1ZDA2YTQ5ZDEwZTQzMzcxYjU1NWYzZGRiOTA0MjE",
+    purchaseAmount: 1,
+  },
+  [KruidvatDealType.FPR_45]: {
+    calculation: () => 45,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NDYwOHxpbWFnZS9wbmd8YURRMEwyZ3paUzh6TkRjMU1UY3hNall5TkRZM01BfGMxNTE5YzhiOTNhYjQ0ODgwMTBiYzdhNGY5MTI4NTJjODUzZTRmYjdiYmI0YTI4ZjcyNWNlYzhmNmIzNmUzNmI",
     purchaseAmount: 1,
   },
   [KruidvatDealType.FPR_45_99]: {
