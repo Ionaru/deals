@@ -23,10 +23,12 @@ export enum TrekpleisterDealType {
   TWO_FOR_5,
   TWO_FOR_6,
   TWO_FOR_7,
+  TWO_FOR_8,
   TWO_FOR_9,
   TWO_FOR_10,
   TWO_FOR_10_95,
   TWO_FOR_11,
+  TWO_FOR_12,
   TWO_FOR_13,
   TWO_FOR_14_99,
   TWO_FOR_15,
@@ -42,6 +44,7 @@ export enum TrekpleisterDealType {
   TWO_FOR_63,
   TWO_FOR_65,
   TWO_FOR_73,
+  TWO_FOR_75,
 
   // 3 for €X
   THREE_FOR_3,
@@ -50,9 +53,11 @@ export enum TrekpleisterDealType {
   THREE_FOR_5_99,
   THREE_FOR_6,
   THREE_FOR_7,
+  THREE_FOR_7_49,
   THREE_FOR_9,
   THREE_FOR_10,
   THREE_FOR_11,
+  THREE_FOR_13,
   THREE_FOR_25,
   THREE_FOR_28,
   THREE_FOR_47,
@@ -68,12 +73,21 @@ export enum TrekpleisterDealType {
 
   // 5 for €X
   FIVE_FOR_4,
+  FIVE_FOR_5_99,
   FIVE_FOR_9_99,
 
   // 6 for €X
   SIX_FOR_5,
+  SIX_FOR_10,
+
+  // 7 for €X
+  SEVEN_FOR_16_99,
+
+  // 8 for €X
+  EIGHT_FOR_16_99,
 
   // X% off
+  TEN_PERCENT_OFF,
   FIFTEEN_PERCENT_OFF,
   TWENTY_PERCENT_OFF,
   TWENTY_FIVE_PERCENT_OFF,
@@ -95,17 +109,22 @@ export enum TrekpleisterDealType {
   FOR_0_79,
   FOR_1_49,
   FOR_1_50,
+  FOR_2_50,
   FOR_2_99,
   FOR_3,
   FOR_3_99,
+  FOR_4_39,
   FOR_4_99,
   FOR_5,
   FOR_6_49,
   FOR_7_99,
+  FOR_8,
   FOR_9,
   FOR_9_99,
   FOR_9_99_DUPLICATE,
+  FOR_10,
   FOR_10_99,
+  FOR_11,
   FOR_11_99,
   FOR_12,
   FOR_12_50,
@@ -114,8 +133,10 @@ export enum TrekpleisterDealType {
   FOR_14_99,
   FOR_14_99_DUPLICATE,
   FOR_15,
+  FOR_15_99,
   FOR_19_99,
   FOR_20,
+  FOR_24_99,
   FOR_25,
   FOR_26_50,
   FOR_27_99,
@@ -127,6 +148,7 @@ export enum TrekpleisterDealType {
   SECOND_FOR_2,
 
   // Stapelkorting
+  STACK_50_PERCENT_AT_5,
   STACK_60_PERCENT_AT_3,
 
   // Second_Half_Price
@@ -207,6 +229,11 @@ export const trekpleisterDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjY3MXxpbWFnZS9wbmd8YURNeUwyaGlaaTh5T1RrME9Ea3lNVEF5TURRME5nfGYxNDg5YmQxOTRiYjE5NDk3MGMxMTZlNjM0ODU5ZDI4MDFlMDhiY2M5OGQ4OTE3N2QyZTUwY2Y3ODE3MmVhMmE",
     purchaseAmount: 2,
   },
+  [TrekpleisterDealType.TWO_FOR_8]: {
+    calculation: () => 8 / 2,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njk3OHxpbWFnZS9wbmd8YUdZeEwyaGpNaTh5T1RrME9Ea3lNVEUxTVRVeE9BfDgwMzU2M2Y3ZjAwY2Y4ODIzYWE1ZGYwY2RlZDhjMjZjNzA4ZGY4MzhkOGQ5NjNkMTBhMWY4ZGZhYmFjOGU3ZjY",
+    purchaseAmount: 2,
+  },
   [TrekpleisterDealType.TWO_FOR_9]: {
     calculation: () => 9 / 2,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjkzNnxpbWFnZS9wbmd8YUdJeEwyaGpOaTh5T1RrME9Ea3lNVEk0TWpVNU1BfDY1YTRlZWFlYmUwNTY1MjVjMDg5N2NhNTI3MTIzMmQzOTIzMWYyNTFmYWE3MWNjNTYyZTc1NTFjMzM2YmQzMGI",
@@ -225,6 +252,11 @@ export const trekpleisterDealInformation: Record<
   [TrekpleisterDealType.TWO_FOR_11]: {
     calculation: () => 11 / 2,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjQyOXxpbWFnZS9wbmd8YURrd0wyaGtNeTh5T1RrME9Ea3lNVFl4TURJM01BfGY3MjVmYWFiNDg0ZTg0ZTI2N2VlNjE3NzFkODc0MDJlNmI2MTdjZjI5NmE2ODY4MGRjY2FjN2JlNWYyZDBmYmE",
+    purchaseAmount: 2,
+  },
+  [TrekpleisterDealType.TWO_FOR_12]: {
+    calculation: () => 12 / 2,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjkzOXxpbWFnZS9wbmd8YURObEwyaGtOQzh5T1RrME9Ea3lNVFkzTlRnd05nfDA1MjViYjBlZjUwMDQ5OGY3OTJmNWZhODgzMjQ4MWUxOTE1MDdhYjhhMzc4YThjMDhhNDY3NDU5YjE4YjRjNWU",
     purchaseAmount: 2,
   },
   [TrekpleisterDealType.TWO_FOR_13]: {
@@ -302,6 +334,11 @@ export const trekpleisterDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8MTA1NjB8aW1hZ2UvcG5nfGFETm1MMmcxWXk4ek5ERXlNekF3TXpFNU9UVXhPQXwzYmNmMGJmZDUxMjU2NzFmNWEzOTdjMDBkNzgwNWZiYjE0ZTdkMmY4MjRkNTFhNzkzMDE0Mzc0Njc0ZmNiM2M5",
     purchaseAmount: 2,
   },
+  [TrekpleisterDealType.TWO_FOR_75]: {
+    calculation: () => 75 / 2,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8ODA5MHxpbWFnZS9wbmd8YUdReUwyaGxZeTh6TXpNek9URTFNVE0xTVRnek9BfDY4MzYyZTg4NjEzODYzY2U5YjAwNGZkYTJhYmY5NjkwMzM4NzRmZTFiM2E0M2FhZjVmMjM1ZDc2MzdkZDUyYTA",
+    purchaseAmount: 2,
+  },
   [TrekpleisterDealType.THREE_FOR_3]: {
     calculation: () => 1,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njg5M3xpbWFnZS9wbmd8YURJNEwyaGpOUzh5T1RrME9Ea3lNalU1TXpNeE1BfDU1ZGZkYmZhMGNjN2IzYjM0Y2UxZmZlMTk3MmZjNzM4ZDE4ZTFjMWU0YWYwZmIwOTYyZTE0ODg5ZGQzZjg4NTc",
@@ -332,6 +369,11 @@ export const trekpleisterDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjcwNHxpbWFnZS9wbmd8YUdSbUwyZzFNUzh5T1RrME9Ea3pNVGsyTkRrMU9BfDRlY2UwODEzNTFjN2JkY2MyZWNiZWRkNjVmYjk3MmQ0MGQyNDg5NWY1Y2ViZjUwMzQ0YTMyODVlZDIwM2RlMWM",
     purchaseAmount: 3,
   },
+  [TrekpleisterDealType.THREE_FOR_7_49]: {
+    calculation: () => 7.49 / 3,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njg2NHxpbWFnZS9wbmd8YUdNMkwyZzFOeTh5T1RrNU9EVTFORFF4TlRFek5BfDYxMDBkM2UwOTcwMzc4YmQ3NTFiYmZkMWZmMmFiYmE0OTAyNGFiNWY5YjhjNWI0ODM4YTBhZTdmYmNlODdlN2U",
+    purchaseAmount: 3,
+  },
   [TrekpleisterDealType.THREE_FOR_9]: {
     calculation: () => 9 / 3,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njk0NHxpbWFnZS9wbmd8YURRNUwyaGlPQzh5T1RrME9Ea3lNamt5TURrNU1BfDZkNWVkOTNlM2Y1Mzc3ODZkNGFhOGY1YjBhMmFlYzdmYmEzODVjNTIwZjhlYzlhZjlmOWVjYzE2MTNiODU2MTE",
@@ -345,6 +387,11 @@ export const trekpleisterDealInformation: Record<
   [TrekpleisterDealType.THREE_FOR_11]: {
     calculation: () => 11 / 3,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjQ2NHxpbWFnZS9wbmd8YURZeUwyZzJZaTh5T1RrNU9EVTFNVFEyTmpBeE5BfDI4NmUxYzhjMjM1Yzc0ZGY2MTEzNzY3ODQ5ZWY4ZjU0ZjM4ODU5NmQxZmEyZGZkNzcxOGJjZjAwODBlNzg5ZjM",
+    purchaseAmount: 3,
+  },
+  [TrekpleisterDealType.THREE_FOR_13]: {
+    calculation: () => 5.99 / 3,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzExN3xpbWFnZS9wbmd8YUdVM0wyZ3dOeTh5T1RrNU9EVTBNakE1TkRNMk5nfDVlODI2NzIyYTk4NjQwZWZkZjRhZDRkMGRhMDE5YWUxMWRkMGI1MzQ5ZmZiNDE0MDYzOGMzMWEyYzllZmM3YWE",
     purchaseAmount: 3,
   },
   [TrekpleisterDealType.THREE_FOR_25]: {
@@ -402,6 +449,11 @@ export const trekpleisterDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjY3N3xpbWFnZS9wbmd8YUROaUwyZzBNQzh5T1RrME9Ea3lPRGc0TkRjMk5nfGQ5YTYxM2Q3MmUyYmRlMWQ5NDU0NmZmNjMxNjgzMzFmMDI2ZDczZDI2ZWMyMWJlZWM0MjFiZjA2MTY5MmRmYTc",
     purchaseAmount: 5,
   },
+  [TrekpleisterDealType.FIVE_FOR_5_99]: {
+    calculation: () => 5.99 / 5,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njg3NXxpbWFnZS9wbmd8YURjNUwyZzJNUzh5T1RrNU9EVTBOakF5TmpVeU5nfDVhNGNkY2M4OWQ0OGVjNzYwNDRlMzM1NmEyMWVhNjQzZDkyMDlkN2FhNjBiMDFkNTNjNWNhNGZlYTE1M2ZkMmU",
+    purchaseAmount: 5,
+  },
   [TrekpleisterDealType.FIVE_FOR_9_99]: {
     calculation: () => 9.99 / 5,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzAzNHxpbWFnZS9wbmd8YURaaEwyaGpOeTh5T1RrNU9EVTFNakExTlRnek9BfDhiZjE5NzU2ZjQwNWNhNTJkMzgxYjJkNGIyZjg2NDZkNDQ4YTY1ZDU5YjAwZjhjMGE4N2E4NTNiMzI2ODQxMzk",
@@ -411,6 +463,26 @@ export const trekpleisterDealInformation: Record<
     calculation: () => 5 / 6,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njg3M3xpbWFnZS9wbmd8YURKaEwyZ3paQzh5T1RrME9Ea3lPRGsxTURNd01nfDY4YTBlMDI4NGMwMzQzNjZlY2E2ZmRjOTg5NTRhZDhmMjQ3MDZhMGMxMTg0M2E4MDA5OTQ4NmI1YWRiNWUwY2Y",
     purchaseAmount: 6,
+  },
+  [TrekpleisterDealType.SIX_FOR_10]: {
+    calculation: () => 10 / 6,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzA5N3xpbWFnZS9wbmd8YUdZMEwyZzFPUzh5T1RrNU9EVXpNelkwTURJeU1nfGZjMDM5MTRhMmI0OTMzNWE0MTg0MGVhZmVjOTI4NDFiYmI0MjAwOTMwMzkzZDMzYmI0ZDZhN2RlMTQ4M2RjN2E",
+    purchaseAmount: 6,
+  },
+  [TrekpleisterDealType.SEVEN_FOR_16_99]: {
+    calculation: () => 16.99 / 7,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8ODMwNXxpbWFnZS9wbmd8YURVMkwyZzFNaTh6TURVNU16RTVOalV5TXpVMU1BfDY3YzdlYjZhMWM1YzUzMDRmYzFkNTg2ZGU2NjM0YTllNDcwZDBlNjMwZjE3MjU5NGQ0N2YwOTJjZmVmMjIwNzI",
+    purchaseAmount: 7,
+  },
+  [TrekpleisterDealType.EIGHT_FOR_16_99]: {
+    calculation: () => 16.99 / 8,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8ODQzN3xpbWFnZS9wbmd8YURBMEwyZzFNeTh6TURVNU16RTVOalU0T1RBNE5nfGIxMmEwYmQ3NzhlMjg0ZDhlOWJhMDE2OWNkYTQxMmU1NmEwMzUzMzIyYzVmODliMjdkZDk5NDdkOWNiMzNlNDk",
+    purchaseAmount: 8,
+  },
+  [TrekpleisterDealType.TEN_PERCENT_OFF]: {
+    calculation: (price: number) => price - price * 0.1,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzczMnxpbWFnZS9wbmd8YURnd0wyZzFPQzh5T1RrME9Ea3lNelkwTVRnNE5nfDE3M2YwOGFmYzg4Yzc3YWQzZDExNGYzY2YzM2MxNDQ2MzQ2YmY1ZjhiNTUyMzBhZThiZDI2YmYxZjViMzYzNDg",
+    purchaseAmount: 1,
   },
   [TrekpleisterDealType.FIFTEEN_PERCENT_OFF]: {
     calculation: (price: number) => price - price * 0.15,
@@ -497,6 +569,11 @@ export const trekpleisterDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzExMnxpbWFnZS9wbmd8YUdGakwyZzNZUzh5T1RrME9Ea3lOVFl3TnprMk5nfGE1YThmNjE4NjMwMmY1OTgyYjE5MWYwMjkwN2Y4MmIzZDJiZDlhN2IxMmUzNmZiNTkyNDM4MmNhMjZhNTM0MDM",
     purchaseAmount: 1,
   },
+  [TrekpleisterDealType.FOR_2_50]: {
+    calculation: () => 2.5,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzczMHxpbWFnZS9wbmd8YURSaEwyaGpPQzh6TWpNM05qRXpNelV4TnpNME1nfDMwZDJhODExZWIyZGY5MmYyZDQ1NDI2MWFlY2YxYWFkZWUzOWZkMjE5OGMzOTZmN2ViNzQ3ZTU2NDhmYzUzNjI",
+    purchaseAmount: 1,
+  },
   [TrekpleisterDealType.FOR_2_99]: {
     calculation: () => 2.99,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzY2NnxpbWFnZS9wbmd8YURGa0wyaG1aQzh6TWpRMk16ZzBOemN4T0RrME1nfGZlZDhiZmNjZmYwZDljMDJhOWNmZmIzMjBhM2YwZTE5ODlkMTQ1YjY3OGQ0MTU4ZDMzMzQ0MDY0ODlkYzY5MzQ",
@@ -510,6 +587,11 @@ export const trekpleisterDealInformation: Record<
   [TrekpleisterDealType.FOR_3_99]: {
     calculation: () => 3.99,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzQ0MnxpbWFnZS9wbmd8YUdJMkwyaGtPUzh5T1RrNU9EVXlNemMwTkRJNE5nfDY5ZWZlOWJjOWI1MWMwY2FiMWMwMmYzMGJhMzI5ODk1ODdhMmFmNzAxYjMzMDk3NTVlMDZiYzdmYTgyOWNjN2Y",
+    purchaseAmount: 1,
+  },
+  [TrekpleisterDealType.FOR_4_39]: {
+    calculation: () => 4.39,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzczOHxpbWFnZS9wbmd8YURrNUwyZzBNaTh6TXpnMU1qWTRPVFE0TVRjMU9BfDYyZWM4Y2M5YTg2YjZmYmMxYWQzZDk3Njc2MTM2Njk4MTY0ZmFhZGUwNTNiMGFiYWNjZjg3YzNkMWUwYzU4NjY",
     purchaseAmount: 1,
   },
   [TrekpleisterDealType.FOR_4_99]: {
@@ -532,6 +614,11 @@ export const trekpleisterDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzM1OHxpbWFnZS9wbmd8YURVMUwyaG1OQzh6TWpJNE5EY3lORFE1TkRNMk5nfDU1ODg3YTg2M2NjOTZiZDU4YTQ2N2M2NTViYTI4ZDQyMDg2MjY5MjdmNTdkNmIxODk0MjIxMjg4ZTg1ZTRkMjE",
     purchaseAmount: 1,
   },
+  [TrekpleisterDealType.FOR_8]: {
+    calculation: () => 8,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Nzc2MnxpbWFnZS9wbmd8YURVeEwyaG1NQzh6TWpRMk16ZzBOek01TVRJMk1nfDU3NjZjYzViOTg1NGVmNmZiNjJlYzM4NjQxNzJiNjg3OTNlMzI2MjgyMjEzOWQyOGExMzRlYTFmMTk5ODY3NWQ",
+    purchaseAmount: 1,
+  },
   [TrekpleisterDealType.FOR_9]: {
     calculation: () => 9,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzQ1NXxpbWFnZS9wbmd8YURZM0wyZzFNaTh6TXpBM01qTXhOREUxTlRBek9BfDZhZWU1NWExNzUwYTNjZTBiNjZmOGEwZmEwOWI1ZTg2ZTQ3ZTkwNmI4YTdhYmZmNWU3M2VmZDc0N2NiZGRhYjY",
@@ -550,6 +637,16 @@ export const trekpleisterDealInformation: Record<
   [TrekpleisterDealType.FOR_10_99]: {
     calculation: () => 10.99,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzM5NHxpbWFnZS9wbmd8YUdNeEwyaGpOUzh5T1RrME9Ea3lOekEwT1RjMU9BfDc3YmY1Y2MzMGFlNjhjMmViZTUxNjZjNGUyMDllM2U0YzExN2YyZTU2ODZhODNkODdlOGZmYmE0ODVjNmIzZjU",
+    purchaseAmount: 1,
+  },
+  [TrekpleisterDealType.FOR_10]: {
+    calculation: () => 10,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjgyNXxpbWFnZS9wbmd8YURNNUwyZzNaaTh5T1RrNU9EVTFOalV4TWpJNE5nfGU4M2ZhNjhlOGJlZTE2OTZjNTI0MDU2NjI5YjBmYjZmNzljNmMyZGQ4MTI4NGIwYTJjMDc1ZDYzOTY0ZmMzNGU",
+    purchaseAmount: 1,
+  },
+  [TrekpleisterDealType.FOR_11]: {
+    calculation: () => 11,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzA0MnxpbWFnZS9wbmd8YURnMUwyZ3dZeTh5T1RrNU9EVXlNVGt3T1RJM09BfDJlNDEwOGM2YzA4NGE5OTg4M2JlMDA4YmQzODI0OGM1ZGQzZTNlZTI1MGY1N2MyYWU5YzYzYmQxNDg0N2EwOTg",
     purchaseAmount: 1,
   },
   [TrekpleisterDealType.FOR_11_99]: {
@@ -592,6 +689,11 @@ export const trekpleisterDealInformation: Record<
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzUyM3xpbWFnZS9wbmd8YUdJd0wyaGpNaTh5T1RrME9Ea3lOekV4TlRJNU5BfDY3MjllNTM5MTZjZjljMWQwMDgzMGM0OTAzZmJiNTZkNDZmNmZmMDE5YjFhNTIwNTZiNWY1MTBhMWUyMDI0MmY",
     purchaseAmount: 1,
   },
+  [TrekpleisterDealType.FOR_15_99]: {
+    calculation: () => 15.99,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzkwMnxpbWFnZS9wbmd8YURneEwyaGxPUzh6TWpRMk16ZzBOekU1TkRZMU5BfGVhNWIxMjcyMjA2ZGQyYjFmOGJmYjg4NGZlMWE3NzA3MGM2ZTFhYmM0YTFiN2Y3NTk2YzI0NzExMWVhNmYzYjA",
+    purchaseAmount: 1,
+  },
   [TrekpleisterDealType.FOR_19_99]: {
     calculation: () => 19.99,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8ODA4OXxpbWFnZS9wbmd8YURreUwyaGxZeTh6TWpRMk16ZzBOekkyTURFNU1BfDhlN2JmMWFmNDU0YzExNmJlMjkwZGI5OWI0ZTcxN2VhN2Q4NDE1MzEwNWMzYmFkZmQ1ZWJjMWI4N2QxMDE4YWU",
@@ -600,6 +702,11 @@ export const trekpleisterDealInformation: Record<
   [TrekpleisterDealType.FOR_20]: {
     calculation: () => 20,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Nzg4MHxpbWFnZS9wbmd8YUdZeEwyaGlaUzh5T1RrME9Ea3lOekkwTmpNMk5nfGM5ZDNkMmUxNTI4MGQxNDNlZjVlNTA5NjU3ZDg5MTJmMzU0YWU4MDc5MGI4MzQxZmRmYTczMTNiNzU0MjBkNGQ",
+    purchaseAmount: 1,
+  },
+  [TrekpleisterDealType.FOR_24_99]: {
+    calculation: () => 24.99,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8ODI1MHxpbWFnZS9wbmd8YURCaUwyZzRNUzh6TWpRNE5qRTJNamcxT0RBeE5BfDdhNTZkYTExZmU4MmVmZGMwYmMyYzdmZDllNGM5ZTI5YjdlYjY1MjdjMGYyN2M3MTkzYWU5OGQ2YWE0MjRmMzc",
     purchaseAmount: 1,
   },
   [TrekpleisterDealType.FOR_25]: {
@@ -636,6 +743,11 @@ export const trekpleisterDealInformation: Record<
     calculation: (price: number) => (price + 2) / 2,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NzM2MXxpbWFnZS9wbmd8YUdNMEwyZzJOaTh5T1RrNU9EVXhNalV6TnpZek1BfGI1OTMyYzIwYzA4OTM2MDBmMmQ0NGQ3ZjMyM2FiMzZjMmJjYjVjNjMxNWZjMmU2ZjhiMTA5NTRmNjBjNDU1Y2Y",
     purchaseAmount: 2,
+  },
+  [TrekpleisterDealType.STACK_50_PERCENT_AT_5]: {
+    calculation: (price: number) => price - price * 0.5,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8OTY3N3xpbWFnZS9wbmd8YUdNNEwyZ3dOQzh5T1RrNU9EVTFNRFUwT0RVeE1BfDg4MDExZTY1NmJkYjNkNzcxMDE0MGVmZGRlNDcyYWQxMGE2MGY2N2ZiZjdiYmE1MTRlZTQ4OGUwNWVkY2Y3YzA",
+    purchaseAmount: 5,
   },
   [TrekpleisterDealType.STACK_60_PERCENT_AT_3]: {
     calculation: (price: number) => price - price * 0.6,
