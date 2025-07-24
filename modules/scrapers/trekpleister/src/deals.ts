@@ -68,6 +68,7 @@ export enum TrekpleisterDealType {
   FOUR_FOR_5,
   FOUR_FOR_7,
   FOUR_FOR_8,
+  FOUR_FOR_9,
   FOUR_FOR_10,
   FOUR_FOR_30,
   FOUR_FOR_35,
@@ -438,6 +439,11 @@ export const trekpleisterDealInformation: Record<
   [TrekpleisterDealType.FOUR_FOR_8]: {
     calculation: () => 8 / 4,
     code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8Njk5NnxpbWFnZS9wbmd8YURVNEwyaGpOUzh5T1RrNU9EVXlNekUxTkRRMk1nfDQ3YjFiZWIxMjhkMDIyNzlhODA0Yjk5MmE0ZDM5MzE4NTI4NGVjZmI4ODBiYjRiMzY5YTUzMTA4NDI2ZGE4NDA",
+    purchaseAmount: 4,
+  },
+  [TrekpleisterDealType.FOUR_FOR_9]: {
+    calculation: () => 9 / 4,
+    code: "bWFzdGVyfHByb21vdGlvbi1sYWJlbHN8NjkyMHxpbWFnZS9wbmd8YURRM0wyaGpNaTh5T1RrNU9EVXlNekE0T0RreU5nfGQzNWQ1Y2UxZTU0OTVhNDc4ZGQ3NWMxNWU2MWI0NDRkNmYzNWE4MGRlMzhiYTQxY2VmYzYwZDNhNWQ3MTRlYTk",
     purchaseAmount: 4,
   },
   [TrekpleisterDealType.FOUR_FOR_10]: {
