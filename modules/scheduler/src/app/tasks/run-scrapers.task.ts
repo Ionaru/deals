@@ -36,14 +36,21 @@ export class RunScrapersTask {
       )
       .subscribe({
         next: (results) => {
-          Logger.log(`Finished running ${results.length} scrapers`, RunScrapersTask.name);
+          Logger.log(
+            `Finished running ${results.length} scrapers`,
+            RunScrapersTask.name,
+          );
         },
         error: (error) => {
-          Logger.error(`Failed to run scrapers: ${error.message}`, error.stack, RunScrapersTask.name);
+          Logger.error(
+            `Failed to run scrapers: ${error.message}`,
+            error.stack,
+            RunScrapersTask.name,
+          );
         },
         complete: () => {
           Logger.debug(`Scraper task completed`, RunScrapersTask.name);
-        }
+        },
       });
   }
 }
