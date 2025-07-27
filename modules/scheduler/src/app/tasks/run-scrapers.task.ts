@@ -3,7 +3,7 @@ import { ServiceGatewayService } from "@deals/service-registry";
 import { uniquifyArray } from "@ionaru/array-utils";
 import { Injectable, Logger } from "@nestjs/common";
 import { Cron, CronExpression } from "@nestjs/schedule";
-import { combineLatest, map, switchMap } from "rxjs";
+import { combineLatest, map, of, switchMap } from "rxjs";
 
 @Injectable()
 export class RunScrapersTask {
@@ -29,7 +29,7 @@ export class RunScrapersTask {
         switchMap((services) => {
           if (services.length === 0) {
             Logger.warn(`No scrapers found to run`, RunScrapersTask.name);
-            return [];
+            return of([]);
           }
           return combineLatest(services);
         }),
@@ -41,10 +41,13 @@ export class RunScrapersTask {
             RunScrapersTask.name,
           );
         },
-        error: (error) => {
+        error: (error: unknown) => {
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
+          const errorStack = error instanceof Error ? error.stack : undefined;
           Logger.error(
-            `Failed to run scrapers: ${error.message}`,
-            error.stack,
+            `Failed to run scrapers: ${errorMessage}`,
+            errorStack,
             RunScrapersTask.name,
           );
         },
