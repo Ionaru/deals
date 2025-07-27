@@ -26,10 +26,24 @@ export class RunScrapersTask {
         map((services) =>
           services.map((name) => this.gateway.sendCommand(name)),
         ),
-        switchMap((services) => combineLatest(services)),
+        switchMap((services) => {
+          if (services.length === 0) {
+            Logger.warn(`No scrapers found to run`, RunScrapersTask.name);
+            return [];
+          }
+          return combineLatest(services);
+        }),
       )
-      .subscribe(() => {
-        Logger.log(`Finished`, RunScrapersTask.name);
+      .subscribe({
+        next: (results) => {
+          Logger.log(`Finished running ${results.length} scrapers`, RunScrapersTask.name);
+        },
+        error: (error) => {
+          Logger.error(`Failed to run scrapers: ${error.message}`, error.stack, RunScrapersTask.name);
+        },
+        complete: () => {
+          Logger.debug(`Scraper task completed`, RunScrapersTask.name);
+        }
       });
   }
 }

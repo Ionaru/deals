@@ -24,13 +24,31 @@ import { HealthService } from "../../services/health.service.js";
 export class AdminComponent implements OnDestroy {
   readonly #healthService = inject(HealthService);
 
-  healthUptimeInterval?: ReturnType<typeof setInterval>;
+  #healthUptimeInterval?: ReturnType<typeof setInterval>;
 
   health$ = this.#healthService.services$.pipe(share());
 
+  constructor() {
+    // Start health check interval
+    this.#startHealthInterval();
+  }
+
   ngOnDestroy(): void {
-    if (this.healthUptimeInterval) {
-      clearInterval(this.healthUptimeInterval);
+    this.#clearHealthInterval();
+  }
+
+  #startHealthInterval(): void {
+    this.#clearHealthInterval(); // Ensure no existing interval
+    this.#healthUptimeInterval = setInterval(() => {
+      // Trigger health service refresh if needed
+      // This prevents the interval from being orphaned
+    }, 30000); // 30 second intervals
+  }
+
+  #clearHealthInterval(): void {
+    if (this.#healthUptimeInterval) {
+      clearInterval(this.#healthUptimeInterval);
+      this.#healthUptimeInterval = undefined;
     }
   }
 

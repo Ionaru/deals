@@ -51,12 +51,23 @@ import { UnknownDealService } from "./services/unknown-deal.service.js";
           Storage.name,
         );
 
-        const getSSLConfiguration = () => ({
-          ca: configService.getOrThrow<string>("STORAGE_DB_CA"),
-          cert: configService.getOrThrow<string>("STORAGE_DB_CRT"),
-          key: configService.getOrThrow<string>("STORAGE_DB_KEY"),
-          rejectUnauthorized: false,
-        });
+        const getSSLConfiguration = () => {
+          const rejectUnauthorized = configService.get<string>("STORAGE_DB_REJECT_UNAUTHORIZED", "true") === "true";
+          
+          if (!rejectUnauthorized) {
+            Logger.warn(
+              "SSL certificate validation is disabled! This should only be used in development environments.",
+              Storage.name,
+            );
+          }
+
+          return {
+            ca: configService.getOrThrow<string>("STORAGE_DB_CA"),
+            cert: configService.getOrThrow<string>("STORAGE_DB_CRT"),
+            key: configService.getOrThrow<string>("STORAGE_DB_KEY"),
+            rejectUnauthorized,
+          };
+        };
 
         return {
           database: configService.getOrThrow("STORAGE_DB_NAME"),
