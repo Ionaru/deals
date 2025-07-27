@@ -42,7 +42,7 @@ export class AdminComponent implements OnDestroy {
     this.#healthUptimeInterval = setInterval(() => {
       // Trigger health service refresh if needed
       // This prevents the interval from being orphaned
-    }, 30000); // 30 second intervals
+    }, 30_000); // 30 second intervals
   }
 
   #clearHealthInterval(): void {
