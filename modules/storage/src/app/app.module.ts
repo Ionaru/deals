@@ -52,8 +52,12 @@ import { UnknownDealService } from "./services/unknown-deal.service.js";
         );
 
         const getSSLConfiguration = () => {
-          const rejectUnauthorized = configService.get<string>("STORAGE_DB_REJECT_UNAUTHORIZED", "true") === "true";
-          
+          const rejectUnauthorized =
+            configService.get<string>(
+              "STORAGE_DB_REJECT_UNAUTHORIZED",
+              "true",
+            ) === "true";
+
           if (!rejectUnauthorized) {
             Logger.warn(
               "SSL certificate validation is disabled! This should only be used in development environments.",
